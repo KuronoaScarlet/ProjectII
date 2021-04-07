@@ -26,8 +26,8 @@ bool Player::Update(Input* input, float dt)
     if (input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT) position.y -= (PLAYER_JUMP_SPEED * dt);
 
     // Calculate gravity acceleration
-    jumpSpeed += GRAVITY * dt;
-    position.y += (jumpSpeed * dt);
+    /*jumpSpeed += GRAVITY * dt;
+    position.y += (jumpSpeed * dt);*/
 
     return true;
 }

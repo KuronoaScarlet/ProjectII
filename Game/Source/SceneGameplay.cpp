@@ -64,7 +64,7 @@ bool SceneGameplay::Update(Input *input, float dt)
 	{
 		for (int x = 0; x < map->data.width; x++)
 		{
-			if ((map->data.layers[2]->Get(x, y) >= 484) && 
+			if ((map->data.layers[4]->Get(x, y) >= 484) && 
 				CheckCollision(map->GetTilemapRec(x, y), player->GetBounds()))
 			{
 				player->position = tempPlayerPosition;

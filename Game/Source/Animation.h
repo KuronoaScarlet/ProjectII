@@ -36,9 +36,9 @@ public:
 		return !loop && !pingpong && loopCount > 0;
 	}
 
-	void Update(float dt)
+	void Update()
 	{
-		currentFrame += speed*dt;
+		currentFrame += speed;
 		if (currentFrame >= totalFrames)
 		{
 			currentFrame = (loop || pingpong) ? 0.0f : totalFrames - 1;

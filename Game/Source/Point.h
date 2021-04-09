@@ -36,9 +36,9 @@ public:
 	}
 
 	// Math ------------------------------------------------
-	Point operator -(const Point &v) const
+	Point operator -(const Point& v) const
 	{
-		TYPE r;
+		Point r;
 
 		r.x = x - v.x;
 		r.y = y - v.y;
@@ -48,7 +48,7 @@ public:
 
 	Point operator + (const Point &v) const
 	{
-		TYPE r;
+		p2Vector2 r;
 
 		r.x = x + v.x;
 		r.y = y + v.y;

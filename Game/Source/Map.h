@@ -1,17 +1,16 @@
 #ifndef __MAP_H__
 #define __MAP_H__
 
-#include "Entity.h"
-#include "Render.h"
-#include "Textures.h"
-
+#include "Module.h"
 #include "List.h"
 #include "PQueue.h"
 #include "Point.h"
 #include "DynArray.h"
 
-#include "SDL/include/SDL.h"
-#include "PugiXml/src/pugixml.hpp"
+#include "Scene1.h"
+
+
+#include "PugiXml\src\pugixml.hpp"
 
 #define COST_MAP_SIZE	100
 
@@ -47,8 +46,6 @@ enum MapTypes
 	MAPTYPE_ISOMETRIC,
 	MAPTYPE_STAGGERED
 };
-
-// L06: DONE 5: Create a generic structure to hold properties
 struct Properties
 {
 	struct Property
@@ -59,22 +56,15 @@ struct Properties
 
 	~Properties()
 	{
-		ListItem<Property*>* item;
-		item = list.start;
-
-		while (item != NULL)
-		{
-			RELEASE(item->data);
-			item = item->next;
-		}
-
-		list.Clear();
+		//...
 	}
 
-	// L06: DONE 7: Method to ask for the value of a custom property
+	// L06: TODO 7: Method to ask for the value of a custom property
+
 	int GetProperty(const char* name, int default_value = 0) const;
 
 	List<Property*> list;
+	Property property;
 };
 
 // L04: DONE 1: Create a struct for the map layer
@@ -85,7 +75,6 @@ struct MapLayer
 	int height;
 	uint* data;
 
-	// L06: DONE 1: Support custom properties
 	Properties properties;
 
 	MapLayer() : data(NULL)
@@ -99,7 +88,8 @@ struct MapLayer
 	// L04: DONE 6: Short function to get the value of x,y
 	inline uint Get(int x, int y) const
 	{
-		return data[(y * width) + x];
+
+		return data[(y*width)+x];
 	}
 };
 
@@ -118,59 +108,48 @@ struct MapData
 	List<MapLayer*> layers;
 };
 
-class Map : public Entity
+class Map : public Module
 {
 public:
 
-    Map(Textures* render);
+	Map();
 
-    // Destructor
-    virtual ~Map();
+	// Destructor
+	virtual ~Map();
 
-    // Called before render is available
-    bool Awake(pugi::xml_node& conf);
+	// Called before render is available
+	bool Awake(pugi::xml_node& conf);
 
-    // Called each loop iteration
-    void Draw(Render* render);
+	// Called each loop iteration
+	void Draw();
 
-	void DrawLayer(Render* render, int num);
+	// Called before quitting
+	bool CleanUp();
 
-    // Called before quitting
-    bool CleanUp();
+	bool Load(const char* path);
 
-    // Load new map
-    bool Load(const char* path);
+	fPoint MapToWorld(float x, float y) const;
+	fPoint WorldToMap(float x, float y) const;
 
-	// L04: DONE 8: Create a method that translates x,y coordinates from map positions to world positions
-	iPoint MapToWorld(int x, int y) const;
+	void ShowCollider() { drawColliders = !drawColliders; }
 
-	// L05: DONE 2: Add orthographic world to map coordinates
-	iPoint WorldToMap(int x, int y) const;
+	void LoadColliders();
 
-	SDL_Rect GetTilemapRec(int x, int y) const;
-	
-	// BFS/Dijkstra methods not required any more: Using PathFinding class
-	/*
-    // L10: BFS Pathfinding methods
 	void ResetPath(iPoint start);
 	void DrawPath();
 
-    // L11: More pathfinding methods
-    int MovementCost(int x, int y) const;
-	void ComputePath(int x, int y);
-	
-	// L12a: AStar pathfinding
-	void ComputePathAStar(int x, int y);
+	int MovementCost(int x, int y) const;
 
-	// Propagation methods
-	void PropagateBFS();
-	void PropagateDijkstra();
-	// L12a: AStar propagation
+	void ComputePathAStar(int x, int y);
 	void PropagateAStar(int heuristic);
-	*/
-	
-	// L12b: Create walkability map for pathfinding
+
+	int CalculateDistanceToDestiny(iPoint node);
+	int CalculateDistanceToStart(iPoint node);
+
 	bool CreateWalkabilityMap(int& width, int& height, uchar** buffer) const;
+
+	bool LoadState(pugi::xml_node&);
+	bool SaveState(pugi::xml_node&) const;
 
 private:
 
@@ -179,49 +158,31 @@ private:
 	bool LoadTilesetDetails(pugi::xml_node& tileset_node, TileSet* set);
 	bool LoadTilesetImage(pugi::xml_node& tileset_node, TileSet* set);
 	bool LoadLayer(pugi::xml_node& node, MapLayer* layer);
-
-	// L06: TODO 6: Load a group of properties 
 	bool LoadProperties(pugi::xml_node& node, Properties& properties);
-
-	// L06: DONE 3: Pick the right Tileset based on a tile id
 	TileSet* GetTilesetFromTileId(int id) const;
 
 public:
-
-    // L03: DONE 1: Add your struct for map info
 	MapData data;
-
-	bool drawColliders = false;
+	iPoint tileDestiny;
 
 private:
 
-	Textures* tex;
+	pugi::xml_document mapFile;
+	SString folder;
+	bool mapLoaded;
+	bool drawColliders = false;
 
-    pugi::xml_document mapFile;
-    SString folder;
-    bool mapLoaded;
-
-	uint32 scale;
-	iPoint camOffset;
-    
-	// BFS/Dijkstra variables not required any more: Using PathFinding class
-	/*
-	// L10: BFS Pathfinding variables
 	PQueue<iPoint> frontier;
 	List<iPoint> visited;
-    
-    // L11: Additional variables
-    List<iPoint> breadcrumbs;
-	DynArray<iPoint> path;
-	
-	// L11: Dijkstra cost
+
+	List<iPoint> breadCrumbs;
 	uint costSoFar[COST_MAP_SIZE][COST_MAP_SIZE];
-    
-	// L12a: AStar (A*) variables
-	iPoint goalAStar;			// Store goal target tile
-	bool finishAStar = false;	// Detect when reached goal
+	DynArray<iPoint> path;
+
+	iPoint goalAStar;
+	bool finishAStar = false;
+
 	SDL_Texture* tileX = nullptr;
-	*/
 };
 
 #endif // __MAP_H__

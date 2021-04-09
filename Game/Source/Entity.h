@@ -1,41 +1,62 @@
-#ifndef __ENTITY_H__
-#define __ENTITY_H__
+#ifndef _ENTITY_H_
+#define _ENTITY_H_
 
+#include "Module.h"
+#include "Animation.h"
+#include "Textures.h"
 #include "Point.h"
-#include "SString.h"
 
-enum class EntityType
-{
-    PLAYER,
-    ENEMY,
-    ITEM,
-    MAP,
-    UNKNOWN
-};
 
 class Entity
 {
 public:
+	enum class Type
+	{
+		UNKNOWN,
+		PLAYER,
+		HEARTS,
+		COINS,
+		CHECKPOINT,
+			
+	};
 
-    Entity(EntityType type) : type(type), active(true) {}
+	Entity(Module* listener, fPoint position, SDL_Texture* texture, Type type) : listener(listener), position(position), texture(texture), type(type)
+	{}
 
-    virtual bool Update(float dt)
-    {
-        return true;
-    }
+	virtual bool Start()
+	{
+		return true;
+	}
 
-public:
+	virtual bool Update(float dt)
+	{
+		return true;
+	}
 
-    EntityType type;
-    bool active = true;
-    //SString name;         // Entity name identifier?
-    //uint32 id;            // Entity identifier?
+	virtual bool Draw()
+	{
+		return true;
+	}
 
-    // Possible properties, it depends on how generic we
-    // want our Entity class, maybe it's not renderable...
-    iPoint position;        // Use a float instead?
-    bool renderable = false;
-    //SDL_Texture* texture;
+	virtual void Collision(Collider* coll)
+	{
+
+	}
+
+	virtual void CleanUp()
+	{
+
+	}
+
+	Module* listener;
+
+	Type type;
+	fPoint position;
+	SDL_Texture* texture;
+
+	Collider* collider = nullptr;
+
+	bool pendingToDelete = false;
 };
 
 #endif // __ENTITY_H__

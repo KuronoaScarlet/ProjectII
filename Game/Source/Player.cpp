@@ -3,10 +3,10 @@
 Player::Player() : Entity(EntityType::PLAYER)
 {
     texture = NULL;
-    position = iPoint(12 * 16, 27 * 16);
+    position = iPoint(12 * 32, 27 * 32);
     jumpSpeed = 200.0f;
 
-    width = 16;
+    width = 32;
     height = 32;
 
     // Define Player animations
@@ -24,6 +24,8 @@ bool Player::Update(Input* input, float dt)
     if (input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT) position.x += (PLAYER_MOVE_SPEED * dt);
 
     if (input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT) position.y -= (PLAYER_JUMP_SPEED * dt);
+
+    if (input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT) position.y += (PLAYER_JUMP_SPEED * dt);
 
     // Calculate gravity acceleration
     /*jumpSpeed += GRAVITY * dt;

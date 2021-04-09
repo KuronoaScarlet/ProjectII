@@ -15,7 +15,7 @@
     <fullscreen_window value="false"/>
   </window>
   <map>
-    <folder>Assets/map/</folder>
+    <folder>Assets/Maps/</folder>
   </map>
   <player>
     <folder>Assets/Textures/player</folder>

@@ -43,7 +43,7 @@ bool Scene1::Start()
 	app->render->camera.y = 0;
 	app->render->camera.x = 0;
 
-	if (app->map->Load("mapLvl.tmx") == true)
+	if (app->map->Load("mapLvl1.tmx") == true)
 	{
 		int w, h;
 		uchar* data = NULL;
@@ -76,21 +76,6 @@ bool Scene1::PreUpdate()
 // Called each loop iteration
 bool Scene1::Update(float dt)
 {
-	
-	/*if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
-	{
-		if (app->entityManager->playerData.position.x >= 176.0f && app->entityManager->playerData.position.x <= 192.0f)
-		{
-			app->render->camera.x += 60 * dt;
-		}
-	}
-	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
-	{
-		if (app->entityManager->playerData.position.x >= 176.0f && app->entityManager->playerData.position.x <= 192.0f)
-		{
-			app->render->camera.x -= 170*dt;
-		}
-	}*/
 	app->map->Draw();
 	//app->map->LoadColliders();
 
@@ -102,8 +87,6 @@ bool Scene1::PostUpdate()
 {
 	bool ret = true;
 	time = 100 - timerr.ReadSec();
-
-	
 
 	return ret;
 }

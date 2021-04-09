@@ -34924,7 +34924,7 @@
  </group>
  <layer id="3" name="collisions" width="102" height="57" visible="0" opacity="0.44">
   <properties>
-   <property name="drawable" type="int" value="0"/>
+   <property name="Nodraw" type="int" value="0"/>
   </properties>
   <data>
    <tile gid="14064"/>

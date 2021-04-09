@@ -26,28 +26,6 @@ bool EntityManager::Start()
 	texCheckpoint = NULL;
 	texPlayer = app->tex->Load("Assets/Textures/player.png");
 
-	//Pause Menu
-	playerData.pauseMenu = app->tex->Load("Assets/Textures/pause_image.png");
-	playerData.pauseCondition = false;
-	//Botones
-	playerData.resumeButton = new GuiButton(9, { 160, 37, 100, 24 }, "RESUME");
-	playerData.resumeButton->SetObserver((Scene1*)this);
-	playerData.resumeButton->SetTexture(app->tex->Load("Assets/Textures/Buttons/states/play.png"), app->tex->Load("Assets/Textures/Buttons/states/focused.png"), app->tex->Load("Assets/Textures/Buttons/states/pressed.png"));
-
-	playerData.settingsButton = new GuiButton(2, { 160, 79, 100, 24 }, "SETTINGS");
-	playerData.settingsButton->SetObserver((Scene1*)this);
-	playerData.settingsButton->SetTexture(app->tex->Load("Assets/Textures/Buttons/states/play.png"), app->tex->Load("Assets/Textures/Buttons/states/focused.png"), app->tex->Load("Assets/Textures/Buttons/states/pressed.png"));
-
-	playerData.backToTitleButton = new GuiButton(11, { 160, 120, 100, 24 }, "BACK_TO_TITLE");
-	playerData.backToTitleButton->SetObserver((Scene1*)this);
-	playerData.backToTitleButton->SetTexture(app->tex->Load("Assets/Textures/Buttons/states/play.png"), app->tex->Load("Assets/Textures/Buttons/states/focused.png"), app->tex->Load("Assets/Textures/Buttons/states/pressed.png"));
-
-	playerData.exitButton = new GuiButton(4, { 160, 180, 100, 24 }, "EXIT");
-	playerData.exitButton->SetObserver((Scene1*)this);
-	playerData.exitButton->SetTexture(app->tex->Load("Assets/Textures/Buttons/states/play.png"), app->tex->Load("Assets/Textures/Buttons/states/focused.png"), app->tex->Load("Assets/Textures/Buttons/states/pressed.png"));
-
-	playerData.resetCamera = false;
-
 	return true;
 }
 
@@ -88,38 +66,6 @@ bool EntityManager::Update(float dt)
 
 bool EntityManager::PostUpdate()
 {
-	if ((app->scene1->active == true) && playerData.pauseCondition == false)
-	{
-		SDL_Rect rectPlayer;
-		for (int i = 0; i < playerData.lives; i++)
-		{
-			//app->render->DrawTexture(heartsTexture, ((-app->render->camera.x + 10) + (i * 32)) / 3, (-app->render->camera.y + 20) / 3, NULL);
-		}
-	}
-	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN && (app->scene1->active==true))
-	{
-		//app->SaveGameRequest();
-		if (app->entityManager->playerData.pauseCondition == false)	app->entityManager->playerData.cameraBckUp = app->render->camera;
-		if(app->entityManager->playerData.pauseCondition == true)	app->render->camera = app->entityManager->playerData.cameraBckUp;
-		app->entityManager->playerData.pauseCondition = !app->entityManager->playerData.pauseCondition;
-		app->entityManager->playerData.resetCamera = true;
-
-	}
-	if (app->entityManager->playerData.pauseCondition)
-	{
-		app->render->camera.x = 0;
-		app->render->camera.y = 0;
-		app->render->DrawTexture(playerData.pauseMenu, 0, -20, NULL);
-		playerData.resumeButton->Draw(app->render);
-		app->render->DrawText(app->render->font, "Resume", 530, 120, 60, 5, { 255, 255, 255, 255 });
-		playerData.settingsButton->Draw(app->render);
-		app->render->DrawText(app->render->font, "Settings", 520, 245, 60, 5, { 255, 255, 255, 255 });
-		playerData.backToTitleButton->Draw(app->render);
-		app->render->DrawText(app->render->font, "Back to Title", 465, 370, 60, 5, { 255, 255, 255, 255 });
-		playerData.exitButton->Draw(app->render);
-		app->render->DrawText(app->render->font, "Exit Game", 500, 550, 60, 5, { 255, 255, 255, 255 });
-	}
-	
 	for (int i = 0; i < entityList.Count(); i++)
 	{
 		ListItem<Entity*>* entity = entityList.At(i);

@@ -56,7 +56,6 @@ void Map::Draw()
 					{
 						if (data.layers.At(i)->data->properties.GetProperty("Nodraw", 0) == 0 || drawColliders)
 							app->render->DrawTexture(data.tilesets.At(i)->data->texture, vec.x, vec.y, &data.tilesets.At(i)->data->GetTileRect(tileId));
-							//app->render->DrawTexture(GetTilesetFromTileId(tileId)->texture, vec.x, vec.y, &GetTilesetFromTileId(tileId)->GetTileRect(tileId));
 					}
 				}
 			}
@@ -500,7 +499,7 @@ int Properties::GetProperty(const char* value, int defaultValue) const
 
 void Map::LoadColliders()
 {
-	/*if (mapLoaded == false) return;
+	if (mapLoaded == false) return;
 
 
 	ListItem<MapLayer*>* L = data.layers.start;
@@ -545,7 +544,7 @@ void Map::LoadColliders()
 			}
 		}
 		L = L->next;
-	}*/
+	}
 }
 
 bool Map::CreateWalkabilityMap(int& width, int& height, uchar** buffer) const

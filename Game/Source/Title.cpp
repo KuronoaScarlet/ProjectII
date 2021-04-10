@@ -47,11 +47,11 @@ bool Title::Start()
     screen = app->tex->Load("Assets/Textures/title_screen.png");
     app->audio->PlayMusic("Assets/Audio/Music/title_scene_music.ogg");
 
-    play = new GuiButton(1, { 560, 350, 80, 20 }, "START");
+    play = new GuiButton(1, { 560, 350, 140, 30 }, "START");
     play->SetObserver((Scene1*)this);
     play->SetTexture(app->tex->Load("Assets/Textures/continue.png"), app->tex->Load("Assets/Textures/continue_logo.png"), app->tex->Load("Assets/Textures/continue_focus.png"));
     
-    newGame = new GuiButton(12, { 560, 400, 80, 20 }, "START");
+    newGame = new GuiButton(12, { 560, 400, 160, 30 }, "START");
     newGame->SetObserver((Scene1*)this);
     newGame->SetDisableTexture(app->tex->Load("Assets/Textures/Buttons/states/no.png"));
     if (!app->fileSaved)
@@ -60,19 +60,19 @@ bool Title::Start()
     }
     newGame->SetTexture(app->tex->Load("Assets/Textures/newgame.png"), app->tex->Load("Assets/Textures/newgame_logo.png"), app->tex->Load("Assets/Textures/newgame_focus.png"));
     
-    options = new GuiButton(2, { 565, 450, 80, 20 }, "OPTIONS");
+    options = new GuiButton(2, { 565, 450, 140, 30 }, "OPTIONS");
     options->SetObserver((Scene1*)this);
     options->SetTexture(app->tex->Load("Assets/Textures/settings.png"), app->tex->Load("Assets/Textures/settings_logo.png"), app->tex->Load("Assets/Textures/settings_focus.png"));
 
-    credits = new GuiButton(13, { 565, 500, 80, 20 }, "CREDITS");
+    credits = new GuiButton(13, { 565, 500, 100, 30 }, "CREDITS");
     credits->SetObserver((Scene1*)this);
     credits->SetTexture(app->tex->Load("Assets/Textures/credits.png"), app->tex->Load("Assets/Textures/credits_logo.png"), app->tex->Load("Assets/Textures/credits_selected.png"));
 
-    exit = new GuiButton(4, { 585, 570, 80, 20 }, "EXIT");
+    exit = new GuiButton(4, { 585, 570, 80, 30 }, "EXIT");
     exit->SetObserver((Scene1*)this);
     exit->SetTexture(app->tex->Load("Assets/Textures/exit.png"), app->tex->Load("Assets/Textures/exit_logo.png"), app->tex->Load("Assets/Textures/exit_selected.png"));
 
-    backButton = new GuiButton(3, { 565, 700, 20, 16 }, "BACK");
+    backButton = new GuiButton(3, { 565, 700, 80, 30 }, "BACK");
     backButton->SetObserver((Scene1*)this);
     backButton->SetTexture(app->tex->Load("Assets/Textures/Buttons/states/play.png"), app->tex->Load("Assets/Textures/Buttons/states/focused.png"), app->tex->Load("Assets/Textures/Buttons/states/pressed.png"));
 

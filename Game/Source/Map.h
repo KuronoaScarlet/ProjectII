@@ -169,6 +169,7 @@ public:
 
 private:
 
+
 	pugi::xml_document mapFile;
 	SString folder;
 	bool mapLoaded;

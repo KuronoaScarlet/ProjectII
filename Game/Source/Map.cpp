@@ -452,7 +452,26 @@ bool Map::LoadTilesetImage(pugi::xml_node& tileset_node, TileSet* set)
 	}
 	else
 	{
+		// L03: DONE: Load Tileset image
 		set->texture = app->tex->Load(PATH(folder.GetString(), image.attribute("source").as_string()));
+		int w, h;
+		SDL_QueryTexture(set->texture, NULL, NULL, &w, &h);
+		set->texWidth = image.attribute("width").as_int();
+
+		if (set->texWidth <= 0)
+		{
+			set->texWidth = w;
+		}
+
+		set->texHeight = image.attribute("height").as_int();
+
+		if (set->texHeight <= 0)
+		{
+			set->texHeight = h;
+		}
+
+		set->numTilesWidth = set->texWidth / set->tileWidth;
+		set->numTilesHeight = set->texHeight / set->tileHeight;
 	}
 
 	return ret;
@@ -474,7 +493,7 @@ bool Map::LoadLayer(pugi::xml_node& node, MapLayer* layer)
 		layer->data[i] = tile.attribute("gid").as_int(0);
 		tile = tile.next_sibling("tile");
 	}
-
+	LoadProperties(node, layer->properties);
 	return ret;
 }
 

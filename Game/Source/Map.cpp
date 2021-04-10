@@ -34,39 +34,53 @@ void Map::Draw()
 {
 	if (mapLoaded == false) return;
 
-	// L04: DONE 5: Prepare the loop to draw all tilesets + DrawTexture()
-	MapLayer* layer = data.layers.start->data;
+	camOffset.x = app->render->camera.x;
+	camOffset.y = app->render->camera.y;
 
-	// L06: TODO 4: Make sure we draw all the layers and not just the first one
-
-	iPoint point;
-
-	for (int y = 0; y < data.height; ++y)
+	// L06: DONE 4: Make sure we draw all the layers and not just the first one
+	for (int i = 0; i < data.layers.Count(); i++)
 	{
-		for (int x = 0; x < data.width; ++x)
+		if ((data.layers[i]->properties.GetProperty("drawable", 1) != 0) || drawColliders) DrawLayer(i);
+	}
+}
+
+
+void Map::DrawLayer(int num)
+{
+	if (num < data.layers.Count())
+	{
+		MapLayer* layer = data.layers[num];
+
+		app->render->scale = scale;
+
+		// L04: DONE 5: Prepare the loop to draw all tilesets + DrawTexture()
+		for (int y = 0; y < data.height; ++y)
 		{
-			for (ListItem<MapLayer*>* layer = data.layers.start; layer; layer = layer->next)
+			for (int x = 0; x < data.width; ++x)
 			{
-				int tileId = layer->data->Get(x, y);
+				int tileId = layer->Get(x, y);
+
 				if (tileId > 0)
 				{
-					// L04: TODO 9: Complete the draw function       
-					fPoint vec = MapToWorld(x, y);
-					for (int i = 0; i < data.tilesets.Count(); i++)
-					{
-						if (data.layers.At(i)->data->properties.GetProperty("Nodraw", 0) == 0 || drawColliders)
-							app->render->DrawTexture(data.tilesets.At(i)->data->texture, vec.x, vec.y, &data.tilesets.At(i)->data->GetTileRect(tileId));
-					}
+					// L04: DONE 9: Complete the draw function
+					TileSet* tileset = GetTilesetFromTileId(tileId);
+
+					SDL_Rect rec = tileset->GetTileRect(tileId);
+					iPoint pos = MapToWorld(x, y);
+
+					app->render->DrawTexture(tileset->texture, pos.x + tileset->offsetX, pos.y + tileset->offsetY, &rec);
 				}
 			}
 		}
+
+		app->render->scale = 1;
 	}
 }
 
 // L04: DONE 8: Create a method that translates x,y coordinates from map positions to world positions
-fPoint Map::MapToWorld(float x, float y) const
+iPoint Map::MapToWorld(int x, int y) const
 {
-	fPoint ret;
+	iPoint ret;
 
 	ret.x = x * data.tileWidth;
 	ret.y = y * data.tileHeight;
@@ -77,9 +91,9 @@ fPoint Map::MapToWorld(float x, float y) const
 }
 
 // L05: TODO 2: Add orthographic world to map coordinates
-fPoint Map::WorldToMap(float x, float y) const
+iPoint Map::WorldToMap(int x, int y) const
 {
-	fPoint ret(0, 0);
+	iPoint ret(0, 0);
 	ret.x = x / data.tileWidth;
 	ret.y = y / data.tileHeight;
 	// L05: TODO 3: Add the case for isometric maps to WorldToMap
@@ -141,7 +155,7 @@ void Map::DrawPath()
 		TileSet* tileset = GetTilesetFromTileId(401);
 
 		SDL_Rect rec = tileset->GetTileRect(401);
-		fPoint pos = MapToWorld(pointV.x, pointV.y);
+		iPoint pos = MapToWorld(pointV.x, pointV.y);
 
 		app->render->DrawTexture(tileset->texture, pos.x, pos.y, &rec);
 		itemVisited = itemVisited->next;
@@ -155,7 +169,7 @@ void Map::DrawPath()
 
 		pointF = itemFrontier->data;
 		tileset = GetTilesetFromTileId(422);
-		fPoint pos = MapToWorld(pointF.x, pointF.y);
+		iPoint pos = MapToWorld(pointF.x, pointF.y);
 		app->render->DrawTexture(tileset->texture, pos.x, pos.y, &rec);
 		itemFrontier = itemFrontier->next;
 	}
@@ -168,7 +182,7 @@ void Map::DrawPath()
 
 		pointPath = { path.At(i)->x,path.At(i)->y };
 		tileset = GetTilesetFromTileId(401);
-		fPoint pos = MapToWorld(pointPath.x, pointPath.y);
+		iPoint pos = MapToWorld(pointPath.x, pointPath.y);
 		app->render->DrawTexture(tileset->texture, pos.x, pos.y, &rec);
 
 	}
@@ -525,7 +539,7 @@ void Map::LoadColliders()
 
 
 				int u = layer->Get(x, y);
-				fPoint pos = MapToWorld(x, y);
+				iPoint pos = MapToWorld(x, y);
 				SDL_Rect n = { pos.x + 1, pos.y, data.tileWidth - 2, data.tileHeight-15 };
 				SDL_Rect n2 = { pos.x-1, pos.y+7, 2, 6 };
 				SDL_Rect n3 = { pos.x + 15, pos.y + 7, 2, 6 };

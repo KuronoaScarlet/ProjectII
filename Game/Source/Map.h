@@ -123,13 +123,15 @@ public:
 	// Called each loop iteration
 	void Draw();
 
+	void DrawLayer(int num);
+
 	// Called before quitting
 	bool CleanUp();
 
 	bool Load(const char* path);
 
-	fPoint MapToWorld(float x, float y) const;
-	fPoint WorldToMap(float x, float y) const;
+	iPoint MapToWorld(int x, int y) const;
+	iPoint WorldToMap(int x, int y) const;
 
 	void ShowCollider() { drawColliders = !drawColliders; }
 
@@ -170,6 +172,9 @@ private:
 	pugi::xml_document mapFile;
 	SString folder;
 	bool mapLoaded;
+
+	uint32 scale;
+	iPoint camOffset;
 	bool drawColliders = false;
 
 	PQueue<iPoint> frontier;

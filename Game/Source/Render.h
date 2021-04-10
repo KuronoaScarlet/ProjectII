@@ -58,6 +58,8 @@ public:
 	
 	SDL_Texture* texF;
 	Fonts* font;
+
+	uint scale;
 };
 
 #endif // __RENDER_H__

@@ -49,7 +49,7 @@ bool Title::Start()
 
     play = new GuiButton(1, { 170, 75, 80, 20 }, "START");
     play->SetObserver((Scene1*)this);
-    play->SetTexture(app->tex->Load("Assets/Textures/Buttons/states/play.png"), app->tex->Load("Assets/Textures/Buttons/states/focused.png"), app->tex->Load("Assets/Textures/Buttons/states/pressed.png"));
+    play->SetTexture(app->tex->Load("Assets/Textures/continue_logo.png"), app->tex->Load("Assets/Textures/continue_selected.png"), app->tex->Load("Assets/Textures/continue_focus.png"));
     
     continueButton = new GuiButton(12, { 170, 105, 80, 20 }, "START");
     continueButton->SetObserver((Scene1*)this);
@@ -62,7 +62,7 @@ bool Title::Start()
     
     options = new GuiButton(2, { 170, 135, 80, 20 }, "OPTIONS");
     options->SetObserver((Scene1*)this);
-    options->SetTexture(app->tex->Load("Assets/Textures/Buttons/states/play.png"), app->tex->Load("Assets/Textures/Buttons/states/focused.png"), app->tex->Load("Assets/Textures/Buttons/states/pressed.png"));
+    options->SetTexture(app->tex->Load("Assets/Textures/states/play.png"), app->tex->Load("Assets/Textures/Buttons/states/focused.png"), app->tex->Load("Assets/Textures/Buttons/states/pressed.png"));
 
     credits = new GuiButton(13, { 170, 165, 80, 20 }, "OPTIONS");
     credits->SetObserver((Scene1*)this);

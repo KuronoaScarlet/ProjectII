@@ -39,7 +39,10 @@ bool Logo::Start()
 
     bool ret = true;
 
-    screen = app->tex->Load("Assets/Textures/logo_screen.png");
+    screen = app->tex->Load("Assets/Textures/team_logo.png");
+    app->audio->PlayMusic("Assets/Audio/Music/logoscreen_fx.ogg");
+
+
 
     timer = 0;
     trans = true;
@@ -64,7 +67,7 @@ bool Logo::PostUpdate()
 {
     bool ret = true;
     // Draw everything --------------------------------------
-    if (timer > 4 && trans == true)
+    if (timer > 2 && trans == true)
     {
         trans = false;
         app->fade->Fade(this, (Module*)app->title, 10);

@@ -6,7 +6,11 @@ GuiButton::GuiButton(uint32 id, SDL_Rect bounds, const char* text) : GuiControl(
     this->text = text;
 
     audio = false;
-    buttonFx = app->audio->LoadFx("Assets/Audio/FX/jump.wav");
+    audioB = false;
+    audioR = false;
+    selectFx = app->audio->LoadFx("Assets/Audio/FX/menu_scroll.wav");
+    selectedFx = app->audio->LoadFx("Assets/Audio/FX/menu_selected.wav");
+    releaseFx = app->audio->LoadFx("Assets/Audio/FX/menu_release.wav");
 }
 
 GuiButton::~GuiButton()
@@ -59,19 +63,34 @@ bool GuiButton::Draw(Render* render)
         case GuiControlState::NORMAL:
             render->DrawTexture(textureIdle, bounds.x, bounds.y, NULL);
             audio = false;
+            audioB = false;
             break;
         case GuiControlState::FOCUSED:
             render->DrawTexture(textureFocused, bounds.x, bounds.y, NULL);
             if (audio == false)
             {
                 audio = true;
-                app->audio->PlayFx(buttonFx);
+                app->audio->PlayFx(selectFx);
             }
             break;
         case GuiControlState::PRESSED:
             render->DrawTexture(texturePressed, bounds.x, bounds.y, NULL);
+           
+            if (audioB == false)
+            {
+                audioB = true;
+                app->audio->PlayFx(selectedFx);
+            }
+          
             break;
-        case GuiControlState::SELECTED: render->DrawRectangle(bounds, 0, 255, 0, 255);
+        case GuiControlState::SELECTED:
+            render->DrawRectangle(bounds, 0, 255, 0, 255);
+            render->DrawTexture(texturePressed, bounds.x, bounds.y, NULL);
+            if (audio == false)
+            {
+                audio = true;
+                app->audio->PlayFx(selectedFx);
+            }
             break;
         default:
             break;
@@ -93,7 +112,7 @@ bool GuiButton::Draw(Render* render)
             if (audio == false)
             {
                 audio = true;
-                app->audio->PlayFx(buttonFx);
+                app->audio->PlayFx(selectedFx);
             }
             break;
         case GuiControlState::PRESSED:

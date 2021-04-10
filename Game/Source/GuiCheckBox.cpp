@@ -60,11 +60,32 @@ bool GuiCheckBox::Draw(Render* render)
                 if (checked) render->DrawTexture(texturePressed, bounds.x, bounds.y, NULL);
                 else render->DrawTexture(textureIdle, bounds.x, bounds.y, NULL);
             } break;
-            case GuiControlState::FOCUSED: render->DrawTexture(textureFocused, bounds.x, bounds.y, NULL);
+            case GuiControlState::FOCUSED:
+                render->DrawTexture(textureFocused, bounds.x, bounds.y, NULL);
+                render->DrawRectangle(bounds, 100, 25, 70, 255);
+                if (audio == false)
+                {
+                    audio = true;
+                    app->audio->PlayFx(selectedFx);
+                }
                 break;
-            case GuiControlState::PRESSED:  render->DrawTexture(texturePressed, bounds.x, bounds.y, NULL);
+            case GuiControlState::PRESSED:
+                render->DrawTexture(texturePressed, bounds.x, bounds.y, NULL);
+                render->DrawRectangle(bounds, 100, 25, 70, 255);
+                if (audio == false)
+                {
+                    audio = true;
+                    app->audio->PlayFx(selectedFx);
+                }
                 break;
-            case GuiControlState::SELECTED: render->DrawRectangle(bounds, 0, 255, 0, 255);
+            case GuiControlState::SELECTED:
+                render->DrawRectangle(bounds, 0, 255, 0, 255);
+                render->DrawTexture(texturePressed, bounds.x, bounds.y, NULL);
+                if (audio == false)
+                {
+                    audio = true;
+                    app->audio->PlayFx(selectedFx);
+                }
                 break;
             default:
                 break;

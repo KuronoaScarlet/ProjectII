@@ -43,15 +43,14 @@ bool Scene1::Start()
 	app->render->camera.y = 0;
 	app->render->camera.x = 0;
 
-	if (app->map->Load("mapLvl1.tmx") == true)
-	{
-		int w, h;
-		uchar* data = NULL;
 
-		if (app->map->CreateWalkabilityMap(w, h, &data)) app->pathFinding->SetMap(w, h, data);
+	int w, h;
+	uchar* data = NULL;
 
-		RELEASE_ARRAY(data);
-	}
+	//if (app->map->CreateWalkabilityMap(w, h, &data)) app->pathFinding->SetMap(w, h, data);
+
+	RELEASE_ARRAY(data);
+
 
 	app->map->active = true;
 
@@ -63,7 +62,7 @@ bool Scene1::Start()
 		app->loadingGame = false;
 	}
 
-	
+	app->map->Load("mapLvl2.tmx");
 	return true;
 }
 

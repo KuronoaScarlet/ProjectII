@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="102" height="57" tilewidth="32" tileheight="32" infinite="0" nextlayerid="13" nextobjectid="1">
+ <properties>
+  <property name="drawable" type="int" value="1"/>
+ </properties>
  <tileset firstgid="1" name="Interiors_32x32" tilewidth="32" tileheight="32" tilecount="10464" columns="16">
   <image source="../Textures/Interiors_32x32.png" width="512" height="20951"/>
  </tileset>
@@ -9,10 +12,10 @@
  <tileset firstgid="14064" name="Collisions" tilewidth="32" tileheight="32" tilecount="8" columns="8">
   <image source="../Textures/Collisions.png" width="256" height="32"/>
  </tileset>
- <imagelayer id="2" name="Capa de Imagen 1" visible="0">
-  <image source="bg.png"/>
- </imagelayer>
- <layer id="3" name="Floor" width="102" height="57">
+ <layer id="3" name="floor" width="102" height="57">
+  <properties>
+   <property name="drawable" type="int" value="1"/>
+  </properties>
   <data>
    <tile/>
    <tile/>
@@ -344,12 +347,12 @@
    <tile gid="11975"/>
    <tile gid="12358"/>
    <tile gid="12358"/>
-   <tile gid="12358"/>
-   <tile gid="12358"/>
-   <tile gid="12358"/>
-   <tile gid="12358"/>
-   <tile gid="12358"/>
-   <tile gid="12358"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
    <tile gid="12358"/>
    <tile gid="12358"/>
    <tile gid="12358"/>
@@ -445,14 +448,14 @@
    <tile gid="11060"/>
    <tile gid="11975"/>
    <tile gid="12358"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
    <tile gid="12358"/>
-   <tile gid="12358"/>
-   <tile gid="12358"/>
-   <tile gid="12358"/>
-   <tile gid="12358"/>
-   <tile gid="12358"/>
-   <tile gid="12358"/>
-   <tile gid="12358"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
    <tile gid="12358"/>
    <tile gid="12358"/>
    <tile gid="12358"/>
@@ -547,14 +550,14 @@
    <tile gid="11060"/>
    <tile gid="11975"/>
    <tile gid="12358"/>
+   <tile gid="12211"/>
    <tile gid="12358"/>
    <tile gid="12358"/>
-   <tile gid="12358"/>
-   <tile gid="12358"/>
-   <tile gid="12358"/>
-   <tile gid="12358"/>
-   <tile gid="12358"/>
-   <tile gid="12358"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
    <tile gid="12358"/>
    <tile gid="12358"/>
    <tile gid="12358"/>
@@ -649,13 +652,13 @@
    <tile gid="11060"/>
    <tile gid="11975"/>
    <tile gid="12358"/>
-   <tile gid="12358"/>
-   <tile gid="12358"/>
-   <tile gid="12358"/>
-   <tile gid="12358"/>
-   <tile gid="12358"/>
-   <tile gid="12358"/>
-   <tile gid="12358"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
    <tile gid="12358"/>
    <tile gid="12358"/>
    <tile gid="12358"/>
@@ -5830,7 +5833,10 @@
    <tile/>
   </data>
  </layer>
- <layer id="7" name="Roffs2" width="102" height="57">
+ <layer id="7" name="roffs2" width="102" height="57">
+  <properties>
+   <property name="drawable" type="int" value="1"/>
+  </properties>
   <data>
    <tile/>
    <tile/>
@@ -6165,6 +6171,8 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
    <tile/>
    <tile/>
    <tile/>
@@ -6261,6 +6269,14 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
    <tile/>
    <tile/>
    <tile/>
@@ -6355,6 +6371,14 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
    <tile/>
    <tile/>
    <tile/>
@@ -6449,31 +6473,13 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
    <tile/>
    <tile/>
    <tile/>
@@ -6555,6 +6561,7 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="26"/>
    <tile/>
    <tile/>
    <tile/>
@@ -6568,13 +6575,12 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="12211"/>
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
    <tile/>
    <tile/>
    <tile/>
@@ -6671,11 +6677,11 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
+   <tile gid="12211"/>
    <tile/>
    <tile/>
    <tile/>
@@ -11648,7 +11654,10 @@
    <tile/>
   </data>
  </layer>
- <layer id="4" name="InnerWalls" width="102" height="57">
+ <layer id="4" name="inner" width="102" height="57">
+  <properties>
+   <property name="drawable" type="int" value="0"/>
+  </properties>
   <data>
    <tile/>
    <tile gid="10820"/>
@@ -12085,7 +12094,7 @@
    <tile gid="11975"/>
    <tile gid="11975"/>
    <tile gid="11975"/>
-   <tile/>
+   <tile gid="11975"/>
    <tile gid="11975"/>
    <tile gid="11975"/>
    <tile gid="11975"/>
@@ -12589,7 +12598,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="11975"/>
    <tile gid="11975"/>
    <tile gid="11975"/>
    <tile gid="11975"/>
@@ -17466,7 +17475,10 @@
    <tile/>
   </data>
  </layer>
- <layer id="8" name="FloorDecorations" width="102" height="57">
+ <layer id="8" name="floordec" width="102" height="57">
+  <properties>
+   <property name="drawable" type="int" value="0"/>
+  </properties>
   <data>
    <tile/>
    <tile/>
@@ -23284,7 +23296,10 @@
    <tile/>
   </data>
  </layer>
- <layer id="10" name="Tables" width="102" height="57">
+ <layer id="10" name="ta" width="102" height="57">
+  <properties>
+   <property name="drawable" type="int" value="0"/>
+  </properties>
   <data>
    <tile/>
    <tile/>
@@ -29102,7 +29117,10 @@
    <tile/>
   </data>
  </layer>
- <layer id="11" name="Decoration3" width="102" height="57">
+ <layer id="11" name="dec3" width="102" height="57">
+  <properties>
+   <property name="drawable" type="int" value="0"/>
+  </properties>
   <data>
    <tile/>
    <tile/>
@@ -34920,7 +34938,10 @@
    <tile/>
   </data>
  </layer>
- <layer id="6" name="Roffs" width="102" height="57" locked="1">
+ <layer id="6" name="roffs" width="102" height="57" locked="1">
+  <properties>
+   <property name="drawable" type="int" value="0"/>
+  </properties>
   <data>
    <tile gid="10535"/>
    <tile gid="10654"/>
@@ -40738,7 +40759,10 @@
    <tile gid="10655"/>
   </data>
  </layer>
- <layer id="1" name="Capa de patrones 1" width="102" height="57">
+ <layer id="1" name="capa" width="102" height="57">
+  <properties>
+   <property name="drawable" type="int" value="0"/>
+  </properties>
   <data>
    <tile/>
    <tile/>
@@ -46556,7 +46580,10 @@
    <tile/>
   </data>
  </layer>
- <layer id="5" name="Decorations" width="102" height="57">
+ <layer id="5" name="decorations" width="102" height="57">
+  <properties>
+   <property name="drawable" type="int" value="0"/>
+  </properties>
   <data>
    <tile/>
    <tile/>

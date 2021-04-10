@@ -10,6 +10,9 @@
 #endif
 #define NULL  0
 
+#define SCREEN_WIDTH 1280
+#define SCREEN_HEIGHT 720
+
 // Deletes a buffer
 #define RELEASE( x ) \
 	{						\
@@ -50,19 +53,18 @@ template <class VALUE_TYPE> void SWAP(VALUE_TYPE& a, VALUE_TYPE& b)
 
 // Standard string size
 #define SHORT_STR	 32
-#define MID_STR	    255
-#define HUGE_STR   8192
+#define MID_STR	  255
+#define HUGE_STR	8192
 
 // Joins a path and file
 inline const char* const PATH(const char* folder, const char* file)
 {
 	static char path[MID_STR];
-	sprintf_s(path, MID_STR, "%s/%s", folder, file);
+	sprintf_s(path, MID_STR, "%s%s", folder, file);
 	return path;
 }
 
-// Performance macros
 #define PERF_START(timer) timer.Start()
 #define PERF_PEEK(timer) LOG("%s took %f ms", __FUNCTION__, timer.ReadMs())
 
-#endif	// __DEFS_H__
+#endif

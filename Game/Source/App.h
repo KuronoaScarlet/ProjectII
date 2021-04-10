@@ -2,24 +2,34 @@
 #define __APP_H__
 
 #include "Module.h"
-#include "PerfTimer.h"
-#include "Timer.h"
-
 #include "List.h"
+#include "Timer.h"
+#include "PerfTimer.h"
 
 #include "PugiXml/src/pugixml.hpp"
-
-#define CONFIG_FILENAME		"config.xml"
-#define SAVE_STATE_FILENAME "save_game.xml"
 
 // Modules
 class Window;
 class Input;
 class Render;
 class Textures;
-class AudioManager;
+class Audio;
 class EntityManager;
-class SceneManager;
+class Map;
+class Collisions;
+
+//Scenes
+class Logo;
+class Intro;
+class Title;
+class Scene1;
+class Scene2;
+class Scene3;
+class Scene4;
+class FadeToBlack;
+class DeathScreen;
+class WinScreen;
+class PathFinding;
 
 class App
 {
@@ -52,15 +62,14 @@ public:
 	const char* GetTitle() const;
 	const char* GetOrganization() const;
 
-    // L02: DONE 1: Create methods to request Load / Save
+	// Load/Save Requests Methods
 	void LoadGameRequest();
 	void SaveGameRequest() const;
 
-	// Load config file
-	// NOTE: It receives config document
-	pugi::xml_node LoadConfig(pugi::xml_document&) const;
-
 private:
+
+	// Load config file
+	bool LoadConfig();
 
 	// Call modules before each loop iteration
 	void PrepareUpdate();
@@ -88,41 +97,81 @@ public:
 	Input* input;
 	Render* render;
 	Textures* tex;
-	AudioManager* audio;
+	Audio* audio;
+	Logo* logo;
+	Intro* intro;
+	Title* title;
+	Scene1* scene1;
+	Map* map;
 	EntityManager* entityManager;
-	SceneManager* sceneManager;
+	FadeToBlack* fade;
+	Collisions* collisions;
+	DeathScreen* deathScreen;
+	WinScreen* winScreen;
+	PathFinding* pathFinding;
+
+	uint activeFonts = 0;
+	uint totalFonts = 0;
+
+	bool debugButton = false;
+
+	bool stop = false;
+	int currentLevel;
+
+	bool loadingGame = false;
+
+	bool fileSaved;
 
 private:
 
 	int argc;
 	char** args;
-	SString title;
+	SString titl;
 	SString organization;
 
-	List<Module *> modules;
+	List<Module*> modules;
 
-	// L01: DONE 2: Create new variables from pugui namespace
-	// NOTE: Redesigned LoadConfig() to avoid storing this variables
-	//pugi::xml_document configFile;
-	//pugi::xml_node config;
-	//pugi::xml_node configApp;
+	pugi::xml_document configFile;
+	pugi::xml_node config;
+	pugi::xml_node configApp;
+
+	uint frames;
+	float dt;
 
 	mutable bool saveGameRequested;
 	bool loadGameRequested;
 
-	// L07: DONE 4: Calculate some timing measures
-	// required variables are provided:
-	PerfTimer ptimer;
-	uint64 frameCount = 0;
+	pugi::xml_document saveLoadFile;
+	pugi::xml_node saveLoadNode;
 
-	Timer startupTime;
+	PerfTimer perfTimer;
+	uint64 fpsCount = 0;
+
+	int frameRate60;
+	int frameRate30;
+
+	Timer startTime;
 	Timer frameTime;
-	Timer lastSecFrameTime;
-	uint32 lastSecFrameCount = 0;
-	uint32 prevLastSecFrameCount = 0;
-	float dt = 0.0f;
+	Timer lastSecond;
+	uint32 lastSecFrameCnt = 0;
+	uint32 prevLastSecFrameCnt = 0;
+	uint32 framesSecond = 0;
+	uint32 lastFrameMs = 0;
+	float fps;
+	float frameRate;
+	float tempFps;
+	float fpsAverageSinceStart;
+	bool cappedFrameRate;
+	float startFramesTimeMs;
+	
+	
+	float timePerfect;
+	float oldLastFrame = 0.0f;
+	int cappedMs = -1;
+	bool caped;
 
-	int	cappedMs = -1;
 };
+
+extern App* app;
 
 #endif	// __APP_H__

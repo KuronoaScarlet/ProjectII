@@ -1,12 +1,22 @@
 <?xml version="1.0"?>
-<!-- L02: TODO 4: Create a simulation xml file to read -->
-<game_state>
-	<input />
-	<window />
-	<textures />
-	<audio />
-	<scene />
-	<renderer>
-		<camera x="0" y="0" />
-	</renderer>
-</game_state>
+<save>
+	<map>
+		<level currentlyOn="3" />
+	</map>
+	<entities>
+		<entity>
+			<player>
+				<playerdata x="725.000366" y="182" lives="3" coins="4" />
+			</player>
+			<enemies>
+				<enemy x="756.149902" y="152779.344" />
+				<enemy x="466.5" y="256" />
+				<enemy x="1030.5" y="128" />
+				<enemy x="1234.5" y="32" />
+			</enemies>
+		</entity>
+	</entities>
+	<render>
+		<camera x="-1725" y="-132" />
+	</render>
+</save>

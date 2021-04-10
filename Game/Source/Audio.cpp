@@ -12,18 +12,18 @@
 // NOTE: Library linkage is configured in Linker Options
 //#pragma comment(lib, "../Game/Source/External/SDL_mixer/libx86/SDL2_mixer.lib")
 
-AudioManager::AudioManager() : Module()
+Audio::Audio() : Module()
 {
 	music = NULL;
 	name.Create("audio");
 }
 
 // Destructor
-AudioManager::~AudioManager()
+Audio::~Audio()
 {}
 
 // Called before render is available
-bool AudioManager::Awake(pugi::xml_node& config)
+bool Audio::Awake(pugi::xml_node& config)
 {
 	LOG("Loading Audio Mixer");
 	bool ret = true;
@@ -55,11 +55,15 @@ bool AudioManager::Awake(pugi::xml_node& config)
 		ret = true;
 	}
 
+	volumeMusic = 100;
+	
+
 	return ret;
 }
 
+
 // Called before quitting
-bool AudioManager::CleanUp()
+bool Audio::CleanUp()
 {
 	if(!active)
 		return true;
@@ -84,8 +88,26 @@ bool AudioManager::CleanUp()
 	return true;
 }
 
+void Audio::Volume(int num, char flag)
+{
+	vol = num;
+	if (flag == '0')
+	{
+		Mix_VolumeMusic(vol);
+		
+	}
+	else if (flag == '1')
+	{
+		for (int i = 0; i < fx.Count(); i++)
+		{
+			Mix_Volume(-1, vol);
+		}
+	}
+	
+}
+
 // Play a music file
-bool AudioManager::PlayMusic(const char* path, float fadeTime)
+bool Audio::PlayMusic(const char* path, float fade_time)
 {
 	bool ret = true;
 
@@ -94,9 +116,9 @@ bool AudioManager::PlayMusic(const char* path, float fadeTime)
 
 	if(music != NULL)
 	{
-		if(fadeTime > 0.0f)
+		if(fade_time > 0.0f)
 		{
-			Mix_FadeOutMusic(int(fadeTime * 1000.0f));
+			Mix_FadeOutMusic(int(fade_time * 1000.0f));
 		}
 		else
 		{
@@ -116,9 +138,9 @@ bool AudioManager::PlayMusic(const char* path, float fadeTime)
 	}
 	else
 	{
-		if(fadeTime > 0.0f)
+		if(fade_time > 0.0f)
 		{
-			if(Mix_FadeInMusic(music, -1, (int) (fadeTime * 1000.0f)) < 0)
+			if(Mix_FadeInMusic(music, -1, (int) (fade_time * 1000.0f)) < 0)
 			{
 				LOG("Cannot fade in music %s. Mix_GetError(): %s", path, Mix_GetError());
 				ret = false;
@@ -139,7 +161,7 @@ bool AudioManager::PlayMusic(const char* path, float fadeTime)
 }
 
 // Load WAV
-unsigned int AudioManager::LoadFx(const char* path)
+unsigned int Audio::LoadFx(const char* path)
 {
 	unsigned int ret = 0;
 
@@ -162,7 +184,7 @@ unsigned int AudioManager::LoadFx(const char* path)
 }
 
 // Play WAV
-bool AudioManager::PlayFx(unsigned int id, int repeat)
+bool Audio::PlayFx(unsigned int id, int repeat)
 {
 	bool ret = false;
 

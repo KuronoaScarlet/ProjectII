@@ -1,79 +1,203 @@
 #include "EntityManager.h"
 
-#include "Player.h"
-#include "Enemy.h"
-#include "Item.h"
-
-#include "Defs.h"
+#include "App.h"
 #include "Log.h"
+#include "Textures.h"
+#include "Render.h"
+#include "Fonts.h"
+
+#include "Scene1.h"
+#include "Title.h"
+
+#include "PlayerEntity.h"
 
 EntityManager::EntityManager() : Module()
 {
 	name.Create("entitymanager");
 }
 
-// Destructor
-EntityManager::~EntityManager()
-{}
-
-// Called before render is available
-bool EntityManager::Awake(pugi::xml_node& config)
+bool EntityManager::Awake()
 {
-	LOG("Loading Entity Manager");
-	bool ret = true;
-
-	return ret;
+	return true;
 }
 
-// Called before quitting
-bool EntityManager::CleanUp()
+bool EntityManager::Start()
 {
-	if (!active) return true;
+	texCheckpoint = NULL;
+	texPlayer = app->tex->Load("Assets/Textures/player.png");
 
 	return true;
 }
 
-Entity* EntityManager::CreateEntity(EntityType type)
+bool EntityManager::PreUpdate()
 {
-	Entity* ret = nullptr;
-
-	switch (type)
-	{
-		// L13: Create the corresponding type entity
-		case EntityType::PLAYER: ret = new Player();  break;
-		//case EntityType::ENEMY: ret = new Enemy();  break;
-		//case EntityType::ITEM: ret = new Item();  break;
-		default: break;
-	}
-
-	// Created entities are added to the list
-	if (ret != nullptr) entities.Add(ret);
-
-	return ret;
+	return true;
 }
 
 bool EntityManager::Update(float dt)
 {
-	accumulatedTime += dt;
-	if (accumulatedTime >= updateMsCycle) doLogic = true;
+	ListItem<Entity*>* entity = entityList.start;
 
-	UpdateAll(dt, doLogic);
-
-	if (doLogic == true)
+	while (entity != nullptr)
 	{
-		accumulatedTime = 0.0f;
-		doLogic = false;
+		if (entity->data->pendingToDelete)
+		{
+			delete entity->data;
+			entityList.Del(entity);
+			entity = entity->next;
+			continue;
+		}
+
+		entity->data->Update(dt);
+		entity = entity->next;
+	}
+
+	if (app->entityManager->playerData.pauseCondition)
+	{
+		playerData.resumeButton->Update(app->input, dt);
+		playerData.settingsButton->Update(app->input, dt);
+		playerData.backToTitleButton->Update(app->input, dt);
+		playerData.exitButton->Update(app->input, dt);
+	}
+	if (app->title->exi)	return false;
+
+	return true;
+}
+
+bool EntityManager::PostUpdate()
+{
+	for (int i = 0; i < entityList.Count(); i++)
+	{
+		ListItem<Entity*>* entity = entityList.At(i);
+		entity->data->Draw();
+	}
+
+	playerData.hit = false;
+
+	return true;
+}
+
+bool EntityManager::CleanUp()
+{
+	for (int i = 0; i < entityList.Count(); i++)
+	{
+		ListItem<Entity*>* entity = entityList.At(i);
+		entity->data->pendingToDelete = true;
+	}
+
+	entityList.Clear();
+
+	return true;
+}
+
+bool EntityManager::LoadState(pugi::xml_node& data)
+{
+	pugi::xml_node entities = data.child("entity");
+
+	pugi::xml_node node = entities.child("player");
+	pugi::xml_node node2 = entities.child("enemies");
+
+	pugi::xml_node e;
+
+	int count = 0;
+
+	for (e = node.child("playerdata"); e; e = e.next_sibling("playerdata"))
+	{
+		float x = e.attribute("x").as_float();
+		float y = e.attribute("y").as_float();
+		fPoint newPosition = fPoint(x, y);
+		Entity* entities = entityList[count];
+		if (entities->type == Entity::Type::PLAYER)
+		{
+			entities->position = newPosition;
+			count++;
+		}
+		int lives = e.attribute("lives").as_int(0);
+		playerData.lives = lives;
+		int coins = e.attribute("coins").as_int(0);
+	}
+
+	count = 1;
+
+	for (e = node2.child("enemy"); e; e = e.next_sibling("enemy"))
+	{
+		float x = e.attribute("x").as_float();
+		float y = e.attribute("y").as_float();
+		fPoint newPosition = fPoint(x, y);
+		Entity* enemies = entityList[count];
+		/*if (enemies->type == Entity::Type::GROUND_ENEMY || enemies->type == Entity::Type::AIR_ENEMY)
+		{
+			enemies->position = newPosition;
+			count++;
+		}*/
 	}
 
 	return true;
 }
 
-bool EntityManager::UpdateAll(float dt, bool doLogic)
+bool EntityManager::SaveState(pugi::xml_node& data) const
 {
-	if (doLogic)
+	pugi::xml_node entities = data.append_child("entity");
+	pugi::xml_node node = entities.append_child("player");
+	pugi::xml_node node2 = entities.append_child("enemies");
+
+	for (int i = 0; i < entityList.Count(); i++)
 	{
-		// TODO: Update all entities 
+		Entity* e = entityList[i];
+		if (e->type == Entity::Type::PLAYER)
+		{
+			pugi::xml_node eNode = node.append_child("playerdata");
+			pugi::xml_attribute x = eNode.append_attribute("x");
+			x.set_value(e->position.x);
+			pugi::xml_attribute y = eNode.append_attribute("y");
+			y.set_value(e->position.y);
+			pugi::xml_attribute lives = eNode.append_attribute("lives");
+			lives.set_value(playerData.lives);
+			pugi::xml_attribute coins = eNode.append_attribute("coins");
+			eNode.next_sibling("playerdata");
+		}
+
+		/*if (e->type == Entity::Type::GROUND_ENEMY || e->type == Entity::Type::AIR_ENEMY)
+		{
+			pugi::xml_node eNode = node2.append_child("enemy");
+			pugi::xml_attribute x = eNode.append_attribute("x");
+			x.set_value(e->position.x);
+			pugi::xml_attribute y = eNode.append_attribute("y");
+			y.set_value(e->position.y);
+			eNode.next_sibling("enemy");
+		}*/
 	}
 
 	return true;
+}
+
+void EntityManager::AddEntity(fPoint position, Entity::Type type)
+{
+	switch (type)
+	{
+	case Entity::Type::PLAYER:
+		playerEntity = (Entity*)(new PlayerEntity((Module*)this, position, texPlayer, type));
+		entityList.Add(playerEntity);
+		break;
+	}
+	
+
+}
+
+void EntityManager::OnCollision(Collider* a, Collider* b)
+{
+	for (int i = 0; i < entityList.Count(); i++)
+	{
+		ListItem<Entity*>* entity = entityList.At(i);
+
+		if (entity->data->collider == a && b != nullptr)
+		{
+			entity->data->Collision(b);
+		}
+
+		if (entity->data->collider == b && a != nullptr)
+		{
+			entity->data->Collision(a);
+		}
+	}
 }

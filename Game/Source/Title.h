@@ -53,7 +53,7 @@ public:
     bool creditSceneFlag;
 
     GuiButton* play;
-    GuiButton* continueButton;
+    GuiButton* newGame;
     GuiButton* options;
     GuiButton* credits;
     GuiButton* exit;

@@ -47,32 +47,32 @@ bool Title::Start()
     screen = app->tex->Load("Assets/Textures/title_screen.png");
     app->audio->PlayMusic("Assets/Audio/Music/title_scene_music.ogg");
 
-    play = new GuiButton(1, { 170, 75, 80, 20 }, "START");
+    play = new GuiButton(1, { 560, 350, 80, 20 }, "START");
     play->SetObserver((Scene1*)this);
-    play->SetTexture(app->tex->Load("Assets/Textures/continue_logo.png"), app->tex->Load("Assets/Textures/continue_selected.png"), app->tex->Load("Assets/Textures/continue_focus.png"));
+    play->SetTexture(app->tex->Load("Assets/Textures/continue.png"), app->tex->Load("Assets/Textures/continue_logo.png"), app->tex->Load("Assets/Textures/continue_focus.png"));
     
-    continueButton = new GuiButton(12, { 170, 105, 80, 20 }, "START");
-    continueButton->SetObserver((Scene1*)this);
-    continueButton->SetDisableTexture(app->tex->Load("Assets/Textures/Buttons/states/no.png"));
+    newGame = new GuiButton(12, { 560, 400, 80, 20 }, "START");
+    newGame->SetObserver((Scene1*)this);
+    newGame->SetDisableTexture(app->tex->Load("Assets/Textures/Buttons/states/no.png"));
     if (!app->fileSaved)
     {
-        continueButton->state = GuiControlState::DISABLED;
+        newGame->state = GuiControlState::DISABLED;
     }
-    continueButton->SetTexture(app->tex->Load("Assets/Textures/Buttons/states/play.png"), app->tex->Load("Assets/Textures/Buttons/states/focused.png"), app->tex->Load("Assets/Textures/Buttons/states/pressed.png"));
+    newGame->SetTexture(app->tex->Load("Assets/Textures/newgame.png"), app->tex->Load("Assets/Textures/newgame_logo.png"), app->tex->Load("Assets/Textures/newgame_focus.png"));
     
-    options = new GuiButton(2, { 170, 135, 80, 20 }, "OPTIONS");
+    options = new GuiButton(2, { 565, 450, 80, 20 }, "OPTIONS");
     options->SetObserver((Scene1*)this);
-    options->SetTexture(app->tex->Load("Assets/Textures/states/play.png"), app->tex->Load("Assets/Textures/Buttons/states/focused.png"), app->tex->Load("Assets/Textures/Buttons/states/pressed.png"));
+    options->SetTexture(app->tex->Load("Assets/Textures/settings.png"), app->tex->Load("Assets/Textures/settings_logo.png"), app->tex->Load("Assets/Textures/settings_focus.png"));
 
-    credits = new GuiButton(13, { 170, 165, 80, 20 }, "OPTIONS");
+    credits = new GuiButton(13, { 565, 500, 80, 20 }, "CREDITS");
     credits->SetObserver((Scene1*)this);
-    credits->SetTexture(app->tex->Load("Assets/Textures/Buttons/states/play.png"), app->tex->Load("Assets/Textures/Buttons/states/focused.png"), app->tex->Load("Assets/Textures/Buttons/states/pressed.png"));
+    credits->SetTexture(app->tex->Load("Assets/Textures/credits.png"), app->tex->Load("Assets/Textures/credits_logo.png"), app->tex->Load("Assets/Textures/credits_selected.png"));
 
-    exit = new GuiButton(4, { 170, 195, 80, 20 }, "EXIT");
+    exit = new GuiButton(4, { 585, 570, 80, 20 }, "EXIT");
     exit->SetObserver((Scene1*)this);
-    exit->SetTexture(app->tex->Load("Assets/Textures/Buttons/states/play.png"), app->tex->Load("Assets/Textures/Buttons/states/focused.png"), app->tex->Load("Assets/Textures/Buttons/states/pressed.png"));
+    exit->SetTexture(app->tex->Load("Assets/Textures/exit.png"), app->tex->Load("Assets/Textures/exit_logo.png"), app->tex->Load("Assets/Textures/exit_selected.png"));
 
-    backButton = new GuiButton(3, { 10, 10, 20, 16 }, "BACK");
+    backButton = new GuiButton(3, { 565, 700, 20, 16 }, "BACK");
     backButton->SetObserver((Scene1*)this);
     backButton->SetTexture(app->tex->Load("Assets/Textures/Buttons/states/play.png"), app->tex->Load("Assets/Textures/Buttons/states/focused.png"), app->tex->Load("Assets/Textures/Buttons/states/pressed.png"));
 
@@ -96,7 +96,7 @@ bool Title::Update(float dt)
     if (creditSceneFlag == false)
     {
         play->Update(app->input, dt);
-        continueButton->Update(app->input, dt);
+        newGame->Update(app->input, dt);
         options->Update(app->input, dt);
         credits->Update(app->input, dt);
         exit->Update(app->input, dt);
@@ -150,11 +150,11 @@ bool Title::PostUpdate()
         if (!app->fileSaved)
         {
             app->render->DrawText(app->render->font, "Load", 600, 328, 60, 5, { 255, 255, 255, 255 });
-            continueButton->Draw(app->render);
+            newGame->Draw(app->render);
         }
         else
         {
-            continueButton->Draw(app->render);
+            newGame->Draw(app->render);
             app->render->DrawText(app->render->font, "Load", 600, 328, 60, 5, { 255, 255, 255, 255 });
         }
         options->Draw(app->render);

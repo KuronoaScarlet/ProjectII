@@ -50,17 +50,7 @@ bool PlayerEntity::Start()
 
 bool PlayerEntity::Update(float dt)
 {
-	if (position.x > 640 && position.x < 1152)
-	{
-		app->render->camera.x = -(position.x - 640);
-	}
-	if (position.y > 640 && position.y < 1152)
-	{
-		app->render->camera.y = -(position.y - 640);
-	}
-	//app->render->camera.x = position.x + app->render->camera.w/2;
-	//app->render->camera.y = position.y + app->render->camera.h/2;
-	//app->render->DrawRectangle(app->render->camera, 255, 0, 0, 255, false, false);
+	
 
 	tempPlayerPosition = position;
 	if (!app->entityManager->playerData.pauseCondition)
@@ -68,12 +58,6 @@ bool PlayerEntity::Update(float dt)
 		//PlayerData Info Containers
 		app->entityManager->playerData.position.x = position.x;
 		app->entityManager->playerData.position.y = position.y;
-	
-		//Camera Update
-		/*if (position.y <= 230 && position.y >= 20)
-		{
-			app->render->camera.y = -position.y + 50;
-		}*/
 
 		//Player Movement
 		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_IDLE
@@ -85,7 +69,6 @@ bool PlayerEntity::Update(float dt)
 		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 		{
 			position.x -= 110 * dt;
-			//app->render->camera.x += 200 * dt;
 			if (currentAnimation != &walkAnimationLeft) 
 			{
 				walkAnimationLeft.Reset();
@@ -95,7 +78,6 @@ bool PlayerEntity::Update(float dt)
 		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 		{
 			position.x += 110 * dt;
-			//app->render->camera.x -= 200 * dt;
 			if (currentAnimation != &walkAnimationRight) 
 			{
 				walkAnimationRight.Reset();
@@ -105,18 +87,26 @@ bool PlayerEntity::Update(float dt)
 		if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
 		{
 			position.y -= 110 * dt;
-			//app->render->camera.y += 200 * dt;
 		}
 
 		if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
 		{
 			position.y += 110 * dt;
-			//app->render->camera.y -= 200 * dt;
 		}
-				
+		
+
+		if (app->input->GetKey(SDL_SCANCODE_R) == KEY_REPEAT)
+		{
+			position = { 100.0f, 175.0f };
+		}
+
 		cameraControl = true;
 		currentAnimation->Update();
 
+		//camera update
+		app->render->camera.x = -position.x + 640;
+		app->render->camera.y = -position.y + 360;
+		//app->render->DrawRectangle(app->render->camera, 255, 0, 0, 255, false, false);
 	}
 
 	

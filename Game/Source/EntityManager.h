@@ -73,16 +73,23 @@ public:
 
 	PlayerData playerData;
 
-private:
 	List<Entity*> entityList;
+private:
 
 
 	SDL_Texture* texCheckpoint;
 	SDL_Texture* texPlayer;
+	SDL_Texture* texNPC1;
+	SDL_Texture* texNPC2;
+	SDL_Texture* texNPC3;
+
 
 
 	Entity* checkpoint;
 	Entity* playerEntity;
+	Entity* NPC1Entity;
+	Entity* NPC2Entity;
+	Entity* NPC3Entity;
 
 	//Fonts
 	int scoreFont = -1;

@@ -14,7 +14,7 @@ struct Collider
 		NONE = -1,
 		PLAYER,
 		WALL,
-
+		
 		MAX
 	};
 

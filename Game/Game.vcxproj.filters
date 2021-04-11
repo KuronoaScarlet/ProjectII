@@ -81,6 +81,15 @@
     <ClCompile Include="Source\PlayerEntity.cpp">
       <Filter>Entities\Playable</Filter>
     </ClCompile>
+    <ClCompile Include="Source\NPC1.cpp">
+      <Filter>Entities\NoPlayable</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\NPC2.cpp">
+      <Filter>Entities\NoPlayable</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\NPC3.cpp">
+      <Filter>Entities\NoPlayable</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -198,6 +207,15 @@
     <ClInclude Include="Source\PlayerEntity.h">
       <Filter>Entities\Playable</Filter>
     </ClInclude>
+    <ClInclude Include="Source\NPC1.h">
+      <Filter>Entities\NoPlayable</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\NPC2.h">
+      <Filter>Entities\NoPlayable</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\NPC3.h">
+      <Filter>Entities\NoPlayable</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">
@@ -229,6 +247,9 @@
     </Filter>
     <Filter Include="Modules">
       <UniqueIdentifier>{73ac8df4-26ea-43f3-9292-e69b96185abe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities\NoPlayable">
+      <UniqueIdentifier>{ed926986-a091-4a37-ba21-b63777064068}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

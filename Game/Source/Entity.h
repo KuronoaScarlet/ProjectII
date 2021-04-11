@@ -17,6 +17,9 @@ public:
 		HEARTS,
 		COINS,
 		CHECKPOINT,
+		NPC_1,
+		NPC_2,
+		NPC_3,
 			
 	};
 

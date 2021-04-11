@@ -10,6 +10,9 @@
 #include "Title.h"
 
 #include "PlayerEntity.h"
+#include"NPC1.h"
+#include"NPC2.h"
+#include"NPC3.h"
 
 EntityManager::EntityManager() : Module()
 {
@@ -25,6 +28,9 @@ bool EntityManager::Start()
 {
 	texCheckpoint = NULL;
 	texPlayer = app->tex->Load("Assets/Textures/player.png");
+	texNPC1 = app->tex->Load("Assets/Textures/player.png");
+	texNPC2 = app->tex->Load("Assets/Textures/player.png");
+	texNPC3 = app->tex->Load("Assets/Textures/player.png");
 
 	return true;
 }
@@ -179,10 +185,24 @@ void EntityManager::AddEntity(fPoint position, Entity::Type type)
 		playerEntity = (Entity*)(new PlayerEntity((Module*)this, position, texPlayer, type));
 		entityList.Add(playerEntity);
 		break;
+
+	case Entity::Type::NPC_1:
+		NPC1Entity = (Entity*)(new NPC1((Module*)this, position, texNPC1, type));
+		entityList.Add(NPC1Entity);
+		break;
+	case Entity::Type::NPC_2:
+		NPC2Entity = (Entity*)(new NPC2((Module*)this, position, texNPC1, type));
+		entityList.Add(NPC2Entity);
+		break;
+	case Entity::Type::NPC_3:
+		NPC3Entity = (Entity*)(new NPC3((Module*)this, position, texNPC1, type));
+		entityList.Add(NPC3Entity);
+		break;
 	}
+}
 	
 
-}
+
 
 void EntityManager::OnCollision(Collider* a, Collider* b)
 {

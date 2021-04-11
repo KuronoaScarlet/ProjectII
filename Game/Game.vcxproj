@@ -105,6 +105,9 @@
     <ClCompile Include="Source\Audio.cpp" />
     <ClCompile Include="Source\Input.cpp" />
     <ClCompile Include="Source\Map.cpp" />
+    <ClCompile Include="Source\NPC1.cpp" />
+    <ClCompile Include="Source\NPC2.cpp" />
+    <ClCompile Include="Source\NPC3.cpp" />
     <ClCompile Include="Source\Pathfinding.cpp" />
     <ClCompile Include="Source\PerfTimer.cpp" />
     <ClCompile Include="Source\PlayerEntity.cpp" />
@@ -130,6 +133,9 @@
     <ClInclude Include="Source\GuiSlider.h" />
     <ClInclude Include="Source\Logo.h" />
     <ClInclude Include="Source\Map.h" />
+    <ClInclude Include="Source\NPC1.h" />
+    <ClInclude Include="Source\NPC2.h" />
+    <ClInclude Include="Source\NPC3.h" />
     <ClInclude Include="Source\Pathfinding.h" />
     <ClInclude Include="Source\PerfTimer.h" />
     <ClInclude Include="Source\PlayerEntity.h" />

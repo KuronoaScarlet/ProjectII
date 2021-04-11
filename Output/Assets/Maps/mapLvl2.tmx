@@ -34947,7 +34947,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="7" name="collisions" width="102" height="57" visible="0">
+ <layer id="7" name="collisions" width="102" height="57">
   <properties>
    <property name="Collisions" type="int" value="1"/>
    <property name="drawable" type="int" value="0"/>
@@ -35975,9 +35975,9 @@
    <tile/>
    <tile/>
    <tile gid="3600"/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="3600"/>
+   <tile gid="3600"/>
+   <tile gid="3600"/>
    <tile/>
    <tile/>
    <tile/>
@@ -36186,7 +36186,6 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="3600"/>
    <tile/>
    <tile/>
    <tile/>
@@ -36197,6 +36196,7 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile/>
    <tile gid="3600"/>
    <tile/>
    <tile/>
@@ -37602,7 +37602,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="3600"/>
    <tile/>
    <tile gid="3600"/>
    <tile/>

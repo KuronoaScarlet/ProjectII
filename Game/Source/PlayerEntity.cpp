@@ -40,7 +40,7 @@ PlayerEntity::PlayerEntity(Module* listener, fPoint position, SDL_Texture* textu
 	currentAnimation = &idleAnimation;
 
 	collider = app->collisions->AddCollider(SDL_Rect({ (int)position.x, (int)position.y+34, 30, 12 }), Collider::Type::PLAYER, listener);
-	
+
 }
 
 bool PlayerEntity::Start()
@@ -50,6 +50,18 @@ bool PlayerEntity::Start()
 
 bool PlayerEntity::Update(float dt)
 {
+	if (position.x > 640 && position.x < 1152)
+	{
+		app->render->camera.x = -(position.x - 640);
+	}
+	if (position.y > 640 && position.y < 1152)
+	{
+		app->render->camera.y = -(position.y - 640);
+	}
+	//app->render->camera.x = position.x + app->render->camera.w/2;
+	//app->render->camera.y = position.y + app->render->camera.h/2;
+	//app->render->DrawRectangle(app->render->camera, 255, 0, 0, 255, false, false);
+
 	tempPlayerPosition = position;
 	if (!app->entityManager->playerData.pauseCondition)
 	{
@@ -117,6 +129,7 @@ bool PlayerEntity::Draw()
 {
 	SDL_Rect playerRect = currentAnimation->GetCurrentFrame();
 	app->render->DrawTexture(texture, position.x, position.y, &playerRect);
+
 
 	return true;
 }

@@ -27,10 +27,10 @@ bool EntityManager::Awake()
 bool EntityManager::Start()
 {
 	texCheckpoint = NULL;
-	texPlayer = app->tex->Load("Assets/Textures/player.png");
-	texNPC1 = app->tex->Load("Assets/Textures/player.png");
-	texNPC2 = app->tex->Load("Assets/Textures/player.png");
-	texNPC3 = app->tex->Load("Assets/Textures/player.png");
+	texPlayer = app->tex->Load("Assets/Textures/Entities/Playable/player.png");
+	texNPC1 = app->tex->Load("Assets/Textures/Entities/Playable/player.png");
+	texNPC2 = app->tex->Load("Assets/Textures/Entities/Playable/player.png");
+	texNPC3 = app->tex->Load("Assets/Textures/Entities/Playable/player.png");
 
 	return true;
 }

@@ -31,6 +31,8 @@ private:
 	Animation idleAnimation;
 	Animation walkAnimationRight;
 	Animation walkAnimationLeft;
+	Animation walkAnimationUp;
+	Animation walkAnimationDown;
 
 	Animation* currentAnimation;
 		

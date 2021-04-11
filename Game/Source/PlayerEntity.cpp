@@ -16,7 +16,13 @@
 PlayerEntity::PlayerEntity(Module* listener, fPoint position, SDL_Texture* texture, Type type) : Entity(listener, position, texture, type)
 {
 	idleAnimation.loop = true;
-	idleAnimation.PushBack({ 96, 18, 32, 46 });
+	idleAnimation.PushBack({ 576, 80, 32, 48 });
+	idleAnimation.PushBack({ 608, 80, 32, 48 });
+	idleAnimation.PushBack({ 640, 80, 32, 48 });
+	idleAnimation.PushBack({ 672, 80, 32, 48 });
+	idleAnimation.PushBack({ 704, 80, 32, 48 });
+	idleAnimation.PushBack({ 736, 80, 32, 48 });
+	idleAnimation.speed = 0.2f;
 
 	walkAnimationRight.PushBack({ 0,146, 30, 46 });
 	walkAnimationRight.PushBack({ 32,144, 30, 46 });
@@ -28,14 +34,33 @@ PlayerEntity::PlayerEntity(Module* listener, fPoint position, SDL_Texture* textu
 	walkAnimationRight.loop = true;
 	walkAnimationRight.speed = 0.2f;
 
-	walkAnimationLeft.PushBack({ 386,146, 30, 46 });
-	walkAnimationLeft.PushBack({ 418,144, 30, 46 });
-	walkAnimationLeft.PushBack({ 450,146, 30, 46 });
-	walkAnimationLeft.PushBack({ 482,146, 30, 46 });
-	walkAnimationLeft.PushBack({ 514,144, 30, 46 });
-	walkAnimationLeft.PushBack({ 546,146, 30, 46 });
+	walkAnimationLeft.PushBack({ 386,146, 32, 46 });
+	walkAnimationLeft.PushBack({ 418,144, 32, 46 });
+	walkAnimationLeft.PushBack({ 450,146, 32, 46 });
+	walkAnimationLeft.PushBack({ 482,146, 32, 46 });
+	walkAnimationLeft.PushBack({ 514,144, 32, 46 });
+	walkAnimationLeft.PushBack({ 546,146, 32, 46 });
 	walkAnimationLeft.loop = true;
 	walkAnimationLeft.speed = 0.2f;
+
+	walkAnimationUp.loop = true;
+	walkAnimationUp.speed = 0.2f;
+	walkAnimationUp.PushBack({ 192,144, 32, 48 });
+	walkAnimationUp.PushBack({ 224,144, 32, 48 });
+	walkAnimationUp.PushBack({ 256,144, 32, 48 });
+	walkAnimationUp.PushBack({ 288,144, 32, 48 });
+	walkAnimationUp.PushBack({ 320,144, 32, 48 });
+	walkAnimationUp.PushBack({ 352,144, 32, 48 });
+
+	walkAnimationDown.loop = true;
+	walkAnimationDown.speed = 0.2f;
+	walkAnimationDown.PushBack({ 576,144, 32, 48 });
+	walkAnimationDown.PushBack({ 608,144, 32, 48 });
+	walkAnimationDown.PushBack({ 640,144, 32, 48 });
+	walkAnimationDown.PushBack({ 672,144, 32, 48 });
+	walkAnimationDown.PushBack({ 704,144, 32, 48 });
+	walkAnimationDown.PushBack({ 736,144, 32, 48 });
+
 
 	currentAnimation = &idleAnimation;
 
@@ -62,14 +87,15 @@ bool PlayerEntity::Update(float dt)
 		//Player Movement
 		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_IDLE
 			&& app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE
-			&& app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_IDLE) 
+			&& app->input->GetKey(SDL_SCANCODE_W) == KEY_IDLE
+			&& app->input->GetKey(SDL_SCANCODE_S) == KEY_IDLE)
 		{
 			currentAnimation = &idleAnimation;
 		}
 		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 		{
 			position.x -= 110 * dt;
-			if (currentAnimation != &walkAnimationLeft) 
+			if (currentAnimation != &walkAnimationLeft && currentAnimation != &walkAnimationUp && currentAnimation != &walkAnimationDown)
 			{
 				walkAnimationLeft.Reset();
 				currentAnimation = &walkAnimationLeft;
@@ -78,20 +104,30 @@ bool PlayerEntity::Update(float dt)
 		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 		{
 			position.x += 110 * dt;
-			if (currentAnimation != &walkAnimationRight) 
+			if (currentAnimation != &walkAnimationRight && currentAnimation != &walkAnimationUp && currentAnimation != &walkAnimationDown)
 			{
 				walkAnimationRight.Reset();
 				currentAnimation = &walkAnimationRight;
 			}
 		}
-		if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+		if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT )
 		{
 			position.y -= 110 * dt;
+			if (currentAnimation != &walkAnimationUp)
+			{
+				walkAnimationUp.Reset();
+				currentAnimation = &walkAnimationUp;
+			}
 		}
-
+		
 		if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
 		{
 			position.y += 110 * dt;
+			if (currentAnimation != &walkAnimationDown)
+			{
+				walkAnimationDown.Reset();
+				currentAnimation = &walkAnimationDown;
+			}
 		}
 		
 

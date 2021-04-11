@@ -84,6 +84,11 @@ bool Scene1::Update(float dt)
 	app->map->Draw();
 	app->map->LoadColliders();
 
+	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_REPEAT)
+	{
+		return false;
+	}
+
 	return true;
 }
 

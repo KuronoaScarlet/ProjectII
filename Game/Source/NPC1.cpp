@@ -50,11 +50,8 @@ bool NPC1::Start()
 bool NPC1::Update(float dt)
 {
 	currentAnimation->Update();
-		
-	if (app->entityManager->entityList.At(0)->data->position.x > position.x - 30 &&
-		app->entityManager->entityList.At(0)->data->position.x < position.x + 60 &&
-		app->entityManager->entityList.At(0)->data->position.y > position.y - 46 &&
-		app->entityManager->entityList.At(0)->data->position.y < position.y + 92)
+	
+	if (app->entityManager->entityList.At(0)->data->position.DistanceTo(position) < 50)
 	{
 		app->entityManager->entityList.At(0)->data->position.x = app->entityManager->entityList.At(0)->data->position.y;
 	}

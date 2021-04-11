@@ -39,7 +39,7 @@ bool Logo::Start()
 
     bool ret = true;
 
-    screen = app->tex->Load("Assets/Textures/team_logo.png");
+    screen = app->tex->Load("Assets/Textures/team_logoX2.png");
     app->audio->PlayMusic("Assets/Audio/Music/logoscreen_fx.ogg");
 
 

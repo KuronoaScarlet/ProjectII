@@ -70,7 +70,7 @@ bool PlayerEntity::Update(float dt)
 		}
 		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 		{
-			position.x -= 60 * dt;
+			position.x -= 120 * dt;
 			if (currentAnimation != &walkAnimationLeft) 
 			{
 				walkAnimationLeft.Reset();
@@ -79,7 +79,7 @@ bool PlayerEntity::Update(float dt)
 		}
 		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 		{
-			position.x += 60 * dt;
+			position.x += 120 * dt;
 			if (currentAnimation != &walkAnimationRight) 
 			{
 				walkAnimationRight.Reset();

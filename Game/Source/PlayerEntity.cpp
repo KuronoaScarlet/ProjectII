@@ -10,6 +10,7 @@
 #include "Audio.h"
 #include "EntityManager.h"
 #include "Fonts.h"
+#include "Defs.h"
 
 
 PlayerEntity::PlayerEntity(Module* listener, fPoint position, SDL_Texture* texture, Type type) : Entity(listener, position, texture, type)
@@ -38,7 +39,7 @@ PlayerEntity::PlayerEntity(Module* listener, fPoint position, SDL_Texture* textu
 
 	currentAnimation = &idleAnimation;
 
-	collider = app->collisions->AddCollider(SDL_Rect({ (int)position.x, (int)position.y, 12, 11 }), Collider::Type::PLAYER, listener);
+	collider = app->collisions->AddCollider(SDL_Rect({ (int)position.x, (int)position.y+34, 30, 12 }), Collider::Type::PLAYER, listener);
 	
 }
 
@@ -49,6 +50,7 @@ bool PlayerEntity::Start()
 
 bool PlayerEntity::Update(float dt)
 {
+	tempPlayerPosition = position;
 	if (!app->entityManager->playerData.pauseCondition)
 	{
 		//PlayerData Info Containers
@@ -71,7 +73,7 @@ bool PlayerEntity::Update(float dt)
 		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 		{
 			position.x -= 110 * dt;
-			app->render->camera.x += 200 * dt;
+			//app->render->camera.x += 200 * dt;
 			if (currentAnimation != &walkAnimationLeft) 
 			{
 				walkAnimationLeft.Reset();
@@ -81,7 +83,7 @@ bool PlayerEntity::Update(float dt)
 		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 		{
 			position.x += 110 * dt;
-			app->render->camera.x -= 200 * dt;
+			//app->render->camera.x -= 200 * dt;
 			if (currentAnimation != &walkAnimationRight) 
 			{
 				walkAnimationRight.Reset();
@@ -91,20 +93,22 @@ bool PlayerEntity::Update(float dt)
 		if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
 		{
 			position.y -= 110 * dt;
-			app->render->camera.y += 200 * dt;
+			//app->render->camera.y += 200 * dt;
 		}
 
 		if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
 		{
 			position.y += 110 * dt;
-			app->render->camera.y -= 200 * dt;
+			//app->render->camera.y -= 200 * dt;
 		}
 				
 		cameraControl = true;
 		currentAnimation->Update();
 
 	}
+
 	
+	collider->SetPos(position.x,position.y+34);
 
 	return true;
 }
@@ -119,7 +123,8 @@ bool PlayerEntity::Draw()
 
 void PlayerEntity::Collision(Collider* coll)
 {
-	
+	if(coll->type == Collider::Type::WALL)
+	position = tempPlayerPosition;
 }
 
 void PlayerEntity::CleanUp()

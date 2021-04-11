@@ -38,6 +38,8 @@ private:
 	float velx = 0.0f;
 	float gravity = 0.2f;
 
+	fPoint tempPlayerPosition;
+
 	bool godMode = false;
 	bool debug;
 	bool doubleJump = false;

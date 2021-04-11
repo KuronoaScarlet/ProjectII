@@ -38,7 +38,7 @@ bool Scene1::Awake()
 bool Scene1::Start()
 {
 	
-	app->entityManager->AddEntity({ 10.0f, 50.0f }, Entity::Type::PLAYER);
+	app->entityManager->AddEntity({ 100.0f, 175.0f }, Entity::Type::PLAYER);
 
 	app->render->camera.y = 0;
 	app->render->camera.x = 0;
@@ -50,7 +50,7 @@ bool Scene1::Start()
 	//if (app->map->CreateWalkabilityMap(w, h, &data)) app->pathFinding->SetMap(w, h, data);
 
 	RELEASE_ARRAY(data);
-
+	
 
 	app->map->active = true;
 

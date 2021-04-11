@@ -30,7 +30,6 @@ NPC1::NPC1(Module* listener, fPoint position, SDL_Texture* texture, Type type) :
 	walkAnimationRight.PushBack({ 96,146, 30, 46 });
 	walkAnimationRight.PushBack({ 128,144, 30, 46 });
 	walkAnimationRight.PushBack({ 160,146, 30, 46 });
-
 	walkAnimationRight.loop = true;
 	walkAnimationRight.speed = 0.2f;
 
@@ -45,7 +44,7 @@ NPC1::NPC1(Module* listener, fPoint position, SDL_Texture* texture, Type type) :
 
 	currentAnimation = &idleAnimation;
 
-	
+	collider = app->collisions->AddCollider(SDL_Rect({ (int)position.x, (int)position.y, 30, 46 }), Collider::Type::NPC, listener);
 }
 
 bool NPC1::Start()
@@ -56,11 +55,6 @@ bool NPC1::Start()
 bool NPC1::Update(float dt)
 {
 	currentAnimation->Update();
-	
-	if (app->entityManager->entityList.At(0)->data->position.DistanceTo(position) < 50)
-	{
-		app->entityManager->entityList.At(0)->data->position.x = app->entityManager->entityList.At(0)->data->position.y;
-	}
 
 	return true;
 }
@@ -75,7 +69,7 @@ bool NPC1::Draw()
 
 void NPC1::Collision(Collider* coll)
 {
-	
+
 }
 
 void NPC1::CleanUp()

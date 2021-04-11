@@ -3,7 +3,7 @@
 
 #include "SDL/include/SDL_Rect.h"
 
-#define MAX_LISTENERS 1500
+#define MAX_LISTENERS 1200
 
 class Module;
 
@@ -12,18 +12,8 @@ struct Collider
 	enum Type
 	{
 		NONE = -1,
-		LEFT_WALL,
-		RIGHT_WALL,
-		FLOOR,
 		PLAYER,
-		WIN,
-		ROOF,
-		ENEMY,
-		DEATH,
-		CHECKPOINT,
-		PLAYERFOOT,
-		HEART,
-		COIN,
+		WALL,
 
 		MAX
 	};

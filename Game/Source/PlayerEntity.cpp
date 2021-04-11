@@ -70,7 +70,8 @@ bool PlayerEntity::Update(float dt)
 		}
 		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 		{
-			position.x -= 120 * dt;
+			position.x -= 110 * dt;
+			app->render->camera.x += 200 * dt;
 			if (currentAnimation != &walkAnimationLeft) 
 			{
 				walkAnimationLeft.Reset();
@@ -79,7 +80,8 @@ bool PlayerEntity::Update(float dt)
 		}
 		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 		{
-			position.x += 120 * dt;
+			position.x += 110 * dt;
+			app->render->camera.x -= 200 * dt;
 			if (currentAnimation != &walkAnimationRight) 
 			{
 				walkAnimationRight.Reset();
@@ -88,14 +90,14 @@ bool PlayerEntity::Update(float dt)
 		}
 		if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
 		{
-			position.y -= 120 * dt;
-			app->render->camera.y += 180 * dt;
+			position.y -= 110 * dt;
+			app->render->camera.y += 200 * dt;
 		}
 
 		if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
 		{
-			position.y += 120 * dt;
-			app->render->camera.y -= 180 * dt;
+			position.y += 110 * dt;
+			app->render->camera.y -= 200 * dt;
 		}
 				
 		cameraControl = true;

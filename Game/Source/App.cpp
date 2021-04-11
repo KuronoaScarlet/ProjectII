@@ -176,8 +176,12 @@ bool App::Update()
 	{
 		debugButton = !debugButton;
 	}
-	/*if(scene1->active || scene2->active|| scene3->active || scene4->active)	
-		if(!entityManager->playerData.pauseCondition || stop == false)	timer -= 1;//0.016f*/
+
+	if (app->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN)
+	{
+		app->collisions->DebugRequest();
+	}
+
 	FinishUpdate();
 
 	return ret;

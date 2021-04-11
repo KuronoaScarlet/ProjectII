@@ -76,7 +76,7 @@ bool Scene1::PreUpdate()
 bool Scene1::Update(float dt)
 {
 	app->map->Draw();
-	//app->map->LoadColliders();
+	app->map->LoadColliders();
 
 	return true;
 }

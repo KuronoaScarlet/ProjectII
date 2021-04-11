@@ -16,7 +16,13 @@
 NPC1::NPC1(Module* listener, fPoint position, SDL_Texture* texture, Type type) : Entity(listener, position, texture, type)
 {
 	idleAnimation.loop = true;
-	idleAnimation.PushBack({ 96, 18, 32, 46 });
+	idleAnimation.PushBack({ 576, 80, 32, 48 });
+	idleAnimation.PushBack({ 608, 80, 32, 48 });
+	idleAnimation.PushBack({ 640, 80, 32, 48 });
+	idleAnimation.PushBack({ 672, 80, 32, 48 });
+	idleAnimation.PushBack({ 704, 80, 32, 48 });
+	idleAnimation.PushBack({ 736, 80, 32, 48 });
+	idleAnimation.speed = 0.2f;
 
 	walkAnimationRight.PushBack({ 0,146, 30, 46 });
 	walkAnimationRight.PushBack({ 32,144, 30, 46 });

@@ -28,9 +28,9 @@ bool EntityManager::Start()
 {
 	texCheckpoint = NULL;
 	texPlayer = app->tex->Load("Assets/Textures/Entities/Playable/player.png");
-	texNPC1 = app->tex->Load("Assets/Textures/Entities/Playable/player.png");
-	texNPC2 = app->tex->Load("Assets/Textures/Entities/Playable/player.png");
-	texNPC3 = app->tex->Load("Assets/Textures/Entities/Playable/player.png");
+	texNPC1 = app->tex->Load("Assets/Textures/Entities/NPC/Kid_Mitty_32x32.png");
+	texNPC2 = app->tex->Load("Assets/Textures/Entities/NPC/Samuel_32x32.png");
+	texNPC3 = app->tex->Load("Assets/Textures/Entities/NPC/Rob_32x32.png");
 
 	return true;
 }
@@ -191,11 +191,11 @@ void EntityManager::AddEntity(fPoint position, Entity::Type type)
 		entityList.Add(NPC1Entity);
 		break;
 	case Entity::Type::NPC_2:
-		NPC2Entity = (Entity*)(new NPC2((Module*)this, position, texNPC1, type));
+		NPC2Entity = (Entity*)(new NPC2((Module*)this, position, texNPC2, type));
 		entityList.Add(NPC2Entity);
 		break;
 	case Entity::Type::NPC_3:
-		NPC3Entity = (Entity*)(new NPC3((Module*)this, position, texNPC1, type));
+		NPC3Entity = (Entity*)(new NPC3((Module*)this, position, texNPC3, type));
 		entityList.Add(NPC3Entity);
 		break;
 	}

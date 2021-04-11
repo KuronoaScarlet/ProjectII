@@ -8,10 +8,11 @@
 Collisions::Collisions(bool startEnabled) : Module()
 {
 	for (uint i = 0; i < MAX_COLLIDERS; ++i)
-	colliders[i] = nullptr;
+		colliders[i] = nullptr;
 
 	matrix[Collider::Type::PLAYER][Collider::Type::WALL] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::PLAYER] = false;
+	matrix[Collider::Type::PLAYER][Collider::Type::NPC] = true;
 
 	matrix[Collider::Type::WALL][Collider::Type::WALL] = false;
 	matrix[Collider::Type::WALL][Collider::Type::PLAYER] = true;
@@ -153,16 +154,19 @@ void Collisions::DebugDraw()
 			break;
 
 		case Collider::Type::WALL:
-			app->render->DrawRectangle(colliders[i]->rect, 0, 0, 255, alpha);
+			app->render->DrawRectangle(colliders[i]->rect, 0, 255, 0, alpha);
 
 		case Collider::Type::PLAYER:
-			app->render->DrawRectangle(colliders[i]->rect, 0, 255, 0, alpha);
+			app->render->DrawRectangle(colliders[i]->rect, 0, 0, 255, alpha);
+			break;
+		case Collider::Type::NPC:
+			app->render->DrawRectangle(colliders[i]->rect, 255, 0, 255, alpha);
 			break;
 		}
 	}
 }
 
-void Collisions::DebugRequest() {
-
+void Collisions::DebugRequest()
+{
 	debug = !debug;
 }

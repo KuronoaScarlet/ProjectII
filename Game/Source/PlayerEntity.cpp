@@ -64,7 +64,7 @@ PlayerEntity::PlayerEntity(Module* listener, fPoint position, SDL_Texture* textu
 
 	currentAnimation = &idleAnimation;
 
-	collider = app->collisions->AddCollider(SDL_Rect({ (int)position.x, (int)position.y+34, 30, 12 }), Collider::Type::PLAYER, listener);
+	collider = app->collisions->AddCollider(SDL_Rect({ (int)position.x + 6, (int)position.y + 34, 22, 12 }), Collider::Type::PLAYER, listener);
 
 }
 
@@ -94,7 +94,7 @@ bool PlayerEntity::Update(float dt)
 		}
 		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 		{
-			position.x -= 110 * dt;
+			position.x -= 150 * dt;
 			if (currentAnimation != &walkAnimationLeft && currentAnimation != &walkAnimationUp && currentAnimation != &walkAnimationDown)
 			{
 				walkAnimationLeft.Reset();
@@ -103,7 +103,7 @@ bool PlayerEntity::Update(float dt)
 		}
 		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 		{
-			position.x += 110 * dt;
+			position.x += 150 * dt;
 			if (currentAnimation != &walkAnimationRight && currentAnimation != &walkAnimationUp && currentAnimation != &walkAnimationDown)
 			{
 				walkAnimationRight.Reset();
@@ -112,7 +112,7 @@ bool PlayerEntity::Update(float dt)
 		}
 		if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT )
 		{
-			position.y -= 110 * dt;
+			position.y -= 150 * dt;
 			if (currentAnimation != &walkAnimationUp)
 			{
 				walkAnimationUp.Reset();
@@ -122,7 +122,7 @@ bool PlayerEntity::Update(float dt)
 		
 		if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
 		{
-			position.y += 110 * dt;
+			position.y += 150 * dt;
 			if (currentAnimation != &walkAnimationDown)
 			{
 				walkAnimationDown.Reset();
@@ -146,7 +146,7 @@ bool PlayerEntity::Update(float dt)
 	}
 
 	
-	collider->SetPos(position.x,position.y+34);
+	collider->SetPos(position.x + 6,position.y + 34);
 
 	return true;
 }
@@ -162,7 +162,7 @@ bool PlayerEntity::Draw()
 
 void PlayerEntity::Collision(Collider* coll)
 {
-	if(coll->type == Collider::Type::WALL)
+	if(coll->type == Collider::Type::WALL || coll->type == Collider::Type::NPC)
 	position = tempPlayerPosition;
 }
 

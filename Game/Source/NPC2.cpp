@@ -39,7 +39,7 @@ NPC2::NPC2(Module* listener, fPoint position, SDL_Texture* texture, Type type) :
 
 	currentAnimation = &idleAnimation;
 
-	
+	collider = app->collisions->AddCollider(SDL_Rect({ (int)position.x, (int)position.y, 30, 46 }), Collider::Type::NPC, listener);
 }
 
 bool NPC2::Start()
@@ -50,14 +50,6 @@ bool NPC2::Start()
 bool NPC2::Update(float dt)
 {
 	currentAnimation->Update();
-		
-	if (app->entityManager->entityList.At(0)->data->position.x > position.x - 30 &&
-		app->entityManager->entityList.At(0)->data->position.x < position.x + 60 &&
-		app->entityManager->entityList.At(0)->data->position.y > position.y - 46 &&
-		app->entityManager->entityList.At(0)->data->position.y < position.y + 92)
-	{
-		app->entityManager->entityList.At(0)->data->position.x = app->entityManager->entityList.At(0)->data->position.y;
-	}
 
 	return true;
 }
@@ -72,7 +64,7 @@ bool NPC2::Draw()
 
 void NPC2::Collision(Collider* coll)
 {
-	
+
 }
 
 void NPC2::CleanUp()

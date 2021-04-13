@@ -17,6 +17,7 @@ class Audio;
 class EntityManager;
 class Map;
 class Collisions;
+class DialogueSystem;
 
 //Scenes
 class Logo;
@@ -109,6 +110,7 @@ public:
 	DeathScreen* deathScreen;
 	WinScreen* winScreen;
 	PathFinding* pathFinding;
+	DialogueSystem* dialogueSystem;
 
 	uint activeFonts = 0;
 	uint totalFonts = 0;

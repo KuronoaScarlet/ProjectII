@@ -66,6 +66,8 @@ PlayerEntity::PlayerEntity(Module* listener, fPoint position, SDL_Texture* textu
 
 	collider = app->collisions->AddCollider(SDL_Rect({ (int)position.x + 6, (int)position.y + 34, 22, 12 }), Collider::Type::PLAYER, listener);
 
+	lerpCamera.x = position.x;
+	lerpCamera.y = position.y;
 }
 
 bool PlayerEntity::Start()
@@ -140,9 +142,11 @@ bool PlayerEntity::Update(float dt)
 		currentAnimation->Update();
 
 		//camera update
-		app->render->camera.x = -position.x + 640;
-		app->render->camera.y = -position.y + 360;
 		//app->render->DrawRectangle(app->render->camera, 255, 0, 0, 255, false, false);
+		lerpCamera.x += (position.x - lerpCamera.x) *dt * 1.0f;
+		lerpCamera.y += (position.y - lerpCamera.y) *dt * 1.0f;
+		app->render->camera.x = -int(lerpCamera.x) + 640;
+		app->render->camera.y = -int(lerpCamera.y) + 360;
 	}
 
 	

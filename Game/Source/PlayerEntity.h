@@ -51,6 +51,8 @@ private:
 
 	int scoreFont = -1;
 	char scoreText[10] = { "\0" };
+
+	fPoint lerpCamera;
 };
 
 #endif // _GROUNDENEMY_H_

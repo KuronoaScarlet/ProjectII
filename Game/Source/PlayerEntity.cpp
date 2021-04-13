@@ -145,8 +145,18 @@ bool PlayerEntity::Update(float dt)
 		//app->render->DrawRectangle(app->render->camera, 255, 0, 0, 255, false, false);
 		lerpCamera.x += (position.x - lerpCamera.x) *dt * 1.0f;
 		lerpCamera.y += (position.y - lerpCamera.y) *dt * 1.0f;
-		app->render->camera.x = -int(lerpCamera.x) + 640;
-		app->render->camera.y = -int(lerpCamera.y) + 360;
+		SDL_Rect margin{ 640,360,1984,1104 };
+		app->render->DrawRectangle(margin, 255, 0, 255, 255, false, false);
+		SDL_Point p{ position.x,position.y };
+		if (SDL_PointInRect(&p, &margin))
+		{
+			app->render->camera.x = -int(lerpCamera.x) +640;
+			app->render->camera.y = -int(lerpCamera.y) +360;
+		}
+		/*if (app->render->camera.x < 0) app->render->camera.x = 0;
+		if (app->render->camera.x > 3264) app->render->camera.x = 3264;
+		if (app->render->camera.y < 0) app->render->camera.x = 0;
+		if (app->render->camera.y > 1824) app->render->camera.x = 1824;*/
 	}
 
 	

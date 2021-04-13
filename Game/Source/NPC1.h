@@ -22,6 +22,8 @@ public:
 
 	bool Draw();
 
+	bool Interaction();
+
 	void Collision(Collider* coll);
 
 	void CleanUp();

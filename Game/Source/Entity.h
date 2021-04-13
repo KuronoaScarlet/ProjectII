@@ -41,6 +41,11 @@ public:
 		return true;
 	}
 
+	virtual bool Interaction()
+	{
+		return true;
+	}
+
 	virtual void Collision(Collider* coll)
 	{
 

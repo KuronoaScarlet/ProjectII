@@ -172,13 +172,9 @@ bool App::Update()
 		caped = !caped;
 	}
 
-	if (app->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN)
-	{
-		debugButton = !debugButton;
-	}
-
 	if (app->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN)
 	{
+		debugButton = !debugButton;
 		app->collisions->DebugRequest();
 	}
 

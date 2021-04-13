@@ -67,6 +67,12 @@ bool NPC1::Draw()
 	return true;
 }
 
+bool NPC1::Interaction()
+{
+	app->render->DrawCircle(position.x, position.y, 25, 0, 255, 255, 255,true);
+	return true;
+}
+
 void NPC1::Collision(Collider* coll)
 {
 

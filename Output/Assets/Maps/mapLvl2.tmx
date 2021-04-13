@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="102" height="57" tilewidth="32" tileheight="32" infinite="0" nextlayerid="20" nextobjectid="1">
+<map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" width="102" height="57" tilewidth="32" tileheight="32" infinite="0" nextlayerid="20" nextobjectid="1">
  <properties>
   <property name="drawable" type="int" value="1"/>
  </properties>
@@ -17,8 +17,8 @@
  </tileset>
  <layer id="1" name="floor" width="102" height="57">
   <properties>
-   <property name="Collisions" type="int" value="0"/>
    <property name="drawable" type="int" value="1"/>
+   <property name="Collisions" type="int" value="0"/>
   </properties>
   <data>
    <tile/>
@@ -5837,7 +5837,11 @@
    <tile/>
   </data>
  </layer>
- <layer id="19" name="WallsTop" width="102" height="57">
+ <layer id="2" name="WallsTop" width="102" height="57">
+  <properties>
+   <property name="drawable" type="int" value="1"/>
+   <property name="Collisions" type="int" value="0"/>
+  </properties>
   <data>
    <tile/>
    <tile/>
@@ -11655,10 +11659,10 @@
    <tile/>
   </data>
  </layer>
- <layer id="2" name="walls" width="102" height="57">
+ <layer id="3" name="walls" width="102" height="57">
   <properties>
-   <property name="Collisions" type="int" value="0"/>
    <property name="drawable" type="int" value="1"/>
+   <property name="Collisions" type="int" value="0"/>
   </properties>
   <data>
    <tile gid="71"/>
@@ -17477,10 +17481,10 @@
    <tile gid="191"/>
   </data>
  </layer>
- <layer id="3" name="walls3" width="102" height="57">
+ <layer id="4" name="walls3" width="102" height="57">
   <properties>
-   <property name="Collisions" type="int" value="0"/>
    <property name="drawable" type="int" value="1"/>
+   <property name="Collisions" type="int" value="0"/>
   </properties>
   <data>
    <tile/>
@@ -23299,10 +23303,10 @@
    <tile/>
   </data>
  </layer>
- <layer id="4" name="Decorations" width="102" height="57">
+ <layer id="5" name="Decorations" width="102" height="57">
   <properties>
-   <property name="Collisions" type="int" value="0"/>
    <property name="drawable" type="int" value="1"/>
+   <property name="Collisions" type="int" value="0"/>
   </properties>
   <data>
    <tile/>
@@ -26321,7 +26325,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="8966"/>
    <tile/>
    <tile/>
    <tile/>
@@ -29121,10 +29125,10 @@
    <tile/>
   </data>
  </layer>
- <layer id="5" name="walls2" width="102" height="57">
+ <layer id="6" name="walls2" width="102" height="57">
   <properties>
-   <property name="Collisions" type="int" value="0"/>
    <property name="drawable" type="int" value="1"/>
+   <property name="Collisions" type="int" value="0"/>
   </properties>
   <data>
    <tile/>
@@ -34943,10 +34947,10 @@
    <tile/>
   </data>
  </layer>
- <layer id="6" name="Decorations2" width="102" height="57">
+ <layer id="7" name="Decorations2" width="102" height="57">
   <properties>
-   <property name="Collisions" type="int" value="0"/>
    <property name="drawable" type="int" value="1"/>
+   <property name="Collisions" type="int" value="0"/>
   </properties>
   <data>
    <tile/>
@@ -40765,7 +40769,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="7" name="collisions" width="102" height="57">
+ <layer id="8" name="collisions" width="102" height="57">
   <properties>
    <property name="Collisions" type="int" value="1"/>
    <property name="drawable" type="int" value="0"/>
@@ -40854,16 +40858,6 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="3600"/>
-   <tile gid="3600"/>
-   <tile gid="3600"/>
-   <tile gid="3600"/>
-   <tile gid="3600"/>
-   <tile gid="3600"/>
-   <tile gid="3600"/>
-   <tile gid="3600"/>
-   <tile gid="3600"/>
-   <tile/>
    <tile/>
    <tile/>
    <tile/>
@@ -40882,7 +40876,6 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="3600"/>
    <tile/>
    <tile/>
    <tile/>
@@ -40904,6 +40897,7 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="3600"/>
    <tile/>
    <tile/>
    <tile/>
@@ -40955,7 +40949,6 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="3600"/>
    <tile/>
    <tile/>
    <tile/>
@@ -40965,7 +40958,6 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="3600"/>
    <tile/>
    <tile/>
    <tile/>
@@ -40980,11 +40972,8 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="3600"/>
-   <tile gid="3600"/>
-   <tile gid="3600"/>
-   <tile gid="3600"/>
-   <tile gid="3600"/>
+   <tile/>
+   <tile/>
    <tile/>
    <tile/>
    <tile/>
@@ -41000,6 +40989,17 @@
    <tile gid="3600"/>
    <tile gid="3600"/>
    <tile gid="3600"/>
+   <tile/>
+   <tile gid="3600"/>
+   <tile gid="3600"/>
+   <tile gid="3600"/>
+   <tile gid="3600"/>
+   <tile gid="3600"/>
+   <tile gid="3600"/>
+   <tile gid="3600"/>
+   <tile gid="3600"/>
+   <tile/>
+   <tile gid="3600"/>
    <tile gid="3600"/>
    <tile gid="3600"/>
    <tile gid="3600"/>
@@ -41007,6 +41007,10 @@
    <tile gid="3600"/>
    <tile gid="3600"/>
    <tile gid="3600"/>
+   <tile gid="3600"/>
+   <tile gid="3600"/>
+   <tile gid="3600"/>
+   <tile gid="3600"/>
    <tile/>
    <tile/>
    <tile gid="3600"/>
@@ -41041,7 +41045,6 @@
    <tile gid="3600"/>
    <tile/>
    <tile/>
-   <tile gid="3600"/>
    <tile gid="3600"/>
    <tile gid="3600"/>
    <tile gid="3600"/>
@@ -41058,15 +41061,16 @@
    <tile gid="3600"/>
    <tile gid="3600"/>
    <tile gid="3600"/>
-   <tile gid="3600"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
    <tile/>
    <tile/>
    <tile gid="3600"/>
+   <tile gid="3600"/>
+   <tile gid="3600"/>
+   <tile gid="3600"/>
+   <tile gid="3600"/>
+   <tile gid="3600"/>
+   <tile gid="3600"/>
+   <tile/>
    <tile/>
    <tile/>
    <tile/>
@@ -41087,8 +41091,7 @@
    <tile gid="3600"/>
    <tile gid="3600"/>
    <tile gid="3600"/>
-   <tile/>
-   <tile/>
+   <tile gid="3600"/>
    <tile/>
    <tile/>
    <tile/>
@@ -41098,6 +41101,7 @@
    <tile/>
    <tile/>
    <tile gid="3600"/>
+   <tile gid="3600"/>
    <tile/>
    <tile/>
    <tile/>
@@ -41159,7 +41163,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="3600"/>
+   <tile/>
    <tile gid="3600"/>
    <tile/>
    <tile/>
@@ -41189,8 +41193,7 @@
    <tile/>
    <tile/>
    <tile gid="3600"/>
-   <tile/>
-   <tile/>
+   <tile gid="3600"/>
    <tile/>
    <tile/>
    <tile/>
@@ -41200,6 +41203,7 @@
    <tile/>
    <tile/>
    <tile gid="3600"/>
+   <tile gid="3600"/>
    <tile/>
    <tile/>
    <tile/>
@@ -41261,7 +41265,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="3600"/>
+   <tile/>
    <tile gid="3600"/>
    <tile/>
    <tile/>
@@ -43883,7 +43887,7 @@
    <tile/>
    <tile/>
    <tile gid="3600"/>
-   <tile gid="3600"/>
+   <tile/>
    <tile gid="3600"/>
    <tile gid="3600"/>
    <tile gid="3600"/>
@@ -44728,13 +44732,13 @@
    <tile/>
    <tile/>
    <tile gid="3600"/>
-   <tile gid="3600"/>
-   <tile gid="3600"/>
-   <tile gid="3600"/>
    <tile/>
+   <tile/>
    <tile gid="3600"/>
    <tile gid="3600"/>
    <tile gid="3600"/>
+   <tile/>
+   <tile/>
    <tile gid="3600"/>
    <tile/>
    <tile/>
@@ -44823,21 +44827,21 @@
    <tile/>
    <tile/>
    <tile gid="3600"/>
-   <tile/>
-   <tile/>
    <tile/>
    <tile/>
    <tile/>
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
    <tile gid="3600"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="3600"/>
+   <tile gid="3600"/>
+   <tile gid="3600"/>
+   <tile gid="3600"/>
+   <tile gid="3600"/>
+   <tile gid="3600"/>
+   <tile gid="3600"/>
+   <tile gid="3600"/>
    <tile/>
    <tile/>
    <tile/>

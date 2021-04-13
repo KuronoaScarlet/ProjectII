@@ -35,7 +35,7 @@ NPC2::NPC2(Module* listener, fPoint position, SDL_Texture* texture, Type type) :
 	currentAnimation = &idleAnimation;
 	currentMoodAnimation = &moodAnimation;
 
-	collider = app->collisions->AddCollider(SDL_Rect({ (int)position.x, (int)position.y, 30, 46 }), Collider::Type::NPC, listener);
+	collider = app->collisions->AddCollider(SDL_Rect({ (int)position.x, (int)position.y, 30, 61 }), Collider::Type::NPC, listener);
 }
 
 bool NPC2::Start()

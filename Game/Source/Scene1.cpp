@@ -38,13 +38,12 @@ bool Scene1::Awake()
 bool Scene1::Start()
 {
 	
-	app->entityManager->AddEntity({ 100.0f, 175.0f }, Entity::Type::PLAYER);
 
 	app->entityManager->AddEntity({ 500.0f, 175.0f }, Entity::Type::NPC_1);
-
 	app->entityManager->AddEntity({ 500.0f, 300.0f }, Entity::Type::NPC_2);
-
 	app->entityManager->AddEntity({ 400.0f, 525.0f }, Entity::Type::NPC_3);
+	
+	app->entityManager->AddEntity({ 100.0f, 175.0f }, Entity::Type::PLAYER);
 
 	app->render->camera.y = 0;
 	app->render->camera.x = 0;

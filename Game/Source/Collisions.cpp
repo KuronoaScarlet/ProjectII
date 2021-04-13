@@ -16,6 +16,8 @@ Collisions::Collisions(bool startEnabled) : Module()
 
 	matrix[Collider::Type::WALL][Collider::Type::WALL] = false;
 	matrix[Collider::Type::WALL][Collider::Type::PLAYER] = true;
+	
+	matrix[Collider::Type::NPC][Collider::Type::PLAYER] = true;
 
 }
 

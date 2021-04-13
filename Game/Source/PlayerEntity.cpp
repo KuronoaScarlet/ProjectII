@@ -119,6 +119,7 @@ bool PlayerEntity::Update(float dt)
 		{
 			currentAnimation = &idleAnimation;
 		}
+
 		if (!godMode)
 		{
 			if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
@@ -148,7 +149,6 @@ bool PlayerEntity::Update(float dt)
 					currentAnimation = &walkAnimationUp;
 				}
 			}
-
 			if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
 			{
 				position.y += 150 * dt;

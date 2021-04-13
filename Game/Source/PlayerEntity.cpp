@@ -79,21 +79,21 @@ bool PlayerEntity::Update(float dt)
 	ListItem<Entity*>* tmp = app->entityManager->entityList.start;
 	while (tmp)
 	{
-		if (tmp->data->type == Type::NPC_1)
+		if (tmp->data->type == Type::NPC1)
 		{
 			if (position.DistanceTo(tmp->data->position) < 50)
 			{
 				tmp->data->Interaction();
 			}
 		}
-		if (tmp->data->type == Type::NPC_2)
+		if (tmp->data->type == Type::NPC2)
 		{
 			if (position.DistanceTo(tmp->data->position) < 50)
 			{
 				tmp->data->Interaction();
 			}
 		}
-		if (tmp->data->type == Type::NPC_3)
+		if (tmp->data->type == Type::NPC3)
 		{
 			if (position.DistanceTo(tmp->data->position) < 50)
 			{

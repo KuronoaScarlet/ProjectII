@@ -13,11 +13,14 @@ Collisions::Collisions(bool startEnabled) : Module()
 	matrix[Collider::Type::PLAYER][Collider::Type::WALL] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::PLAYER] = false;
 	matrix[Collider::Type::PLAYER][Collider::Type::NPC] = true;
+	matrix[Collider::Type::PLAYER][Collider::Type::ENEMY] = true;
 
 	matrix[Collider::Type::WALL][Collider::Type::WALL] = false;
 	matrix[Collider::Type::WALL][Collider::Type::PLAYER] = true;
 	
 	matrix[Collider::Type::NPC][Collider::Type::PLAYER] = true;
+
+	matrix[Collider::Type::ENEMY][Collider::Type::PLAYER] = true;
 
 }
 

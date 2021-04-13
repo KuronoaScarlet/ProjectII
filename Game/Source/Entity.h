@@ -14,13 +14,12 @@ public:
 	{
 		UNKNOWN,
 		PLAYER,
-		HEARTS,
-		COINS,
-		CHECKPOINT,
-		NPC_1,
-		NPC_2,
-		NPC_3,
-			
+		NPC1,
+		NPC2,
+		NPC3,
+		EQUILIBRATED_ENEMY,
+		TANK_ENEMY,
+		DAMAGE_ENEMY
 	};
 
 	Entity(Module* listener, fPoint position, SDL_Texture* texture, Type type) : listener(listener), position(position), texture(texture), type(type)

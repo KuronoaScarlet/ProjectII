@@ -93,6 +93,15 @@
     <ClCompile Include="Source\DialogSystem.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Enemy1.cpp">
+      <Filter>Entities\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Enemy2.cpp">
+      <Filter>Entities\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Enemy3.cpp">
+      <Filter>Entities\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -222,6 +231,15 @@
     <ClInclude Include="Source\DialogSystem.h">
       <Filter>Modules</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Enemy1.h">
+      <Filter>Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Enemy2.h">
+      <Filter>Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Enemy3.h">
+      <Filter>Entities\Enemies</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">
@@ -256,6 +274,9 @@
     </Filter>
     <Filter Include="Entities\NoPlayable">
       <UniqueIdentifier>{ed926986-a091-4a37-ba21-b63777064068}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities\Enemies">
+      <UniqueIdentifier>{7ed1c0d3-309a-4524-aa39-5fe8261e9000}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

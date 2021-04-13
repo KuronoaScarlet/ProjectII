@@ -74,21 +74,20 @@ public:
 
 	List<Entity*> entityList;
 private:
-
-
-	SDL_Texture* texCheckpoint;
 	SDL_Texture* texPlayer;
 	SDL_Texture* texNPC1;
 	SDL_Texture* texNPC2;
 	SDL_Texture* texNPC3;
+	SDL_Texture* texEnemy1;
+	SDL_Texture* texEnemy3;
 
-
-
-	Entity* checkpoint;
-	Entity* playerEntity;
-	Entity* NPC1Entity;
-	Entity* NPC2Entity;
-	Entity* NPC3Entity;
+	Entity* entityPlayer;
+	Entity* entityNPC1;
+	Entity* entityNPC2;
+	Entity* entityNPC3;
+	Entity* entityGhostEnemy;
+	Entity* entityTankEnemy;
+	Entity* entityCanonEnemy;
 
 	//Fonts
 	int scoreFont = -1;

@@ -10,9 +10,13 @@
 #include "Title.h"
 
 #include "PlayerEntity.h"
-#include"NPC1.h"
-#include"NPC2.h"
-#include"NPC3.h"
+#include "NPC1.h"
+#include "NPC2.h"
+#include "NPC3.h"
+#include "Enemy1.h"
+#include "Enemy2.h"
+#include "Enemy3.h"
+
 
 EntityManager::EntityManager() : Module()
 {
@@ -26,11 +30,12 @@ bool EntityManager::Awake()
 
 bool EntityManager::Start()
 {
-	texCheckpoint = NULL;
 	texPlayer = app->tex->Load("Assets/Textures/Entities/Playable/player.png");
 	texNPC1 = app->tex->Load("Assets/Textures/Entities/NPC/Kid_Mitty_32x32.png");
 	texNPC2 = app->tex->Load("Assets/Textures/Entities/NPC/Samuel_32x32.png");
 	texNPC3 = app->tex->Load("Assets/Textures/Entities/NPC/Rob_32x32.png");
+	texEnemy1 = app->tex->Load("Assets/Textures/Entities/Enemies/Halloween_Kid_1_idle_anim_32x32.png");
+	texEnemy3 = app->tex->Load("Assets/Textures/Entities/Enemies/Fishmonger_2_idle_anim_32x32.png");
 
 	return true;
 }
@@ -181,23 +186,42 @@ void EntityManager::AddEntity(fPoint position, Entity::Type type)
 {
 	switch (type)
 	{
+	//Player//
 	case Entity::Type::PLAYER:
-		playerEntity = (Entity*)(new PlayerEntity((Module*)this, position, texPlayer, type));
-		entityList.Add(playerEntity);
+		entityPlayer = (Entity*)(new PlayerEntity((Module*)this, position, texPlayer, type));
+		entityList.Add(entityPlayer);
 		break;
+	///////////
 
-	case Entity::Type::NPC_1:
-		NPC1Entity = (Entity*)(new NPC1((Module*)this, position, texNPC1, type));
-		entityList.Add(NPC1Entity);
+	//NPC's//
+	case Entity::Type::NPC1:
+		entityNPC1 = (Entity*)(new NPC1((Module*)this, position, texNPC1, type));
+		entityList.Add(entityNPC1);
 		break;
-	case Entity::Type::NPC_2:
-		NPC2Entity = (Entity*)(new NPC2((Module*)this, position, texNPC2, type));
-		entityList.Add(NPC2Entity);
+	case Entity::Type::NPC2:
+		entityNPC2 = (Entity*)(new NPC2((Module*)this, position, texNPC2, type));
+		entityList.Add(entityNPC2);
 		break;
-	case Entity::Type::NPC_3:
-		NPC3Entity = (Entity*)(new NPC3((Module*)this, position, texNPC3, type));
-		entityList.Add(NPC3Entity);
+	case Entity::Type::NPC3:
+		entityNPC3 = (Entity*)(new NPC3((Module*)this, position, texNPC3, type));
+		entityList.Add(entityNPC3);
 		break;
+	///////////
+
+	//Enemies//
+	case Entity::Type::EQUILIBRATED_ENEMY:
+		entityGhostEnemy = (Entity*)(new Enemy1((Module*)this, position, texEnemy1, type));
+		entityList.Add(entityGhostEnemy);
+		break;
+	case Entity::Type::TANK_ENEMY:
+		entityTankEnemy = (Entity*)(new Enemy2((Module*)this, position, texNPC2, type));
+		entityList.Add(entityTankEnemy);
+		break;
+	case Entity::Type::DAMAGE_ENEMY:
+		entityCanonEnemy = (Entity*)(new Enemy3((Module*)this, position, texEnemy3, type));
+		entityList.Add(entityCanonEnemy);
+		break;
+	//////////
 	}
 }
 	

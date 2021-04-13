@@ -15,6 +15,7 @@ struct Collider
 		PLAYER,
 		WALL,
 		NPC,
+		ENEMY,
 
 		MAX
 	};

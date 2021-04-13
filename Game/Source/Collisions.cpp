@@ -163,7 +163,6 @@ void Collisions::DebugDraw()
 			break;
 		case Collider::Type::NPC:
 			app->render->DrawRectangle(colliders[i]->rect, 255, 0, 255, alpha);
-			app->render->DrawCircle(colliders[i]->rect.x, colliders[i]->rect.y, 25, 0, 0, 255, 255, false);
 			break;
 		}
 	}

@@ -24,6 +24,8 @@ PlayerEntity::PlayerEntity(Module* listener, fPoint position, SDL_Texture* textu
 	idleAnimation.PushBack({ 736, 80, 32, 48 });
 	idleAnimation.speed = 0.2f;
 
+	walkAnimationRight.loop = true;
+	walkAnimationRight.speed = 0.2f;
 	walkAnimationRight.PushBack({ 0,146, 30, 46 });
 	walkAnimationRight.PushBack({ 32,144, 30, 46 });
 	walkAnimationRight.PushBack({ 64,146, 30, 46 });
@@ -31,17 +33,14 @@ PlayerEntity::PlayerEntity(Module* listener, fPoint position, SDL_Texture* textu
 	walkAnimationRight.PushBack({ 128,144, 30, 46 });
 	walkAnimationRight.PushBack({ 160,146, 30, 46 });
 
-	walkAnimationRight.loop = true;
-	walkAnimationRight.speed = 0.2f;
-
+	walkAnimationLeft.loop = true;
+	walkAnimationLeft.speed = 0.2f;
 	walkAnimationLeft.PushBack({ 386,146, 32, 46 });
 	walkAnimationLeft.PushBack({ 418,144, 32, 46 });
 	walkAnimationLeft.PushBack({ 450,146, 32, 46 });
 	walkAnimationLeft.PushBack({ 482,146, 32, 46 });
 	walkAnimationLeft.PushBack({ 514,144, 32, 46 });
 	walkAnimationLeft.PushBack({ 546,146, 32, 46 });
-	walkAnimationLeft.loop = true;
-	walkAnimationLeft.speed = 0.2f;
 
 	walkAnimationUp.loop = true;
 	walkAnimationUp.speed = 0.2f;
@@ -117,86 +116,48 @@ bool PlayerEntity::Update(float dt)
 			&& app->input->GetKey(SDL_SCANCODE_W) == KEY_IDLE
 			&& app->input->GetKey(SDL_SCANCODE_S) == KEY_IDLE)
 		{
-			currentAnimation = &idleAnimation;
-		}
-
-		if (!godMode)
-		{
-			if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+			if (currentAnimation != &idleAnimation)
 			{
-				position.x -= 150 * dt;
-				if (currentAnimation != &walkAnimationLeft && currentAnimation != &walkAnimationUp && currentAnimation != &walkAnimationDown)
-				{
-					walkAnimationLeft.Reset();
-					currentAnimation = &walkAnimationLeft;
-				}
-			}
-			if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
-			{
-				position.x += 150 * dt;
-				if (currentAnimation != &walkAnimationRight && currentAnimation != &walkAnimationUp && currentAnimation != &walkAnimationDown)
-				{
-					walkAnimationRight.Reset();
-					currentAnimation = &walkAnimationRight;
-				}
-			}
-			if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
-			{
-				position.y -= 150 * dt;
-				if (currentAnimation != &walkAnimationUp)
-				{
-					walkAnimationUp.Reset();
-					currentAnimation = &walkAnimationUp;
-				}
-			}
-			if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
-			{
-				position.y += 150 * dt;
-				if (currentAnimation != &walkAnimationDown)
-				{
-					walkAnimationDown.Reset();
-					currentAnimation = &walkAnimationDown;
-				}
+				idleAnimation.Reset();
+				currentAnimation = &idleAnimation;
 			}
 		}
-		else
-		{
-			if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
-			{
-				position.x -= 300 * dt;
-				if (currentAnimation != &walkAnimationLeft && currentAnimation != &walkAnimationUp && currentAnimation != &walkAnimationDown)
-				{
-					walkAnimationLeft.Reset();
-					currentAnimation = &walkAnimationLeft;
-				}
-			}
-			if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
-			{
-				position.x += 300 * dt;
-				if (currentAnimation != &walkAnimationRight && currentAnimation != &walkAnimationUp && currentAnimation != &walkAnimationDown)
-				{
-					walkAnimationRight.Reset();
-					currentAnimation = &walkAnimationRight;
-				}
-			}
-			if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
-			{
-				position.y -= 300 * dt;
-				if (currentAnimation != &walkAnimationUp)
-				{
-					walkAnimationUp.Reset();
-					currentAnimation = &walkAnimationUp;
-				}
-			}
 
-			if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+		float speed = (godMode) ? 300 : 150;
+		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+		{
+			position.x -= speed * dt;
+			if (currentAnimation != &walkAnimationLeft && app->input->GetKey(SDL_SCANCODE_W) != KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_S) != KEY_REPEAT)
 			{
-				position.y += 300 * dt;
-				if (currentAnimation != &walkAnimationDown)
-				{
-					walkAnimationDown.Reset();
-					currentAnimation = &walkAnimationDown;
-				}
+				walkAnimationLeft.Reset();
+				currentAnimation = &walkAnimationLeft;
+			}
+		}
+		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+		{
+			position.x += speed * dt;
+			if (currentAnimation != &walkAnimationRight && app->input->GetKey(SDL_SCANCODE_W) != KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_S) != KEY_REPEAT)
+			{
+				walkAnimationRight.Reset();
+				currentAnimation = &walkAnimationRight;
+			}
+		}
+		if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+		{
+			position.y -= speed * dt;
+			if (currentAnimation != &walkAnimationUp)
+			{
+				walkAnimationUp.Reset();
+				currentAnimation = &walkAnimationUp;
+			}
+		}
+		if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+		{
+			position.y += speed * dt;
+			if (currentAnimation != &walkAnimationDown)
+			{
+				walkAnimationDown.Reset();
+				currentAnimation = &walkAnimationDown;
 			}
 		}
 		

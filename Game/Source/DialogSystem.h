@@ -11,6 +11,7 @@
 #include "Module.h"
 #include "Input.h"
 #include "SDL/include/SDL.h"
+#include "Fonts.h"
 
 using namespace std;
 
@@ -80,7 +81,7 @@ private:
 	DialogueNode* currentNode;
 	pugi::xml_document	dialogues;
 
-	Font* font;
+	Fonts* font;
 	Input* input;
 	Render* render;
 	Textures* tex;

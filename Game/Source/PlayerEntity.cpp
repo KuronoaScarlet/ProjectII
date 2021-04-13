@@ -119,44 +119,91 @@ bool PlayerEntity::Update(float dt)
 		{
 			currentAnimation = &idleAnimation;
 		}
-		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+		if (!godMode)
 		{
-			position.x -= 150 * dt;
-			if (currentAnimation != &walkAnimationLeft && currentAnimation != &walkAnimationUp && currentAnimation != &walkAnimationDown)
+			if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 			{
-				walkAnimationLeft.Reset();
-				currentAnimation = &walkAnimationLeft;
+				position.x -= 150 * dt;
+				if (currentAnimation != &walkAnimationLeft && currentAnimation != &walkAnimationUp && currentAnimation != &walkAnimationDown)
+				{
+					walkAnimationLeft.Reset();
+					currentAnimation = &walkAnimationLeft;
+				}
+			}
+			if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+			{
+				position.x += 150 * dt;
+				if (currentAnimation != &walkAnimationRight && currentAnimation != &walkAnimationUp && currentAnimation != &walkAnimationDown)
+				{
+					walkAnimationRight.Reset();
+					currentAnimation = &walkAnimationRight;
+				}
+			}
+			if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+			{
+				position.y -= 150 * dt;
+				if (currentAnimation != &walkAnimationUp)
+				{
+					walkAnimationUp.Reset();
+					currentAnimation = &walkAnimationUp;
+				}
+			}
+
+			if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+			{
+				position.y += 150 * dt;
+				if (currentAnimation != &walkAnimationDown)
+				{
+					walkAnimationDown.Reset();
+					currentAnimation = &walkAnimationDown;
+				}
 			}
 		}
-		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+		else
 		{
-			position.x += 150 * dt;
-			if (currentAnimation != &walkAnimationRight && currentAnimation != &walkAnimationUp && currentAnimation != &walkAnimationDown)
+			if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 			{
-				walkAnimationRight.Reset();
-				currentAnimation = &walkAnimationRight;
+				position.x -= 300 * dt;
+				if (currentAnimation != &walkAnimationLeft && currentAnimation != &walkAnimationUp && currentAnimation != &walkAnimationDown)
+				{
+					walkAnimationLeft.Reset();
+					currentAnimation = &walkAnimationLeft;
+				}
 			}
-		}
-		if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT )
-		{
-			position.y -= 150 * dt;
-			if (currentAnimation != &walkAnimationUp)
+			if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 			{
-				walkAnimationUp.Reset();
-				currentAnimation = &walkAnimationUp;
+				position.x += 300 * dt;
+				if (currentAnimation != &walkAnimationRight && currentAnimation != &walkAnimationUp && currentAnimation != &walkAnimationDown)
+				{
+					walkAnimationRight.Reset();
+					currentAnimation = &walkAnimationRight;
+				}
+			}
+			if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+			{
+				position.y -= 300 * dt;
+				if (currentAnimation != &walkAnimationUp)
+				{
+					walkAnimationUp.Reset();
+					currentAnimation = &walkAnimationUp;
+				}
+			}
+
+			if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+			{
+				position.y += 300 * dt;
+				if (currentAnimation != &walkAnimationDown)
+				{
+					walkAnimationDown.Reset();
+					currentAnimation = &walkAnimationDown;
+				}
 			}
 		}
 		
-		if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+		if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
 		{
-			position.y += 150 * dt;
-			if (currentAnimation != &walkAnimationDown)
-			{
-				walkAnimationDown.Reset();
-				currentAnimation = &walkAnimationDown;
-			}
+			godMode = !godMode;
 		}
-		
 
 		if (app->input->GetKey(SDL_SCANCODE_R) == KEY_REPEAT)
 		{
@@ -203,7 +250,7 @@ bool PlayerEntity::Draw()
 
 void PlayerEntity::Collision(Collider* coll)
 {
-	if(coll->type == Collider::Type::WALL || coll->type == Collider::Type::NPC)
+	if((coll->type == Collider::Type::WALL || coll->type == Collider::Type::NPC) && godMode == false)
 	position = tempPlayerPosition;
 }
 

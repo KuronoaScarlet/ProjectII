@@ -48,7 +48,6 @@ public:
 		int lives = 3;
 
 		bool hit = false;
-		bool godMode = false;
 		bool footJump = false;
 
 		fPoint initPositionScene1 = { 50.0f, 260.0f };

@@ -27,6 +27,7 @@ public:
 	void CleanUp();
 
 private:
+	bool godMode = false;
 
 	Animation idleAnimation;
 	Animation walkAnimationRight;
@@ -42,7 +43,6 @@ private:
 
 	fPoint tempPlayerPosition;
 
-	bool godMode = false;
 	bool debug;
 	bool doubleJump = false;
 	bool cameraControl = false;

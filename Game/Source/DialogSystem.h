@@ -69,19 +69,19 @@ public:
 	bool Start();
 	bool Update(float dt);
 	bool CleanUp();
-	void PerformDialogue(int treeId);
+	void PerformDialogue(int treeId, int playerInput);
 	bool LoadDialogue(const char*);
 	bool LoadNodes(pugi::xml_node& trees, DialogueTree* oak);
 	bool LoadOptions(pugi::xml_node& text_node, DialogueNode* npc);
 	
-private:
 	int playerInput = 7;
 	int Id = 0;
 	std::vector <DialogueTree*> dialogueTrees;
 	DialogueNode* currentNode;
 	pugi::xml_document	dialogues;
+private:
 
-	Fonts* font;
+	
 	Input* input;
 	Render* render;
 	Textures* tex;

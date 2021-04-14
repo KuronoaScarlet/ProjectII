@@ -45,7 +45,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	deathScreen = new DeathScreen();
 	winScreen = new WinScreen();
 	pathFinding = new PathFinding();
-	//dialogueSystem = new DialogueSystem(input, render, tex);
+	dialogueSystem = new DialogueSystem(input, render, tex);
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
 
@@ -58,7 +58,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(scene1);
 	AddModule(map);
 	AddModule(entityManager);
-	//AddModule(dialogueSystem);
+	AddModule(dialogueSystem);
 	AddModule(fade);
 	AddModule(deathScreen);
 	AddModule(winScreen);
@@ -73,6 +73,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	scene1->active = false;
 	deathScreen->active = false;
 	winScreen->active = false;
+	
 }
 
 App::~App()

@@ -14,53 +14,45 @@ DialogueSystem::~DialogueSystem() {}
 
 bool DialogueSystem::Start()
 {
-	LoadDialogue("dialogue_tree.xml");
-	currentNode = dialogueTrees[Id]->dialogueNodes[0];
-	PerformDialogue(Id);
-	//font = new Font("Assets/Fonts/londrina.xml", tex);
+	app->dialogueSystem->LoadDialogue("dialogue_tree.xml");
+	
 	return true;
 }
 
 bool DialogueSystem::Update(float dt)
 {
-
-	if (input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+	/*if (Id == 0)
 	{
-		playerInput = 0;
-		PerformDialogue(Id);
-	}
+		if (input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+		{
+			playerInput = 0;
+			PerformDialogue(Id);
+		}
 
-	if (input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
-	{
-		playerInput = 1;
-		PerformDialogue(Id);
-	}
+		if (input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
+		{
+			playerInput = 1;
+			PerformDialogue(Id);
+		}
 
-	if (input->GetKey(SDL_SCANCODE_3) == KEY_DOWN)
-	{
-		playerInput = 2;
-		PerformDialogue(Id);
+		if (input->GetKey(SDL_SCANCODE_3) == KEY_DOWN)
+		{
+			playerInput = 2;
+			PerformDialogue(Id);
+		}
 	}
-
 	if (input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
-	{
-		Id = 0;
-		currentNode = dialogueTrees[Id]->dialogueNodes[0];
-		playerInput = 9;
-		PerformDialogue(Id);
+		{
+			Id = 0;
+			currentNode = dialogueTrees[Id]->dialogueNodes[0];
+			playerInput = 9;
+			PerformDialogue(Id);
 	}
+	
+	
 
-	char NPCdialogue[64] = { 0 };
-	sprintf_s(NPCdialogue, 64, currentNode->text.c_str(), 56);
-	render->DrawText(font, NPCdialogue, 10, 10, 80, 0, { 0, 0, 255, 255 });
-
-	char response[64] = { 0 };
-	for (int i = 0; i < currentNode->answersList.Count(); i++)
-	{
-		sprintf_s(response, 64, currentNode->answersList.At(i)->data.c_str(), 56);
-		render->DrawText(font, response, 10, 200+(60*(i+1)), 80, 0, { 0, 255, 255, 255 });
-	}	
-
+	
+	*/
 	return true;
 }
 
@@ -79,7 +71,7 @@ bool DialogueSystem::CleanUp()
 	return true;
 }
 
-void DialogueSystem::PerformDialogue(int treeId)
+void DialogueSystem::PerformDialogue(int treeId, int playerInput)
 {
 	if (playerInput >= 0 && playerInput < currentNode->dialogueOptions.size())
 	{
@@ -91,7 +83,7 @@ void DialogueSystem::PerformDialogue(int treeId)
 			}
 	}
 
-	//BlitDialog();
+
 }
 
 bool DialogueSystem::LoadDialogue(const char* file)

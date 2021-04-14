@@ -38,6 +38,7 @@ public:
 
 
 	//Fonts
+	Fonts* font;
 	//int scoreFont = -1;
 	char scoreText[64] = { 0 };
 	char timeText[64] = { 0 };

@@ -13,6 +13,7 @@
 #include "Defs.h"
 
 
+
 PlayerEntity::PlayerEntity(Module* listener, fPoint position, SDL_Texture* texture, Type type) : Entity(listener, position, texture, type)
 {
 	idleAnimation.loop = true;
@@ -67,6 +68,8 @@ PlayerEntity::PlayerEntity(Module* listener, fPoint position, SDL_Texture* textu
 
 	lerpCamera.x = position.x;
 	lerpCamera.y = position.y;
+
+	app->entityManager->playerData.onDialog = false;
 }
 
 bool PlayerEntity::Start()
@@ -85,6 +88,10 @@ bool PlayerEntity::Update(float dt)
 			{
 				tmp->data->Interaction();
 			}
+		/*	else 
+			{
+				app->entityManager->playerData.onDialog = false;
+			}*/
 		}
 		if (tmp->data->type == Type::NPC2)
 		{
@@ -92,6 +99,7 @@ bool PlayerEntity::Update(float dt)
 			{
 				tmp->data->Interaction();
 			}
+			
 		}
 		if (tmp->data->type == Type::NPC3)
 		{
@@ -99,6 +107,7 @@ bool PlayerEntity::Update(float dt)
 			{
 				tmp->data->Interaction();
 			}
+			
 		}
 		tmp = tmp->next;
 	}
@@ -171,7 +180,6 @@ bool PlayerEntity::Update(float dt)
 			position = { 100.0f, 175.0f };
 		}
 
-		cameraControl = true;
 		currentAnimation->Update();
 
 		//camera update
@@ -213,6 +221,8 @@ void PlayerEntity::Collision(Collider* coll)
 {
 	if((coll->type == Collider::Type::WALL || coll->type == Collider::Type::NPC) && godMode == false)
 	position = tempPlayerPosition;
+
+	
 }
 
 void PlayerEntity::CleanUp()

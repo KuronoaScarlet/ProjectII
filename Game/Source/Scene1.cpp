@@ -12,6 +12,7 @@
 #include "Fonts.h"
 #include "Pathfinding.h"
 #include "Title.h"
+#include "DialogSystem.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -68,6 +69,9 @@ bool Scene1::Start()
 	}
 
 	app->map->Load("mapLvl2.tmx");
+
+	SDL_Texture * texas = app->tex->Load("Assets/Fonts/londrina.png");
+	font = new Fonts("Assets/Fonts/londrina.xml", texas);
 	return true;
 }
 
@@ -96,6 +100,22 @@ bool Scene1::PostUpdate()
 {
 	bool ret = true;
 	time = 100 - timerr.ReadSec();
+
+	if (app->entityManager->playerData.onDialog == true)
+	{
+		app->render->DrawRectangle({ 15,400,919,143 }, 255, 255, 150);
+
+		char NPCdialogue[64] = { 0 };
+		sprintf_s(NPCdialogue, 64, app->dialogueSystem->currentNode->text.c_str(), 56);
+		app->render->DrawText(font, NPCdialogue, 336, 586, 50, 0, { 0, 0, 255, 255 });
+
+		char response[64] = { 0 };
+		for (int i = 0; i < app->dialogueSystem->currentNode->answersList.Count(); i++)
+		{
+			sprintf_s(response, 64, app->dialogueSystem->currentNode->answersList.At(i)->data.c_str(), 56);
+			app->render->DrawText(font, response, 336, 586 + (50 * (i + 1)), 50, 0, { 0, 255, 255, 255 });
+		}
+	}
 
 	return ret;
 }

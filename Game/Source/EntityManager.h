@@ -60,6 +60,9 @@ public:
 		bool debug = false;
 		bool resetCamera;
 
+		//Dialog
+		bool onDialog;
+
 		SDL_Texture* pauseMenu = nullptr;
 
 		GuiButton* resumeButton;

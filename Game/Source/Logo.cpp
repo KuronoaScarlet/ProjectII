@@ -75,8 +75,8 @@ bool Logo::PostUpdate()
     }
     //if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
    
-    app->render->DrawTexture(screen, 0, 0, NULL);
-
+   app->render->DrawTexture(screen, 0, 0, NULL);
+ 
     return ret;
 }
 

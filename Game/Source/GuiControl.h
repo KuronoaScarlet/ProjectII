@@ -109,6 +109,7 @@ public:
     uint selectFx = 0;
     uint selectedFx = 0;
     uint releaseFx = 0;
+    uint pencilFx = 0;
     bool audio;
     bool audioB;
     bool audioR;

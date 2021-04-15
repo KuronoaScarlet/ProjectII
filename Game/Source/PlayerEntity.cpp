@@ -88,10 +88,10 @@ bool PlayerEntity::Update(float dt)
 			{
 				tmp->data->Interaction();
 			}
-			else 
+		/*	else 
 			{
 				app->entityManager->playerData.onDialog = false;
-			}
+			}*/
 		}
 		if (tmp->data->type == Type::NPC2)
 		{

@@ -4,6 +4,7 @@
 #include "Render.h"
 #include "Textures.h"
 #include "Fonts.h"
+#include "EntityManager.h"
 
 #include "SDL/include/SDL.h"
 
@@ -21,38 +22,38 @@ bool DialogueSystem::Start()
 
 bool DialogueSystem::Update(float dt)
 {
-	/*if (Id == 0)
+	if (Id == 0 && app->entityManager->playerData.onDialog == true)
 	{
+		if (input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+		{
+			playerInput = 0;
+			Id = 0;
+			PerformDialogue(Id, playerInput);
+		}
+	}
+
+	if (Id == 1 && app->entityManager->playerData.onDialog == true)
+	{
+		if (input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+		{
+			playerInput = 0;
+			Id = 1;
+			PerformDialogue(Id, playerInput);
+		}
 		if (input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
 		{
 			playerInput = 0;
-			PerformDialogue(Id);
+			Id = 1;
+			PerformDialogue(Id, playerInput);
 		}
-
 		if (input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
 		{
 			playerInput = 1;
-			PerformDialogue(Id);
-		}
-
-		if (input->GetKey(SDL_SCANCODE_3) == KEY_DOWN)
-		{
-			playerInput = 2;
-			PerformDialogue(Id);
+			Id = 1;
+			PerformDialogue(Id, playerInput);
 		}
 	}
-	if (input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
-		{
-			Id = 0;
-			currentNode = dialogueTrees[Id]->dialogueNodes[0];
-			playerInput = 9;
-			PerformDialogue(Id);
-	}
-	
-	
 
-	
-	*/
 	return true;
 }
 

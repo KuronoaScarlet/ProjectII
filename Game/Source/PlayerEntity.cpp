@@ -11,6 +11,7 @@
 #include "EntityManager.h"
 #include "Fonts.h"
 #include "Defs.h"
+#include "DialogSystem.h"
 
 
 
@@ -86,22 +87,42 @@ bool PlayerEntity::Update(float dt)
 		{
 			if (position.DistanceTo(tmp->data->position) < 50)
 			{
+				if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
+				{
+					app->entityManager->playerData.onDialog = true;
+					app->dialogueSystem->currentNode = app->dialogueSystem->dialogueTrees[0]->dialogueNodes[0];
+					app->dialogueSystem->PerformDialogue(0, 7);
+					app->dialogueSystem->Id = 0;
+
+				}
 				tmp->data->Interaction();
 			}
-		/*	else 
+			else 
 			{
 				app->entityManager->playerData.onDialog = false;
-			}*/
+			}
 		}
-		if (tmp->data->type == Type::NPC2)
+
+		else if (tmp->data->type == Type::NPC2)
 		{
 			if (position.DistanceTo(tmp->data->position) < 50)
 			{
+				if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
+				{
+					app->entityManager->playerData.onDialog = true;
+					app->dialogueSystem->currentNode = app->dialogueSystem->dialogueTrees[1]->dialogueNodes[0];
+					app->dialogueSystem->PerformDialogue(1, 7);
+					app->dialogueSystem->Id = 1;
+				}
 				tmp->data->Interaction();
 			}
-			
+			else
+			{
+				app->entityManager->playerData.onDialog = false;
+			}
 		}
-		if (tmp->data->type == Type::NPC3)
+
+		else if (tmp->data->type == Type::NPC3)
 		{
 			if (position.DistanceTo(tmp->data->position) < 50)
 			{
@@ -188,18 +209,6 @@ bool PlayerEntity::Update(float dt)
 		lerpCamera.y += (position.y - lerpCamera.y) *dt * 1.0f;
 		app->render->camera.x = -int(lerpCamera.x) + 640;
 		app->render->camera.y = -int(lerpCamera.y) + 360;
-		/*SDL_Rect margin{ 640,360,1984,1104 };
-		app->render->DrawRectangle(margin, 255, 0, 255, 255, false, false);
-		SDL_Point p{ position.x,position.y };
-		if (SDL_PointInRect(&p, &margin))
-		{
-			app->render->camera.x = -int(lerpCamera.x) +640;
-			app->render->camera.y = -int(lerpCamera.y) +360;
-		}*/
-		/*if (app->render->camera.x < 0) app->render->camera.x = 0;
-		if (app->render->camera.x > 3264) app->render->camera.x = 3264;
-		if (app->render->camera.y < 0) app->render->camera.x = 0;
-		if (app->render->camera.y > 1824) app->render->camera.x = 1824;*/
 	}
 
 	

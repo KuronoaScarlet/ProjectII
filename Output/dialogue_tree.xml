@@ -2,57 +2,30 @@
 
 <dialogueTree>
   <dialogueExample Id="0">
-    <node text="Hello do you have a moment?"  id="0">
-      <dialogue option="1: No sorry" returnCode="0" nextNode="1"/>
-      <dialogue option="2: Yes what is it?" returnCode="0" nextNode="2"/>
+    <node text="Hola buenas"  id="0">
+      <dialogue option=" " returnCode="0" nextNode="1"/>
     </node>
-    <node text="Thats to bad bye"  id="1">
-      <dialogue option="1: Bye" returnCode="0" nextNode="100"/>
+    <node text="Este es el texto 2"  id="1">
+      <dialogue option=" " returnCode="0" nextNode="2"/>
     </node>
-    <node text="I have a quest for you" id="2">
-      <dialogue option="1: Not interested" returnCode="0" nextNode="100"/>
-      <dialogue option="2: What do I have to do?" returnCode="0" nextNode="4"/>
-      <dialogue option="3: I dont work for free" returnCode="0" nextNode="3"/>
-    </node>
-    <node text="I can pay you five gold coins" id="3">
-      <dialogue option="1: Then we have a deal whats the quest about?" returnCode="0" nextNode="4"/>
-      <dialogue option="2:Thats not enough bye" returnCode="0" nextNode="100"/>
-    </node>
-    <node text="Killing some giant rats" id="4">
-      <dialogue option="1: Lets do it already" returnCode="1" nextNode="101"/>
-      <dialogue option="2: Im scared of rats" returnCode="0" nextNode="100"/>
-    </node>
-    <node text ="End of conversation R to talk again" id ="100">
-    </node>
-    <node text ="Mision accepted R to talk again" id ="101">
+    <node text="Este es el tercero" id="2">
+      <dialogue option=" " returnCode="1" nextNode="100"/>
     </node>
   </dialogueExample>
 
   <dialogueExample Id="1">
-    <!-- TODO 1: Desing and write your own dialogue Tree -->
-    <node text="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA?"  id="0">
-      <dialogue option="1: AAAAAAAAAAAAAAAAAAAAAA" returnCode="0" nextNode="1"/>
-      <dialogue option="2: AAAAAAAAAAAAAAAAAAAAAA?" returnCode="0" nextNode="2"/>
+    <node text="Quieres pelea?"  id="0">
+      <dialogue option=" " returnCode="0" nextNode="1"/>
     </node>
-    <node text="Thats to bad bye"  id="1">
-      <dialogue option="1: Bye" returnCode="0" nextNode="100"/>
+    <node text="Contesta."  id="1">
+      <dialogue option="1: Si" returnCode="0" nextNode="2"/>
+      <dialogue option="2: No" returnCode="0" nextNode="3"/>
     </node>
-    <node text="I have a quest for you" id="2">
-      <dialogue option="1: Not interested" returnCode="0" nextNode="100"/>
-      <dialogue option="2: What do I have to do?" returnCode="0" nextNode="4"/>
-      <dialogue option="3: I dont work for free" returnCode="0" nextNode="3"/>
+    <node text="Te reviento payaso" id="2">
+      <dialogue option=" " returnCode="0" nextNode="4"/>
     </node>
-    <node text="I can pay you five gold coins" id="3">
-      <dialogue option="1: Then we have a deal whats the quest about?" returnCode="0" nextNode="4"/>
-      <dialogue option="2:Thats not enough bye" returnCode="0" nextNode="100"/>
-    </node>
-    <node text="Killing some giant rats" id="4">
-      <dialogue option="1: Lets do it already" returnCode="1" nextNode="101"/>
-      <dialogue option="2: Im scared of rats" returnCode="0" nextNode="100"/>
-    </node>
-    <node text ="End of conversation R to talk again" id ="100">
-    </node>
-    <node text ="Mision accepted R to talk again" id ="101">
+    <node text="Largate" id="3">
+      <dialogue option=" " returnCode="0" nextNode="4"/>
     </node>
   </dialogueExample>
     

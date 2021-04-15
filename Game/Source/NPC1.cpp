@@ -65,13 +65,6 @@ bool NPC1::Interaction()
 	SDL_Rect moodRect = currentMoodAnimation->GetCurrentFrame();
 	app->render->DrawTexture(mood, position.x + 25, position.y - 12, &moodRect);
 
-	//dialog
-
-	app->entityManager->playerData.onDialog = true;
-	app->dialogueSystem->currentNode = app->dialogueSystem->dialogueTrees[0]->dialogueNodes[0];
-	app->dialogueSystem->PerformDialogue(0, 7);
-
-
 	return true;
 }
 

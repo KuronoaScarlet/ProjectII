@@ -18,6 +18,7 @@ class EntityManager;
 class Map;
 class Collisions;
 class DialogueSystem;
+class FontsModule;
 
 //Scenes
 class Logo;
@@ -111,6 +112,7 @@ public:
 	WinScreen* winScreen;
 	PathFinding* pathFinding;
 	DialogueSystem* dialogueSystem;
+	FontsModule* fontsModule;
 
 	uint activeFonts = 0;
 	uint totalFonts = 0;

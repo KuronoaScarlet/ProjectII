@@ -63,7 +63,6 @@ public:
 
 	GuiButton* resumeButton;
 	GuiButton* settingsButton;
-	GuiButton* backToTitleButton;
 	GuiButton* exitButton;
 
 	PlayerData playerData;

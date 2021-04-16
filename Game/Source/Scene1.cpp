@@ -102,7 +102,7 @@ bool Scene1::PostUpdate()
 
 	if (app->entityManager->playerData.onDialog == true)
 	{
-		app->render->DrawRectangle({ 15,400,919,143 }, 255, 255, 150);
+		//app->render->DrawRectangle({ -app->render->camera.x + 450,-app->render->camera.y+612,919,143 }, 255, 255, 150);
 
 		char NPCdialogue[64] = { 0 };
 		sprintf_s(NPCdialogue, 64, app->dialogueSystem->currentNode->text.c_str(), 56);

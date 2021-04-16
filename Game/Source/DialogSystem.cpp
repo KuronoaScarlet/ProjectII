@@ -28,6 +28,8 @@ bool DialogueSystem::Update(float dt)
 {
 	if (app->entityManager->playerData.onDialog == true)
 	{
+		app->render->DrawRectangle({ -app->render->camera.x + 300,-app->render->camera.y + 580,1000,150 }, 255, 255, 150);
+
 		if (Id == 0)
 		{
 			if (input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)

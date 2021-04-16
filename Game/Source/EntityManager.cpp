@@ -45,15 +45,11 @@ bool EntityManager::Start()
 	resumeButton->SetObserver((Scene1*)this);
 	resumeButton->SetTexture(app->tex->Load("Assets/Textures/resume.png"), app->tex->Load("Assets/Textures/resume_selected.png"), app->tex->Load("Assets/Textures/resume_pressed.png"));
 
-	settingsButton = new GuiButton(12, { 517, 370, 234, 55 }, "START");
+	settingsButton = new GuiButton(12, { 517, 409, 234, 55 }, "START");
 	settingsButton->SetObserver((Scene1*)this);
 	settingsButton->SetTexture(app->tex->Load("Assets/Textures/settings.png"), app->tex->Load("Assets/Textures/settings_selected.png"), app->tex->Load("Assets/Textures/settings_pressed.png"));
 
 	
-	backToTitleButton = new GuiButton(2, { 543, 438, 197, 55 }, "OPTIONS");
-	backToTitleButton->SetObserver((Scene1*)this);
-	backToTitleButton->SetTexture(app->tex->Load("Assets/Textures/settings.png"), app->tex->Load("Assets/Textures/settings_selected.png"), app->tex->Load("Assets/Textures/settings_pressed.png"));
-
 	exitButton = new GuiButton(11, { 551, 514, 172, 55 }, "CREDITS");
 	exitButton->SetObserver((Scene1*)this);
 	exitButton->SetTexture(app->tex->Load("Assets/Textures/exit.png"), app->tex->Load("Assets/Textures/exit_selected.png"), app->tex->Load("Assets/Textures/exit_pressed.png"));
@@ -88,7 +84,6 @@ bool EntityManager::Update(float dt)
 	{
 		resumeButton->Update(app->input, dt);
 		settingsButton->Update(app->input, dt);
-		backToTitleButton->Update(app->input, dt);
 		exitButton->Update(app->input, dt);
 	}
 	if (app->title->exi)	return false;
@@ -102,8 +97,6 @@ bool EntityManager::PostUpdate()
 	resumeButton->bounds.y = -app->render->camera.y+200;
 	settingsButton->bounds.x = -app->render->camera.x + 537;
 	settingsButton->bounds.y = -app->render->camera.y + 260;
-	backToTitleButton->bounds.x = -app->render->camera.x + 537;
-	backToTitleButton->bounds.y = -app->render->camera.y + 320;
 	exitButton->bounds.x = -app->render->camera.x + 557;
 	exitButton->bounds.y = -app->render->camera.y + 380;
 
@@ -122,8 +115,6 @@ bool EntityManager::PostUpdate()
 		app->render->DrawText(app->render->font, "Resume", 530, 120, 60, 5, { 255, 255, 255, 255 });
 		settingsButton->Draw(app->render);
 		app->render->DrawText(app->render->font, "Settings", 520, 245, 60, 5, { 255, 255, 255, 255 });
-		backToTitleButton->Draw(app->render);
-		app->render->DrawText(app->render->font, "Back to Title", 465, 370, 60, 5, { 255, 255, 255, 255 });
 		exitButton->Draw(app->render);
 		app->render->DrawText(app->render->font, "Exit Game", 500, 550, 60, 5, { 255, 255, 255, 255 });
 	}

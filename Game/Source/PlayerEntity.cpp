@@ -97,6 +97,7 @@ bool PlayerEntity::Update(float dt)
 				}
 				tmp->data->Interaction();
 			}
+			
 		}
 
 		else if (tmp->data->type == Type::NPC2)
@@ -130,78 +131,83 @@ bool PlayerEntity::Update(float dt)
 	tempPlayerPosition = position;
 	if (!app->entityManager->playerData.pauseCondition)
 	{
-		//PlayerData Info Containers
-		app->entityManager->playerData.position.x = position.x;
-		app->entityManager->playerData.position.y = position.y;
-
-		//Player Movement
-		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_IDLE
-			&& app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE
-			&& app->input->GetKey(SDL_SCANCODE_W) == KEY_IDLE
-			&& app->input->GetKey(SDL_SCANCODE_S) == KEY_IDLE)
+		if (app->entityManager->playerData.onDialog == false)
 		{
-			if (currentAnimation != &idleAnimation)
-			{
-				idleAnimation.Reset();
-				currentAnimation = &idleAnimation;
-			}
-		}
-
-		float speed = (godMode) ? 300 : 150;
-		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
-		{
-			position.x -= speed * dt;
-			if (currentAnimation != &walkAnimationLeft && app->input->GetKey(SDL_SCANCODE_W) != KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_S) != KEY_REPEAT)
-			{
-				walkAnimationLeft.Reset();
-				currentAnimation = &walkAnimationLeft;
-			}
-		}
-		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
-		{
-			position.x += speed * dt;
-			if (currentAnimation != &walkAnimationRight && app->input->GetKey(SDL_SCANCODE_W) != KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_S) != KEY_REPEAT)
-			{
-				walkAnimationRight.Reset();
-				currentAnimation = &walkAnimationRight;
-			}
-		}
-		if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
-		{
-			position.y -= speed * dt;
-			if (currentAnimation != &walkAnimationUp)
-			{
-				walkAnimationUp.Reset();
-				currentAnimation = &walkAnimationUp;
-			}
-		}
-		if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
-		{
-			position.y += speed * dt;
-			if (currentAnimation != &walkAnimationDown)
-			{
-				walkAnimationDown.Reset();
-				currentAnimation = &walkAnimationDown;
-			}
-		}
+			
 		
-		if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
-		{
-			godMode = !godMode;
-		}
+			//PlayerData Info Containers
+			app->entityManager->playerData.position.x = position.x;
+			app->entityManager->playerData.position.y = position.y;
 
-		if (app->input->GetKey(SDL_SCANCODE_R) == KEY_REPEAT)
-		{
-			position = { 100.0f, 175.0f };
-		}
+			//Player Movement
+			if (app->input->GetKey(SDL_SCANCODE_A) == KEY_IDLE
+				&& app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE
+				&& app->input->GetKey(SDL_SCANCODE_W) == KEY_IDLE
+				&& app->input->GetKey(SDL_SCANCODE_S) == KEY_IDLE)
+			{
+				if (currentAnimation != &idleAnimation)
+				{
+					idleAnimation.Reset();
+					currentAnimation = &idleAnimation;
+				}
+			}
 
+			float speed = (godMode) ? 300 : 150;
+			if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+			{
+				position.x -= speed * dt;
+				if (currentAnimation != &walkAnimationLeft && app->input->GetKey(SDL_SCANCODE_W) != KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_S) != KEY_REPEAT)
+				{
+					walkAnimationLeft.Reset();
+					currentAnimation = &walkAnimationLeft;
+				}
+			}
+			if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+			{
+				position.x += speed * dt;
+				if (currentAnimation != &walkAnimationRight && app->input->GetKey(SDL_SCANCODE_W) != KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_S) != KEY_REPEAT)
+				{
+					walkAnimationRight.Reset();
+					currentAnimation = &walkAnimationRight;
+				}
+			}
+			if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+			{
+				position.y -= speed * dt;
+				if (currentAnimation != &walkAnimationUp)
+				{
+					walkAnimationUp.Reset();
+					currentAnimation = &walkAnimationUp;
+				}
+			}
+			if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+			{
+				position.y += speed * dt;
+				if (currentAnimation != &walkAnimationDown)
+				{
+					walkAnimationDown.Reset();
+					currentAnimation = &walkAnimationDown;
+				}
+			}
+
+			if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
+			{
+				godMode = !godMode;
+			}
+
+			if (app->input->GetKey(SDL_SCANCODE_R) == KEY_REPEAT)
+			{
+				position = { 100.0f, 175.0f };
+			}
+
+
+			//camera update
+			lerpCamera.x += (position.x - lerpCamera.x) * dt * 1.0f;
+			lerpCamera.y += (position.y - lerpCamera.y) * dt * 1.0f;
+			app->render->camera.x = -int(lerpCamera.x) + 640;
+			app->render->camera.y = -int(lerpCamera.y) + 360;
+		}
 		currentAnimation->Update();
-
-		//camera update
-		lerpCamera.x += (position.x - lerpCamera.x) *dt * 1.0f;
-		lerpCamera.y += (position.y - lerpCamera.y) *dt * 1.0f;
-		app->render->camera.x = -int(lerpCamera.x) + 640;
-		app->render->camera.y = -int(lerpCamera.y) + 360;
 	}
 
 	

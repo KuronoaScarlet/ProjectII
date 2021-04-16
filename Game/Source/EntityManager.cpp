@@ -100,14 +100,14 @@ bool EntityManager::Update(float dt)
 
 bool EntityManager::PostUpdate()
 {
-	resumeButton->bounds.x = -app->render->camera.x+517;
-	resumeButton->bounds.y = -app->render->camera.y+370;
-	settingsButton->bounds.x = -app->render->camera.x + 517;
-	settingsButton->bounds.y = -app->render->camera.y + 330;
-	backToTitleButton->bounds.x = -app->render->camera.x + 543;
-	backToTitleButton->bounds.y = -app->render->camera.y + 438;
-	exitButton->bounds.x = -app->render->camera.x + 551;
-	exitButton->bounds.y = -app->render->camera.y + 514;
+	resumeButton->bounds.x = -app->render->camera.x+537;
+	resumeButton->bounds.y = -app->render->camera.y+200;
+	settingsButton->bounds.x = -app->render->camera.x + 537;
+	settingsButton->bounds.y = -app->render->camera.y + 260;
+	backToTitleButton->bounds.x = -app->render->camera.x + 537;
+	backToTitleButton->bounds.y = -app->render->camera.y + 320;
+	exitButton->bounds.x = -app->render->camera.x + 557;
+	exitButton->bounds.y = -app->render->camera.y + 380;
 
 	for (int i = 0; i < entityList.Count(); i++)
 	{

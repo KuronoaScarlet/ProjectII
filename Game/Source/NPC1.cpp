@@ -46,6 +46,7 @@ bool NPC1::Start()
 
 bool NPC1::Update(float dt)
 {
+
 	currentAnimation->Update();
 	currentMoodAnimation->Update();
 

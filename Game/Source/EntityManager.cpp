@@ -83,8 +83,6 @@ bool EntityManager::PostUpdate()
 		entity->data->Draw();
 	}
 
-	playerData.hit = false;
-
 	return true;
 }
 
@@ -124,7 +122,6 @@ bool EntityManager::LoadState(pugi::xml_node& data)
 			count++;
 		}
 		int lives = e.attribute("lives").as_int(0);
-		playerData.lives = lives;
 		int coins = e.attribute("coins").as_int(0);
 	}
 
@@ -163,7 +160,6 @@ bool EntityManager::SaveState(pugi::xml_node& data) const
 			pugi::xml_attribute y = eNode.append_attribute("y");
 			y.set_value(e->position.y);
 			pugi::xml_attribute lives = eNode.append_attribute("lives");
-			lives.set_value(playerData.lives);
 			pugi::xml_attribute coins = eNode.append_attribute("coins");
 			eNode.next_sibling("playerdata");
 		}

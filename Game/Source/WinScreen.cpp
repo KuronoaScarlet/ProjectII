@@ -64,12 +64,6 @@ bool WinScreen::PostUpdate()
     // Draw everything --------------------------------------
     app->render->camera.x = 0;
     app->render->camera.y = 0;
-    if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-    {
-        app->entityManager->playerData.lives = 3;
-        app->fade->Fade(this, (Module*)app->intro, 60);
-    }
-        
     app->render->DrawTexture(screen, 0, 0, NULL);
 
     return ret;

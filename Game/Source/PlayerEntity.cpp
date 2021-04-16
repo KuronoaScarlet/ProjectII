@@ -90,16 +90,12 @@ bool PlayerEntity::Update(float dt)
 				if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
 				{
 					app->entityManager->playerData.onDialog = true;
+					app->dialogueSystem->actionChecks = 0;
 					app->dialogueSystem->currentNode = app->dialogueSystem->dialogueTrees[0]->dialogueNodes[0];
 					app->dialogueSystem->PerformDialogue(0, 7);
 					app->dialogueSystem->Id = 0;
-
 				}
 				tmp->data->Interaction();
-			}
-			else 
-			{
-				app->entityManager->playerData.onDialog = false;
 			}
 		}
 
@@ -110,15 +106,12 @@ bool PlayerEntity::Update(float dt)
 				if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
 				{
 					app->entityManager->playerData.onDialog = true;
+					app->dialogueSystem->actionChecks = 0;
 					app->dialogueSystem->currentNode = app->dialogueSystem->dialogueTrees[1]->dialogueNodes[0];
 					app->dialogueSystem->PerformDialogue(1, 7);
 					app->dialogueSystem->Id = 1;
 				}
 				tmp->data->Interaction();
-			}
-			else
-			{
-				app->entityManager->playerData.onDialog = false;
 			}
 		}
 
@@ -130,6 +123,7 @@ bool PlayerEntity::Update(float dt)
 			}
 			
 		}
+
 		tmp = tmp->next;
 	}
 

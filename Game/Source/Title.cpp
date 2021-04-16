@@ -200,7 +200,6 @@ bool Scene1::OnGuiMouseClickEvent(GuiControl* control)
             //Play
             app->fade->Fade((Module*)app->title, (Module*)app->scene1, 20);
             app->scene1->firstEntry == true;
-            app->entityManager->playerData.lives = 3;
         }
         else if (control->id == 2)
         {

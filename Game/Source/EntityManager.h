@@ -45,15 +45,6 @@ public:
 	struct PlayerData 
 	{
 		fPoint position;
-		int lives = 3;
-
-		bool hit = false;
-		bool footJump = false;
-
-		fPoint initPositionScene1 = { 50.0f, 260.0f };
-		fPoint initPositionScene2 = { 50.0f, 278.0f };
-		fPoint initPositionScene3 = { 32.0f, 277.0f };
-		fPoint initPositionScene4 = { 32.0f, 277.0f };
 
 		//Pause Menu
 		bool pauseCondition = false;

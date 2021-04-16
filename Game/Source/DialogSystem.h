@@ -76,6 +76,7 @@ public:
 	
 	int playerInput = 7;
 	int Id = 0;
+	int actionChecks = 0;
 	std::vector <DialogueTree*> dialogueTrees;
 	DialogueNode* currentNode;
 	pugi::xml_document	dialogues;

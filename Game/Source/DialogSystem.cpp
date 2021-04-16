@@ -22,35 +22,50 @@ bool DialogueSystem::Start()
 
 bool DialogueSystem::Update(float dt)
 {
-	if (Id == 0 && app->entityManager->playerData.onDialog == true)
+	if (app->entityManager->playerData.onDialog == true)
 	{
-		if (input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+		if (Id == 0)
 		{
-			playerInput = 0;
-			Id = 0;
-			PerformDialogue(Id, playerInput);
+			if (input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+			{
+				playerInput = 0;
+				Id = 0;
+				PerformDialogue(Id, playerInput);
+				actionChecks++;
+			}
+			if (actionChecks == dialogueTrees[0]->dialogueNodes.size())
+			{
+				app->entityManager->playerData.onDialog = false;
+			}
 		}
-	}
 
-	if (Id == 1 && app->entityManager->playerData.onDialog == true)
-	{
-		if (input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+		if (Id == 1)
 		{
-			playerInput = 0;
-			Id = 1;
-			PerformDialogue(Id, playerInput);
-		}
-		if (input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
-		{
-			playerInput = 0;
-			Id = 1;
-			PerformDialogue(Id, playerInput);
-		}
-		if (input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
-		{
-			playerInput = 1;
-			Id = 1;
-			PerformDialogue(Id, playerInput);
+			if (input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+			{
+				playerInput = 0;
+				Id = 1;
+				PerformDialogue(Id, playerInput);
+				actionChecks++;
+			}
+			if (input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+			{
+				playerInput = 0;
+				Id = 1;
+				PerformDialogue(Id, playerInput);
+				actionChecks++;
+			}
+			if (input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
+			{
+				playerInput = 1;
+				Id = 1;
+				PerformDialogue(Id, playerInput);
+				actionChecks++;
+			}
+			if (actionChecks == dialogueTrees[1]->dialogueNodes.size() - 1)
+			{
+				app->entityManager->playerData.onDialog = false;
+			}
 		}
 	}
 

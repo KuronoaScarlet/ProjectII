@@ -5,6 +5,10 @@
 #include "Textures.h"
 #include "Fonts.h"
 #include "EntityManager.h"
+#include "FadeToBlack.h"
+
+#include "Scene1.h"
+#include "BattleScene.h"
 
 #include "SDL/include/SDL.h"
 
@@ -48,23 +52,11 @@ bool DialogueSystem::Update(float dt)
 				PerformDialogue(Id, playerInput);
 				actionChecks++;
 			}
-			if (input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
-			{
-				playerInput = 0;
-				Id = 1;
-				PerformDialogue(Id, playerInput);
-				actionChecks++;
-			}
-			if (input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
-			{
-				playerInput = 1;
-				Id = 1;
-				PerformDialogue(Id, playerInput);
-				actionChecks++;
-			}
-			if (actionChecks == dialogueTrees[1]->dialogueNodes.size() - 1)
+			if (actionChecks == dialogueTrees[1]->dialogueNodes.size())
 			{
 				app->entityManager->playerData.onDialog = false;
+				app->playerPosition = app->entityManager->playerData.position;
+				app->fade->Fade(app->scene1, app->battleScene, 30);
 			}
 		}
 	}

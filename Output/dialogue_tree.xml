@@ -14,18 +14,8 @@
   </dialogueExample>
 
   <dialogueExample Id="1">
-    <node text="Quieres pelea?"  id="0">
+    <node text="Eh tu! Te arranco la cabeza, puta."  id="0">
       <dialogue option=" " returnCode="0" nextNode="1"/>
-    </node>
-    <node text="Contesta."  id="1">
-      <dialogue option="1: Si" returnCode="0" nextNode="2"/>
-      <dialogue option="2: No" returnCode="0" nextNode="3"/>
-    </node>
-    <node text="Te reviento payaso" id="2">
-      <dialogue option=" " returnCode="0" nextNode="4"/>
-    </node>
-    <node text="Largate" id="3">
-      <dialogue option=" " returnCode="0" nextNode="4"/>
     </node>
   </dialogueExample>
     

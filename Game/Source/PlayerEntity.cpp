@@ -63,8 +63,21 @@ PlayerEntity::PlayerEntity(Module* listener, fPoint position, SDL_Texture* textu
 	walkAnimationDown.PushBack({ 704,144, 32, 48 });
 	walkAnimationDown.PushBack({ 736,144, 32, 48 });
 
+	battleIdle.loop = true;
+	battleIdle.speed = 0.2f;
+	battleIdle.PushBack({ 0, 80, 29, 47 });
+	battleIdle.PushBack({ 32, 80, 29, 47 });
+	battleIdle.PushBack({ 64, 80, 29, 47 });
+	battleIdle.PushBack({ 96, 80, 29, 47 });
+	battleIdle.PushBack({ 128, 80, 29, 47 });
+	battleIdle.PushBack({ 160, 80, 29, 47 });
 
 	currentAnimation = &idleAnimation;
+	if (app->battleScene->active == true)
+	{
+		currentAnimation = &battleIdle;
+	}
+
 
 	collider = app->collisions->AddCollider(SDL_Rect({ (int)position.x + 6, (int)position.y + 34, 22, 12 }), Collider::Type::PLAYER, listener);
 
@@ -130,12 +143,10 @@ bool PlayerEntity::Update(float dt)
 	}
 
 	tempPlayerPosition = position;
-	if (!app->entityManager->playerData.pauseCondition)
+	if (!app->entityManager->playerData.pauseCondition && app->scene1->active == true)
 	{
 		if (app->entityManager->playerData.onDialog == false)
 		{
-			
-		
 			//PlayerData Info Containers
 			app->entityManager->playerData.position.x = position.x;
 			app->entityManager->playerData.position.y = position.y;
@@ -208,20 +219,14 @@ bool PlayerEntity::Update(float dt)
 			app->render->camera.x = -int(lerpCamera.x) + 640;
 			app->render->camera.y = -int(lerpCamera.y) + 360;
 		}
-		currentAnimation->Update();
 	}
 
-	if (app->input->GetKey(SDL_SCANCODE_F11) == KEY_DOWN)
-	{
-		app->playerPosition = position;
-		app->fade->Fade(app->scene1, app->battleScene, 30);
-	}
-
-	if (app->input->GetKey(SDL_SCANCODE_F12) == KEY_DOWN)
+	if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
 	{
 		app->fade->Fade(app->battleScene, app->scene1, 30);
 	}
-	
+
+	currentAnimation->Update();
 	collider->SetPos(position.x + 6,position.y + 34);
 
 	return true;

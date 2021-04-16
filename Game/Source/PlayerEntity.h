@@ -39,6 +39,8 @@ private:
 	Animation walkAnimationUp;
 	Animation walkAnimationDown;
 
+	Animation battleIdle;
+
 	Animation* currentAnimation;
 		
 	fPoint tempPlayerPosition;

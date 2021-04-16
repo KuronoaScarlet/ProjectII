@@ -38,6 +38,8 @@ bool BattleScene::Start()
 {
 	app->battleScene->active = true;
 
+	app->render->camera = { 0, 0 };
+
 	//Paso 0: Conseguir guardar la posición del player en una variable global y que tras terminar la pelea no comience en Spawn.
 	//Paso 1: Cargar texturas, botones, música y Fx.
 	//Paso 2: Añadir entidades enemigas. Random (2 o 3).

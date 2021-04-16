@@ -37,6 +37,26 @@ bool EntityManager::Start()
 	texEnemy1 = app->tex->Load("Assets/Textures/Entities/Enemies/Halloween_Kid_1_idle_anim_32x32.png");
 	texEnemy3 = app->tex->Load("Assets/Textures/Entities/Enemies/Fishmonger_2_idle_anim_32x32.png");
 
+	playerData.pauseMenu = app->tex->Load("Assets/Textures/Screens/pause_screen.png");
+
+
+	playerData.resumeButton = new GuiButton(1, { 517, 304, 240, 60 }, "CONTINUE");
+	playerData.resumeButton->SetObserver((Scene1*)this);
+	playerData.resumeButton->SetTexture(app->tex->Load("Assets/Textures/resume.png"), app->tex->Load("Assets/Textures/resume_selected.png"), app->tex->Load("Assets/Textures/resume_pressed.png"));
+
+	playerData.settingsButton = new GuiButton(12, { 517, 370, 234, 55 }, "START");
+	playerData.settingsButton->SetObserver((Scene1*)this);
+	playerData.settingsButton->SetTexture(app->tex->Load("Assets/Textures/settings.png"), app->tex->Load("Assets/Textures/settings_selected.png"), app->tex->Load("Assets/Textures/settings_pressed.png"));
+
+	
+	playerData.backToTitleButton = new GuiButton(2, { 543, 438, 197, 55 }, "OPTIONS");
+	playerData.backToTitleButton->SetObserver((Scene1*)this);
+	playerData.backToTitleButton->SetTexture(app->tex->Load("Assets/Textures/settings.png"), app->tex->Load("Assets/Textures/settings_selected.png"), app->tex->Load("Assets/Textures/settings_pressed.png"));
+
+	playerData.exitButton = new GuiButton(13, { 551, 514, 172, 55 }, "CREDITS");
+	playerData.exitButton->SetObserver((Scene1*)this);
+	playerData.exitButton->SetTexture(app->tex->Load("Assets/Textures/credits.png"), app->tex->Load("Assets/Textures/credits_selected.png"), app->tex->Load("Assets/Textures/credits_pressed.png"));
+
 	return true;
 }
 
@@ -66,9 +86,9 @@ bool EntityManager::Update(float dt)
 	if (app->entityManager->playerData.pauseCondition)
 	{
 		playerData.resumeButton->Update(app->input, dt);
-		playerData.settingsButton->Update(app->input, dt);
+		/*playerData.settingsButton->Update(app->input, dt);
 		playerData.backToTitleButton->Update(app->input, dt);
-		playerData.exitButton->Update(app->input, dt);
+		playerData.exitButton->Update(app->input, dt);*/
 	}
 	if (app->title->exi)	return false;
 
@@ -82,7 +102,23 @@ bool EntityManager::PostUpdate()
 		ListItem<Entity*>* entity = entityList.At(i);
 		entity->data->Draw();
 	}
+	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN && (app->scene1->active == true)) app->entityManager->playerData.pauseCondition = !app->entityManager->playerData.pauseCondition;
 
+	if (app->entityManager->playerData.pauseCondition)
+	{
+		/*app->render->camera.x = 0;
+		app->render->camera.y = 0;*/
+		app->render->DrawTexture(playerData.pauseMenu, -app->render->camera.x, -app->render->camera.y, NULL);
+		playerData.resumeButton->Draw(app->render);
+		//app->render->DrawText(app->render->font, "Resume", 530, 120, 60, 5, { 255, 255, 255, 255 });
+		playerData.settingsButton->Draw(app->render);
+		//app->render->DrawText(app->render->font, "Settings", 520, 245, 60, 5, { 255, 255, 255, 255 });
+		playerData.backToTitleButton->Draw(app->render);
+		//app->render->DrawText(app->render->font, "Back to Title", 465, 370, 60, 5, { 255, 255, 255, 255 });
+		playerData.exitButton->Draw(app->render);
+		//app->render->DrawText(app->render->font, "Exit Game", 500, 550, 60, 5, { 255, 255, 255, 255 });
+	}
+	
 	return true;
 }
 

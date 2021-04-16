@@ -10,7 +10,6 @@
 #include "Collisions.h"
 #include "FadeToBlack.h"
 #include "Fonts.h"
-#include "Pathfinding.h"
 #include "Title.h"
 #include "DialogSystem.h"
 
@@ -38,13 +37,13 @@ bool Scene1::Awake()
 // Called before the first frame
 bool Scene1::Start()
 {
-	
+	app->scene1->active = true;
 
 	app->entityManager->AddEntity({ 500.0f, 175.0f }, Entity::Type::NPC1);
 	app->entityManager->AddEntity({ 500.0f, 300.0f }, Entity::Type::NPC2);
 	app->entityManager->AddEntity({ 400.0f, 525.0f }, Entity::Type::NPC3);
 	
-	app->entityManager->AddEntity({ 100.0f, 175.0f }, Entity::Type::PLAYER);
+	app->entityManager->AddEntity({ app->playerPosition.x, app->playerPosition.y }, Entity::Type::PLAYER);
 
 	app->render->camera.y = 0;
 	app->render->camera.x = 0;

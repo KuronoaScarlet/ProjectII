@@ -4,6 +4,7 @@
 #include "Module.h"
 #include "List.h"
 #include "Timer.h"
+#include "Point.h"
 #include "PerfTimer.h"
 
 #include "PugiXml/src/pugixml.hpp"
@@ -18,18 +19,15 @@ class EntityManager;
 class Map;
 class Collisions;
 class DialogueSystem;
+
 //Scenes
 class Logo;
-class Intro;
 class Title;
 class Scene1;
-class Scene2;
-class Scene3;
-class Scene4;
+class BattleScene;
 class FadeToBlack;
 class DeathScreen;
 class WinScreen;
-class PathFinding;
 
 class App
 {
@@ -99,16 +97,15 @@ public:
 	Textures* tex;
 	Audio* audio;
 	Logo* logo;
-	Intro* intro;
 	Title* title;
 	Scene1* scene1;
+	BattleScene* battleScene;
 	Map* map;
 	EntityManager* entityManager;
 	FadeToBlack* fade;
 	Collisions* collisions;
 	DeathScreen* deathScreen;
 	WinScreen* winScreen;
-	PathFinding* pathFinding;
 	DialogueSystem* dialogueSystem;
 
 	uint activeFonts = 0;
@@ -122,6 +119,8 @@ public:
 	bool loadingGame = false;
 
 	bool fileSaved;
+
+	fPoint playerPosition;
 
 private:
 
@@ -170,6 +169,7 @@ private:
 	float oldLastFrame = 0.0f;
 	int cappedMs = -1;
 	bool caped;
+
 
 };
 

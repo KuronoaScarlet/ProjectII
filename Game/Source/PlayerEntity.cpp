@@ -5,6 +5,7 @@
 #include "Collider.h"
 #include "FadeToBlack.h"
 #include "Scene1.h"
+#include "BattleScene.h"
 #include "Title.h"
 #include "Map.h"
 #include "Audio.h"
@@ -210,6 +211,16 @@ bool PlayerEntity::Update(float dt)
 		currentAnimation->Update();
 	}
 
+	if (app->input->GetKey(SDL_SCANCODE_F11) == KEY_DOWN)
+	{
+		app->playerPosition = position;
+		app->fade->Fade(app->scene1, app->battleScene, 30);
+	}
+
+	if (app->input->GetKey(SDL_SCANCODE_F12) == KEY_DOWN)
+	{
+		app->fade->Fade(app->battleScene, app->scene1, 30);
+	}
 	
 	collider->SetPos(position.x + 6,position.y + 34);
 

@@ -89,6 +89,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\BattleScene.cpp" />
     <ClCompile Include="Source\Collider.cpp" />
     <ClCompile Include="Source\Collisions.cpp" />
     <ClCompile Include="Source\DeathScreen.cpp" />
@@ -123,6 +124,7 @@
     <ClCompile Include="Source\Window.cpp" />
     <ClCompile Include="Source\WinScreen.cpp" />
     <ClInclude Include="Source\Animation.h" />
+    <ClInclude Include="Source\BattleScene.h" />
     <ClInclude Include="Source\Collider.h" />
     <ClInclude Include="Source\Collisions.h" />
     <ClInclude Include="Source\DeathScreen.h" />

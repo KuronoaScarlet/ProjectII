@@ -7,6 +7,7 @@
 #include "Logo.h"
 #include "Title.h"
 #include "Scene1.h"
+#include "BattleScene.h"
 #include "Map.h"
 #include "Options.h"
 #include "EntityManager.h"
@@ -16,13 +17,15 @@
 #include "WinScreen.h"
 #include "Pathfinding.h"
 #include "DialogSystem.h"
-#define DIALOGUE_TREE_FILENAME "dialogue_tree.xml"
 
 #include "Defs.h"
 #include "Log.h"
 
+
 #include <iostream>
 #include <sstream>
+
+#define DIALOGUE_TREE_FILENAME "dialogue_tree.xml"
 
 // Constructor
 App::App(int argc, char* args[]) : argc(argc), args(args)
@@ -38,13 +41,13 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	logo = new Logo();
 	title = new Title();
 	scene1 = new Scene1();
+	battleScene = new BattleScene();
 	map = new Map();
 	entityManager = new EntityManager();
 	fade = new FadeToBlack();
 	collisions = new Collisions(false);
 	deathScreen = new DeathScreen();
 	winScreen = new WinScreen();
-	pathFinding = new PathFinding();
 	dialogueSystem = new DialogueSystem(input, render, tex);
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -56,13 +59,13 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(logo);
 	AddModule(title);
 	AddModule(scene1);
+	AddModule(battleScene);
 	AddModule(map);
 	AddModule(entityManager);
 	AddModule(dialogueSystem);
 	AddModule(fade);
 	AddModule(deathScreen);
 	AddModule(winScreen);
-	AddModule(pathFinding);
 
 	// Render last to swap buffer
 
@@ -71,8 +74,11 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 
 	title->active = false;
 	scene1->active = false;
+	battleScene->active = false;
 	deathScreen->active = false;
 	winScreen->active = false;
+
+	playerPosition = { 100.0f, 175.0f };
 	
 }
 

@@ -102,6 +102,9 @@
     <ClCompile Include="Source\Enemy3.cpp">
       <Filter>Entities\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="Source\BattleScene.cpp">
+      <Filter>Scenes\Levels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -239,6 +242,9 @@
     </ClInclude>
     <ClInclude Include="Source\Enemy3.h">
       <Filter>Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BattleScene.h">
+      <Filter>Scenes\Levels</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

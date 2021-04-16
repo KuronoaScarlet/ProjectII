@@ -16,7 +16,6 @@
 #include "WinScreen.h"
 #include "Pathfinding.h"
 #include "DialogSystem.h"
-#include "Font.h"
 #define DIALOGUE_TREE_FILENAME "dialogue_tree.xml"
 
 #include "Defs.h"
@@ -47,7 +46,6 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	winScreen = new WinScreen();
 	pathFinding = new PathFinding();
 	dialogueSystem = new DialogueSystem(input, render, tex);
-	fontsModule = new FontsModule();
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
 
@@ -61,7 +59,6 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(map);
 	AddModule(entityManager);
 	AddModule(dialogueSystem);
-	AddModule(fontsModule);
 	AddModule(fade);
 	AddModule(deathScreen);
 	AddModule(winScreen);

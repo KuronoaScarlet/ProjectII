@@ -41,7 +41,7 @@ bool EntityManager::Start()
 	//resumeButtton = app->tex->Load("Assets/Textures/resume.png");
 
 
-	resumeButton = new GuiButton(1, {517,304, 240, 60 }, "CONTINUE");
+	resumeButton = new GuiButton(32, {517,304, 240, 60 }, "CONTINUE");
 	resumeButton->SetObserver((Scene1*)this);
 	resumeButton->SetTexture(app->tex->Load("Assets/Textures/resume.png"), app->tex->Load("Assets/Textures/resume_selected.png"), app->tex->Load("Assets/Textures/resume_pressed.png"));
 
@@ -54,7 +54,7 @@ bool EntityManager::Start()
 	backToTitleButton->SetObserver((Scene1*)this);
 	backToTitleButton->SetTexture(app->tex->Load("Assets/Textures/settings.png"), app->tex->Load("Assets/Textures/settings_selected.png"), app->tex->Load("Assets/Textures/settings_pressed.png"));
 
-	exitButton = new GuiButton(13, { 551, 514, 172, 55 }, "CREDITS");
+	exitButton = new GuiButton(11, { 551, 514, 172, 55 }, "CREDITS");
 	exitButton->SetObserver((Scene1*)this);
 	exitButton->SetTexture(app->tex->Load("Assets/Textures/exit.png"), app->tex->Load("Assets/Textures/exit_selected.png"), app->tex->Load("Assets/Textures/exit_pressed.png"));
 

@@ -216,8 +216,11 @@ bool Scene1::OnGuiMouseClickEvent(GuiControl* control)
             app->entityManager->playerData.pauseCondition = false;
 
             //Back to title
-            if (app->scene1->active==true)
+            if (app->scene1->active == true)
+            {
                 app->fade->Fade((Module*)app->scene1, (Module*)app->title, 30);
+                app->render->camera = { 0,0 };
+            }
         }
 
         else if (control->id == 4)
@@ -240,10 +243,7 @@ bool Scene1::OnGuiMouseClickEvent(GuiControl* control)
         }
         else if (control->id == 9)
         {
-            //resume
-            app->render->camera = app->entityManager->playerData.cameraBckUp;
-            app->entityManager->playerData.pauseCondition = false;
-            
+                       
         }
         else if (control->id == 12)
         {
@@ -262,6 +262,11 @@ bool Scene1::OnGuiMouseClickEvent(GuiControl* control)
         else if (control->id == 13)
         {
             app->title->creditSceneFlag = true;
+        }
+
+        else if (control->id == 32)
+        {
+            app->entityManager->playerData.pauseCondition = false;
         }
  
     }

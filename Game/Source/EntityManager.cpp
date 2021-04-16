@@ -68,8 +68,6 @@ bool EntityManager::PreUpdate()
 
 bool EntityManager::Update(float dt)
 {
-	SDL_Rect polla{ 500 ,500 , 600,600 };
-	app->render->DrawRectangle(polla, 242, 176, 98, 255, false, false);
 	ListItem<Entity*>* entity = entityList.start;
 
 	while (entity != nullptr)

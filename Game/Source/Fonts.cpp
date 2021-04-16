@@ -37,7 +37,7 @@ Fonts::Fonts(const char* rtpFontFile, SDL_Texture* tex)
 			index = xmlNodeGlyph.attribute("charValue").as_int();
 			charsRecs[index].x = xmlNodeGlyph.attribute("positionX").as_int();
 			charsRecs[index].y = xmlNodeGlyph.attribute("positionY").as_int();
-			charsRecs[index].w = xmlNodeGlyph.attribute("sourceSizeWidth").as_int();
+			charsRecs[index].w = xmlNodeGlyph.attribute("sourceSizeWidth").as_int() + 2;
 			charsRecs[index].h = baseSize;
 		}
 

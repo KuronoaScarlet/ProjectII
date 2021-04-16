@@ -70,8 +70,8 @@ bool Scene1::Start()
 
 	app->map->Load("mapLvl2.tmx");
 
-	SDL_Texture * texas = app->tex->Load("Assets/Fonts/londrina.png");
-	font = new Fonts("Assets/Fonts/londrina.xml", texas);
+	SDL_Texture * texas = app->tex->Load("Assets/Fonts/kurale.png");
+	font = new Fonts("Assets/Fonts/kurale.xml", texas);
 	return true;
 }
 
@@ -107,7 +107,7 @@ bool Scene1::PostUpdate()
 
 		char NPCdialogue[64] = { 0 };
 		sprintf_s(NPCdialogue, 64, app->dialogueSystem->currentNode->text.c_str(), 56);
-		app->render->DrawText(font, NPCdialogue, 336, 586, 50, 0, { 0, 0, 255, 255 });
+		app->render->DrawText(font, NPCdialogue, 336, 586, 50, 0, { 0, 0, 0, 255 });
 
 		char response[64] = { 0 };
 		for (int i = 0; i < app->dialogueSystem->currentNode->answersList.Count(); i++)

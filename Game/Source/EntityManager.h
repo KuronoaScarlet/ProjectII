@@ -55,14 +55,16 @@ public:
 		bool onDialog;
 
 		SDL_Texture* pauseMenu = nullptr;
+		SDL_Texture* resumeButtton = nullptr;
 
-		GuiButton* resumeButton;
-		GuiButton* settingsButton;
-		GuiButton* backToTitleButton;
-		GuiButton* exitButton;
 
 		SDL_Rect cameraBckUp;
 	};
+
+	GuiButton* resumeButton;
+	GuiButton* settingsButton;
+	GuiButton* backToTitleButton;
+	GuiButton* exitButton;
 
 	PlayerData playerData;
 

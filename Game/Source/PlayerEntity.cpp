@@ -198,7 +198,6 @@ bool PlayerEntity::Update(float dt)
 		currentAnimation->Update();
 
 		//camera update
-		//app->render->DrawRectangle(app->render->camera, 255, 0, 0, 255, false, false);
 		lerpCamera.x += (position.x - lerpCamera.x) *dt * 1.0f;
 		lerpCamera.y += (position.y - lerpCamera.y) *dt * 1.0f;
 		app->render->camera.x = -int(lerpCamera.x) + 640;

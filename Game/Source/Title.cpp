@@ -84,6 +84,9 @@ bool Title::Start()
     vsync = true;
     exi = false;
 
+    app->render->camera.x = 0;
+    //app->render->camera.y = 1000000000; XD, THIS DOES NOTHING
+
    return ret;
 }
 
@@ -219,7 +222,6 @@ bool Scene1::OnGuiMouseClickEvent(GuiControl* control)
             if (app->scene1->active == true)
             {
                 app->fade->Fade((Module*)app->scene1, (Module*)app->title, 30);
-                app->render->camera = { 0,0 };
             }
         }
 

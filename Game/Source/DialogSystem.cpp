@@ -8,6 +8,7 @@
 #include "FadeToBlack.h"
 
 #include "Scene1.h"
+#include "Intro.h"
 #include "BattleScene.h"
 
 #include "SDL/include/SDL.h"
@@ -61,6 +62,7 @@ bool DialogueSystem::Update(float dt)
 				app->fade->Fade(app->scene1, app->battleScene, 30);
 			}
 		}
+
 		if (Id == 2)
 		{
 			if (input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN || input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
@@ -73,6 +75,43 @@ bool DialogueSystem::Update(float dt)
 			if (actionChecks == dialogueTrees[2]->dialogueNodes.size())
 			{
 				app->entityManager->playerData.onDialog = false;
+			}
+		}
+
+		if (Id == 3)
+		{
+			if (input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+			{
+				playerInput = 0;
+				Id = 3;
+				PerformDialogue(Id, playerInput);
+				actionChecks++;
+			}
+			if (input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+			{
+				playerInput = 0;
+				Id = 3;
+				PerformDialogue(Id, playerInput);
+				actionChecks = 0;
+			}
+			if (input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
+			{
+				playerInput = 1;
+				Id = 3;
+				PerformDialogue(Id, playerInput);
+				actionChecks = 0;
+			}
+			if (input->GetKey(SDL_SCANCODE_3) == KEY_DOWN)
+			{
+				playerInput = 2;
+				Id = 3;
+				PerformDialogue(Id, playerInput);
+				actionChecks = 14;
+			}
+			if (actionChecks == dialogueTrees[3]->dialogueNodes.size())
+			{
+				app->entityManager->playerData.onDialog = false;
+				app->fade->Fade(app->intro, app->scene1, 30);
 			}
 		}
 	}

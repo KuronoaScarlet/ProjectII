@@ -91,11 +91,9 @@ bool Scene1::Update(float dt)
 bool Scene1::PostUpdate()
 {
 	bool ret = true;
-	time = 100 - timerr.ReadSec();
 
 	if (app->entityManager->playerData.onDialog == true)
 	{
-		//app->render->DrawRectangle({ -app->render->camera.x + 450,-app->render->camera.y+612,919,143 }, 255, 255, 150);
 
 		char NPCdialogue[80] = { 0 };
 		sprintf_s(NPCdialogue, 80, app->dialogueSystem->currentNode->text.c_str(), 56);

@@ -108,6 +108,9 @@
     <ClCompile Include="Source\Ally1.cpp">
       <Filter>Entities\Playable</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Intro.cpp">
+      <Filter>Scenes\NoLevels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -251,6 +254,9 @@
     </ClInclude>
     <ClInclude Include="Source\Ally1.h">
       <Filter>Entities\Playable</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Intro.h">
+      <Filter>Scenes\NoLevels</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

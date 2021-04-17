@@ -105,6 +105,12 @@ bool EntityManager::Update(float dt)
 		settingsButton->Update(app->input, dt);
 		exitButton->Update(app->input, dt);
 		fullScreen->Update(app->input, dt);
+		app->audio->Volume(20, '0');
+
+	}
+	if (!app->entityManager->playerData.pauseCondition)
+	{
+		app->audio->Volume(100, '0');
 	}
 	if (app->title->exi)	return false;
 

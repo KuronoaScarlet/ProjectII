@@ -23,6 +23,7 @@ class DialogueSystem;
 //Scenes
 class Logo;
 class Title;
+class Intro;
 class Scene1;
 class BattleScene;
 class FadeToBlack;
@@ -98,6 +99,7 @@ public:
 	Audio* audio;
 	Logo* logo;
 	Title* title;
+	Intro* intro;
 	Scene1* scene1;
 	BattleScene* battleScene;
 	Map* map;
@@ -170,8 +172,6 @@ private:
 	float oldLastFrame = 0.0f;
 	int cappedMs = -1;
 	bool caped;
-
-
 };
 
 extern App* app;

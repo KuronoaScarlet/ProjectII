@@ -6,6 +6,7 @@
 #include "Audio.h"
 #include "Logo.h"
 #include "Title.h"
+#include "Intro.h"
 #include "Scene1.h"
 #include "BattleScene.h"
 #include "Map.h"
@@ -40,6 +41,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	audio = new Audio();
 	logo = new Logo();
 	title = new Title();
+	intro = new Intro();
 	scene1 = new Scene1();
 	battleScene = new BattleScene();
 	map = new Map();
@@ -58,6 +60,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(audio);
 	AddModule(logo);
 	AddModule(title);
+	AddModule(intro);
 	AddModule(scene1);
 	AddModule(battleScene);
 	AddModule(map);
@@ -74,6 +77,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 
 	title->active = false;
 	scene1->active = false;
+	intro->active = false;
 	battleScene->active = false;
 	deathScreen->active = false;
 	winScreen->active = false;

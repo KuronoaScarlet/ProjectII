@@ -40,14 +40,9 @@ public:
 	//Fonts
 	Fonts* font;
 	//int scoreFont = -1;
-	char scoreText[64] = { 0 };
-	char timeText[64] = { 0 };
 
 	bool firstEntry = true;
 	bool on;
-	
-	Timer timerr;
-	int time = 0;
 	
 private:
 

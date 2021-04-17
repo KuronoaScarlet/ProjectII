@@ -124,16 +124,7 @@ bool App::Awake()
 		}
 	}
 
-	pugi::xml_parse_result result = saveLoadFile.load_file("save_game.xml");
-	if (result != NULL)
-	{
-		saveLoadNode = saveLoadFile.child("save");
-		fileSaved = true;
-	}
-	if (result == NULL)
-	{
-		fileSaved = false;
-	}
+	
 
 	
 	return ret;
@@ -404,13 +395,9 @@ bool App::LoadGame()
 		//Entities
 		pugi::xml_node entities = generalNode.child("entities");
 
-		//Render
-		pugi::xml_node render = generalNode.child("render");
-
 		//LoadRequests
 		app->map->LoadState(map);
 		app->entityManager->LoadState(entities);
-		app->render->LoadState(render);
 	}
 
 	loadGameRequested = false;
@@ -437,9 +424,6 @@ bool App::SaveGame() const
 
 	pugi::xml_node entities = save.append_child("entities");
 	app->entityManager->SaveState(entities);
-
-	pugi::xml_node render = save.append_child("render");
-	app->render->SaveState(render);
 	
 	newSave.save_file("save_game.xml");
 

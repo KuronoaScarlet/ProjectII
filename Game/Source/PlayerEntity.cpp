@@ -102,7 +102,7 @@ bool PlayerEntity::Update(float dt)
 		{
 			if (position.DistanceTo(tmp->data->position) < 50)
 			{
-				if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
+				if (app->input->GetKey(SDL_SCANCODE_E ) == KEY_DOWN && app->entityManager->playerData.onDialog == false)
 				{
 					app->entityManager->playerData.onDialog = true;
 					app->dialogueSystem->actionChecks = 0;
@@ -119,7 +119,7 @@ bool PlayerEntity::Update(float dt)
 		{
 			if (position.DistanceTo(tmp->data->position) < 50)
 			{
-				if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
+				if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN && app->entityManager->playerData.onDialog == false)
 				{
 					app->entityManager->playerData.onDialog = true;
 					app->dialogueSystem->actionChecks = 0;
@@ -135,7 +135,7 @@ bool PlayerEntity::Update(float dt)
 		{
 			if (position.DistanceTo(tmp->data->position) < 50)
 			{
-				if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
+				if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN && app->entityManager->playerData.onDialog == false)
 				{
 					app->entityManager->playerData.onDialog = true;
 					app->dialogueSystem->actionChecks = 0;
@@ -229,11 +229,8 @@ bool PlayerEntity::Update(float dt)
 			app->render->camera.y = -int(lerpCamera.y) + 360;
 		}
 	}
-
-	if (app->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN)
-	{
-		app->fade->Fade(app->battleScene, app->scene1, 30);
-	}
+	if (app->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN) app->SaveGameRequest();
+	if (app->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN) app->LoadGameRequest();
 
 	currentAnimation->Update();
 	collider->SetPos(position.x + 6,position.y + 34);

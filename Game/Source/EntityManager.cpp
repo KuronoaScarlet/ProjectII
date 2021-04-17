@@ -179,29 +179,8 @@ bool EntityManager::LoadState(pugi::xml_node& data)
 		float x = e.attribute("x").as_float();
 		float y = e.attribute("y").as_float();
 		fPoint newPosition = fPoint(x, y);
-		Entity* entities = entityList[count];
-		if (entities->type == Entity::Type::PLAYER)
-		{
-			entities->position = newPosition;
-			count++;
-		}
-		int lives = e.attribute("lives").as_int(0);
-		int coins = e.attribute("coins").as_int(0);
-	}
-
-	count = 1;
-
-	for (e = node2.child("enemy"); e; e = e.next_sibling("enemy"))
-	{
-		float x = e.attribute("x").as_float();
-		float y = e.attribute("y").as_float();
-		fPoint newPosition = fPoint(x, y);
-		Entity* enemies = entityList[count];
-		/*if (enemies->type == Entity::Type::GROUND_ENEMY || enemies->type == Entity::Type::AIR_ENEMY)
-		{
-			enemies->position = newPosition;
-			count++;
-		}*/
+		entityList.end->data->position = newPosition;
+		playerData.level = e.attribute("lvl").as_int();
 	}
 
 	return true;
@@ -211,7 +190,6 @@ bool EntityManager::SaveState(pugi::xml_node& data) const
 {
 	pugi::xml_node entities = data.append_child("entity");
 	pugi::xml_node node = entities.append_child("player");
-	pugi::xml_node node2 = entities.append_child("enemies");
 
 	for (int i = 0; i < entityList.Count(); i++)
 	{
@@ -223,20 +201,10 @@ bool EntityManager::SaveState(pugi::xml_node& data) const
 			x.set_value(e->position.x);
 			pugi::xml_attribute y = eNode.append_attribute("y");
 			y.set_value(e->position.y);
-			pugi::xml_attribute lives = eNode.append_attribute("lives");
-			pugi::xml_attribute coins = eNode.append_attribute("coins");
+			pugi::xml_attribute lvl = eNode.append_attribute("lvl");
+			lvl.set_value(playerData.level);
 			eNode.next_sibling("playerdata");
 		}
-
-		/*if (e->type == Entity::Type::GROUND_ENEMY || e->type == Entity::Type::AIR_ENEMY)
-		{
-			pugi::xml_node eNode = node2.append_child("enemy");
-			pugi::xml_attribute x = eNode.append_attribute("x");
-			x.set_value(e->position.x);
-			pugi::xml_attribute y = eNode.append_attribute("y");
-			y.set_value(e->position.y);
-			eNode.next_sibling("enemy");
-		}*/
 	}
 
 	return true;

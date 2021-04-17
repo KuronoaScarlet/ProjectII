@@ -1,16 +1,13 @@
 <?xml version="1.0"?>
 <save>
 	<map>
-		<level currentlyOn="3" />
+		<scene currentlyOn="1" />
 	</map>
 	<entities>
 		<entity>
 			<player>
-				<playerdata x="725.000366" y="182" lives="3" coins="4" />
+				<playerdata x="303.850769" y="1429.24854" lvl="1" />
 			</player>
 		</entity>
 	</entities>
-	<render>
-		<camera x="-1725" y="-132" />
-	</render>
 </save>

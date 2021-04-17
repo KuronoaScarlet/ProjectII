@@ -42,6 +42,17 @@ bool Title::Start()
 
     bool ret = true;
 
+    pugi::xml_parse_result result = app->saveLoadFile.load_file("save_game.xml");
+    if (result != NULL)
+    {
+        app->saveLoadNode = app->saveLoadFile.child("save");
+        app->fileSaved = true;
+    }
+    if (result == NULL)
+    {
+        app->fileSaved = false;
+    }
+
     screen = app->tex->Load("Assets/Textures/Screens/title_screen.png");
     app->audio->PlayMusic("Assets/Audio/Music/menu_music.ogg");
 
@@ -49,14 +60,15 @@ bool Title::Start()
     play = new GuiButton(1, { 517, 304, 240, 60 }, "CONTINUE");
     play->SetObserver((Scene1*)this);
     play->SetTexture(app->tex->Load("Assets/Textures/continue.png"), app->tex->Load("Assets/Textures/continue_selected.png"), app->tex->Load("Assets/Textures/continue_pressed.png"));
+    play->SetDisableTexture(app->tex->Load("Assets/Textures/continue_disabled.png"));
+    if (!app->fileSaved)
+    {
+       play->state = GuiControlState::DISABLED;
+    }
     
     newGame = new GuiButton(12, { 517, 370, 234, 55 }, "START");
     newGame->SetObserver((Scene1*)this);
     newGame->SetDisableTexture(app->tex->Load("Assets/Textures/Buttons/states/no.png"));
-    if (!app->fileSaved)
-    {
-        newGame->state = GuiControlState::DISABLED;
-    }
     newGame->SetTexture(app->tex->Load("Assets/Textures/newgame.png"), app->tex->Load("Assets/Textures/newgame_selected.png"), app->tex->Load("Assets/Textures/newgame_pressed.png"));
     
     options = new GuiButton(2, { 543, 438, 197, 55 }, "OPTIONS");
@@ -135,7 +147,6 @@ bool Title::PostUpdate()
     if (creditSceneFlag == true)
     {
         app->render->DrawTexture(creditsScene, 0, 0, NULL);
-      
     }
 
     if (!creditSceneFlag)
@@ -204,9 +215,17 @@ bool Scene1::OnGuiMouseClickEvent(GuiControl* control)
         }
         if (control->id == 1)
         {
-            //Play
-            app->fade->Fade((Module*)app->title, (Module*)app->scene1, 20);
-            app->scene1->firstEntry == true;
+            //LoadGame
+            app->loadingGame = true;
+            pugi::xml_document savedGame;
+            savedGame.load_file("save_game.xml");
+
+            pugi::xml_node generalNode = savedGame.child("save");
+            pugi::xml_node map = generalNode.child("map");
+            app->map->LoadState(map);
+
+            if (app->currentLevel == 1) app->fade->Fade((Module*)app->title, (Module*)app->scene1, 10);
+           
         }
         else if (control->id == 2)
         {
@@ -252,17 +271,7 @@ bool Scene1::OnGuiMouseClickEvent(GuiControl* control)
         }
         else if (control->id == 12)
         {
-            //LoadGame
-            app->loadingGame = true;
-            pugi::xml_document savedGame;
-            savedGame.load_file("save_game.xml");
-
-            pugi::xml_node generalNode = savedGame.child("save");
-            pugi::xml_node map = generalNode.child("map");
-            app->map->LoadState(map);
-
-            if (app->currentLevel == 1) app->fade->Fade((Module*)app->title, (Module*)app->scene1, 10); 
-            
+            app->fade->Fade((Module*)app->title, (Module*)app->scene1, 20);
         }
         else if (control->id == 13)
         {

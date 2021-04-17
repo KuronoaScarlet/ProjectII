@@ -620,7 +620,7 @@ bool Map::CreateWalkabilityMap(int& width, int& height, uchar** buffer) const
 
 bool Map::LoadState(pugi::xml_node& data)
 {
-	pugi::xml_node scene = data.child("level");
+	pugi::xml_node scene = data.child("scene");
 	app->currentLevel = scene.attribute("currentlyOn").as_int(0);
 
 	return true;
@@ -628,7 +628,7 @@ bool Map::LoadState(pugi::xml_node& data)
 
 bool Map::SaveState(pugi::xml_node& data) const
 {
-	pugi::xml_node scene = data.append_child("level");
+	pugi::xml_node scene = data.append_child("scene");
 	if (app->scene1->active == true)
 	{
 		scene.append_attribute("currentlyOn").set_value(1);

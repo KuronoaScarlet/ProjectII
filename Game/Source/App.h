@@ -119,6 +119,9 @@ public:
 	bool loadingGame = false;
 
 	bool fileSaved;
+	
+	pugi::xml_document saveLoadFile;
+	pugi::xml_node saveLoadNode;
 
 	fPoint playerPosition;
 
@@ -141,8 +144,6 @@ private:
 	mutable bool saveGameRequested;
 	bool loadGameRequested;
 
-	pugi::xml_document saveLoadFile;
-	pugi::xml_node saveLoadNode;
 
 	PerfTimer perfTimer;
 	uint64 fpsCount = 0;

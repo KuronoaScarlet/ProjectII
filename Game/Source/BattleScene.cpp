@@ -36,7 +36,24 @@ bool BattleScene::Awake()
 // Called before the first frame
 bool BattleScene::Start()
 {
+	attack = new GuiButton(1, { 517, 304, 250, 80 }, "attack");
+	attack->SetObserver((Scene1*)this);
+	attack->SetTexture(app->tex->Load("Assets/Textures/finger0.png"), app->tex->Load("Assets/Textures/finger1.png"), app->tex->Load("Assets/Textures/finger2.png"));
+
+	defend = new GuiButton(1, { 800, 304, 250, 80 }, "defend");
+	defend->SetObserver((Scene1*)this);
+	defend->SetTexture(app->tex->Load("Assets/Textures/defend0.png"), app->tex->Load("Assets/Textures/defend1.png"), app->tex->Load("Assets/Textures/defend2.png"));
+
+	run = new GuiButton(1, { 875, 400, 250, 80 }, "run");
+	run->SetObserver((Scene1*)this);
+	run->SetTexture(app->tex->Load("Assets/Textures/run0.png"), app->tex->Load("Assets/Textures/run1.png"), app->tex->Load("Assets/Textures/run2.png"));
+
+	combine = new GuiButton(1, { 517, 400, 250, 80 }, "combine");
+	combine->SetObserver((Scene1*)this);
+	combine->SetTexture(app->tex->Load("Assets/Textures/combine0.png"), app->tex->Load("Assets/Textures/combine1.png"), app->tex->Load("Assets/Textures/combine2.png"));
 	app->battleScene->active = true;
+
+	
 
 	app->render->camera = { 0, 0 };
 
@@ -63,6 +80,10 @@ bool BattleScene::PreUpdate()
 // Called each loop iteration
 bool BattleScene::Update(float dt)
 {
+	attack->Update(app->input, dt);
+	run->Update(app->input, dt);
+	defend->Update(app->input, dt);
+	combine->Update(app->input, dt);
 	//LÓGICA DEL BATTLE SYSTEM:
 		//While que llama de manera permanente a las funciones de carga de la barra de turno. 
 		//Break del while cuando salte turno. Tener un puntero que apunte a la unidad que le toca turno.
@@ -76,19 +97,20 @@ bool BattleScene::Update(float dt)
 		
 		//De vuelta al while.
 
-
-	
-	
-
-
 	return true;
 }
 
 // Called each loop iteration
 bool BattleScene::PostUpdate()
 {
+	SDL_Rect bg{ 0,0,1280,720 };
+	app->render->DrawRectangle(bg, 255, 212, 2, 255, true, false);
 
-
+	attack->Draw(app->render);
+	run->Draw(app->render);
+	defend->Draw(app->render);
+	combine->Draw(app->render);
+	
 	bool ret = true;
 	return ret;
 }

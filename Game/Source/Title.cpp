@@ -14,8 +14,6 @@
 #include "Fonts.h"
 
 
-
-
 #include "Defs.h"
 #include "Log.h"
 

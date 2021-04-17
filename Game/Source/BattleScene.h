@@ -5,7 +5,12 @@
 #include "Animation.h"
 #include "Timer.h"
 
+#include "GuiButton.h"
+#include "GuiSlider.h"
+#include "GuiCheckBox.h"
+
 class GuiControl;
+class GuiSlider;
 
 class BattleScene : public Module
 {
@@ -46,6 +51,11 @@ public:
 
 	bool firstEntry = true;
 	bool on;
+
+	GuiButton* attack;
+	GuiButton* defend;
+	GuiButton* run;
+	GuiButton* combine;
 
 	Timer timerr;
 	int time = 0;

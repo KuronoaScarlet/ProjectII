@@ -229,7 +229,7 @@ bool PlayerEntity::Update(float dt)
 		}
 	}
 
-	if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
+	if (app->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN)
 	{
 		app->fade->Fade(app->battleScene, app->scene1, 30);
 	}

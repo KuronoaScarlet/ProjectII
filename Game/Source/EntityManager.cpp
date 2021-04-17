@@ -31,6 +31,13 @@ bool EntityManager::Awake()
 
 bool EntityManager::Start()
 {
+	pugi::xml_parse_result result = combatStats.load_file("combat_stats.xml");
+	if (result == NULL)
+	{
+		LOG("Could not load saved game xml file. Pugi error: %s", result.description());
+	}
+
+
 	texPlayer = app->tex->Load("Assets/Textures/Entities/Playable/player.png");
 	texAlly1 = app->tex->Load("Assets/Textures/Entities/Playable/Ash_idle_anim_32x32.png");
 
@@ -226,6 +233,7 @@ void EntityManager::AddEntity(fPoint position, Entity::Type type)
 	case Entity::Type::PLAYER:
 		entityPlayer = (Entity*)(new PlayerEntity((Module*)this, position, texPlayer, type));
 		entityList.Add(entityPlayer);
+		LoadStats(entityPlayer);
 		break;
 	///////////
 
@@ -233,6 +241,7 @@ void EntityManager::AddEntity(fPoint position, Entity::Type type)
 	case Entity::Type::ALLY1:
 		entityAlly1 = (Entity*)(new Ally1((Module*)this, position, texAlly1, type));
 		entityList.Add(entityAlly1);
+		LoadStats(entityAlly1);
 		break;
 	///////////
 
@@ -255,21 +264,21 @@ void EntityManager::AddEntity(fPoint position, Entity::Type type)
 	case Entity::Type::EQUILIBRATED_ENEMY:
 		entityGhostEnemy = (Entity*)(new Enemy1((Module*)this, position, texEnemy1, type));
 		entityList.Add(entityGhostEnemy);
+		LoadStats(entityGhostEnemy);
 		break;
 	case Entity::Type::TANK_ENEMY:
 		entityTankEnemy = (Entity*)(new Enemy2((Module*)this, position, texNPC2, type));
 		entityList.Add(entityTankEnemy);
+		LoadStats(entityTankEnemy);
 		break;
 	case Entity::Type::DAMAGE_ENEMY:
 		entityCanonEnemy = (Entity*)(new Enemy3((Module*)this, position, texEnemy3, type));
 		entityList.Add(entityCanonEnemy);
+		LoadStats(entityCanonEnemy);
 		break;
 	//////////
 	}
 }
-	
-
-
 
 void EntityManager::OnCollision(Collider* a, Collider* b)
 {
@@ -287,4 +296,40 @@ void EntityManager::OnCollision(Collider* a, Collider* b)
 			entity->data->Collision(a);
 		}
 	}
+}
+
+void EntityManager::LoadStats(Entity* e)
+{
+	pugi::xml_node node = combatStats.child("combat");
+
+	switch (e->type)
+	{
+	case Entity::Type::PLAYER:
+		node = node.child("player").child("stats");
+		break;
+	case Entity::Type::ALLY1:
+		node = node.child("allies").child("ally1").child("stats");
+		break;
+	case Entity::Type::TANK_ENEMY:
+		node = node.child("enemies").child("tank").child("stats");
+		break;
+	case Entity::Type::DAMAGE_ENEMY:
+		node = node.child("enemies").child("damage").child("stats");
+		break;
+	case Entity::Type::EQUILIBRATED_ENEMY:
+		node = node.child("enemies").child("balanced").child("stats");
+		break;
+	default:
+		break;
+	}
+
+	e->atkPerLvl = node.attribute("lvlatk").as_int();
+	e->hpPerLvl = node.attribute("lvlhp").as_int();
+	e->defPerLvl = node.attribute("lvldef").as_int();
+
+	e->atk = node.attribute("atk").as_int() + (e->atkPerLvl * (playerData.level - 1));
+	e->hp = node.attribute("hp").as_int() + (e->hpPerLvl * (playerData.level - 1));
+	e->def = node.attribute("def").as_int() + (e->defPerLvl * (playerData.level - 1));
+
+	e->spd = node.attribute("speed").as_int();
 }

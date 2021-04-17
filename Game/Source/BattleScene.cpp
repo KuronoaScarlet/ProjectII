@@ -14,6 +14,7 @@
 
 #include "Defs.h"
 #include "Log.h"
+#include <time.h>
 
 BattleScene::BattleScene() : Module()
 {
@@ -36,6 +37,9 @@ bool BattleScene::Awake()
 // Called before the first frame
 bool BattleScene::Start()
 {
+	app->battleScene->active = true;
+
+	//Paso 1: Cargar texturas, botones, música y Fx.
 	app->audio->PlayMusic("Assets/Audio/Music/battleSong.ogg");
 
 	//BUTTONS---------------------------------------------------------
@@ -54,22 +58,39 @@ bool BattleScene::Start()
 	combine = new GuiButton(1, { 517, 400, 250, 80 }, "combine");
 	combine->SetObserver((Scene1*)this);
 	combine->SetTexture(app->tex->Load("Assets/Textures/combine0.png"), app->tex->Load("Assets/Textures/combine1.png"), app->tex->Load("Assets/Textures/combine2.png"));
-	app->battleScene->active = true;
 	//--------------------------------------------------------------
 	
-
 	app->render->camera = { 0, 0 };
 
-	//Paso 0: Conseguir guardar la posición del player en una variable global y que tras terminar la pelea no comience en Spawn.
-	//Paso 1: Cargar texturas, botones, música y Fx.
 	//Paso 2: Añadir entidades enemigas. Random (2 o 3).
+	int rngEnemyNum = rand() % 4;
+	int rngTypeEnemy = rand() % 2;
+
+	switch (rngEnemyNum)
+	{
+	case 0:
+		app->entityManager->AddEntity({ 980.0f, 240.0f }, Entity::Type::TANK_ENEMY);
+		app->entityManager->AddEntity({ 980.0f, 192.0f }, Entity::Type::DAMAGE_ENEMY);
+		app->entityManager->AddEntity({ 980.0f, 288.0f }, Entity::Type::EQUILIBRATED_ENEMY);
+		break;
+
+	default:
+		if (rngTypeEnemy == 0)
+		{
+			app->entityManager->AddEntity({ 1080.0f, 208.0f }, Entity::Type::TANK_ENEMY);
+			app->entityManager->AddEntity({ 1080.0f, 272.0f }, Entity::Type::DAMAGE_ENEMY);
+		}
+		else if (rngTypeEnemy == 1)
+		{
+			app->entityManager->AddEntity({ 1080.0f, 192.0f }, Entity::Type::TANK_ENEMY);
+			app->entityManager->AddEntity({ 1080.0f, 256.0f }, Entity::Type::EQUILIBRATED_ENEMY);
+		}
+		break;
+	}
+
 	//Paso 3: Añadir player y aliados (Animación de Idle lateral "onFight").
-	//Paso 4: Cargar estadísticas de ambos bandos a partir de un xml. (Nivel de los enemigos a partir del player, multiplier desde la base).
-	//Paso 5: Comenzar el ciclo de la barra de turno.
-
-	app->entityManager->AddEntity({ 150.0f, 192.0f }, Entity::Type::ALLY1);
-	app->entityManager->AddEntity({ 150.0f, 256.0f }, Entity::Type::PLAYER);
-
+	app->entityManager->AddEntity({ 280.0f, 192.0f }, Entity::Type::ALLY1);
+	app->entityManager->AddEntity({ 280.0f, 256.0f }, Entity::Type::PLAYER);
 
 	return true;
 }
@@ -83,22 +104,30 @@ bool BattleScene::PreUpdate()
 // Called each loop iteration
 bool BattleScene::Update(float dt)
 {
-	attack->Update(app->input, dt);
+	/*attack->Update(app->input, dt);
 	run->Update(app->input, dt);
 	defend->Update(app->input, dt);
-	combine->Update(app->input, dt);
+	combine->Update(app->input, dt);*/
+
 	//LÓGICA DEL BATTLE SYSTEM:
-		//While que llama de manera permanente a las funciones de carga de la barra de turno. 
-		//Break del while cuando salte turno. Tener un puntero que apunte a la unidad que le toca turno.
+	//While que llama de manera permanente a las funciones de carga de la barra de turno.
+	ListItem<Entity*>* tmp = app->entityManager->entityList.start;
 
-			//Si es el player o un aliado:
-				//Blitear texto, botones, función recibe la acción en cuestión.
-			//Si es enemigo:
-				//A través de randoms que se pickee una acción.
+	while (tmp)
+	{
+		tmp = tmp->next;
+	}
 
-		//Función para hacer perform de la acción (Texto + animación (si da tiempo))
+	//Break del while cuando salte turno. Tener un puntero que apunte a la unidad que le toca turno.
+
+	//Si es el player o un aliado:
+	//Blitear texto, botones, función recibe la acción en cuestión.
+	//Si es enemigo:
+	//A través de randoms que se pickee una acción.
+
+	//Función para hacer perform de la acción (Texto + animación (si da tiempo))
 		
-		//De vuelta al while.
+	//De vuelta al while.
 
 	return true;
 }

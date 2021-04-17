@@ -15,7 +15,6 @@ class GuiSlider;
 class BattleScene : public Module
 {
 public:
-
 	BattleScene();
 
 	// Destructor

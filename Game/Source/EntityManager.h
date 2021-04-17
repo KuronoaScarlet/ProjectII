@@ -8,6 +8,8 @@
 
 #include "GuiButton.h"
 
+#include "PugiXml/src/pugixml.hpp"
+
 class EntityManager : public Module
 {
 public:
@@ -42,6 +44,8 @@ public:
 
 	void OnCollision(Collider* a, Collider* b);
 
+	void LoadStats(Entity* e);
+
 	struct PlayerData 
 	{
 		fPoint position;
@@ -51,14 +55,16 @@ public:
 		bool debug = false;
 		bool resetCamera;
 
-		//Dialog
-		bool onDialog;
-
 		SDL_Texture* pauseMenu = nullptr;
 		SDL_Texture* resumeButtton = nullptr;
 
-
 		SDL_Rect cameraBckUp;
+
+		//Dialog
+		bool onDialog;
+
+		//Combat Stats
+		int level = 1;
 	};
 
 	GuiButton* resumeButton;
@@ -68,6 +74,9 @@ public:
 	PlayerData playerData;
 
 	List<Entity*> entityList;
+
+	pugi::xml_document combatStats;
+
 private:
 	SDL_Texture* texPlayer;
 	SDL_Texture* texAlly1;

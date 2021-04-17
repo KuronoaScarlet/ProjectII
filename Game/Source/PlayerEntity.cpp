@@ -78,7 +78,6 @@ PlayerEntity::PlayerEntity(Module* listener, fPoint position, SDL_Texture* textu
 		currentAnimation = &battleIdle;
 	}
 
-
 	collider = app->collisions->AddCollider(SDL_Rect({ (int)position.x + 6, (int)position.y + 34, 22, 12 }), Collider::Type::PLAYER, listener);
 
 	lerpCamera.x = position.x;

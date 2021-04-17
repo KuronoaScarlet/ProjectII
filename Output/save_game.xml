@@ -8,12 +8,6 @@
 			<player>
 				<playerdata x="725.000366" y="182" lives="3" coins="4" />
 			</player>
-			<enemies>
-				<enemy x="756.149902" y="152779.344" />
-				<enemy x="466.5" y="256" />
-				<enemy x="1030.5" y="128" />
-				<enemy x="1234.5" y="32" />
-			</enemies>
 		</entity>
 	</entities>
 	<render>

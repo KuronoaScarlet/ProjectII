@@ -56,6 +56,11 @@ public:
 
 	}
 
+	virtual bool SpeedCounter()
+	{
+		return true;
+	}
+
 	Module* listener;
 
 	Type type;
@@ -65,6 +70,12 @@ public:
 	Collider* collider = nullptr;
 
 	bool pendingToDelete = false;
+
+	int hp, hpPerLvl;
+	int atk, atkPerLvl;
+	int def, defPerLvl;
+	int spd;
+
 };
 
 #endif // __ENTITY_H__

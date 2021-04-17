@@ -26,8 +26,8 @@ public:
 
 	void CleanUp();
 
+	bool SpeedCounter();
 public:
-
 
 
 private:

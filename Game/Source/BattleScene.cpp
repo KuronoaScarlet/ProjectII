@@ -15,6 +15,8 @@
 #include "Defs.h"
 #include "Log.h"
 #include <time.h>
+#include <stdlib.h>
+
 
 BattleScene::BattleScene() : Module()
 {
@@ -82,8 +84,8 @@ bool BattleScene::Start()
 		}
 		else if (rngTypeEnemy == 1)
 		{
-			app->entityManager->AddEntity({ 1080.0f, 192.0f }, Entity::Type::TANK_ENEMY);
-			app->entityManager->AddEntity({ 1080.0f, 256.0f }, Entity::Type::EQUILIBRATED_ENEMY);
+			app->entityManager->AddEntity({ 1080.0f, 208.0f }, Entity::Type::TANK_ENEMY);
+			app->entityManager->AddEntity({ 1080.0f, 272.0f }, Entity::Type::EQUILIBRATED_ENEMY);
 		}
 		break;
 	}
@@ -91,6 +93,9 @@ bool BattleScene::Start()
 	//Paso 3: Añadir player y aliados (Animación de Idle lateral "onFight").
 	app->entityManager->AddEntity({ 280.0f, 192.0f }, Entity::Type::ALLY1);
 	app->entityManager->AddEntity({ 280.0f, 256.0f }, Entity::Type::PLAYER);
+
+	//Paso 4: Start de los Timers de Turno.
+	ResumeCombat();
 
 	return true;
 }
@@ -104,30 +109,73 @@ bool BattleScene::PreUpdate()
 // Called each loop iteration
 bool BattleScene::Update(float dt)
 {
-	/*attack->Update(app->input, dt);
-	run->Update(app->input, dt);
-	defend->Update(app->input, dt);
-	combine->Update(app->input, dt);*/
-
 	//LÓGICA DEL BATTLE SYSTEM:
 	//While que llama de manera permanente a las funciones de carga de la barra de turno.
 	ListItem<Entity*>* tmp = app->entityManager->entityList.start;
 
-	while (tmp)
+	if (onTurn == false)
 	{
-		tmp = tmp->next;
+		while (tmp)
+		{
+			if (tmp->data->SpeedCounter() == true)
+			{
+				pointer = tmp->data;
+				onTurn = true;
+				ListItem<Entity*>* tmp2 = app->entityManager->entityList.start;
+				while (tmp2)
+				{
+					tmp2->data->combatTimer.Stop();
+					tmp2 = tmp2->next;
+				}
+
+				break;
+			}
+			tmp = tmp->next;
+		}
 	}
 
-	//Break del while cuando salte turno. Tener un puntero que apunte a la unidad que le toca turno.
+	if (onTurn == true)
+	{
+		switch (pointer->collider->type)
+		{
+		case Collider::Type::PLAYER:
+			/*attack->Update(app->input, dt);
+			run->Update(app->input, dt);
+			defend->Update(app->input, dt);
+			combine->Update(app->input, dt);*/
+			if (pointer->type == Entity::Type::PLAYER)
+			{
+				app->render->DrawRectangle(SDL_Rect{ 1000, 300, 20, 20 }, 0, 255, 0, 255, true, false);
+			}
+			if (pointer->type == Entity::Type::ALLY1)
+			{
+				app->render->DrawRectangle(SDL_Rect{ 1000, 300, 20, 20 }, 255, 0, 255, 255, true, false);
+			}
+			
+			break;
 
-	//Si es el player o un aliado:
-	//Blitear texto, botones, función recibe la acción en cuestión.
-	//Si es enemigo:
-	//A través de randoms que se pickee una acción.
+		case Collider::Type::ENEMY:
+			if (pointer->type == Entity::Type::EQUILIBRATED_ENEMY)
+			{
+				app->render->DrawRectangle(SDL_Rect{ 1000, 300, 20, 20 }, 255, 255, 255, 255, true, false);
+			}
+			if (pointer->type == Entity::Type::TANK_ENEMY)
+			{
+				app->render->DrawRectangle(SDL_Rect{ 1000, 300, 20, 20 }, 0, 0, 255, 255, true, false);
+			}
+			if (pointer->type == Entity::Type::DAMAGE_ENEMY)
+			{
+				app->render->DrawRectangle(SDL_Rect{ 1000, 300, 20, 20 }, 255, 0, 0, 255, true, false);
+			}
+			break;
+		}
+	}
 
-	//Función para hacer perform de la acción (Texto + animación (si da tiempo))
-		
-	//De vuelta al while.
+	if (app->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN)
+	{
+		ResumeCombat();
+	}
+
 
 	return true;
 }
@@ -135,13 +183,24 @@ bool BattleScene::Update(float dt)
 // Called each loop iteration
 bool BattleScene::PostUpdate()
 {
-	SDL_Rect bg{ 0,0,1280,720 };
-	app->render->DrawRectangle(bg, 255, 212, 2, 255, true, false);
+	ListItem<Entity*>* tmp = app->entityManager->entityList.start;
+	
+	while (tmp)
+	{
+		std::cout << tmp->data->combatTimer.counter << "    ";
+		tmp = tmp->next;
+	}
 
-	attack->Draw(app->render);
+	std::cout << "           " << onTurn << std::endl << std::endl;
+	
+
+	SDL_Rect bg{ 0,0,1280,720 };
+	//app->render->DrawRectangle(bg, 255, 212, 2, 255, true, false);
+
+	/*attack->Draw(app->render);
 	run->Draw(app->render);
 	defend->Draw(app->render);
-	combine->Draw(app->render);
+	combine->Draw(app->render);*/
 	
 	bool ret = true;
 	return ret;
@@ -159,4 +218,17 @@ bool BattleScene::CleanUp()
 
 	LOG("Freeing scene");
 	return true;
+}
+
+void BattleScene::ResumeCombat()
+{
+	onTurn = false;
+
+	ListItem<Entity*>* tmp = app->entityManager->entityList.start;
+
+	while (tmp)
+	{
+		tmp->data->combatTimer.Start();
+		tmp = tmp->next;
+	}
 }

@@ -4,6 +4,7 @@
 #include "Module.h"
 #include "Animation.h"
 #include "Timer.h"
+#include "Entity.h"
 
 #include "GuiButton.h"
 #include "GuiSlider.h"
@@ -40,6 +41,7 @@ public:
 
 	bool OnGuiMouseClickEvent(GuiControl* control);
 
+	void ResumeCombat();
 
 	//Fonts
 	Fonts* font;
@@ -49,13 +51,14 @@ public:
 	char timeText[64] = { 0 };
 
 	bool firstEntry = true;
-	bool on;
+	bool onTurn = false;
 
 	GuiButton* attack;
 	GuiButton* defend;
 	GuiButton* run;
 	GuiButton* combine;
 
+	Entity* pointer;
 	Timer timerr;
 	int time = 0;
 

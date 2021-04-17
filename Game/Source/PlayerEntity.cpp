@@ -13,6 +13,8 @@
 #include "Fonts.h"
 #include "Defs.h"
 #include "DialogSystem.h"
+#include "Input.h"
+
 
 
 
@@ -149,6 +151,7 @@ bool PlayerEntity::Update(float dt)
 		tmp = tmp->next;
 	}
 
+	GamePad& pad = app->input->pads[0];
 	tempPlayerPosition = position;
 	if (!app->entityManager->playerData.pauseCondition && app->scene1->active == true)
 	{
@@ -172,7 +175,7 @@ bool PlayerEntity::Update(float dt)
 			}
 
 			float speed = (godMode) ? 300 : 150;
-			if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+			if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT || pad.l_x < 0.0f)
 			{
 				position.x -= speed * dt;
 				if (currentAnimation != &walkAnimationLeft && app->input->GetKey(SDL_SCANCODE_W) != KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_S) != KEY_REPEAT)
@@ -181,7 +184,7 @@ bool PlayerEntity::Update(float dt)
 					currentAnimation = &walkAnimationLeft;
 				}
 			}
-			if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+			if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT || pad.l_x > 0.0f)
 			{
 				position.x += speed * dt;
 				if (currentAnimation != &walkAnimationRight && app->input->GetKey(SDL_SCANCODE_W) != KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_S) != KEY_REPEAT)
@@ -190,7 +193,7 @@ bool PlayerEntity::Update(float dt)
 					currentAnimation = &walkAnimationRight;
 				}
 			}
-			if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+			if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT || pad.l_y < 0.0f)
 			{
 				position.y -= speed * dt;
 				if (currentAnimation != &walkAnimationUp)
@@ -199,7 +202,7 @@ bool PlayerEntity::Update(float dt)
 					currentAnimation = &walkAnimationUp;
 				}
 			}
-			if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+			if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT || pad.l_y > 0.0f)
 			{
 				position.y += speed * dt;
 				if (currentAnimation != &walkAnimationDown)
@@ -214,11 +217,10 @@ bool PlayerEntity::Update(float dt)
 				godMode = !godMode;
 			}
 
-			if (app->input->GetKey(SDL_SCANCODE_R) == KEY_REPEAT)
+			if (app->input->GetKey(SDL_SCANCODE_2) == KEY_REPEAT)
 			{
-				position = { 100.0f, 175.0f };
+				app->input->ShakeController(0, 12, 0.33f);
 			}
-
 
 			//camera update
 			lerpCamera.x += (position.x - lerpCamera.x) * dt * 1.0f;
@@ -260,5 +262,6 @@ void PlayerEntity::CleanUp()
 {
 
 }
+
 
 

@@ -26,7 +26,7 @@ Ally1::Ally1(Module* listener, fPoint position, SDL_Texture* texture, Type type)
 
 	currentAnimation = &idleAnimation;
 
-	collider = app->collisions->AddCollider(SDL_Rect({ (int)position.x, (int)position.y, 27, 51 }), Collider::Type::NPC, listener);
+	collider = app->collisions->AddCollider(SDL_Rect({ (int)position.x, (int)position.y, 27, 51 }), Collider::Type::PLAYER, listener);
 }
 
 bool Ally1::Start()

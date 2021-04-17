@@ -25,8 +25,6 @@ public:
 	void Collision(Collider* coll);
 
 	void CleanUp();
-
-	//bool SpeedCounter();
 public:
 
 

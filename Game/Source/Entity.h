@@ -5,6 +5,7 @@
 #include "Animation.h"
 #include "Textures.h"
 #include "Point.h"
+#include "Timer.h"
 
 
 class Entity
@@ -58,7 +59,14 @@ public:
 
 	virtual bool SpeedCounter()
 	{
-		return true;
+		if (combatTimer.ReadCombat() > turnTime)
+		{
+			combatTimer.counter = 0;
+			combatTimer.Start();
+			return true;
+		}
+
+		return false;
 	}
 
 	Module* listener;
@@ -74,7 +82,9 @@ public:
 	int hp, hpPerLvl;
 	int atk, atkPerLvl;
 	int def, defPerLvl;
-	int spd;
+	float turnTime;
+
+	Timer combatTimer;
 
 };
 

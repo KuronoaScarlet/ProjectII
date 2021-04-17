@@ -36,6 +36,8 @@ bool BattleScene::Awake()
 // Called before the first frame
 bool BattleScene::Start()
 {
+
+	//BUTTONS---------------------------------------------------------
 	attack = new GuiButton(1, { 517, 304, 250, 80 }, "attack");
 	attack->SetObserver((Scene1*)this);
 	attack->SetTexture(app->tex->Load("Assets/Textures/finger0.png"), app->tex->Load("Assets/Textures/finger1.png"), app->tex->Load("Assets/Textures/finger2.png"));
@@ -52,7 +54,7 @@ bool BattleScene::Start()
 	combine->SetObserver((Scene1*)this);
 	combine->SetTexture(app->tex->Load("Assets/Textures/combine0.png"), app->tex->Load("Assets/Textures/combine1.png"), app->tex->Load("Assets/Textures/combine2.png"));
 	app->battleScene->active = true;
-
+	//--------------------------------------------------------------
 	
 
 	app->render->camera = { 0, 0 };

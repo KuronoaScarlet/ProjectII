@@ -36,6 +36,7 @@ bool BattleScene::Awake()
 // Called before the first frame
 bool BattleScene::Start()
 {
+	app->audio->PlayMusic("Assets/Audio/Music/battleSong.ogg");
 
 	//BUTTONS---------------------------------------------------------
 	attack = new GuiButton(1, { 517, 304, 250, 80 }, "attack");

@@ -7,6 +7,7 @@
 #include "Entity.h"
 
 #include "GuiButton.h"
+#include "GuiCheckBox.h"
 
 #include "PugiXml/src/pugixml.hpp"
 
@@ -70,6 +71,10 @@ public:
 	GuiButton* resumeButton;
 	GuiButton* settingsButton;
 	GuiButton* exitButton;
+
+	GuiCheckBox* fullScreen;
+
+	
 
 	PlayerData playerData;
 

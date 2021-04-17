@@ -60,8 +60,11 @@ bool EntityManager::Start()
 	settingsButton->SetObserver((Scene1*)this);
 	settingsButton->SetTexture(app->tex->Load("Assets/Textures/settings.png"), app->tex->Load("Assets/Textures/settings_selected.png"), app->tex->Load("Assets/Textures/settings_pressed.png"));
 
+	fullScreen = new GuiCheckBox(7, { 620,400, 300, 60 }, "FULLSCREEN");
+	fullScreen->SetObserver((Scene1*)this);
+	fullScreen->SetTexture(app->tex->Load("Assets/Textures/fs1.png"), app->tex->Load("Assets/Textures/fs2.png"), app->tex->Load("Assets/Textures/fs2.png"));
 	
-	exitButton = new GuiButton(11, { 551, 514, 172, 55 }, "CREDITS");
+	exitButton = new GuiButton(11, { 551, 360, 172, 55 }, "CREDITS");
 	exitButton->SetObserver((Scene1*)this);
 	exitButton->SetTexture(app->tex->Load("Assets/Textures/exit.png"), app->tex->Load("Assets/Textures/exit_selected.png"), app->tex->Load("Assets/Textures/exit_pressed.png"));
 
@@ -96,6 +99,7 @@ bool EntityManager::Update(float dt)
 		resumeButton->Update(app->input, dt);
 		settingsButton->Update(app->input, dt);
 		exitButton->Update(app->input, dt);
+		fullScreen->Update(app->input, dt);
 	}
 	if (app->title->exi)	return false;
 
@@ -109,7 +113,9 @@ bool EntityManager::PostUpdate()
 	settingsButton->bounds.x = -app->render->camera.x + 537;
 	settingsButton->bounds.y = -app->render->camera.y + 260;
 	exitButton->bounds.x = -app->render->camera.x + 557;
-	exitButton->bounds.y = -app->render->camera.y + 380;
+	exitButton->bounds.y = -app->render->camera.y + 360;
+	fullScreen->bounds.x = -app->render->camera.x + 485;
+	fullScreen->bounds.y = -app->render->camera.y + 405;
 
 	for (int i = 0; i < entityList.Count(); i++)
 	{
@@ -121,7 +127,7 @@ bool EntityManager::PostUpdate()
 	if (app->entityManager->playerData.pauseCondition)
 	{
 		app->render->DrawTexture(playerData.pauseMenu, -app->render->camera.x, -app->render->camera.y, NULL);
-
+		fullScreen->Draw(app->render);
 		resumeButton->Draw(app->render);
 		app->render->DrawText(app->render->font, "Resume", 530, 120, 60, 5, { 255, 255, 255, 255 });
 		settingsButton->Draw(app->render);

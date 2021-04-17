@@ -2,20 +2,50 @@
 
 <dialogueTree>
   <dialogueExample Id="0">
-    <node text="Hola buenas"  id="0">
+    <node text="Buenas!"  id="0">
       <dialogue option=" " returnCode="0" nextNode="1"/>
     </node>
-    <node text="Este es el texto 2"  id="1">
+    <node text="Esta es la segunda planta del instituto Despair."  id="1">
       <dialogue option=" " returnCode="0" nextNode="2"/>
     </node>
-    <node text="Este es el tercero" id="2">
-      <dialogue option=" " returnCode="1" nextNode="100"/>
+    <node text="Como eres nuevo pense que necesitabas saberlo..." id="2">
+      <dialogue option=" " returnCode="1" nextNode="3"/>
+    </node>
+    <node text="En fin, parece que debes ganarte el pan." id="3">
+      <dialogue option=" " returnCode="1" nextNode="4"/>
+    </node>
+    <node text="Hoy tienes que ganar a los matones que reinan esta planta." id="4">
+      <dialogue option=" " returnCode="1" nextNode="5"/>
+    </node>
+    <node text="Hay 3 en total. Estan enfadados, asi que es facil verlos." id="5">
+      <dialogue option=" " returnCode="1" nextNode="1000"/>
     </node>
   </dialogueExample>
 
   <dialogueExample Id="1">
-    <node text="Eh tu! Te arranco la cabeza, puta."  id="0">
+    <node text="Conque vienes a por mi, eh? Vamos a pelear!"  id="0">
       <dialogue option=" " returnCode="0" nextNode="1"/>
+    </node>
+  </dialogueExample>
+  
+  <dialogueExample Id="2">
+    <node text="Los matones dan miedo..."  id="0">
+      <dialogue option=" " returnCode="0" nextNode="1"/>
+    </node>
+    <node text="Te dare un consejo para que puedas ganarles..."  id="1">
+      <dialogue option="1. Vale! " returnCode="0" nextNode="2"/>
+    </node>
+    <node text="El de pelo azul, si aparece, pega fuerte. Derrotalo primero"  id="2">
+      <dialogue option=" " returnCode="0" nextNode="3"/>
+    </node>
+    <node text="Si aparece un fantasma, es debil, lleva el disfraz para asustar"  id="3">
+      <dialogue option=" " returnCode="0" nextNode="4"/>
+    </node>
+    <node text="Por ultimo, los matones son duros, suelen tener mucha vida"  id="4">
+      <dialogue option=" " returnCode="0" nextNode="5"/>
+    </node>
+    <node text="Eso es todo por ahora, ten cuidado..."  id="5">
+      <dialogue option="1. Gracias por la informacion! " returnCode="0" nextNode="1000"/>
     </node>
   </dialogueExample>
     

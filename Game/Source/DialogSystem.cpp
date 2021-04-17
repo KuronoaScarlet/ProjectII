@@ -28,7 +28,7 @@ bool DialogueSystem::Update(float dt)
 {
 	if (app->entityManager->playerData.onDialog == true)
 	{
-		app->render->DrawRectangle({ -app->render->camera.x + 300,-app->render->camera.y + 580,1000,150 }, 255, 255, 150);
+		app->render->DrawRectangle({ -app->render->camera.x,-app->render->camera.y + 530,1280,250 }, 255, 255, 150);
 
 		if (Id == 0)
 		{
@@ -59,6 +59,20 @@ bool DialogueSystem::Update(float dt)
 				app->entityManager->playerData.onDialog = false;
 				app->playerPosition = app->entityManager->playerData.position;
 				app->fade->Fade(app->scene1, app->battleScene, 30);
+			}
+		}
+		if (Id == 2)
+		{
+			if (input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN || input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+			{
+				playerInput = 0;
+				Id = 2;
+				PerformDialogue(Id, playerInput);
+				actionChecks++;
+			}
+			if (actionChecks == dialogueTrees[2]->dialogueNodes.size())
+			{
+				app->entityManager->playerData.onDialog = false;
 			}
 		}
 	}

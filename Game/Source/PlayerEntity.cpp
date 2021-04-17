@@ -134,6 +134,14 @@ bool PlayerEntity::Update(float dt)
 		{
 			if (position.DistanceTo(tmp->data->position) < 50)
 			{
+				if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
+				{
+					app->entityManager->playerData.onDialog = true;
+					app->dialogueSystem->actionChecks = 0;
+					app->dialogueSystem->currentNode = app->dialogueSystem->dialogueTrees[2]->dialogueNodes[0];
+					app->dialogueSystem->PerformDialogue(2, 7);
+					app->dialogueSystem->Id = 2;
+				}
 				tmp->data->Interaction();
 			}
 			

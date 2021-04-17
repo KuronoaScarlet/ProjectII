@@ -39,9 +39,11 @@ bool Scene1::Start()
 {
 	app->scene1->active = true;
 
-	app->entityManager->AddEntity({ 500.0f, 175.0f }, Entity::Type::NPC1);
-	app->entityManager->AddEntity({ 500.0f, 300.0f }, Entity::Type::NPC2);
-	app->entityManager->AddEntity({ 400.0f, 525.0f }, Entity::Type::NPC3);
+	app->entityManager->AddEntity({ 800.0f, 736.0f }, Entity::Type::NPC1);
+	app->entityManager->AddEntity({ 352.0f, 1312.0f }, Entity::Type::NPC2);
+	app->entityManager->AddEntity({ 1600.0f, 1024.0f }, Entity::Type::NPC2);
+	app->entityManager->AddEntity({ 1568.0f, 192.0f }, Entity::Type::NPC2);
+	app->entityManager->AddEntity({ 224.0f, 352.0f }, Entity::Type::NPC3);
 	
 	app->entityManager->AddEntity({ app->playerPosition.x, app->playerPosition.y }, Entity::Type::PLAYER);
 
@@ -104,15 +106,15 @@ bool Scene1::PostUpdate()
 	{
 		//app->render->DrawRectangle({ -app->render->camera.x + 450,-app->render->camera.y+612,919,143 }, 255, 255, 150);
 
-		char NPCdialogue[64] = { 0 };
-		sprintf_s(NPCdialogue, 64, app->dialogueSystem->currentNode->text.c_str(), 56);
-		app->render->DrawText(font, NPCdialogue, 336, 586, 50, 0, { 0, 0, 0, 255 });
+		char NPCdialogue[80] = { 0 };
+		sprintf_s(NPCdialogue, 80, app->dialogueSystem->currentNode->text.c_str(), 56);
+		app->render->DrawText(font, NPCdialogue, 220, 540, 45, 0, { 0, 0, 0, 255 });
 
-		char response[64] = { 0 };
+		char response[80] = { 0 };
 		for (int i = 0; i < app->dialogueSystem->currentNode->answersList.Count(); i++)
 		{
-			sprintf_s(response, 64, app->dialogueSystem->currentNode->answersList.At(i)->data.c_str(), 56);
-			app->render->DrawText(font, response, 336, 586 + (50 * (i + 1)), 50, 0, { 0, 255, 255, 255 });
+			sprintf_s(response, 80, app->dialogueSystem->currentNode->answersList.At(i)->data.c_str(), 56);
+			app->render->DrawText(font, response, 240, 550 + (27 * (i + 1)), 45, 0, { 255, 150, 150, 255 });
 		}
 	}
 

@@ -70,16 +70,23 @@ public:
 	List<Entity*> entityList;
 private:
 	SDL_Texture* texPlayer;
+	SDL_Texture* texAlly1;
+
 	SDL_Texture* texNPC1;
 	SDL_Texture* texNPC2;
 	SDL_Texture* texNPC3;
+
 	SDL_Texture* texEnemy1;
 	SDL_Texture* texEnemy3;
 
+
 	Entity* entityPlayer;
+	Entity* entityAlly1;
+
 	Entity* entityNPC1;
 	Entity* entityNPC2;
 	Entity* entityNPC3;
+
 	Entity* entityGhostEnemy;
 	Entity* entityTankEnemy;
 	Entity* entityCanonEnemy;

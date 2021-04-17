@@ -50,15 +50,6 @@ bool Scene1::Start()
 	app->render->camera.y = 0;
 	app->render->camera.x = 0;
 
-
-	int w, h;
-	uchar* data = NULL;
-
-	//if (app->map->CreateWalkabilityMap(w, h, &data)) app->pathFinding->SetMap(w, h, data);
-
-	RELEASE_ARRAY(data);
-	
-
 	app->map->active = true;
 
 	app->audio->PlayMusic("Assets/Audio/Music/scene1_music.ogg");

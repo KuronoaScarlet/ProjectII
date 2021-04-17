@@ -47,7 +47,9 @@ bool BattleScene::Start()
 	//Paso 4: Cargar estadísticas de ambos bandos a partir de un xml. (Nivel de los enemigos a partir del player, multiplier desde la base).
 	//Paso 5: Comenzar el ciclo de la barra de turno.
 
-	app->entityManager->AddEntity({ 100.0f, 175.0f }, Entity::Type::PLAYER);
+	app->entityManager->AddEntity({ 150.0f, 192.0f }, Entity::Type::ALLY1);
+	app->entityManager->AddEntity({ 150.0f, 256.0f }, Entity::Type::PLAYER);
+
 
 	return true;
 }
@@ -97,6 +99,7 @@ bool BattleScene::CleanUp()
 	if (!active)return true;
 
 	app->entityManager->CleanUp();
+	app->collisions->CleanUp();
 
 	app->battleScene->active = false;
 

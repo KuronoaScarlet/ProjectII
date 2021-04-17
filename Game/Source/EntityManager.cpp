@@ -10,6 +10,7 @@
 #include "Title.h"
 
 #include "PlayerEntity.h"
+#include "Ally1.h"
 #include "NPC1.h"
 #include "NPC2.h"
 #include "NPC3.h"
@@ -31,9 +32,12 @@ bool EntityManager::Awake()
 bool EntityManager::Start()
 {
 	texPlayer = app->tex->Load("Assets/Textures/Entities/Playable/player.png");
+	texAlly1 = app->tex->Load("Assets/Textures/Entities/Playable/Ash_idle_anim_32x32.png");
+
 	texNPC1 = app->tex->Load("Assets/Textures/Entities/NPC/Kid_Mitty_32x32.png");
 	texNPC2 = app->tex->Load("Assets/Textures/Entities/NPC/Samuel_32x32.png");
 	texNPC3 = app->tex->Load("Assets/Textures/Entities/NPC/Rob_32x32.png");
+
 	texEnemy1 = app->tex->Load("Assets/Textures/Entities/Enemies/Halloween_Kid_1_idle_anim_32x32.png");
 	texEnemy3 = app->tex->Load("Assets/Textures/Entities/Enemies/Fishmonger_2_idle_anim_32x32.png");
 
@@ -222,6 +226,13 @@ void EntityManager::AddEntity(fPoint position, Entity::Type type)
 	case Entity::Type::PLAYER:
 		entityPlayer = (Entity*)(new PlayerEntity((Module*)this, position, texPlayer, type));
 		entityList.Add(entityPlayer);
+		break;
+	///////////
+
+	//Allies//
+	case Entity::Type::ALLY1:
+		entityAlly1 = (Entity*)(new Ally1((Module*)this, position, texAlly1, type));
+		entityList.Add(entityAlly1);
 		break;
 	///////////
 

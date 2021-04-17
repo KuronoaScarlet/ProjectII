@@ -82,9 +82,12 @@ public:
 
 	pugi::xml_document combatStats;
 
+	bool settingsEnabled = false;
+
 private:
 	SDL_Texture* texPlayer;
 	SDL_Texture* texAlly1;
+	SDL_Texture* settingsPost;
 
 	SDL_Texture* texNPC1;
 	SDL_Texture* texNPC2;

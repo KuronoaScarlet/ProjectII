@@ -197,6 +197,11 @@ bool Scene1::OnGuiMouseClickEvent(GuiControl* control)
     {
     case GuiControlType::BUTTON:
     {
+        if (control->id == 17)
+        {
+            //Play
+            app->entityManager->settingsEnabled = !app->entityManager->settingsEnabled;
+        }
         if (control->id == 1)
         {
             //Play

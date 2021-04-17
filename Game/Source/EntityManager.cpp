@@ -37,6 +37,7 @@ bool EntityManager::Start()
 		LOG("Could not load saved game xml file. Pugi error: %s", result.description());
 	}
 
+	settingsPost = app->tex->Load("Assets/Textures/postit.png");
 
 	texPlayer = app->tex->Load("Assets/Textures/Entities/Playable/player.png");
 	texAlly1 = app->tex->Load("Assets/Textures/Entities/Playable/Ash_idle_anim_32x32.png");
@@ -56,7 +57,7 @@ bool EntityManager::Start()
 	resumeButton->SetObserver((Scene1*)this);
 	resumeButton->SetTexture(app->tex->Load("Assets/Textures/resume.png"), app->tex->Load("Assets/Textures/resume_selected.png"), app->tex->Load("Assets/Textures/resume_pressed.png"));
 
-	settingsButton = new GuiButton(12, { 517, 409, 234, 55 }, "START");
+	settingsButton = new GuiButton(17, { 517, 409, 234, 55 }, "SETTINGS");
 	settingsButton->SetObserver((Scene1*)this);
 	settingsButton->SetTexture(app->tex->Load("Assets/Textures/settings.png"), app->tex->Load("Assets/Textures/settings_selected.png"), app->tex->Load("Assets/Textures/settings_pressed.png"));
 
@@ -78,6 +79,10 @@ bool EntityManager::PreUpdate()
 
 bool EntityManager::Update(float dt)
 {
+	if (app->entityManager->playerData.pauseCondition == false)
+	{
+		settingsEnabled = false;
+	}
 	ListItem<Entity*>* entity = entityList.start;
 
 	while (entity != nullptr)
@@ -114,8 +119,9 @@ bool EntityManager::PostUpdate()
 	settingsButton->bounds.y = -app->render->camera.y + 260;
 	exitButton->bounds.x = -app->render->camera.x + 557;
 	exitButton->bounds.y = -app->render->camera.y + 360;
-	fullScreen->bounds.x = -app->render->camera.x + 485;
-	fullScreen->bounds.y = -app->render->camera.y + 405;
+	fullScreen->bounds.x = -app->render->camera.x + 900;
+	fullScreen->bounds.y = -app->render->camera.y + 200;
+
 
 	for (int i = 0; i < entityList.Count(); i++)
 	{
@@ -127,13 +133,18 @@ bool EntityManager::PostUpdate()
 	if (app->entityManager->playerData.pauseCondition)
 	{
 		app->render->DrawTexture(playerData.pauseMenu, -app->render->camera.x, -app->render->camera.y, NULL);
-		fullScreen->Draw(app->render);
+		//fullScreen->Draw(app->render);
 		resumeButton->Draw(app->render);
 		app->render->DrawText(app->render->font, "Resume", 530, 120, 60, 5, { 255, 255, 255, 255 });
 		settingsButton->Draw(app->render);
 		app->render->DrawText(app->render->font, "Settings", 520, 245, 60, 5, { 255, 255, 255, 255 });
 		exitButton->Draw(app->render);
 		app->render->DrawText(app->render->font, "Exit Game", 500, 550, 60, 5, { 255, 255, 255, 255 });
+		if (settingsEnabled)
+		{
+			app->render->DrawTexture(settingsPost, -app->render->camera.x + 875, -app->render->camera.y + 100, NULL);
+			fullScreen->Draw(app->render);
+		}
 	}
 	
 	return true;

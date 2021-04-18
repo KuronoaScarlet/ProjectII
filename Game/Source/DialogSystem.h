@@ -82,7 +82,7 @@ public:
 	pugi::xml_document	dialogues;
 private:
 
-	SDL_Texture* textBox;
+	SDL_Texture* textBox = nullptr;
 	Input* input;
 	Render* render;
 	Textures* tex;

@@ -21,7 +21,8 @@ DialogueSystem::~DialogueSystem() {}
 bool DialogueSystem::Start()
 {
 	app->dialogueSystem->LoadDialogue("dialogue_tree.xml");
-	
+	oleee = app->audio->LoadFx("Assets/Audio/FX/oleee.wav");
+
 	return true;
 }
 
@@ -111,6 +112,7 @@ bool DialogueSystem::Update(float dt)
 			if (actionChecks == dialogueTrees[3]->dialogueNodes.size())
 			{
 				app->entityManager->playerData.onDialog = false;
+				app->audio->PlayFx(oleee);
 				app->fade->Fade(app->intro, app->scene1, 30);
 			}
 		}

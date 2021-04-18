@@ -53,7 +53,7 @@ private:
     Module* moduleToEnable = nullptr;
     Module* moduleToDisable = nullptr;
 
-    uint oleee = 0;
+
 };
 
 #endif //__MODULEFADETOBLACK_H__

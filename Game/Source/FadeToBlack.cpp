@@ -28,7 +28,7 @@ bool FadeToBlack::Start()
 {
 	LOG("Preparing Fade Screen");
 
-	oleee = app->audio->LoadFx("Assets/Audio/FX/oleee.wav");
+
 	// Enable blending mode for transparency
 	SDL_SetRenderDrawBlendMode(app->render->renderer, SDL_BLENDMODE_BLEND);
 	return true;
@@ -104,7 +104,7 @@ bool FadeToBlack::CleanUp()
 bool FadeToBlack::Fade(Module* toDisable, Module* toEnable, float frames)
 {
 	bool ret = true;
-	app->audio->PlayFx(oleee);
+	
 	moduleToDisable = toDisable;
 	moduleToEnable = toEnable;
 

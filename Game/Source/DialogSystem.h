@@ -86,6 +86,7 @@ private:
 	Input* input;
 	Render* render;
 	Textures* tex;
+	uint oleee = 0;
 
 };
 #endif // __DIALOGSYSTEM_H__

@@ -43,6 +43,7 @@ bool BattleScene::Start()
 
 	//Paso 1: Cargar texturas, botones, música y Fx.
 	app->audio->PlayMusic("Assets/Audio/Music/battleSong.ogg");
+	screen = app->tex->Load("Assets/Textures/Screens/battle_scene.png");
 
 	//BUTTONS---------------------------------------------------------
 	attack = new GuiButton(1, { 517, 304, 250, 80 }, "attack");
@@ -71,28 +72,28 @@ bool BattleScene::Start()
 	switch (rngEnemyNum)
 	{
 	case 0:
-		app->entityManager->AddEntity({ 980.0f, 240.0f }, Entity::Type::TANK_ENEMY);
-		app->entityManager->AddEntity({ 980.0f, 192.0f }, Entity::Type::DAMAGE_ENEMY);
-		app->entityManager->AddEntity({ 980.0f, 288.0f }, Entity::Type::EQUILIBRATED_ENEMY);
+		app->entityManager->AddEntity({ 880.0f, 336.0f }, Entity::Type::TANK_ENEMY);
+		app->entityManager->AddEntity({ 880.0f, 288.0f }, Entity::Type::DAMAGE_ENEMY);
+		app->entityManager->AddEntity({ 880.0f, 384.0f }, Entity::Type::EQUILIBRATED_ENEMY);
 		break;
 
 	default:
 		if (rngTypeEnemy == 0)
 		{
-			app->entityManager->AddEntity({ 1080.0f, 208.0f }, Entity::Type::TANK_ENEMY);
-			app->entityManager->AddEntity({ 1080.0f, 272.0f }, Entity::Type::DAMAGE_ENEMY);
+			app->entityManager->AddEntity({ 880.0f, 304.0f }, Entity::Type::TANK_ENEMY);
+			app->entityManager->AddEntity({ 880.0f, 368.0f }, Entity::Type::DAMAGE_ENEMY);
 		}
 		else if (rngTypeEnemy == 1)
 		{
-			app->entityManager->AddEntity({ 1080.0f, 208.0f }, Entity::Type::TANK_ENEMY);
-			app->entityManager->AddEntity({ 1080.0f, 272.0f }, Entity::Type::EQUILIBRATED_ENEMY);
+			app->entityManager->AddEntity({ 880.0f, 304.0f }, Entity::Type::TANK_ENEMY);
+			app->entityManager->AddEntity({ 880.0f, 368.0f }, Entity::Type::EQUILIBRATED_ENEMY);
 		}
 		break;
 	}
 
 	//Paso 3: Añadir player y aliados (Animación de Idle lateral "onFight").
-	app->entityManager->AddEntity({ 280.0f, 192.0f }, Entity::Type::ALLY1);
-	app->entityManager->AddEntity({ 280.0f, 256.0f }, Entity::Type::PLAYER);
+	app->entityManager->AddEntity({ 280.0f, 272.0f }, Entity::Type::ALLY1);
+	app->entityManager->AddEntity({ 280.0f, 336.0f }, Entity::Type::PLAYER);
 
 	//Paso 4: Start de los Timers de Turno.
 	ResumeCombat();
@@ -176,7 +177,6 @@ bool BattleScene::Update(float dt)
 		ResumeCombat();
 	}
 
-
 	return true;
 }
 
@@ -193,9 +193,8 @@ bool BattleScene::PostUpdate()
 
 	std::cout << "           " << onTurn << std::endl << std::endl;
 	
-
+	app->render->DrawTexture(screen, 0, 0, NULL);
 	SDL_Rect bg{ 0,0,1280,720 };
-	//app->render->DrawRectangle(bg, 255, 212, 2, 255, true, false);
 
 	/*attack->Draw(app->render);
 	run->Draw(app->render);

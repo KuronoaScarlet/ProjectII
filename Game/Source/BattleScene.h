@@ -46,6 +46,8 @@ public:
 	//Fonts
 	Fonts* font;
 
+	SDL_Texture* screen = nullptr;
+
 	//int scoreFont = -1;
 	char scoreText[64] = { 0 };
 	char timeText[64] = { 0 };

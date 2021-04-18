@@ -56,7 +56,7 @@ public:
 	SDL_Rect viewport;
 	SDL_Color background;
 	
-	SDL_Texture* texF;
+	SDL_Texture* texF = nullptr;
 	Fonts* font;
 
 	uint scale;

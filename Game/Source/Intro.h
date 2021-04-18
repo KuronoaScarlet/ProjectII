@@ -35,10 +35,6 @@ public:
 
 public:
     // The scene sprite sheet loaded into an SDL_Texture
-
-
-    //Fonts
-    Fonts* font;
 };
 
 #endif //__INTRO_H__

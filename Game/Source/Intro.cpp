@@ -36,12 +36,9 @@ bool Intro::Awake()
 // Load assets
 bool Intro::Start()
 {
-    LOG("Loading Logo assets");
+    LOG("Loading Intro assets");
 
     bool ret = true;
-
-    SDL_Texture* texas = app->tex->Load("Assets/Fonts/kurale.png");
-    font = new Fonts("Assets/Fonts/kurale.xml", texas);
 
     return ret;
 }

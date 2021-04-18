@@ -36,11 +36,6 @@ public:
 
 	bool OnGuiMouseClickEvent(GuiControl* control);
 
-
-	//Fonts
-	Fonts* font;
-	//int scoreFont = -1;
-
 	bool firstEntry = true;
 	bool on;
 	

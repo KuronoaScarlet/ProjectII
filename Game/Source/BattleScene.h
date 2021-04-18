@@ -49,9 +49,6 @@ public:
 
 	bool OnGuiMouseClickEvent(GuiControl* control);
 
-	//Fonts
-	Fonts* font;
-
 	SDL_Texture* screen = nullptr;
 	SDL_Texture* combatBox = nullptr;
 	SDL_Texture* winScreen = nullptr;

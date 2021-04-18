@@ -81,7 +81,7 @@ public:
 	int rngEnemyNum;
 	int rngTypeEnemy;
 	int remainingAllies, remainingEnemies;
-	int counter;
+	int counter = 0;
 	
 	char hp[64] = { 0 };
 	char num[64] = { 0 };

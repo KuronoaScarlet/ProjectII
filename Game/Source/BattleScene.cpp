@@ -384,13 +384,13 @@ bool BattleScene::PostUpdate()
 		tmp = tmp->next;
 	}
 
-	if (win == true)
+	if (win)
 	{
 		win = false;
 		sprintf_s(battleText, 64, "Has ganado!");
 		timerr.Start();
 		counter = timerr.ReadSec();
-		if (counter > 3)
+		if (counter < 3)
 		{
 			app->fade->Fade(this, (Module*)app->scene1);
 		}

@@ -323,4 +323,5 @@ void EntityManager::LoadStats(Entity* e)
 	e->def = node.attribute("def").as_int() + (e->defPerLvl * (playerData.level - 1));
 
 	e->turnTime = node.attribute("turntime").as_float();
+	e->currentHp = e->hp;
 }

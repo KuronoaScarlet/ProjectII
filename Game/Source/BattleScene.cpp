@@ -66,8 +66,8 @@ bool BattleScene::Start()
 	app->render->camera = { 0, 0 };
 
 	//Paso 2: Añadir entidades enemigas. Random (2 o 3).
-	int rngEnemyNum = rand() % 4;
-	int rngTypeEnemy = rand() % 2;
+	rngEnemyNum = rand() % 4;
+	rngTypeEnemy = rand() % 2;
 
 	switch (rngEnemyNum)
 	{
@@ -75,6 +75,7 @@ bool BattleScene::Start()
 		app->entityManager->AddEntity({ 880.0f, 336.0f }, Entity::Type::TANK_ENEMY);
 		app->entityManager->AddEntity({ 880.0f, 288.0f }, Entity::Type::DAMAGE_ENEMY);
 		app->entityManager->AddEntity({ 880.0f, 384.0f }, Entity::Type::EQUILIBRATED_ENEMY);
+		remainingEnemies = 3;
 		break;
 
 	default:
@@ -82,11 +83,13 @@ bool BattleScene::Start()
 		{
 			app->entityManager->AddEntity({ 880.0f, 304.0f }, Entity::Type::TANK_ENEMY);
 			app->entityManager->AddEntity({ 880.0f, 368.0f }, Entity::Type::DAMAGE_ENEMY);
+			remainingEnemies = 2;
 		}
 		else if (rngTypeEnemy == 1)
 		{
 			app->entityManager->AddEntity({ 880.0f, 304.0f }, Entity::Type::TANK_ENEMY);
 			app->entityManager->AddEntity({ 880.0f, 368.0f }, Entity::Type::EQUILIBRATED_ENEMY);
+			remainingEnemies = 2;
 		}
 		break;
 	}
@@ -94,9 +97,13 @@ bool BattleScene::Start()
 	//Paso 3: Añadir player y aliados (Animación de Idle lateral "onFight").
 	app->entityManager->AddEntity({ 280.0f, 272.0f }, Entity::Type::ALLY1);
 	app->entityManager->AddEntity({ 280.0f, 336.0f }, Entity::Type::PLAYER);
+	remainingAllies = 2;
 
 	//Paso 4: Start de los Timers de Turno.
 	ResumeCombat();
+
+	SDL_Texture* texas = app->tex->Load("Assets/Fonts/kurale.png");
+	font = new Fonts("Assets/Fonts/kurale.xml", texas);
 
 	return true;
 }
@@ -135,7 +142,7 @@ bool BattleScene::Update(float dt)
 		}
 	}
 
-	if (onTurn == true)
+	if (onTurn == true && attacked == false)
 	{
 		switch (pointer->collider->type)
 		{
@@ -156,20 +163,66 @@ bool BattleScene::Update(float dt)
 			break;
 
 		case Collider::Type::ENEMY:
+			int randomPick = rand() % 2;
+			if (randomPick == 0)
+			{
+				if (app->entityManager->entityList.end->prev->data->type == Entity::Type::ALLY1)
+				{
+					if (app->entityManager->entityList.end->prev->data->dead == true)
+					{
+						randomPick = 1;
+					}
+				}
+			}
+
 			if (pointer->type == Entity::Type::EQUILIBRATED_ENEMY)
 			{
-				app->render->DrawRectangle(SDL_Rect{ 1000, 300, 20, 20 }, 255, 255, 255, 255, true, false);
+				switch (randomPick)
+				{
+				case 0: //Ally//
+					DealDamage(pointer, app->entityManager->entityList.end->prev->data);
+					break;
+				case 1: //Player//
+					DealDamage(pointer, app->entityManager->entityList.end->data);
+					break;
+				}
+				attacked = true;
 			}
 			if (pointer->type == Entity::Type::TANK_ENEMY)
 			{
-				app->render->DrawRectangle(SDL_Rect{ 1000, 300, 20, 20 }, 0, 0, 255, 255, true, false);
+				int randomPick = rand() % 2;
+				switch (randomPick)
+				{
+				case 0: //Ally//
+					DealDamage(pointer, app->entityManager->entityList.end->prev->data);
+					break;
+				case 1: //Player//
+					DealDamage(pointer, app->entityManager->entityList.end->data);
+					break;
+				}
+				attacked = true;
 			}
 			if (pointer->type == Entity::Type::DAMAGE_ENEMY)
 			{
-				app->render->DrawRectangle(SDL_Rect{ 1000, 300, 20, 20 }, 255, 0, 0, 255, true, false);
+				int randomPick = rand() % 2;
+				switch (randomPick)
+				{
+				case 0: //Ally//
+					DealDamage(pointer, app->entityManager->entityList.end->prev->data);
+					break;
+				case 1: //Player//
+					DealDamage(pointer, app->entityManager->entityList.end->data);
+					break;
+				}
+				attacked = true;
 			}
-			break;
 		}
+	}
+
+	if (loose == true)
+	{
+		loose = false;
+		app->fade->Fade(this, (Module*)app->scene1);
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN)
@@ -187,11 +240,31 @@ bool BattleScene::PostUpdate()
 	
 	while (tmp)
 	{
-		std::cout << tmp->data->combatTimer.counter << "    ";
+		std::cout << tmp->data->currentHp << "/" << tmp->data->hp << "       ";
+		if (tmp->data->currentHp <= 0)
+		{
+			switch (tmp->data->collider->type)
+			{
+			case Collider::Type::PLAYER:
+				remainingAllies--;
+				break;
+			case Collider::Type::ENEMY:
+				remainingEnemies--;
+			}
+			tmp->data->dead = true;
+			tmp->data->pendingToDelete = true;
+
+			if (remainingAllies == 0)
+			{
+				loose = true;
+			}
+		}
 		tmp = tmp->next;
 	}
 
 	std::cout << "           " << onTurn << std::endl << std::endl;
+
+	
 	
 	app->render->DrawTexture(screen, 0, 0, NULL);
 	SDL_Rect bg{ 0,0,1280,720 };
@@ -212,6 +285,7 @@ bool BattleScene::CleanUp()
 
 	app->entityManager->CleanUp();
 	app->collisions->CleanUp();
+	app->tex->UnLoad(screen);
 
 	app->battleScene->active = false;
 
@@ -222,6 +296,7 @@ bool BattleScene::CleanUp()
 void BattleScene::ResumeCombat()
 {
 	onTurn = false;
+	attacked = false;
 
 	ListItem<Entity*>* tmp = app->entityManager->entityList.start;
 
@@ -230,4 +305,9 @@ void BattleScene::ResumeCombat()
 		tmp->data->combatTimer.Start();
 		tmp = tmp->next;
 	}
+}
+
+void BattleScene::DealDamage(Entity* attacker, Entity* deffender)
+{
+	deffender->currentHp = deffender->currentHp - attacker->atk;
 }

@@ -5,6 +5,8 @@
 #include "Animation.h"
 #include "Timer.h"
 #include "Entity.h"
+#include "Fonts.h"
+#include "List.h"
 
 #include "GuiButton.h"
 #include "GuiSlider.h"
@@ -43,6 +45,8 @@ public:
 
 	void ResumeCombat();
 
+	void DealDamage(Entity* attacker, Entity* deffender);
+
 	//Fonts
 	Fonts* font;
 
@@ -54,6 +58,9 @@ public:
 
 	bool firstEntry = true;
 	bool onTurn = false;
+	bool attacked = false;
+	bool win = false;
+	bool loose = false;
 
 	GuiButton* attack;
 	GuiButton* defend;
@@ -64,6 +71,10 @@ public:
 	Timer timerr;
 	int time = 0;
 
+
+	int rngEnemyNum;
+	int rngTypeEnemy;
+	int remainingAllies, remainingEnemies;
 private:
 };
 

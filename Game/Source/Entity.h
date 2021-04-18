@@ -83,6 +83,8 @@ public:
 	int atk, atkPerLvl;
 	int def, defPerLvl;
 	float turnTime;
+	int currentHp;
+	bool dead = false;
 
 	Timer combatTimer;
 

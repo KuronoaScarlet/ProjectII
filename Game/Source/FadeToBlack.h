@@ -52,6 +52,8 @@ private:
     // The modules that should be switched after the first step
     Module* moduleToEnable = nullptr;
     Module* moduleToDisable = nullptr;
+
+    uint oleee = 0;
 };
 
 #endif //__MODULEFADETOBLACK_H__

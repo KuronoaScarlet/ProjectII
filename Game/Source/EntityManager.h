@@ -74,7 +74,7 @@ public:
 
 	GuiCheckBox* fullScreen;
 
-	int winCount = 2;
+	int winCount = 0;
 
 	PlayerData playerData;
 

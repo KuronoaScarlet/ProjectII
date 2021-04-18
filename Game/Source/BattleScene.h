@@ -55,11 +55,13 @@ public:
 	Fonts* font;
 
 	SDL_Texture* screen = nullptr;
+	SDL_Texture* combatBox = nullptr;
 
 	//int scoreFont = -1
 
 	bool firstEntry = true;
 	bool onTurn = false;
+	bool playerTurn = false;
 	bool attacked = false;
 	bool win = false;
 	bool loose = false;

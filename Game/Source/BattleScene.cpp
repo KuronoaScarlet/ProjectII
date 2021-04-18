@@ -44,6 +44,7 @@ bool BattleScene::Start()
 	//Paso 1: Cargar texturas, botones, música y Fx.
 	app->audio->PlayMusic("Assets/Audio/Music/battleSong.ogg");
 	screen = app->tex->Load("Assets/Textures/Screens/battle_scene.png");
+	combatBox = app->tex->Load("Assets/Textures/combat_box.png");
 
 	//BUTTONS---------------------------------------------------------
 	attack = new GuiButton(1, { 517, 304, 250, 80 }, "attack");
@@ -147,17 +148,19 @@ bool BattleScene::Update(float dt)
 		switch (pointer->collider->type)
 		{
 		case Collider::Type::PLAYER:
-			/*attack->Update(app->input, dt);
-			run->Update(app->input, dt);
-			defend->Update(app->input, dt);
-			combine->Update(app->input, dt);*/
+			
 			if (pointer->type == Entity::Type::PLAYER)
 			{
-				app->render->DrawRectangle(SDL_Rect{ 1000, 300, 20, 20 }, 0, 255, 0, 255, true, false);
+				sprintf_s(battleText, 64, "Que deberia hacer Player?");
+				playerTurn = true;
+				attack->Update(app->input, dt);
+				run->Update(app->input, dt);
+				defend->Update(app->input, dt);
+				combine->Update(app->input, dt);
 			}
 			if (pointer->type == Entity::Type::ALLY1)
 			{
-				app->render->DrawRectangle(SDL_Rect{ 1000, 300, 20, 20 }, 255, 0, 255, 255, true, false);
+				
 			}
 			
 			break;
@@ -261,17 +264,17 @@ bool BattleScene::PostUpdate()
 	}
 
 	app->render->DrawTexture(screen, 0, 0, NULL);
-	app->render->DrawRectangle({ -app->render->camera.x,-app->render->camera.y + 530,1280,250 }, 255, 255, 150);
+	app->render->DrawTexture(combatBox, -app->render->camera.x, -app->render->camera.y + 530);
 	PrintText();
-	app->render->DrawText(app->render->font, battleText, 300, 560, 40, 3, { 0, 0, 0, 255 });
+	app->render->DrawText(app->render->font, battleText, 250, 540, 40, 3, { 0, 0, 0, 255 });
 
-
-
-
-	/*attack->Draw(app->render);
-	run->Draw(app->render);
-	defend->Draw(app->render);
-	combine->Draw(app->render);*/
+	if(playerTurn == true)
+	{
+		attack->Draw(app->render);
+		run->Draw(app->render);
+		defend->Draw(app->render);
+		combine->Draw(app->render);
+	}
 	
 	return ret;
 }
@@ -327,8 +330,8 @@ void BattleScene::PrintText()
 			if (tmp->data->collider->type == Collider::Type::ENEMY)
 			{
 				sprintf_s(num, 10, "Enemy %d", countEnemy);
-				app->render->DrawText(app->render->font, num, 1070, (int)(560 * positionEnemy), 36, 3, { 0, 0, 0, 255 });
-				app->render->DrawText(app->render->font, hp, 1100, (int)(590 * positionEnemy), 36, 3, { 0, 0, 0, 255 });
+				app->render->DrawText(app->render->font, num, 1070, (int)(540 * positionEnemy), 36, 3, { 0, 0, 0, 255 });
+				app->render->DrawText(app->render->font, hp, 1100, (int)(570 * positionEnemy), 36, 3, { 0, 0, 0, 255 });
 				positionEnemy += 0.1f;
 				countEnemy++;
 			}
@@ -344,8 +347,8 @@ void BattleScene::PrintText()
 					sprintf_s(num, 10, "Ally: %d", countAlly);
 					countAlly++;
 				}
-				app->render->DrawText(app->render->font, num, 45, (int)(560 * positionAlly), 36, 3, { 0, 0, 0, 255 });
-				app->render->DrawText(app->render->font, hp, 75, (int)(590 * positionAlly), 36, 3, { 0, 0, 0, 255 });
+				app->render->DrawText(app->render->font, num, 80, (int)(540 * positionAlly), 36, 3, { 0, 0, 0, 255 });
+				app->render->DrawText(app->render->font, hp, 110, (int)(570 * positionAlly), 36, 3, { 0, 0, 0, 255 });
 				positionAlly += 0.1f;
 			}
 

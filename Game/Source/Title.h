@@ -47,6 +47,7 @@ public:
 
 
 public:
+
     // The scene sprite sheet loaded into an SDL_Texture
     SDL_Texture* screen = nullptr;
     SDL_Texture* creditsScene = nullptr;
@@ -54,12 +55,13 @@ public:
 
     GuiButton* play;
     GuiButton* newGame;
+    GuiButton* escCredits;
     GuiButton* options;
     GuiButton* credits;
     GuiButton* exit;
     GuiButton* backButton;
     
-
+    bool creditsOnScreen = false;
     bool fullSc;
     bool vsync;
     bool exi;

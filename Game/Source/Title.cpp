@@ -70,7 +70,12 @@ bool Title::Start()
     newGame->SetObserver((Scene1*)this);
     newGame->SetDisableTexture(app->tex->Load("Assets/Textures/Buttons/states/no.png"));
     newGame->SetTexture(app->tex->Load("Assets/Textures/newgame.png"), app->tex->Load("Assets/Textures/newgame_selected.png"), app->tex->Load("Assets/Textures/newgame_pressed.png"));
-    
+
+    escCredits = new GuiButton(18, { 40, 20, 200, 100 }, "ESC");
+    escCredits->SetObserver((Scene1*)this);
+    escCredits->SetDisableTexture(app->tex->Load("Assets/Textures/esc.png"));
+    escCredits->SetTexture(app->tex->Load("Assets/Textures/esc.png"), app->tex->Load("Assets/Textures/esc2.png"), app->tex->Load("Assets/Textures/esc3.png"));
+
     options = new GuiButton(2, { 543, 438, 197, 55 }, "OPTIONS");
     options->SetObserver((Scene1*)this);
     options->SetTexture(app->tex->Load("Assets/Textures/settings.png"), app->tex->Load("Assets/Textures/settings_selected.png"), app->tex->Load("Assets/Textures/settings_pressed.png"));
@@ -87,7 +92,7 @@ bool Title::Start()
     backButton->SetObserver((Scene1*)this);
     backButton->SetTexture(app->tex->Load("Assets/Textures/Buttons/states/play.png"), app->tex->Load("Assets/Textures/Buttons/states/focused.png"), app->tex->Load("Assets/Textures/Buttons/states/pressed.png"));
 
-    creditsScene = app->tex->Load("Assets/Textures/credits_scene.png");
+    creditsScene = app->tex->Load("Assets/Textures/Screens/credits_screen.png");
     creditSceneFlag = false;
     pauseBool = false;
     fullSc = false;
@@ -115,11 +120,9 @@ bool Title::Update(float dt)
         credits->Update(app->input, dt);
         exit->Update(app->input, dt);
     }
-    if (creditSceneFlag)
+    if (creditsOnScreen)
     {
-        app->render->camera.y -= 1;
-        
-        
+        escCredits->Update(app->input, dt);
     }
     if (app->render->camera.y == -1000) //-2400
     {
@@ -142,11 +145,16 @@ bool Title::PostUpdate()
         app->fade->Fade(this, (Module*)app->scene1, 10);
 
     }
+    if (app->title->creditsOnScreen)
+    {
+        app->render->DrawTexture(creditsScene, 0, 0, NULL);
+    }
    // if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
     
     if (creditSceneFlag == true)
     {
         app->render->DrawTexture(creditsScene, 0, 0, NULL);
+        escCredits->Draw(app->render);
     }
 
     if (!creditSceneFlag)
@@ -159,23 +167,23 @@ bool Title::PostUpdate()
         // start->Draw(app->render);
         // SDL_Rect rectPlayer = playerData.currentAnim->GetCurrentFrame();
         play->Draw(app->render);
-        app->render->DrawText(app->render->font, "Play", 600, 239, 60, 5, { 255, 255, 255, 255 });
+       
         if (!app->fileSaved)
         {
-            app->render->DrawText(app->render->font, "Load", 600, 328, 60, 5, { 255, 255, 255, 255 });
+           
             newGame->Draw(app->render);
         }
         else
         {
             newGame->Draw(app->render);
-            app->render->DrawText(app->render->font, "Load", 600, 328, 60, 5, { 255, 255, 255, 255 });
+            
         }
         options->Draw(app->render);
-        app->render->DrawText(app->render->font, "Settings", 550, 418, 60, 5, { 255, 255, 255, 255 });
+       
         credits->Draw(app->render);
-        app->render->DrawText(app->render->font, "Credits", 560, 508, 60, 5, { 255, 255, 255, 255 });
+
         exit->Draw(app->render);
-        app->render->DrawText(app->render->font, "Exit", 610, 597, 60, 5, { 255, 255, 255, 255 });
+      
     }
    
     
@@ -208,6 +216,15 @@ bool Scene1::OnGuiMouseClickEvent(GuiControl* control)
     {
     case GuiControlType::BUTTON:
     {
+        if (control->id == 13)
+        {
+            app->title->creditsOnScreen = true;
+        }
+        if (control->id == 18)
+        {
+            app->title->creditsOnScreen = false;
+            app->title->creditSceneFlag = false;
+        }
         if (control->id == 17)
         {
             //Play

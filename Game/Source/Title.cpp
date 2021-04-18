@@ -124,13 +124,11 @@ bool Title::Update(float dt)
     {
         escCredits->Update(app->input, dt);
     }
-    if (app->render->camera.y == -1000) //-2400
+    if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
     {
         creditSceneFlag = false;
+        creditsOnScreen = false;
     }
-   
-    
-
     return true;
 }
 
@@ -210,8 +208,6 @@ bool Title::CleanUp()
 
 bool Scene1::OnGuiMouseClickEvent(GuiControl* control)
 {
-    
-
     switch (control->type)
     {
     case GuiControlType::BUTTON:

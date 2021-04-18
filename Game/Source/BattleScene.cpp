@@ -384,7 +384,6 @@ bool BattleScene::PostUpdate()
 				if (app->entityManager->winCount == 3)
 				{
 					winScreenOnSceen = true;
-					printf("%d", app->entityManager->winCount);
 					app->fade->Fade(this, (Module*)app->winScreen);
 				}
 			}

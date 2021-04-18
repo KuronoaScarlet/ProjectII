@@ -82,11 +82,11 @@ public:
 	pugi::xml_document	dialogues;
 private:
 
-	
+	SDL_Texture* textBox;
 	Input* input;
 	Render* render;
 	Textures* tex;
-	uint oleee = 0;
+	uint battleTransition = 0;
 
 };
 #endif // __DIALOGSYSTEM_H__

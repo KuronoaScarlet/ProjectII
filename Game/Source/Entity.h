@@ -84,6 +84,7 @@ public:
 	int def, defPerLvl;
 	float turnTime;
 	int currentHp;
+	bool defending = false;
 	bool dead = false;
 
 	Timer combatTimer;

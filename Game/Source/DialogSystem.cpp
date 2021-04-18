@@ -21,7 +21,8 @@ DialogueSystem::~DialogueSystem() {}
 bool DialogueSystem::Start()
 {
 	app->dialogueSystem->LoadDialogue("dialogue_tree.xml");
-	oleee = app->audio->LoadFx("Assets/Audio/FX/oleee.wav");
+	battleTransition = app->audio->LoadFx("Assets/Audio/FX/battle_transition.wav");
+	textBox = app->tex->Load("Assets/Textures/text_box.png");
 
 	return true;
 }
@@ -30,7 +31,7 @@ bool DialogueSystem::Update(float dt)
 {
 	if (app->entityManager->playerData.onDialog == true)
 	{
-		app->render->DrawRectangle({ -app->render->camera.x,-app->render->camera.y + 530,1280,250 }, 255, 255, 150);
+		app->render->DrawTexture(textBox, -app->render->camera.x, -app->render->camera.y + 560);
 
 		if (Id == 0)
 		{
@@ -112,7 +113,7 @@ bool DialogueSystem::Update(float dt)
 			if (actionChecks == dialogueTrees[3]->dialogueNodes.size())
 			{
 				app->entityManager->playerData.onDialog = false;
-				app->audio->PlayFx(oleee);
+				app->audio->PlayFx(battleTransition);
 				app->fade->Fade(app->intro, app->scene1, 30);
 			}
 		}

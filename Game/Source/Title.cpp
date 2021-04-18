@@ -241,6 +241,22 @@ bool Scene1::OnGuiMouseClickEvent(GuiControl* control)
                 }
             }
         }
+        if (control->id == 102)
+        {
+            if (app->battleScene->playerTurn == true)
+            {
+                if (control->id == 102)
+                {
+                    app->battleScene->playerTurn = false;
+                    app->battleScene->defenseMenu = true;
+                    app->battleScene->endTurn = false;
+                }
+            }
+        }
+        if (control->id == 103)
+        {
+            app->fade->Fade((Module*)app->battleScene, (Module*)app->scene1);
+        }
         if (control->id == 13)
         {
             app->title->creditsOnScreen = true;

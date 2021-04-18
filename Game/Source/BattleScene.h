@@ -43,7 +43,7 @@ public:
 
 	void ResumeCombat();
 
-	void DealDamage(Entity* attacker, Entity* deffender);
+	void DealDamage(Entity* attacker, Entity* deffender, bool defendOn);
 
 	void PrintText();
 
@@ -57,13 +57,14 @@ public:
 
 	//int scoreFont = -1
 
-	bool firstEntry = true;
 	bool onTurn = false;
 	bool playerTurn = false;
 	bool allyTurn = false;
 	bool attackMenu = false;
+	bool defenseMenu = false;
 	bool endTurn = false;
 	bool attacked = false;
+	bool defendOn = false;
 	bool win = false;
 	bool loose = false;
 

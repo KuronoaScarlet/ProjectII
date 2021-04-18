@@ -76,13 +76,13 @@ bool Intro::PostUpdate()
 
         char NPCdialogue[80] = { 0 };
         sprintf_s(NPCdialogue, 80, app->dialogueSystem->currentNode->text.c_str(), 56);
-        app->render->DrawText(app->render->font, NPCdialogue, 170, 540, 45, 0, { 0, 0, 0, 255 });
+        app->render->DrawText(app->render->font, NPCdialogue, 150, 580, 45, 0, { 0, 0, 0, 255 });
 
         char response[80] = { 0 };
         for (int i = 0; i < app->dialogueSystem->currentNode->answersList.Count(); i++)
         {
             sprintf_s(response, 80, app->dialogueSystem->currentNode->answersList.At(i)->data.c_str(), 56);
-            app->render->DrawText(app->render->font, response, 190, 550 + (27 * (i + 1)), 45, 0, { 255, 150, 150, 255 });
+            app->render->DrawText(app->render->font, response, 170, 588 + (25 * (i + 1)), 45, 0, { 255, 150, 150, 255 });
         }
     }
 

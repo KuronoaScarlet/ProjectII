@@ -203,6 +203,7 @@ bool Title::CleanUp()
     LOG("Freeing Logo");
     app->title->active = false;
     app->tex->UnLoad(screen);
+    app->tex->UnLoad(creditsScene);
     return true;
 }
 

@@ -62,8 +62,7 @@ bool Scene1::Start()
 
 	app->map->Load("mapLvl2.tmx");
 
-	SDL_Texture * texas = app->tex->Load("Assets/Fonts/kurale.png");
-	font = new Fonts("Assets/Fonts/kurale.xml", texas);
+	
 	return true;
 }
 
@@ -97,13 +96,13 @@ bool Scene1::PostUpdate()
 
 		char NPCdialogue[80] = { 0 };
 		sprintf_s(NPCdialogue, 80, app->dialogueSystem->currentNode->text.c_str(), 56);
-		app->render->DrawText(font, NPCdialogue, 220, 540, 45, 0, { 0, 0, 0, 255 });
+		app->render->DrawText(app->render->font, NPCdialogue, 220, 540, 45, 0, { 0, 0, 0, 255 });
 
 		char response[80] = { 0 };
 		for (int i = 0; i < app->dialogueSystem->currentNode->answersList.Count(); i++)
 		{
 			sprintf_s(response, 80, app->dialogueSystem->currentNode->answersList.At(i)->data.c_str(), 56);
-			app->render->DrawText(font, response, 240, 550 + (27 * (i + 1)), 45, 0, { 255, 150, 150, 255 });
+			app->render->DrawText(app->render->font, response, 240, 550 + (27 * (i + 1)), 45, 0, { 255, 150, 150, 255 });
 		}
 	}
 

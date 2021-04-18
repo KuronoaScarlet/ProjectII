@@ -95,8 +95,8 @@ bool BattleScene::Start()
 	}
 
 	//Paso 3: Añadir player y aliados (Animación de Idle lateral "onFight").
-	app->entityManager->AddEntity({ 280.0f, 272.0f }, Entity::Type::ALLY1);
-	app->entityManager->AddEntity({ 280.0f, 336.0f }, Entity::Type::PLAYER);
+	app->entityManager->AddEntity({ 280.0f, 304.0f }, Entity::Type::ALLY1);
+	app->entityManager->AddEntity({ 280.0f, 368.0f }, Entity::Type::PLAYER);
 	remainingAllies = 2;
 
 	//Paso 4: Start de los Timers de Turno.
@@ -120,7 +120,7 @@ bool BattleScene::Update(float dt)
 	//LÓGICA DEL BATTLE SYSTEM:
 	//While que llama de manera permanente a las funciones de carga de la barra de turno.
 	ListItem<Entity*>* tmp = app->entityManager->entityList.start;
-
+	
 	if (onTurn == false)
 	{
 		while (tmp)
@@ -164,15 +164,9 @@ bool BattleScene::Update(float dt)
 
 		case Collider::Type::ENEMY:
 			int randomPick = rand() % 2;
-			if (randomPick == 0)
+			if (app->entityManager->entityList.end->prev->data->type != Entity::Type::ALLY1)
 			{
-				if (app->entityManager->entityList.end->prev->data->type == Entity::Type::ALLY1)
-				{
-					if (app->entityManager->entityList.end->prev->data->dead == true)
-					{
-						randomPick = 1;
-					}
-				}
+				randomPick = 1;
 			}
 
 			if (pointer->type == Entity::Type::EQUILIBRATED_ENEMY)
@@ -180,9 +174,11 @@ bool BattleScene::Update(float dt)
 				switch (randomPick)
 				{
 				case 0: //Ally//
+					sprintf_s(battleText, 64, "Enemigo 2 ha atacado a un Aliado");
 					DealDamage(pointer, app->entityManager->entityList.end->prev->data);
 					break;
 				case 1: //Player//
+					sprintf_s(battleText, 64, "Enemigo 2 ha atacado al Player");
 					DealDamage(pointer, app->entityManager->entityList.end->data);
 					break;
 				}
@@ -190,13 +186,14 @@ bool BattleScene::Update(float dt)
 			}
 			if (pointer->type == Entity::Type::TANK_ENEMY)
 			{
-				int randomPick = rand() % 2;
 				switch (randomPick)
 				{
 				case 0: //Ally//
+					sprintf_s(battleText, 64, "Enemigo 1 ha atacado a un Aliado");
 					DealDamage(pointer, app->entityManager->entityList.end->prev->data);
 					break;
 				case 1: //Player//
+					sprintf_s(battleText, 64, "Enemigo 1 ha atacado al Player");
 					DealDamage(pointer, app->entityManager->entityList.end->data);
 					break;
 				}
@@ -204,13 +201,14 @@ bool BattleScene::Update(float dt)
 			}
 			if (pointer->type == Entity::Type::DAMAGE_ENEMY)
 			{
-				int randomPick = rand() % 2;
 				switch (randomPick)
 				{
 				case 0: //Ally//
+					sprintf_s(battleText, 64, "Enemigo 2 ha atacado a un Aliado");
 					DealDamage(pointer, app->entityManager->entityList.end->prev->data);
 					break;
 				case 1: //Player//
+					sprintf_s(battleText, 64, "Enemigo 2 ha atacado al Player");
 					DealDamage(pointer, app->entityManager->entityList.end->data);
 					break;
 				}
@@ -225,7 +223,7 @@ bool BattleScene::Update(float dt)
 		app->fade->Fade(this, (Module*)app->scene1);
 	}
 
-	if (app->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN)
+	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
 		ResumeCombat();
 	}
@@ -236,11 +234,11 @@ bool BattleScene::Update(float dt)
 // Called each loop iteration
 bool BattleScene::PostUpdate()
 {
+	bool ret = true;
 	ListItem<Entity*>* tmp = app->entityManager->entityList.start;
 	
 	while (tmp)
 	{
-		std::cout << tmp->data->currentHp << "/" << tmp->data->hp << "       ";
 		if (tmp->data->currentHp <= 0)
 		{
 			switch (tmp->data->collider->type)
@@ -262,19 +260,19 @@ bool BattleScene::PostUpdate()
 		tmp = tmp->next;
 	}
 
-	std::cout << "           " << onTurn << std::endl << std::endl;
-
-	
-	
 	app->render->DrawTexture(screen, 0, 0, NULL);
-	SDL_Rect bg{ 0,0,1280,720 };
+	app->render->DrawRectangle({ -app->render->camera.x,-app->render->camera.y + 530,1280,250 }, 255, 255, 150);
+	PrintText();
+	app->render->DrawText(app->render->font, battleText, 300, 560, 40, 3, { 0, 0, 0, 255 });
+
+
+
 
 	/*attack->Draw(app->render);
 	run->Draw(app->render);
 	defend->Draw(app->render);
 	combine->Draw(app->render);*/
 	
-	bool ret = true;
 	return ret;
 }
 
@@ -310,4 +308,54 @@ void BattleScene::ResumeCombat()
 void BattleScene::DealDamage(Entity* attacker, Entity* deffender)
 {
 	deffender->currentHp = deffender->currentHp - attacker->atk;
+}
+
+void BattleScene::PrintText()
+{
+	ListItem<Entity*>* tmp = app->entityManager->entityList.start;
+	int countAlly = 1;
+	int countEnemy = 1;
+	float positionEnemy = 1;
+	float positionAlly = 1;
+
+
+	while (tmp)
+	{
+		if (tmp->data->currentHp > 0)
+		{
+			sprintf_s(hp, 10, "%d/%d", tmp->data->currentHp, tmp->data->hp);
+			if (tmp->data->collider->type == Collider::Type::ENEMY)
+			{
+				sprintf_s(num, 10, "Enemy %d", countEnemy);
+				app->render->DrawText(app->render->font, num, 1070, (int)(560 * positionEnemy), 36, 3, { 0, 0, 0, 255 });
+				app->render->DrawText(app->render->font, hp, 1100, (int)(590 * positionEnemy), 36, 3, { 0, 0, 0, 255 });
+				positionEnemy += 0.1f;
+				countEnemy++;
+			}
+			
+			if (tmp->data->collider->type == Collider::Type::PLAYER)
+			{
+				if (tmp->data->type == Entity::Type::PLAYER)
+				{
+					sprintf_s(num, 10, "Player");
+				}
+				else if (tmp->data->type != Entity::Type::PLAYER)
+				{
+					sprintf_s(num, 10, "Ally: %d", countAlly);
+					countAlly++;
+				}
+				app->render->DrawText(app->render->font, num, 45, (int)(560 * positionAlly), 36, 3, { 0, 0, 0, 255 });
+				app->render->DrawText(app->render->font, hp, 75, (int)(590 * positionAlly), 36, 3, { 0, 0, 0, 255 });
+				positionAlly += 0.1f;
+			}
+
+		}
+		tmp = tmp->next;
+	}
+	
+}
+
+void BattleScene::BattleText(Entity* attacker, Entity* deffender)
+{
+
 }

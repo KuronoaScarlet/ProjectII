@@ -57,8 +57,8 @@ bool Render::Awake(pugi::xml_node& config)
 bool Render::Start()
 {
 	LOG("render start");
-	texF = app->tex->Load("Assets/Font/font.png");
-	font = new Fonts("Assets/Font/font.xml", texF);
+	SDL_Texture* texas = app->tex->Load("Assets/Fonts/kurale.png");
+	font = new Fonts("Assets/Fonts/kurale.xml", texas);
 	// back background
 	SDL_RenderGetViewport(renderer, &viewport);
 

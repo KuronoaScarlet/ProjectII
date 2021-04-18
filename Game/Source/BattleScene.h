@@ -47,14 +47,16 @@ public:
 
 	void DealDamage(Entity* attacker, Entity* deffender);
 
+	void PrintText();
+
+	void BattleText(Entity* attacker, Entity* defender);
+
 	//Fonts
 	Fonts* font;
 
 	SDL_Texture* screen = nullptr;
 
-	//int scoreFont = -1;
-	char scoreText[64] = { 0 };
-	char timeText[64] = { 0 };
+	//int scoreFont = -1
 
 	bool firstEntry = true;
 	bool onTurn = false;
@@ -75,6 +77,10 @@ public:
 	int rngEnemyNum;
 	int rngTypeEnemy;
 	int remainingAllies, remainingEnemies;
+	
+	char hp[64] = { 0 };
+	char num[64] = { 0 };
+	char battleText[64] = { 0 };
 private:
 };
 

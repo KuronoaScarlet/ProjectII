@@ -33,7 +33,7 @@
  - `E` Interaction.
  - `SPACE` Continue dialogues and combat steps.
  - `ESC` Open pause menu.
- - `MouseClick` Choose combat option.
+ - `MouseClick` Choose combat option and Menu options.
  - `1, 2 and 3` Choose dialogue option and combat target.
  - `F10` Toggle god mode (increased speed and ignore collisions).
  - `F9` Show collision rects.

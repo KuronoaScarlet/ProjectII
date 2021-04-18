@@ -330,7 +330,7 @@ bool Scene1::OnGuiMouseClickEvent(GuiControl* control)
         }
         else if (control->id == 12)
         {
-            app->fade->Fade((Module*)app->title, (Module*)app->intro, 20);
+            app->fade->Fade((Module*)app->title, (Module*)app->intro, 40);
         }
         else if (control->id == 13)
         {

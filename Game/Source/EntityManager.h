@@ -62,7 +62,7 @@ public:
 		SDL_Rect cameraBckUp;
 
 		//Dialog
-		bool onDialog;
+		bool onDialog = false;
 
 		//Combat Stats
 		int level = 1;

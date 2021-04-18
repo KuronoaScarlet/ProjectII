@@ -249,7 +249,7 @@ void App::FinishUpdate()
 	}
 
 	static char title[256];
-	sprintf_s(title, 256, "FPS: %d | AVG FPS %.2f | Last Frame in ms: %.1f(dt) | VSync = On ",
+	sprintf_s(title, 256, "CARONTE MANDATE",
 		prevLastSecFrameCnt, fpsAverageSinceStart, dt * 1000.0);
 	app->win->SetTitle(title);
 	

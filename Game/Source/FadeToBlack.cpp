@@ -7,6 +7,7 @@
 
 #include "Defs.h"
 #include "Log.h"
+#include "Audio.h"
 
 #include "SDL/include/SDL_render.h"
 
@@ -27,6 +28,7 @@ bool FadeToBlack::Start()
 {
 	LOG("Preparing Fade Screen");
 
+	oleee = app->audio->LoadFx("Assets/Audio/FX/oleee.wav");
 	// Enable blending mode for transparency
 	SDL_SetRenderDrawBlendMode(app->render->renderer, SDL_BLENDMODE_BLEND);
 	return true;
@@ -36,6 +38,7 @@ bool FadeToBlack::Update(float dt)
 {
 	// Exit this function if we are not performing a fade
 	//if (currentStep == Fade_Step::NONE) return Update_Status::UPDATE_CONTINUE;
+
 
 	if (currentStep == Fade_Step::NONE)
 	{
@@ -101,7 +104,7 @@ bool FadeToBlack::CleanUp()
 bool FadeToBlack::Fade(Module* toDisable, Module* toEnable, float frames)
 {
 	bool ret = true;
-
+	app->audio->PlayFx(oleee);
 	moduleToDisable = toDisable;
 	moduleToEnable = toEnable;
 

@@ -35,6 +35,8 @@
  - `ESC` Open pause menu.
  - `MouseClick` Choose combat option.
  - `1, 2 and 3` Choose dialogue option and combat target.
+ - `F10` Toggle god mode (increased speed and ignore collisions).
+ - `F9` Show collision rects.
 
 ## License
 

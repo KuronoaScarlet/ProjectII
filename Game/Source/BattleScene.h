@@ -41,15 +41,13 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-	bool OnGuiMouseClickEvent(GuiControl* control);
-
 	void ResumeCombat();
 
 	void DealDamage(Entity* attacker, Entity* deffender);
 
 	void PrintText();
 
-	void BattleText(Entity* attacker, Entity* defender);
+	bool OnGuiMouseClickEvent(GuiControl* control);
 
 	//Fonts
 	Fonts* font;
@@ -62,6 +60,9 @@ public:
 	bool firstEntry = true;
 	bool onTurn = false;
 	bool playerTurn = false;
+	bool allyTurn = false;
+	bool attackMenu = false;
+	bool endTurn = false;
 	bool attacked = false;
 	bool win = false;
 	bool loose = false;
@@ -79,6 +80,7 @@ public:
 	int rngEnemyNum;
 	int rngTypeEnemy;
 	int remainingAllies, remainingEnemies;
+	int counter;
 	
 	char hp[64] = { 0 };
 	char num[64] = { 0 };

@@ -141,11 +141,8 @@ bool EntityManager::PostUpdate()
 		app->render->DrawTexture(playerData.pauseMenu, -app->render->camera.x, -app->render->camera.y, NULL);
 		//fullScreen->Draw(app->render);
 		resumeButton->Draw(app->render);
-		app->render->DrawText(app->render->font, "Resume", 530, 120, 60, 5, { 255, 255, 255, 255 });
 		settingsButton->Draw(app->render);
-		app->render->DrawText(app->render->font, "Settings", 520, 245, 60, 5, { 255, 255, 255, 255 });
 		exitButton->Draw(app->render);
-		app->render->DrawText(app->render->font, "Exit Game", 500, 550, 60, 5, { 255, 255, 255, 255 });
 		if (settingsEnabled)
 		{
 			app->render->DrawTexture(settingsPost, -app->render->camera.x + 875, -app->render->camera.y + 100, NULL);

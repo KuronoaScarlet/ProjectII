@@ -47,19 +47,19 @@ bool BattleScene::Start()
 	combatBox = app->tex->Load("Assets/Textures/combat_box.png");
 
 	//BUTTONS---------------------------------------------------------
-	attack = new GuiButton(1, { 517, 304, 250, 80 }, "attack");
+	attack = new GuiButton(101, { 230, 580, 250, 80 }, "attack");
 	attack->SetObserver((Scene1*)this);
 	attack->SetTexture(app->tex->Load("Assets/Textures/finger0.png"), app->tex->Load("Assets/Textures/finger1.png"), app->tex->Load("Assets/Textures/finger2.png"));
 
-	defend = new GuiButton(1, { 800, 304, 250, 80 }, "defend");
+	defend = new GuiButton(102, { 480, 580, 250, 80 }, "defend");
 	defend->SetObserver((Scene1*)this);
 	defend->SetTexture(app->tex->Load("Assets/Textures/defend0.png"), app->tex->Load("Assets/Textures/defend1.png"), app->tex->Load("Assets/Textures/defend2.png"));
 
-	run = new GuiButton(1, { 875, 400, 250, 80 }, "run");
+	run = new GuiButton(103, { 480, 640, 250, 80 }, "run");
 	run->SetObserver((Scene1*)this);
 	run->SetTexture(app->tex->Load("Assets/Textures/run0.png"), app->tex->Load("Assets/Textures/run1.png"), app->tex->Load("Assets/Textures/run2.png"));
 
-	combine = new GuiButton(1, { 517, 400, 250, 80 }, "combine");
+	combine = new GuiButton(104, { 230, 640, 250, 80 }, "combine");
 	combine->SetObserver((Scene1*)this);
 	combine->SetTexture(app->tex->Load("Assets/Textures/combine0.png"), app->tex->Load("Assets/Textures/combine1.png"), app->tex->Load("Assets/Textures/combine2.png"));
 	//--------------------------------------------------------------
@@ -151,16 +151,109 @@ bool BattleScene::Update(float dt)
 			
 			if (pointer->type == Entity::Type::PLAYER)
 			{
-				sprintf_s(battleText, 64, "Que deberia hacer Player?");
-				playerTurn = true;
-				attack->Update(app->input, dt);
-				run->Update(app->input, dt);
-				defend->Update(app->input, dt);
-				combine->Update(app->input, dt);
+				if (attackMenu == false)
+				{
+					sprintf_s(battleText, 64, "Que deberia hacer Player?");
+					playerTurn = true;
+					attack->Update(app->input, dt);
+					run->Update(app->input, dt);
+					defend->Update(app->input, dt);
+					combine->Update(app->input, dt);
+				}
+				else if (attackMenu == true && endTurn == false)
+				{
+					if (app->battleScene->rngEnemyNum == 0)
+					{
+						sprintf_s(app->battleScene->battleText, 64, "Pulsa 1, 2 o 3 y ataca al enemigo!");
+						if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+						{
+							sprintf_s(app->battleScene->battleText, 64, "Player ha atacado a Enemy 1!");
+							app->battleScene->DealDamage(pointer, app->entityManager->entityList.start->data);
+							endTurn = true;
+						}
+						if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
+						{
+							sprintf_s(app->battleScene->battleText, 64, "Player ha atacado a Enemy 2!");
+							app->battleScene->DealDamage(pointer, app->entityManager->entityList.start->next->data);
+							endTurn = true;
+						}
+						if (app->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN)
+						{
+							sprintf_s(app->battleScene->battleText, 64, "Player ha atacado a Enemy 3!");
+							app->battleScene->DealDamage(pointer, app->entityManager->entityList.start->next->next->data);
+							endTurn = true;
+						}
+					}
+					if (app->battleScene->rngEnemyNum != 0)
+					{
+						sprintf_s(app->battleScene->battleText, 64, "Pulsa 1 o 2 y ataca al enemigo!");
+						if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+						{
+							sprintf_s(app->battleScene->battleText, 64, "Player ha atacado a Enemy 1!");
+							DealDamage(pointer, app->entityManager->entityList.start->data);
+							endTurn = true;
+						}
+						if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
+						{
+							sprintf_s(app->battleScene->battleText, 64, "Player ha atacado a Enemy 2!");
+							DealDamage(pointer, app->entityManager->entityList.start->next->data);
+							endTurn = true;
+						}
+					}
+				}
 			}
 			if (pointer->type == Entity::Type::ALLY1)
 			{
-				
+				if (attackMenu == false)
+				{
+					sprintf_s(battleText, 64, "Que deberia hacer Ally 1?");
+					playerTurn = true;
+					attack->Update(app->input, dt);
+					run->Update(app->input, dt);
+					defend->Update(app->input, dt);
+					combine->Update(app->input, dt);
+				}
+				else if (attackMenu == true && endTurn == false)
+				{
+					if (app->battleScene->rngEnemyNum == 0)
+					{
+						sprintf_s(app->battleScene->battleText, 64, "Pulsa 1, 2 o 3 y ataca al enemigo!");
+						if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+						{
+							sprintf_s(app->battleScene->battleText, 64, "Player ha atacado a Enemy 1!");
+							app->battleScene->DealDamage(pointer, app->entityManager->entityList.start->data);
+							endTurn = true;
+						}
+						if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
+						{
+							sprintf_s(app->battleScene->battleText, 64, "Player ha atacado a Enemy 2!");
+							app->battleScene->DealDamage(pointer, app->entityManager->entityList.start->next->data);
+							endTurn = true;
+						}
+						if (app->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN)
+						{
+							sprintf_s(app->battleScene->battleText, 64, "Player ha atacado a Enemy 3!");
+							app->battleScene->DealDamage(pointer, app->entityManager->entityList.start->next->next->data);
+							endTurn = true;
+						}
+					}
+					if (app->battleScene->rngEnemyNum != 0)
+					{
+						sprintf_s(app->battleScene->battleText, 64, "Pulsa 1 o 2 y ataca al enemigo!");
+						if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+						{
+							sprintf_s(app->battleScene->battleText, 64, "Player ha atacado a Enemy 1!");
+							DealDamage(pointer, app->entityManager->entityList.start->data);
+							endTurn = true;
+						}
+						if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
+						{
+							sprintf_s(app->battleScene->battleText, 64, "Player ha atacado a Enemy 2!");
+							DealDamage(pointer, app->entityManager->entityList.start->next->data);
+							endTurn = true;
+						}
+					}
+				}
 			}
 			
 			break;
@@ -177,11 +270,11 @@ bool BattleScene::Update(float dt)
 				switch (randomPick)
 				{
 				case 0: //Ally//
-					sprintf_s(battleText, 64, "Enemigo 2 ha atacado a un Aliado");
+					sprintf_s(battleText, 64, "Enemy 2 ha atacado a un Aliado");
 					DealDamage(pointer, app->entityManager->entityList.end->prev->data);
 					break;
 				case 1: //Player//
-					sprintf_s(battleText, 64, "Enemigo 2 ha atacado al Player");
+					sprintf_s(battleText, 64, "Enemy 2 ha atacado al Player");
 					DealDamage(pointer, app->entityManager->entityList.end->data);
 					break;
 				}
@@ -192,11 +285,11 @@ bool BattleScene::Update(float dt)
 				switch (randomPick)
 				{
 				case 0: //Ally//
-					sprintf_s(battleText, 64, "Enemigo 1 ha atacado a un Aliado");
+					sprintf_s(battleText, 64, "Enemy 1 ha atacado a un Aliado");
 					DealDamage(pointer, app->entityManager->entityList.end->prev->data);
 					break;
 				case 1: //Player//
-					sprintf_s(battleText, 64, "Enemigo 1 ha atacado al Player");
+					sprintf_s(battleText, 64, "Enemy 1 ha atacado al Player");
 					DealDamage(pointer, app->entityManager->entityList.end->data);
 					break;
 				}
@@ -207,11 +300,11 @@ bool BattleScene::Update(float dt)
 				switch (randomPick)
 				{
 				case 0: //Ally//
-					sprintf_s(battleText, 64, "Enemigo 2 ha atacado a un Aliado");
+					sprintf_s(battleText, 64, "Enemy 2 ha atacado a un Aliado");
 					DealDamage(pointer, app->entityManager->entityList.end->prev->data);
 					break;
 				case 1: //Player//
-					sprintf_s(battleText, 64, "Enemigo 2 ha atacado al Player");
+					sprintf_s(battleText, 64, "Enemy 2 ha atacado al Player");
 					DealDamage(pointer, app->entityManager->entityList.end->data);
 					break;
 				}
@@ -226,7 +319,7 @@ bool BattleScene::Update(float dt)
 		app->fade->Fade(this, (Module*)app->scene1);
 	}
 
-	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && win == false)
 	{
 		ResumeCombat();
 	}
@@ -259,6 +352,22 @@ bool BattleScene::PostUpdate()
 			{
 				loose = true;
 			}
+			if (remainingEnemies == 0)
+			{
+				win = true;
+				if (win == true)
+				{
+					win = false;
+					remainingEnemies = 1;
+					sprintf_s(battleText, 64, "Has ganado!");
+					timerr.Start();
+					counter = timerr.ReadSec();
+					if (counter > 3)
+					{
+						app->fade->Fade(this, (Module*)app->scene1);
+					}
+				}
+			}
 		}
 		tmp = tmp->next;
 	}
@@ -266,7 +375,7 @@ bool BattleScene::PostUpdate()
 	app->render->DrawTexture(screen, 0, 0, NULL);
 	app->render->DrawTexture(combatBox, -app->render->camera.x, -app->render->camera.y + 530);
 	PrintText();
-	app->render->DrawText(app->render->font, battleText, 250, 540, 40, 3, { 0, 0, 0, 255 });
+	app->render->DrawText(app->render->font, battleText, 260, 550, 40, 3, { 0, 0, 0, 255 });
 
 	if(playerTurn == true)
 	{
@@ -287,6 +396,7 @@ bool BattleScene::CleanUp()
 	app->entityManager->CleanUp();
 	app->collisions->CleanUp();
 	app->tex->UnLoad(screen);
+	app->tex->UnLoad(combatBox);
 
 	app->battleScene->active = false;
 
@@ -298,6 +408,8 @@ void BattleScene::ResumeCombat()
 {
 	onTurn = false;
 	attacked = false;
+	endTurn = false;
+	attackMenu = false;
 
 	ListItem<Entity*>* tmp = app->entityManager->entityList.start;
 
@@ -330,8 +442,8 @@ void BattleScene::PrintText()
 			if (tmp->data->collider->type == Collider::Type::ENEMY)
 			{
 				sprintf_s(num, 10, "Enemy %d", countEnemy);
-				app->render->DrawText(app->render->font, num, 1070, (int)(540 * positionEnemy), 36, 3, { 0, 0, 0, 255 });
-				app->render->DrawText(app->render->font, hp, 1100, (int)(570 * positionEnemy), 36, 3, { 0, 0, 0, 255 });
+				app->render->DrawText(app->render->font, num, 1070, (int)(550 * positionEnemy), 36, 3, { 0, 0, 0, 255 });
+				app->render->DrawText(app->render->font, hp, 1100, (int)(580 * positionEnemy), 36, 3, { 0, 0, 0, 255 });
 				positionEnemy += 0.1f;
 				countEnemy++;
 			}
@@ -347,8 +459,8 @@ void BattleScene::PrintText()
 					sprintf_s(num, 10, "Ally: %d", countAlly);
 					countAlly++;
 				}
-				app->render->DrawText(app->render->font, num, 80, (int)(540 * positionAlly), 36, 3, { 0, 0, 0, 255 });
-				app->render->DrawText(app->render->font, hp, 110, (int)(570 * positionAlly), 36, 3, { 0, 0, 0, 255 });
+				app->render->DrawText(app->render->font, num, 80, (int)(550 * positionAlly), 36, 3, { 0, 0, 0, 255 });
+				app->render->DrawText(app->render->font, hp, 110, (int)(580 * positionAlly), 36, 3, { 0, 0, 0, 255 });
 				positionAlly += 0.1f;
 			}
 
@@ -358,7 +470,38 @@ void BattleScene::PrintText()
 	
 }
 
-void BattleScene::BattleText(Entity* attacker, Entity* deffender)
+bool BattleScene::OnGuiMouseClickEvent(GuiControl* control)
 {
-
+	switch (control->type)
+	{
+	case GuiControlType::BUTTON:
+	{
+		if (playerTurn == true)
+		{
+			if (control->id == 101)
+			{
+				playerTurn = false;
+				if (rngEnemyNum == 0)
+				{
+					sprintf_s(battleText, 64, "Pulsa 1, 2 o 3 y ataca al enemigo!");
+					if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+					{
+						DealDamage(pointer, app->entityManager->entityList.start->data);
+					}
+					if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
+					{
+						DealDamage(pointer, app->entityManager->entityList.start->next->data);
+					}
+					if (app->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN)
+					{
+						DealDamage(pointer, app->entityManager->entityList.start->next->next->data);
+					}
+				}
+			}
+		}
+	}
+	default: break;
+	}
+	
+	return true;
 }

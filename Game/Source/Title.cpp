@@ -12,6 +12,7 @@
 #include "Scene1.h"
 #include "EntityManager.h"
 #include "Fonts.h"
+#include "BattleScene.h"
 
 
 #include "Defs.h"
@@ -229,6 +230,17 @@ bool Scene1::OnGuiMouseClickEvent(GuiControl* control)
     {
     case GuiControlType::BUTTON:
     {
+        if (control->id == 101)
+        {
+            if (app->battleScene->playerTurn == true)
+            {
+                if (control->id == 101)
+                {
+                    app->battleScene->playerTurn = false;
+                    app->battleScene->attackMenu = true;
+                }
+            }
+        }
         if (control->id == 13)
         {
             app->title->creditsOnScreen = true;

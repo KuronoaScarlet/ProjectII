@@ -38,10 +38,10 @@ bool WinScreen::Awake()
 bool WinScreen::Start()
 {
     LOG("Loading Screens assets");
-
+    timer.Start();
     bool ret = true;
-
-    screen = app->tex->Load("Assets/Textures/win_screen.png");
+    app->entityManager->winCount = 0;
+    screen = app->tex->Load("Assets/Textures/Screens/pause_screen.png");
     app->audio->PlayMusic("Assets/Audio/Music/win_scene_music.ogg");
 
     return ret;
@@ -60,6 +60,14 @@ bool WinScreen::Update(float dt)
 // Update: draw background
 bool WinScreen::PostUpdate()
 {
+
+
+    finalTimer = count - timer.ReadSec();
+    if (finalTimer == 0)
+    {
+        app->fade->Fade(this, (Module*)app->title);
+        //finalTimer = 10;
+    }
     bool ret = true;
     // Draw everything --------------------------------------
     app->render->camera.x = 0;
@@ -75,5 +83,7 @@ bool WinScreen::CleanUp()
     LOG("Freeing intro");
     app->winScreen->active = false;
     app->tex->UnLoad(screen);
+    app->entityManager->CleanUp();
+    app->map->CleanUp();
     return true;
 }

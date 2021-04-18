@@ -51,6 +51,7 @@ public:
     // The scene sprite sheet loaded into an SDL_Texture
     SDL_Texture* screen = nullptr;
     SDL_Texture* creditsScene = nullptr;
+
     bool creditSceneFlag;
     SDL_Texture* settingsPost2;
     GuiButton* play;

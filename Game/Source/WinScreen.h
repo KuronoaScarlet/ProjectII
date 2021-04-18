@@ -3,6 +3,7 @@
 
 #include "Module.h"
 #include "Animation.h"
+#include "Timer.h"
 
 struct SDL_Texture;
 
@@ -23,6 +24,9 @@ public:
 
     bool PreUpdate();
 
+    Timer timer;
+    int count = 6;
+    int finalTimer = 0;
     // Called at the middle of the application loop
     // Updates the scene's background animations
     bool Update(float dt);

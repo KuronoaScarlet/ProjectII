@@ -11,6 +11,7 @@
 #include "Fonts.h"
 #include "Title.h"
 #include "DialogSystem.h"
+#include "WinScreen.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -116,6 +117,7 @@ bool BattleScene::Start()
 	ResumeCombat();
 
 	SDL_Texture* texas = app->tex->Load("Assets/Fonts/kurale.png");
+	winScreen = app->tex->Load("Assets/Textures/battle_scene.png");
 	font = new Fonts("Assets/Fonts/kurale.xml", texas);
 
 	return true;
@@ -238,19 +240,19 @@ bool BattleScene::Update(float dt)
 						sprintf_s(app->battleScene->battleText, 64, "Pulsa 1, 2 o 3 y ataca al enemigo!");
 						if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
 						{
-							sprintf_s(app->battleScene->battleText, 64, "Player ha atacado a Enemy 1!");
+							sprintf_s(app->battleScene->battleText, 64, "Ally 1 ha atacado a Enemy 1!");
 							app->battleScene->DealDamage(pointer, app->entityManager->entityList.start->data, defendOn);
 							endTurn = true;
 						}
 						if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN && app->entityManager->entityList.start->next->data->collider->type != Collider::Type::PLAYER)
 						{
-							sprintf_s(app->battleScene->battleText, 64, "Player ha atacado a Enemy 2!");
+							sprintf_s(app->battleScene->battleText, 64, "Ally 1 ha atacado a Enemy 2!");
 							app->battleScene->DealDamage(pointer, app->entityManager->entityList.start->next->data, defendOn);
 							endTurn = true;
 						}
 						if (app->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN && app->entityManager->entityList.start->next->data->collider->type != Collider::Type::PLAYER)
 						{
-							sprintf_s(app->battleScene->battleText, 64, "Player ha atacado a Enemy 3!");
+							sprintf_s(app->battleScene->battleText, 64, "Ally 1 ha atacado a Enemy 3!");
 							app->battleScene->DealDamage(pointer, app->entityManager->entityList.start->next->next->data, defendOn);
 							endTurn = true;
 						}
@@ -260,13 +262,13 @@ bool BattleScene::Update(float dt)
 						sprintf_s(app->battleScene->battleText, 64, "Pulsa 1 o 2 y ataca al enemigo!");
 						if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
 						{
-							sprintf_s(app->battleScene->battleText, 64, "Player ha atacado a Enemy 1!");
+							sprintf_s(app->battleScene->battleText, 64, "Ally 1 ha atacado a Enemy 1!");
 							DealDamage(pointer, app->entityManager->entityList.start->data, defendOn);
 							endTurn = true;
 						}
 						if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN && app->entityManager->entityList.start->next->data->collider->type != Collider::Type::PLAYER)
 						{
-							sprintf_s(app->battleScene->battleText, 64, "Player ha atacado a Enemy 2!");
+							sprintf_s(app->battleScene->battleText, 64, "Ally 1 ha atacado a Enemy 2!");
 							DealDamage(pointer, app->entityManager->entityList.start->next->data, defendOn);
 							endTurn = true;
 						}
@@ -378,13 +380,20 @@ bool BattleScene::PostUpdate()
 			if (remainingEnemies == 0)
 			{
 				win = true;
+				app->entityManager->winCount++;
+				if (app->entityManager->winCount == 3)
+				{
+					winScreenOnSceen = true;
+					printf("%d", app->entityManager->winCount);
+					app->fade->Fade(this, (Module*)app->winScreen);
+				}
 			}
 		}
 
 		tmp = tmp->next;
 	}
 
-	if (win)
+	if (win && app->entityManager->winCount != 3)
 	{
 		win = false;
 		sprintf_s(battleText, 64, "Has ganado!");

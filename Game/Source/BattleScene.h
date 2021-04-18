@@ -54,6 +54,7 @@ public:
 
 	SDL_Texture* screen = nullptr;
 	SDL_Texture* combatBox = nullptr;
+	SDL_Texture* winScreen = nullptr;
 
 	//int scoreFont = -1
 
@@ -66,6 +67,7 @@ public:
 	bool attacked = false;
 	bool defendOn = false;
 	bool win = false;
+	bool winScreenOnSceen = false;
 	bool loose = false;
 
 	GuiButton* attack;

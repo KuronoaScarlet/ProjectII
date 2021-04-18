@@ -56,6 +56,7 @@ bool Title::Start()
     screen = app->tex->Load("Assets/Textures/Screens/title_screen.png");
     app->audio->PlayMusic("Assets/Audio/Music/menu_music.ogg");
 
+    settingsPost2 = app->tex->Load("Assets/Textures/postit.png");
 
     play = new GuiButton(1, { 517, 304, 240, 60 }, "CONTINUE");
     play->SetObserver((Scene1*)this);
@@ -83,6 +84,10 @@ bool Title::Start()
     credits = new GuiButton(13, { 551, 514, 172, 55 }, "CREDITS");
     credits->SetObserver((Scene1*)this);
     credits->SetTexture(app->tex->Load("Assets/Textures/credits.png"), app->tex->Load("Assets/Textures/credits_selected.png"), app->tex->Load("Assets/Textures/credits_pressed.png"));
+
+    fullScreen = new GuiCheckBox(7, { 900,200, 300, 60 }, "FULLSCREEN");
+    fullScreen->SetObserver((Scene1*)this);
+    fullScreen->SetTexture(app->tex->Load("Assets/Textures/fs1.png"), app->tex->Load("Assets/Textures/fs2.png"), app->tex->Load("Assets/Textures/fs2.png"));
 
     exit = new GuiButton(4, { 580, 569, 117, 55 }, "EXIT");
     exit->SetObserver((Scene1*)this);
@@ -120,6 +125,10 @@ bool Title::Update(float dt)
         credits->Update(app->input, dt);
         exit->Update(app->input, dt);
     }
+    if (app->title->configOn)
+    {
+        fullScreen->Update(app->input, dt);
+    }
     if (creditsOnScreen)
     {
         escCredits->Update(app->input, dt);
@@ -153,11 +162,13 @@ bool Title::PostUpdate()
     {
         app->render->DrawTexture(creditsScene, 0, 0, NULL);
         escCredits->Draw(app->render);
+        configOn = false;
     }
 
     if (!creditSceneFlag)
     
     {
+        
         app->render->camera.y = 0;
         app->render->DrawTexture(screen, 0, 0, NULL);
 
@@ -176,12 +187,17 @@ bool Title::PostUpdate()
             newGame->Draw(app->render);
             
         }
+       
         options->Draw(app->render);
        
         credits->Draw(app->render);
 
         exit->Draw(app->render);
-      
+        if (app->title->configOn)
+        {
+            app->render->DrawTexture(app->title->settingsPost2, 875, 100, NULL);
+            fullScreen->Draw(app->render);
+        }
     }
    
     
@@ -244,7 +260,8 @@ bool Scene1::OnGuiMouseClickEvent(GuiControl* control)
         else if (control->id == 2)
         {
             //Settings
-            
+
+            app->title->configOn = !app->title->configOn;
         }
         else if (control->id == 3)
         {

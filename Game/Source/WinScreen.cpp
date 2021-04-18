@@ -41,7 +41,7 @@ bool WinScreen::Start()
     timer.Start();
     bool ret = true;
     app->entityManager->winCount = 0;
-    screen = app->tex->Load("Assets/Textures/Screens/pause_screen.png");
+    screen = app->tex->Load("Assets/Textures/Screens/win_screen.png");
     app->audio->PlayMusic("Assets/Audio/Music/win_scene_music.ogg");
 
     return ret;

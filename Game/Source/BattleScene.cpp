@@ -118,7 +118,6 @@ bool BattleScene::Start()
 
 	SDL_Texture* texas = app->tex->Load("Assets/Fonts/kurale.png");
 	winScreen = app->tex->Load("Assets/Textures/battle_scene.png");
-	font = new Fonts("Assets/Fonts/kurale.xml", texas);
 
 	return true;
 }

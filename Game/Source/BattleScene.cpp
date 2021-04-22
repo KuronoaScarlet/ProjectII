@@ -62,19 +62,19 @@ bool BattleScene::Start()
 	//BUTTONS---------------------------------------------------------
 	attack = new GuiButton(101, { 230, 580, 250, 80 }, "attack");
 	attack->SetObserver((Scene1*)this);
-	attack->SetTexture(app->tex->Load("Assets/Textures/finger0.png"), app->tex->Load("Assets/Textures/finger1.png"), app->tex->Load("Assets/Textures/finger2.png"));
+	attack->SetTexture(app->tex->Load("Assets/Textures/finger3.png"), app->tex->Load("Assets/Textures/finger4.png"), app->tex->Load("Assets/Textures/finger5.png"));
 
 	defend = new GuiButton(102, { 480, 580, 250, 80 }, "defend");
 	defend->SetObserver((Scene1*)this);
-	defend->SetTexture(app->tex->Load("Assets/Textures/defend0.png"), app->tex->Load("Assets/Textures/defend1.png"), app->tex->Load("Assets/Textures/defend2.png"));
+	defend->SetTexture(app->tex->Load("Assets/Textures/defend3.png"), app->tex->Load("Assets/Textures/defend4.png"), app->tex->Load("Assets/Textures/defend5.png"));
 
 	run = new GuiButton(103, { 480, 640, 250, 80 }, "run");
 	run->SetObserver((Scene1*)this);
-	run->SetTexture(app->tex->Load("Assets/Textures/run0.png"), app->tex->Load("Assets/Textures/run1.png"), app->tex->Load("Assets/Textures/run2.png"));
+	run->SetTexture(app->tex->Load("Assets/Textures/run3.png"), app->tex->Load("Assets/Textures/run4.png"), app->tex->Load("Assets/Textures/run5.png"));
 
 	combine = new GuiButton(104, { 230, 640, 250, 80 }, "combine");
 	combine->SetObserver((Scene1*)this);
-	combine->SetTexture(app->tex->Load("Assets/Textures/combine0.png"), app->tex->Load("Assets/Textures/combine1.png"), app->tex->Load("Assets/Textures/combine2.png"));
+	combine->SetTexture(app->tex->Load("Assets/Textures/combine3.png"), app->tex->Load("Assets/Textures/combine4.png"), app->tex->Load("Assets/Textures/combine5.png"));
 	//--------------------------------------------------------------
 	
 	app->render->camera = { 0, 0 };

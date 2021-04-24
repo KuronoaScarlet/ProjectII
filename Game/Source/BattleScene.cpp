@@ -415,7 +415,16 @@ bool BattleScene::PostUpdate()
 		defend->Draw(app->render);
 		combine->Draw(app->render);
 	}
-	
+
+	ListItem<Entity*>* bars = app->entityManager->entityList.start;
+
+	while (bars)
+	{
+		float barWidth = 100 * ((bars->data->turnTime - bars->data->combatTimer.ReadCombat()) / bars->data->turnTime);
+		SDL_Rect bar{ bars->data->position.x,0,barWidth,20 };
+		app->render->DrawRectangle(bar, 128, 255, 128, 255, true, true);
+		bars = bars->next;
+	}
 	return ret;
 }
 

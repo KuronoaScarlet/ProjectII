@@ -62,7 +62,10 @@ bool Scene1::Start()
 
 	app->map->Load("mapLvl2.tmx");
 
-	
+	app->collisions->AddCollider(SDL_Rect({ 500, 200, 32, 32 }), Collider::Type::PENCIL, this);
+
+	// 192 416
+
 	return true;
 }
 

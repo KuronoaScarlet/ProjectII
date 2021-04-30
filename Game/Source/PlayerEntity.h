@@ -44,6 +44,16 @@ private:
 	fPoint tempPlayerPosition;
 	
 	fPoint lerpCamera;
+
+	//// Items
+
+	Collider* frontCollider = nullptr;
+
+	int Pencil;
+	int PencilSharp;
+	
 };
 
 #endif // _GROUNDENEMY_H_
+
+// 192 416

@@ -167,6 +167,9 @@ void Collisions::DebugDraw()
 		case Collider::Type::NPC:
 			app->render->DrawRectangle(colliders[i]->rect, 255, 0, 255, alpha);
 			break;
+		case Collider::Type::PENCIL:
+			app->render->DrawRectangle(colliders[i]->rect, 255, 0, 150, alpha);
+			break;
 		}
 	}
 }

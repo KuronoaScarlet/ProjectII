@@ -82,6 +82,9 @@ PlayerEntity::PlayerEntity(Module* listener, fPoint position, SDL_Texture* textu
 
 	collider = app->collisions->AddCollider(SDL_Rect({ (int)position.x + 6, (int)position.y + 34, 22, 12 }), Collider::Type::PLAYER, listener);
 
+	frontCollider = app->collisions->AddCollider(SDL_Rect({ (int)position.x + 6, (int)position.y + 34, 12, 12 }), Collider::Type::PLAYER, listener);
+
+
 	lerpCamera.x = position.x;
 	lerpCamera.y = position.y;
 
@@ -169,6 +172,7 @@ bool PlayerEntity::Update(float dt)
 			{
 				if (currentAnimation != &idleAnimation)
 				{
+					//frontCollider->SetPos(position.x + 8, position.y + 20 + 32);
 					idleAnimation.Reset();
 					currentAnimation = &idleAnimation;
 				}
@@ -177,6 +181,7 @@ bool PlayerEntity::Update(float dt)
 			float speed = (godMode) ? 300 : 150;
 			if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT || pad.l_x < 0.0f)
 			{
+				frontCollider->SetPos(position.x - 20,position.y + 20);
 				position.x -= speed * dt;
 				if (currentAnimation != &walkAnimationLeft && app->input->GetKey(SDL_SCANCODE_W) != KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_S) != KEY_REPEAT)
 				{
@@ -186,6 +191,7 @@ bool PlayerEntity::Update(float dt)
 			}
 			if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT || pad.l_x > 0.0f)
 			{
+				frontCollider->SetPos(position.x + 20+18, position.y + 20);
 				position.x += speed * dt;
 				if (currentAnimation != &walkAnimationRight && app->input->GetKey(SDL_SCANCODE_W) != KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_S) != KEY_REPEAT)
 				{
@@ -195,6 +201,7 @@ bool PlayerEntity::Update(float dt)
 			}
 			if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT || pad.l_y < 0.0f)
 			{
+				frontCollider->SetPos(position.x + 8, position.y - 20);
 				position.y -= speed * dt;
 				if (currentAnimation != &walkAnimationUp)
 				{
@@ -204,6 +211,7 @@ bool PlayerEntity::Update(float dt)
 			}
 			if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT || pad.l_y > 0.0f)
 			{
+				frontCollider->SetPos(position.x + 8, position.y + 20 + 32);
 				position.y += speed * dt;
 				if (currentAnimation != &walkAnimationDown)
 				{
@@ -234,7 +242,7 @@ bool PlayerEntity::Update(float dt)
 
 	currentAnimation->Update();
 	collider->SetPos(position.x + 6,position.y + 34);
-
+	
 	return true;
 }
 
@@ -259,6 +267,3 @@ void PlayerEntity::CleanUp()
 {
 
 }
-
-
-

@@ -16,6 +16,7 @@ struct Collider
 		WALL,
 		NPC,
 		ENEMY,
+		PENCIL,
 
 		MAX
 	};

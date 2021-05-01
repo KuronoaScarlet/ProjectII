@@ -17,6 +17,7 @@
 #include "Enemy1.h"
 #include "Enemy2.h"
 #include "Enemy3.h"
+#include "Pencil.h"
 
 
 EntityManager::EntityManager() : Module()
@@ -45,6 +46,8 @@ bool EntityManager::Start()
 	texNPC1 = app->tex->Load("Assets/Textures/Entities/NPC/Kid_Mitty_32x32.png");
 	texNPC2 = app->tex->Load("Assets/Textures/Entities/NPC/Samuel_32x32.png");
 	texNPC3 = app->tex->Load("Assets/Textures/Entities/NPC/Rob_32x32.png");
+
+	texItem = app->tex->Load("Assets/Textures/Items/Shine.png");
 
 	texEnemy1 = app->tex->Load("Assets/Textures/Entities/Enemies/Halloween_Kid_1_idle_anim_32x32.png");
 	texEnemy3 = app->tex->Load("Assets/Textures/Entities/Enemies/Fishmonger_2_idle_anim_32x32.png");
@@ -265,6 +268,12 @@ void EntityManager::AddEntity(fPoint position, Entity::Type type)
 		LoadStats(entityCanonEnemy);
 		break;
 	//////////
+	///ITEMS/////
+	case Entity::Type::PENCIL:
+		entityPencil = (Entity*)(new Pencil((Module*)this, position, texItem, type));
+		entityList.Add(entityPencil);
+		break;
+	////////
 	}
 }
 

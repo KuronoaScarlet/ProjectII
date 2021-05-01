@@ -3,7 +3,7 @@
 
 #include "Input.h"
 #include "Render.h"
-#include "Scene1.h"
+#include "Module.h"
 
 #include "Point.h"
 #include "SString.h"
@@ -74,7 +74,7 @@ public:
         textureDisable = textDisable;
     }
 
-    void SetObserver(Scene1* module)
+    void SetObserver(Module* module)
     {
         observer = module;
     }
@@ -102,7 +102,7 @@ public:
 
     //Font font;              // Text font
 
-    Scene1* observer;        // Observer module (it should probably be an array/list)
+    Module* observer;        // Observer module (it should probably be an array/list)
 
     //Audio
 

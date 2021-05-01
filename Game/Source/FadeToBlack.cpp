@@ -104,6 +104,7 @@ bool FadeToBlack::CleanUp()
 bool FadeToBlack::Fade(Module* toDisable, Module* toEnable, float frames)
 {
 	bool ret = true;
+	currentStep = Fade_Step::NONE;
 	
 	moduleToDisable = toDisable;
 	moduleToEnable = toEnable;
@@ -115,6 +116,10 @@ bool FadeToBlack::Fade(Module* toDisable, Module* toEnable, float frames)
 		maxFadeFrames = frames;
 
 		ret = true;
+	}
+	else
+	{
+		ret = false;
 	}
 
 	frameCount = 0;

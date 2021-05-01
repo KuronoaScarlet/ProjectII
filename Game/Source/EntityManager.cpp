@@ -57,19 +57,19 @@ bool EntityManager::Start()
 
 
 	resumeButton = new GuiButton(32, {517,304, 240, 60 }, "CONTINUE");
-	resumeButton->SetObserver((Scene1*)this);
+	resumeButton->SetObserver(this);
 	resumeButton->SetTexture(app->tex->Load("Assets/Textures/resume.png"), app->tex->Load("Assets/Textures/resume_selected.png"), app->tex->Load("Assets/Textures/resume_pressed.png"));
 
 	settingsButton = new GuiButton(17, { 517, 409, 234, 55 }, "SETTINGS");
-	settingsButton->SetObserver((Scene1*)this);
+	settingsButton->SetObserver(this);
 	settingsButton->SetTexture(app->tex->Load("Assets/Textures/settings.png"), app->tex->Load("Assets/Textures/settings_selected.png"), app->tex->Load("Assets/Textures/settings_pressed.png"));
 
 	fullScreen = new GuiCheckBox(7, { 620,400, 300, 60 }, "FULLSCREEN");
-	fullScreen->SetObserver((Scene1*)this);
+	fullScreen->SetObserver(this);
 	fullScreen->SetTexture(app->tex->Load("Assets/Textures/fs1.png"), app->tex->Load("Assets/Textures/fs2.png"), app->tex->Load("Assets/Textures/fs2.png"));
 	
 	exitButton = new GuiButton(11, { 551, 360, 172, 55 }, "CREDITS");
-	exitButton->SetObserver((Scene1*)this);
+	exitButton->SetObserver(this);
 	exitButton->SetTexture(app->tex->Load("Assets/Textures/exit.png"), app->tex->Load("Assets/Textures/exit_selected.png"), app->tex->Load("Assets/Textures/exit_pressed.png"));
 
 	return true;

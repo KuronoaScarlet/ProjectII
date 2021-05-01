@@ -6,6 +6,8 @@
 #include "Timer.h"
 
 class GuiControl;
+#include "GuiButton.h"
+
 
 class Scene1 : public Module
 {
@@ -34,13 +36,16 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-	bool OnGuiMouseClickEvent(GuiControl* control);
+	bool OnGuiMouseClickEvent(GuiControl* control)
+	{
+		return true;
+	}
 
 	bool firstEntry = true;
 	bool on;
 	
 private:
-
+	//GuiButton* play;
 		
 };
 

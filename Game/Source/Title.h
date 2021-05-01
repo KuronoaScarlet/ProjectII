@@ -40,10 +40,8 @@ public:
 
     bool CleanUp();
 
-    bool OnGuiMouseClickEvent(GuiControl* control)
-    {
-        return true;
-    }
+    bool OnGuiMouseClickEvent(GuiControl* control);
+
 
 
 public:

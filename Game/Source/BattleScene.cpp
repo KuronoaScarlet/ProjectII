@@ -61,19 +61,19 @@ bool BattleScene::Start()
 
 	//BUTTONS---------------------------------------------------------
 	attack = new GuiButton(101, { 230, 580, 250, 80 }, "attack");
-	attack->SetObserver((Scene1*)this);
+	attack->SetObserver(this);
 	attack->SetTexture(app->tex->Load("Assets/Textures/finger3.png"), app->tex->Load("Assets/Textures/finger4.png"), app->tex->Load("Assets/Textures/finger5.png"));
 
 	defend = new GuiButton(102, { 480, 580, 250, 80 }, "defend");
-	defend->SetObserver((Scene1*)this);
+	defend->SetObserver(this);
 	defend->SetTexture(app->tex->Load("Assets/Textures/defend3.png"), app->tex->Load("Assets/Textures/defend4.png"), app->tex->Load("Assets/Textures/defend5.png"));
 
 	run = new GuiButton(103, { 480, 640, 250, 80 }, "run");
-	run->SetObserver((Scene1*)this);
+	run->SetObserver(this);
 	run->SetTexture(app->tex->Load("Assets/Textures/run3.png"), app->tex->Load("Assets/Textures/run4.png"), app->tex->Load("Assets/Textures/run5.png"));
 
 	combine = new GuiButton(104, { 230, 640, 250, 80 }, "combine");
-	combine->SetObserver((Scene1*)this);
+	combine->SetObserver(this);
 	combine->SetTexture(app->tex->Load("Assets/Textures/combine3.png"), app->tex->Load("Assets/Textures/combine4.png"), app->tex->Load("Assets/Textures/combine5.png"));
 	//--------------------------------------------------------------
 	

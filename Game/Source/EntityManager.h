@@ -8,6 +8,7 @@
 
 #include "GuiButton.h"
 #include "GuiCheckBox.h"
+#include "Title.h"
 
 #include "PugiXml/src/pugixml.hpp"
 
@@ -46,6 +47,13 @@ public:
 	void OnCollision(Collider* a, Collider* b);
 
 	void LoadStats(Entity* e);
+
+	bool OnGuiMouseClickEvent(GuiControl* control)
+	{
+		app->title->OnGuiMouseClickEvent(control);
+		return true;
+	}
+
 
 	struct PlayerData 
 	{

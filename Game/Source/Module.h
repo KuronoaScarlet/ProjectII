@@ -6,6 +6,7 @@
 #include "PugiXml/src/pugixml.hpp"
 
 struct Collider;
+class GuiControl;
 class App;
 
 class Module
@@ -70,6 +71,10 @@ public:
 	virtual void OnCollision(Collider* c1, Collider* c2)
 	{
 
+	}
+	virtual bool OnGuiMouseClickEvent(GuiControl* control)
+	{
+		return true;
 	}
 
 

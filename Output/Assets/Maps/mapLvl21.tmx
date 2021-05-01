@@ -53,8 +53,8 @@
  </imagelayer>
  <layer id="1" name="floor" width="102" height="57">
   <properties>
-   <property name="Collisions" type="int" value="0"/>
    <property name="drawable" type="int" value="1"/>
+   <property name="Collisions" type="int" value="0"/>
   </properties>
   <data>
    <tile/>
@@ -5875,8 +5875,8 @@
  </layer>
  <layer id="27" name="asd" width="102" height="57">
   <properties>
-   <property name="Collisions" type="int" value="0"/>
    <property name="drawable" type="int" value="1"/>
+   <property name="Collisions" type="int" value="0"/>
   </properties>
   <data>
    <tile/>
@@ -11697,8 +11697,8 @@
  </layer>
  <layer id="2" name="WallsBot" width="102" height="57">
   <properties>
-   <property name="Collisions" type="int" value="0"/>
    <property name="drawable" type="int" value="1"/>
+   <property name="Collisions" type="int" value="0"/>
   </properties>
   <data>
    <tile/>
@@ -17519,8 +17519,8 @@
  </layer>
  <layer id="23" name="EspecialDec" width="102" height="57">
   <properties>
-   <property name="Collisions" type="int" value="0"/>
    <property name="drawable" type="int" value="1"/>
+   <property name="Collisions" type="int" value="0"/>
   </properties>
   <data>
    <tile/>
@@ -23341,8 +23341,8 @@
  </layer>
  <layer id="3" name="walls" width="102" height="57">
   <properties>
-   <property name="Collisions" type="int" value="0"/>
    <property name="drawable" type="int" value="1"/>
+   <property name="Collisions" type="int" value="0"/>
   </properties>
   <data>
    <tile/>
@@ -29163,8 +29163,8 @@
  </layer>
  <layer id="4" name="walls3" width="102" height="57">
   <properties>
-   <property name="Collisions" type="int" value="0"/>
    <property name="drawable" type="int" value="1"/>
+   <property name="Collisions" type="int" value="0"/>
   </properties>
   <data>
    <tile/>
@@ -34985,8 +34985,8 @@
  </layer>
  <layer id="20" name="shadows" width="102" height="57">
   <properties>
-   <property name="Collisions" type="int" value="0"/>
    <property name="drawable" type="int" value="1"/>
+   <property name="Collisions" type="int" value="0"/>
   </properties>
   <data>
    <tile/>

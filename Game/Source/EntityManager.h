@@ -66,6 +66,10 @@ public:
 
 		//Combat Stats
 		int level = 1;
+
+		//Items
+		int Pencil = 0;
+		int PencilSharp = 0;
 	};
 
 	GuiButton* resumeButton;
@@ -96,6 +100,8 @@ private:
 	SDL_Texture* texEnemy1;
 	SDL_Texture* texEnemy3;
 
+	SDL_Texture* texItem;
+
 
 	Entity* entityPlayer;
 	Entity* entityAlly1;
@@ -107,6 +113,8 @@ private:
 	Entity* entityGhostEnemy;
 	Entity* entityTankEnemy;
 	Entity* entityCanonEnemy;
+
+	Entity* entityPencil;
 
 	//Fonts
 	int scoreFont = -1;

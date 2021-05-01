@@ -25,8 +25,6 @@ public:
 	void Collision(Collider* coll);
 
 	void CleanUp();
-public:
-
 
 private:
 	bool godMode = false;
@@ -49,8 +47,7 @@ private:
 
 	Collider* frontCollider = nullptr;
 
-	int Pencil;
-	int PencilSharp;
+
 	
 };
 

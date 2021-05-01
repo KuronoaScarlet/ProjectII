@@ -111,6 +111,9 @@
     <ClCompile Include="Source\Intro.cpp">
       <Filter>Scenes\NoLevels</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Pencil.cpp">
+      <Filter>Entities\Items</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -258,6 +261,9 @@
     <ClInclude Include="Source\Intro.h">
       <Filter>Scenes\NoLevels</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Pencil.h">
+      <Filter>Entities\Items</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">
@@ -295,6 +301,9 @@
     </Filter>
     <Filter Include="Entities\Enemies">
       <UniqueIdentifier>{7ed1c0d3-309a-4524-aa39-5fe8261e9000}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities\Items">
+      <UniqueIdentifier>{b5336556-afb7-4f6a-a599-84dcd700d93a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

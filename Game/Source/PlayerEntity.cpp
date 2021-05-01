@@ -82,7 +82,7 @@ PlayerEntity::PlayerEntity(Module* listener, fPoint position, SDL_Texture* textu
 
 	collider = app->collisions->AddCollider(SDL_Rect({ (int)position.x + 6, (int)position.y + 34, 22, 12 }), Collider::Type::PLAYER, listener);
 
-	frontCollider = app->collisions->AddCollider(SDL_Rect({ (int)position.x + 6, (int)position.y + 34, 12, 12 }), Collider::Type::PLAYER, listener);
+	frontCollider = app->collisions->AddCollider(SDL_Rect({ (int)position.x + 6, (int)position.y + 34, 12, 12 }), Collider::Type::FRONTPLAYER, listener);
 
 
 	lerpCamera.x = position.x;
@@ -149,6 +149,15 @@ bool PlayerEntity::Update(float dt)
 				tmp->data->Interaction();
 			}
 			
+		}
+		else if (tmp->data->type == Type::PENCIL)
+		{
+			if (position.DistanceTo(tmp->data->position) < 50)
+			{
+				
+				tmp->data->Interaction();
+			}
+
 		}
 
 		tmp = tmp->next;
@@ -259,6 +268,8 @@ void PlayerEntity::Collision(Collider* coll)
 {
 	if((coll->type == Collider::Type::WALL || coll->type == Collider::Type::NPC) && godMode == false)
 	position = tempPlayerPosition;
+
+	
 
 	
 }

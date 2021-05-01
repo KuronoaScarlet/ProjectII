@@ -21,7 +21,8 @@ public:
 		ALLY1,
 		EQUILIBRATED_ENEMY,
 		TANK_ENEMY,
-		DAMAGE_ENEMY
+		DAMAGE_ENEMY,
+		PENCIL
 	};
 
 	Entity(Module* listener, fPoint position, SDL_Texture* texture, Type type) : listener(listener), position(position), texture(texture), type(type)

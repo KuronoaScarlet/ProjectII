@@ -22,6 +22,13 @@ Collisions::Collisions(bool startEnabled) : Module()
 
 	matrix[Collider::Type::ENEMY][Collider::Type::PLAYER] = true;
 
+	matrix[Collider::Type::FRONTPLAYER][Collider::Type::PENCIL] = true;
+	matrix[Collider::Type::FRONTPLAYER][Collider::Type::FRONTPLAYER] = false;
+
+	matrix[Collider::Type::PENCIL][Collider::Type::FRONTPLAYER] = true;
+	matrix[Collider::Type::PENCIL][Collider::Type::PENCIL] = false;
+
+
 }
 
 // Called before render is available
@@ -169,6 +176,9 @@ void Collisions::DebugDraw()
 			break;
 		case Collider::Type::PENCIL:
 			app->render->DrawRectangle(colliders[i]->rect, 255, 0, 150, alpha);
+			break;
+		case Collider::Type::FRONTPLAYER:
+			app->render->DrawRectangle(colliders[i]->rect, 50, 0, 90, alpha);
 			break;
 		}
 	}

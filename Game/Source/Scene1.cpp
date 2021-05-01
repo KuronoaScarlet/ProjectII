@@ -45,6 +45,7 @@ bool Scene1::Start()
 	app->entityManager->AddEntity({ 1568.0f, 192.0f }, Entity::Type::NPC2);
 	app->entityManager->AddEntity({ 224.0f, 352.0f }, Entity::Type::NPC3);
 	
+	app->entityManager->AddEntity({ 192.0f, 416.0f}, Entity::Type::PENCIL);
 	app->entityManager->AddEntity({ app->playerPosition.x, app->playerPosition.y }, Entity::Type::PLAYER);
 
 	app->render->camera.y = 0;
@@ -62,10 +63,9 @@ bool Scene1::Start()
 
 	app->map->Load("mapLvl2.tmx");
 
-	app->collisions->AddCollider(SDL_Rect({ 500, 200, 32, 32 }), Collider::Type::PENCIL, this);
 
 	// 192 416
-
+	//{ 800.0f, 736.0f }
 	return true;
 }
 

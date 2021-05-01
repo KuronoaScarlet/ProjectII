@@ -167,7 +167,6 @@ bool Title::PostUpdate()
     }
 
     if (!creditSceneFlag)
-    
     {
         
         app->render->camera.y = 0;

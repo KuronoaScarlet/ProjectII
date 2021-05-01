@@ -53,6 +53,10 @@ bool Scene1::Start()
 
 	app->map->active = true;
 
+	bag = new GuiCheckBox(21, { 1155,20, 125, 90 }, "BAG");// 1155,20
+	bag->SetObserver(this);
+	bag->SetTexture(app->tex->Load("Assets/Textures/bag.png"), app->tex->Load("Assets/Textures/bag22.png"), app->tex->Load("Assets/Textures/bag22.png"));
+
 	app->audio->PlayMusic("Assets/Audio/Music/scene1_music.ogg");
 
 	if (app->loadingGame == true)
@@ -86,12 +90,19 @@ bool Scene1::Update(float dt)
 		return false;
 	}
 
+	if (!app->entityManager->settingsEnabled)
+	{
+		bag->Update(app->input, dt);
+	}
+
 	return true;
 }
 
 // Called each loop iteration
 bool Scene1::PostUpdate()
 {
+	bag->bounds.x = -app->render->camera.x + 1155;
+	bag->bounds.y = -app->render->camera.y + 20;
 	bool ret = true;
 
 	if (app->entityManager->playerData.onDialog == true)
@@ -107,6 +118,10 @@ bool Scene1::PostUpdate()
 			sprintf_s(response, 80, app->dialogueSystem->currentNode->answersList.At(i)->data.c_str(), 56);
 			app->render->DrawText(app->render->font, response, 170, 600 + (25 * (i + 1)), 45, 0, { 255, 150, 150, 255 });
 		}
+	}
+	if (!app->entityManager->settingsEnabled)
+	{
+		bag->Draw(app->render);
 	}
 
 	return ret;

@@ -72,6 +72,8 @@ bool EntityManager::Start()
 	exitButton->SetObserver(this);
 	exitButton->SetTexture(app->tex->Load("Assets/Textures/exit.png"), app->tex->Load("Assets/Textures/exit_selected.png"), app->tex->Load("Assets/Textures/exit_pressed.png"));
 
+
+
 	return true;
 }
 
@@ -114,6 +116,7 @@ bool EntityManager::Update(float dt)
 	if (!app->entityManager->playerData.pauseCondition)
 	{
 		app->audio->Volume(100, '0');
+
 	}
 	if (app->title->exi)	return false;
 
@@ -153,6 +156,7 @@ bool EntityManager::PostUpdate()
 		}
 	}
 	
+
 	return true;
 }
 

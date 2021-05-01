@@ -4,10 +4,10 @@
 #include "Module.h"
 #include "Animation.h"
 #include "Timer.h"
-
+class GuiCheckBox;
 class GuiControl;
 #include "GuiButton.h"
-
+#include "GuiCheckBox.h"
 
 class Scene1 : public Module
 {
@@ -43,7 +43,7 @@ public:
 
 	bool firstEntry = true;
 	bool on;
-	
+	GuiCheckBox* bag;
 private:
 	//GuiButton* play;
 		

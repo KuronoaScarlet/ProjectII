@@ -53,9 +53,9 @@ bool Scene1::Start()
 
 	app->map->active = true;
 
-	bag = new GuiCheckBox(21, { 1155,20, 125, 90 }, "BAG");// 1155,20
+	bag = new GuiButton(120, { 1155,20, 90, 125 }, "BAG");// 1155,20
 	bag->SetObserver(this);
-	bag->SetTexture(app->tex->Load("Assets/Textures/bag.png"), app->tex->Load("Assets/Textures/bag22.png"), app->tex->Load("Assets/Textures/bag22.png"));
+	bag->SetTexture(app->tex->Load("Assets/Textures/bag.png"), app->tex->Load("Assets/Textures/bag2.png"), app->tex->Load("Assets/Textures/bag2.png"));
 
 	app->audio->PlayMusic("Assets/Audio/Music/scene1_music.ogg");
 
@@ -65,11 +65,10 @@ bool Scene1::Start()
 		app->loadingGame = false;
 	}
 
+	inventoryTab = app->tex->Load("Assets/Textures/inventory_tab.png");
+
 	app->map->Load("mapLvl2.tmx");
 
-
-	// 192 416
-	//{ 800.0f, 736.0f }
 	return true;
 }
 
@@ -92,7 +91,7 @@ bool Scene1::Update(float dt)
 
 	if (!app->entityManager->settingsEnabled)
 	{
-		bag->Update(app->input, dt);
+		app->scene1->bag->Update(app->input, dt);
 	}
 
 	return true;
@@ -123,6 +122,10 @@ bool Scene1::PostUpdate()
 	{
 		bag->Draw(app->render);
 	}
+	/*if (app->scene1->bagEnabled && !app->entityManager->settingsEnabled)
+	{*/
+		app->render->DrawTexture(inventoryTab, -app->render->camera.x + 850, -app->render->camera.y + 50, NULL);
+	//}
 
 	return ret;
 }

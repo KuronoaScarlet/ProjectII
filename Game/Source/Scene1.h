@@ -5,6 +5,7 @@
 #include "Animation.h"
 #include "Timer.h"
 class GuiCheckBox;
+class GuiButton;
 class GuiControl;
 #include "GuiButton.h"
 #include "GuiCheckBox.h"
@@ -43,7 +44,12 @@ public:
 
 	bool firstEntry = true;
 	bool on;
-	GuiCheckBox* bag;
+
+	SDL_Texture* inventoryTab = nullptr;
+
+	bool bagEnabled = false;
+
+	GuiButton* bag;
 private:
 	//GuiButton* play;
 		

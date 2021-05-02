@@ -229,6 +229,10 @@ bool Title::OnGuiMouseClickEvent(GuiControl* control)
     {
     case GuiControlType::BUTTON:
     {
+        if (control->id == 120)
+        {
+            app->scene1->bagEnabled = !app->scene1->bagEnabled;
+        }
         if (control->id == 101)
         {
             if (app->battleScene->playerTurn == true)
@@ -282,17 +286,12 @@ bool Title::OnGuiMouseClickEvent(GuiControl* control)
             app->map->LoadState(map);
 
             if (app->currentLevel == 1) app->fade->Fade((Module*)app->title, (Module*)app->scene1, 10);
-           
         }
         else if (control->id == 2)
         {
             //Settings
 
             app->title->configOn = !app->title->configOn;
-        }
-        else if (control->id == 3)
-        {
-                       
         }
         else if (control->id == 11)
         {
@@ -304,7 +303,6 @@ bool Title::OnGuiMouseClickEvent(GuiControl* control)
                 app->fade->Fade((Module*)app->scene1, (Module*)app->title, 30);
             }
         }
-
         else if (control->id == 4)
         {
             //Exit
@@ -318,11 +316,7 @@ bool Title::OnGuiMouseClickEvent(GuiControl* control)
                 
                 app->title->vsync = false;
             }
-            else
-            {
-               
-            }
-        }
+       }
         else if (control->id == 9)
         {
                        
@@ -335,12 +329,10 @@ bool Title::OnGuiMouseClickEvent(GuiControl* control)
         {
             app->title->creditSceneFlag = true;
         }
-
         else if (control->id == 32)
         {
             app->entityManager->playerData.pauseCondition = false;
         }
- 
     }
     case GuiControlType::SLIDER:
     {
@@ -351,10 +343,7 @@ bool Title::OnGuiMouseClickEvent(GuiControl* control)
             {
                 app->title->volumMusic = ((control->bounds.x - 143) / 13.5) * 10;
                 app->audio->Volume(app->title->volumMusic, '0');
-                
-                
             }
-            
         }
         else if (control->id == 6)
         {
@@ -363,12 +352,8 @@ bool Title::OnGuiMouseClickEvent(GuiControl* control)
             {
                 app->title->volumMusic = ((control->bounds.x - 143) / 13.5) * 10;
                 app->audio->Volume(app->title->volumMusic, '1');
-                
-
             }
-
         }
-
     }
     case GuiControlType::CHECKBOX:
     {
@@ -384,8 +369,6 @@ bool Title::OnGuiMouseClickEvent(GuiControl* control)
             {
                 SDL_SetWindowFullscreen(app->win->window, SDL_WINDOW_RESIZABLE);
             }
-
-        
         }
     }
     default: break;

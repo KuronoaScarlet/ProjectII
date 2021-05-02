@@ -147,6 +147,9 @@
     <ClCompile Include="Source\ScotchTape.cpp">
       <Filter>Entities\Items</Filter>
     </ClCompile>
+    <ClCompile Include="Source\HUD.cpp">
+      <Filter>Scenes\NoLevels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -329,6 +332,9 @@
     </ClInclude>
     <ClInclude Include="Source\ScotchTape.h">
       <Filter>Entities\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HUD.h">
+      <Filter>Scenes\NoLevels</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

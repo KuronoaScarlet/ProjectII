@@ -13,6 +13,7 @@
 #include "EntityManager.h"
 #include "Fonts.h"
 #include "BattleScene.h"
+#include "HUD.h"
 
 
 #include "Defs.h"
@@ -231,7 +232,7 @@ bool Title::OnGuiMouseClickEvent(GuiControl* control)
     {
         if (control->id == 120)
         {
-            app->scene1->bagEnabled = !app->scene1->bagEnabled;
+            app->hud->bagEnabled = !app->hud->bagEnabled;
         }
         if (control->id == 101)
         {

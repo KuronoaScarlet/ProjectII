@@ -85,7 +85,6 @@ public:
 	GuiButton* exitButton;
 
 	GuiCheckBox* fullScreen;
-	GuiCheckBox* bag;
 
 	int winCount = 0;
 

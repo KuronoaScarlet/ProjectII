@@ -18,6 +18,7 @@
 #include "WinScreen.h"
 #include "Pathfinding.h"
 #include "DialogSystem.h"
+#include "HUD.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -50,6 +51,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	collisions = new Collisions(false);
 	deathScreen = new DeathScreen();
 	winScreen = new WinScreen();
+	hud = new Hud();
 	dialogueSystem = new DialogueSystem(input, render, tex);
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -69,6 +71,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(fade);
 	AddModule(deathScreen);
 	AddModule(winScreen);
+	AddModule(hud);
 
 	// Render last to swap buffer
 
@@ -81,6 +84,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	battleScene->active = false;
 	deathScreen->active = false;
 	winScreen->active = false;
+	hud->active = false;
 
 	playerPosition = { 640.0f, 800.0f };
 	
@@ -109,8 +113,6 @@ void App::AddModule(Module* module)
 
 bool App::Awake()
 {
-	
-
 	bool ret = LoadConfig();
 
 	if (ret == true)
@@ -127,10 +129,7 @@ bool App::Awake()
 			item = item->next;
 		}
 	}
-
-	
-
-	
+		
 	return ret;
 }
 

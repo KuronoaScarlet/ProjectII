@@ -19,6 +19,7 @@ class EntityManager;
 class Map;
 class Collisions;
 class DialogueSystem;
+class Hud;
 
 //Scenes
 class Logo;
@@ -109,6 +110,7 @@ public:
 	DeathScreen* deathScreen;
 	WinScreen* winScreen;
 	DialogueSystem* dialogueSystem;
+	Hud* hud;
 
 	uint activeFonts = 0;
 	uint totalFonts = 0;

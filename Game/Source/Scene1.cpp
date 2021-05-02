@@ -12,6 +12,7 @@
 #include "Fonts.h"
 #include "Title.h"
 #include "DialogSystem.h"
+#include "HUD.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -38,7 +39,7 @@ bool Scene1::Awake()
 bool Scene1::Start()
 {
 	app->scene1->active = true;
-
+	app->hud->Start();
 	app->entityManager->AddEntity({ 800.0f, 736.0f }, Entity::Type::NPC1);
 	app->entityManager->AddEntity({ 352.0f, 1312.0f }, Entity::Type::NPC2);
 	app->entityManager->AddEntity({ 1600.0f, 1024.0f }, Entity::Type::NPC2);
@@ -53,10 +54,6 @@ bool Scene1::Start()
 
 	app->map->active = true;
 
-	bag = new GuiButton(120, { 1155,20, 90, 125 }, "BAG");// 1155,20
-	bag->SetObserver(this);
-	bag->SetTexture(app->tex->Load("Assets/Textures/bag.png"), app->tex->Load("Assets/Textures/bag2.png"), app->tex->Load("Assets/Textures/bag2.png"));
-
 	app->audio->PlayMusic("Assets/Audio/Music/scene1_music.ogg");
 
 	if (app->loadingGame == true)
@@ -64,8 +61,6 @@ bool Scene1::Start()
 		app->LoadGameRequest();
 		app->loadingGame = false;
 	}
-
-	inventoryTab = app->tex->Load("Assets/Textures/inventory_tab.png");
 
 	app->map->Load("mapLvl2.tmx");
 
@@ -89,10 +84,6 @@ bool Scene1::Update(float dt)
 		return false;
 	}
 
-	if (!app->entityManager->settingsEnabled)
-	{
-		app->scene1->bag->Update(app->input, dt);
-	}
 
 	return true;
 }
@@ -100,8 +91,6 @@ bool Scene1::Update(float dt)
 // Called each loop iteration
 bool Scene1::PostUpdate()
 {
-	bag->bounds.x = -app->render->camera.x + 1155;
-	bag->bounds.y = -app->render->camera.y + 20;
 	bool ret = true;
 
 	if (app->entityManager->playerData.onDialog == true)
@@ -117,14 +106,6 @@ bool Scene1::PostUpdate()
 			sprintf_s(response, 80, app->dialogueSystem->currentNode->answersList.At(i)->data.c_str(), 56);
 			app->render->DrawText(app->render->font, response, 170, 600 + (25 * (i + 1)), 45, 0, { 255, 150, 150, 255 });
 		}
-	}
-	if (!app->entityManager->settingsEnabled)
-	{
-		bag->Draw(app->render);
-	}
-	if (app->scene1->bagEnabled && !app->entityManager->settingsEnabled)
-	{
-		app->render->DrawTexture(inventoryTab, -app->render->camera.x + 0, -app->render->camera.y + 0, NULL);
 	}
 
 	return ret;

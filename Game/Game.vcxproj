@@ -111,6 +111,7 @@
     <ClCompile Include="Source\GuiCheckBox.cpp" />
     <ClCompile Include="Source\GuiManager.cpp" />
     <ClCompile Include="Source\GuiSlider.cpp" />
+    <ClCompile Include="Source\HUD.cpp" />
     <ClCompile Include="Source\Intro.cpp" />
     <ClCompile Include="Source\LiquidPaper.cpp" />
     <ClCompile Include="Source\Logo.cpp" />
@@ -162,6 +163,7 @@
     <ClInclude Include="Source\GuiControl.h" />
     <ClInclude Include="Source\GuiManager.h" />
     <ClInclude Include="Source\GuiSlider.h" />
+    <ClInclude Include="Source\HUD.h" />
     <ClInclude Include="Source\Intro.h" />
     <ClInclude Include="Source\LiquidPaper.h" />
     <ClInclude Include="Source\Logo.h" />

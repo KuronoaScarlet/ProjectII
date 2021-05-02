@@ -1,5 +1,5 @@
-#ifndef __SCENE1_H__
-#define __SCENE1_H__
+#ifndef __HUD_H__
+#define __HUD_H__
 
 #include "Module.h"
 #include "Animation.h"
@@ -11,14 +11,14 @@ class GuiControl;
 #include "GuiButton.h"
 #include "GuiCheckBox.h"
 
-class Scene1 : public Module
+class Hud : public Module
 {
 public:
 
-	Scene1();
+	Hud();
 
 	// Destructor
-	virtual ~Scene1();
+	virtual ~Hud();
 
 	// Called before render is available
 	bool Awake();
@@ -47,10 +47,17 @@ public:
 	bool firstEntry = true;
 	bool on;
 
+	SDL_Texture* inventoryTab = nullptr;
+
+	bool bagEnabled = false;
+
+	GuiButton* bag;
+
+	GuiButton* pencil;
 private:
 	//GuiButton* play;
-		
+
 };
 
 
-#endif // __SCENE1_H__
+#endif // __HUD_H__

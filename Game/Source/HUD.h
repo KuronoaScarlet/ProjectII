@@ -54,6 +54,15 @@ public:
 	GuiButton* bag;
 
 	GuiButton* pencil;
+	GuiButton* ball;
+	GuiButton* book;
+	GuiButton* calculator;
+	GuiButton* coffee;
+	GuiButton* cola;
+	GuiButton* eraser;
+	GuiButton* rule;
+	GuiButton* tipex;
+	GuiButton* snack;
 private:
 	//GuiButton* play;
 

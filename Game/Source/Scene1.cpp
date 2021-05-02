@@ -122,10 +122,10 @@ bool Scene1::PostUpdate()
 	{
 		bag->Draw(app->render);
 	}
-	/*if (app->scene1->bagEnabled && !app->entityManager->settingsEnabled)
-	{*/
-		app->render->DrawTexture(inventoryTab, -app->render->camera.x + 850, -app->render->camera.y + 50, NULL);
-	//}
+	if (app->scene1->bagEnabled && !app->entityManager->settingsEnabled)
+	{
+		app->render->DrawTexture(inventoryTab, -app->render->camera.x + 0, -app->render->camera.y + 0, NULL);
+	}
 
 	return ret;
 }

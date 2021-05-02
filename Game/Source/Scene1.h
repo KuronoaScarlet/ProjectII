@@ -4,6 +4,7 @@
 #include "Module.h"
 #include "Animation.h"
 #include "Timer.h"
+#include "Title.h"
 class GuiCheckBox;
 class GuiButton;
 class GuiControl;
@@ -39,6 +40,7 @@ public:
 
 	bool OnGuiMouseClickEvent(GuiControl* control)
 	{
+		app->title->OnGuiMouseClickEvent(control);
 		return true;
 	}
 

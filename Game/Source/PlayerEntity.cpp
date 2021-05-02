@@ -15,9 +15,6 @@
 #include "DialogSystem.h"
 #include "Input.h"
 
-
-
-
 PlayerEntity::PlayerEntity(Module* listener, fPoint position, SDL_Texture* texture, Type type) : Entity(listener, position, texture, type)
 {
 	idleAnimation.loop = true;

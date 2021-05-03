@@ -7,6 +7,7 @@
 #include "Entity.h"
 #include "Fonts.h"
 #include "List.h"
+#include "Title.h"
 
 #include "GuiButton.h"
 #include "GuiSlider.h"
@@ -47,7 +48,11 @@ public:
 
 	void PrintText();
 
-	bool OnGuiMouseClickEvent(GuiControl* control);
+	bool OnGuiMouseClickEvent(GuiControl* control)
+	{
+		app->title->OnGuiMouseClickEvent(control);
+		return true;
+	}
 
 	SDL_Texture* screen = nullptr;
 	SDL_Texture* combatBox = nullptr;

@@ -418,13 +418,17 @@ bool BattleScene::PostUpdate()
 
 	ListItem<Entity*>* bars = app->entityManager->entityList.start;
 
+	int posy = 0;
+
 	while (bars)
 	{
-		float barWidth = 100 * ((bars->data->turnTime - bars->data->combatTimer.ReadCombat()) / bars->data->turnTime);
-		SDL_Rect bar{ bars->data->position.x,0,barWidth,20 };
+		float barWidth = 75 * ((bars->data->turnTime - bars->data->combatTimer.counter) / bars->data->turnTime);
+		SDL_Rect bar{ bars->data->position.x, posy, barWidth, 20 };
+		posy += 40;
 		app->render->DrawRectangle(bar, 128, 255, 128, 255, true, true);
 		bars = bars->next;
 	}
+
 	return ret;
 }
 
@@ -511,40 +515,4 @@ void BattleScene::PrintText()
 		tmp = tmp->next;
 	}
 	
-}
-
-bool BattleScene::OnGuiMouseClickEvent(GuiControl* control)
-{
-	switch (control->type)
-	{
-	case GuiControlType::BUTTON:
-	{
-		if (playerTurn == true)
-		{
-			if (control->id == 101)
-			{
-				playerTurn = false;
-				if (rngEnemyNum == 0)
-				{
-					sprintf_s(battleText, 64, "Pulsa 1, 2 o 3 y ataca al enemigo!");
-					if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
-					{
-						DealDamage(pointer, app->entityManager->entityList.start->data, defendOn);
-					}
-					if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
-					{
-						DealDamage(pointer, app->entityManager->entityList.start->next->data, defendOn);
-					}
-					if (app->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN)
-					{
-						DealDamage(pointer, app->entityManager->entityList.start->next->next->data, defendOn);
-					}
-				}
-			}
-		}
-	}
-	default: break;
-	}
-	
-	return true;
 }

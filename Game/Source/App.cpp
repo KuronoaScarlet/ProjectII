@@ -8,6 +8,7 @@
 #include "Title.h"
 #include "Intro.h"
 #include "Scene1.h"
+#include "Scene12.h"
 #include "BattleScene.h"
 #include "Map.h"
 #include "Options.h"
@@ -44,6 +45,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	title = new Title();
 	intro = new Intro();
 	scene1 = new Scene1();
+	scene12 = new Scene12();
 	battleScene = new BattleScene();
 	map = new Map();
 	entityManager = new EntityManager();
@@ -72,7 +74,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(deathScreen);
 	AddModule(winScreen);
 	AddModule(hud);
-
+	AddModule(scene12);
 	// Render last to swap buffer
 
 	AddModule(collisions);
@@ -80,6 +82,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 
 	title->active = false;
 	scene1->active = false;
+	scene12->active = false;
 	intro->active = false;
 	battleScene->active = false;
 	deathScreen->active = false;
@@ -87,7 +90,6 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	hud->active = false;
 
 	playerPosition = { 600.0f, 800.0f };
-	
 }
 
 App::~App()

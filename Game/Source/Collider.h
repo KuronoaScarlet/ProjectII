@@ -15,6 +15,8 @@ struct Collider
 		PLAYER,
 		FRONTPLAYER,
 		WALL,
+		TP1TO2,
+		TP2TO1,
 		NPC,
 		ENEMY,
 		PENCIL,

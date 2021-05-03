@@ -4,7 +4,7 @@
 #include "Audio.h"
 #include "Render.h"
 #include "Window.h"
-#include "Scene1.h"
+#include "Scene12.h"
 #include "Map.h"
 #include "EntityManager.h"
 #include "Collisions.h"
@@ -13,22 +13,22 @@
 #include "Title.h"
 #include "DialogSystem.h"
 #include "HUD.h"
+#include "Scene1.h"
 
 #include "Defs.h"
 #include "Log.h"
 
-Scene1::Scene1() : Module()
+Scene12::Scene12() : Module()
 {
-	name.Create("scene1");
-
+	name.Create("scene");
 }
 
 // Destructor
-Scene1::~Scene1()
+Scene12::~Scene12()
 {}
 
 // Called before render is available
-bool Scene1::Awake()
+bool Scene12::Awake()
 {
 	LOG("Loading Scene");
 	bool ret = true;
@@ -37,27 +37,17 @@ bool Scene1::Awake()
 }
 
 // Called before the first frame
-bool Scene1::Start()
+bool Scene12::Start()
 {
-	app->scene1->active = true;
+	app->scene12->active = true;
 	app->hud->Start();
-	app->entityManager->AddEntity({ 800.0f, 736.0f }, Entity::Type::NPC1);
-	app->entityManager->AddEntity({ 352.0f, 1312.0f }, Entity::Type::NPC2);
-	app->entityManager->AddEntity({ 1600.0f, 1024.0f }, Entity::Type::NPC2);
-	app->entityManager->AddEntity({ 1568.0f, 192.0f }, Entity::Type::NPC2);
-	app->entityManager->AddEntity({ 224.0f, 352.0f }, Entity::Type::NPC3);
-	
-	app->entityManager->AddEntity({ 192.0f, 416.0f}, Entity::Type::PENCIL);
+	app->playerPosition = { 1408.0f, 448.0f };
 	app->entityManager->AddEntity({ app->playerPosition.x, app->playerPosition.y }, Entity::Type::PLAYER);
 
 	app->render->camera.y = 0;
 	app->render->camera.x = 0;
 
 	app->map->active = true;
-
-	tp1to21 = app->collisions->AddCollider(SDL_Rect({ 992, 416, 32, 32 }), Collider::Type::TP1TO2, this);
-	tp1to22 = app->collisions->AddCollider(SDL_Rect({ 992, 448, 32, 32 }), Collider::Type::TP1TO2, this);
-	tp1to23 = app->collisions->AddCollider(SDL_Rect({ 992, 480, 32, 32 }), Collider::Type::TP1TO2, this);
 
 	app->audio->PlayMusic("Assets/Audio/Music/scene1_music.ogg");
 
@@ -67,37 +57,32 @@ bool Scene1::Start()
 		app->loadingGame = false;
 	}
 
-	app->map->Load("mapLvl21.tmx");
+	app->map->Load("mapLvl22.tmx");
 
 	return true;
 }
 
 // Called each loop iteration
-bool Scene1::PreUpdate()
+bool Scene12::PreUpdate()
 {
 	return true;
 }
 
 // Called each loop iteration
-bool Scene1::Update(float dt)
+bool Scene12::Update(float dt)
 {
 	app->map->Draw();
 	app->map->LoadColliders();
-	if (app->scene1->passingToLvl2)
-	{
-		app->fade->Fade((Module*)app->scene1, (Module*)app->scene12, 10);
-	}
+
 	if (app->title->exi == true)
 	{
 		return false;
 	}
-
-
 	return true;
 }
 
 // Called each loop iteration
-bool Scene1::PostUpdate()
+bool Scene12::PostUpdate()
 {
 	bool ret = true;
 
@@ -120,7 +105,7 @@ bool Scene1::PostUpdate()
 }
 
 // Called before quitting
-bool Scene1::CleanUp()
+bool Scene12::CleanUp()
 {
 	if (!active)return true;
 

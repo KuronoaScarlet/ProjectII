@@ -263,12 +263,14 @@ bool PlayerEntity::Draw()
 
 void PlayerEntity::Collision(Collider* coll)
 {
-	if((coll->type == Collider::Type::WALL || coll->type == Collider::Type::NPC) && godMode == false)
-	position = tempPlayerPosition;
-
-	
-
-	
+	if ((coll->type == Collider::Type::WALL || coll->type == Collider::Type::NPC) && godMode == false)
+	{
+		position = tempPlayerPosition;
+	}
+	if ((coll->type == Collider::Type::TP1TO2 && godMode == false))
+	{
+		app->scene1->passingToLvl2 = !app->scene1->passingToLvl2;
+	}
 }
 
 void PlayerEntity::CleanUp()

@@ -1,5 +1,5 @@
-#ifndef __SCENE1_H__
-#define __SCENE1_H__
+#ifndef __SCENE12_H__
+#define __SCENE12_H__
 
 #include "Module.h"
 #include "Animation.h"
@@ -11,14 +11,14 @@ class GuiControl;
 #include "GuiButton.h"
 #include "GuiCheckBox.h"
 
-class Scene1 : public Module
+class Scene12 : public Module
 {
 public:
 
-	Scene1();
+	Scene12();
 
 	// Destructor
-	virtual ~Scene1();
+	virtual ~Scene12();
 
 	// Called before render is available
 	bool Awake();
@@ -46,13 +46,6 @@ public:
 
 	bool firstEntry = true;
 	bool on;
-
-	Collider* tp1to21 = nullptr;
-	Collider* tp1to22 = nullptr;
-	Collider* tp1to23 = nullptr;
-
-	bool passingToLvl2 = false;
-
 
 private:
 	//GuiButton* play;

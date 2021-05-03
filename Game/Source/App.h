@@ -26,6 +26,7 @@ class Logo;
 class Title;
 class Intro;
 class Scene1;
+class Scene12;
 class BattleScene;
 class FadeToBlack;
 class DeathScreen;
@@ -102,6 +103,7 @@ public:
 	Title* title;
 	Intro* intro;
 	Scene1* scene1;
+	Scene12* scene12;
 	BattleScene* battleScene;
 	Map* map;
 	EntityManager* entityManager;

@@ -140,7 +140,7 @@ bool EntityManager::PostUpdate()
 		ListItem<Entity*>* entity = entityList.At(i);
 		entity->data->Draw();
 	}
-	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN && (app->scene1->active == true)) app->entityManager->playerData.pauseCondition = !app->entityManager->playerData.pauseCondition;
+	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN) app->entityManager->playerData.pauseCondition = !app->entityManager->playerData.pauseCondition;
 
 	if (app->entityManager->playerData.pauseCondition)
 	{

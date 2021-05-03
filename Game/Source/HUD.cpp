@@ -160,15 +160,15 @@ bool Hud::PostUpdate()
 	bool ret = true;
 
 	
-	if (!app->entityManager->settingsEnabled && app->scene1->active)
+	if (!app->entityManager->settingsEnabled)
 	{
 		bag->Draw(app->render);
 	}
-	if (app->hud->bagEnabled && !app->entityManager->settingsEnabled && app->scene1->active)
+	if (app->hud->bagEnabled && !app->entityManager->settingsEnabled)
 	{
 		app->render->DrawTexture(inventoryTab, -app->render->camera.x + 0, -app->render->camera.y + 0, NULL);
 	}
-	if (app->hud->bagEnabled && !app->entityManager->settingsEnabled && app->scene1->active)
+	if (app->hud->bagEnabled && !app->entityManager->settingsEnabled)
 	{
 		pencil->Draw(app->render);
 		ball->Draw(app->render);

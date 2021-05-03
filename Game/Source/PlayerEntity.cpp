@@ -14,6 +14,7 @@
 #include "Defs.h"
 #include "DialogSystem.h"
 #include "Input.h"
+#include "Scene12.h"
 
 PlayerEntity::PlayerEntity(Module* listener, fPoint position, SDL_Texture* texture, Type type) : Entity(listener, position, texture, type)
 {
@@ -162,7 +163,7 @@ bool PlayerEntity::Update(float dt)
 
 	GamePad& pad = app->input->pads[0];
 	tempPlayerPosition = position;
-	if (!app->entityManager->playerData.pauseCondition && app->scene1->active == true)
+	if (!app->entityManager->playerData.pauseCondition && (app->scene1->active == true || app->scene12->active == true))
 	{
 		if (app->entityManager->playerData.onDialog == false)
 		{
@@ -197,7 +198,7 @@ bool PlayerEntity::Update(float dt)
 			}
 			if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT || pad.l_x > 0.0f)
 			{
-				frontCollider->SetPos(position.x + 20+18, position.y + 20);
+				frontCollider->SetPos(position.x + 38, position.y + 20);
 				position.x += speed * dt;
 				if (currentAnimation != &walkAnimationRight && app->input->GetKey(SDL_SCANCODE_W) != KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_S) != KEY_REPEAT)
 				{
@@ -237,6 +238,7 @@ bool PlayerEntity::Update(float dt)
 			}
 
 			//camera update
+
 			lerpCamera.x += (position.x - lerpCamera.x) * dt * 1.0f;
 			lerpCamera.y += (position.y - lerpCamera.y) * dt * 1.0f;
 			app->render->camera.x = -int(lerpCamera.x) + 640;

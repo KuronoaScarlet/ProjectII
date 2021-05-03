@@ -14,6 +14,7 @@
 #include "Fonts.h"
 #include "BattleScene.h"
 #include "HUD.h"
+#include "Scene12.h"
 
 
 #include "Defs.h"
@@ -342,6 +343,10 @@ bool Title::OnGuiMouseClickEvent(GuiControl* control)
             if (app->scene1->active == true)
             {
                 app->fade->Fade((Module*)app->scene1, (Module*)app->title, 30);
+            }
+            if (app->scene12->active == true)
+            {
+                app->fade->Fade((Module*)app->scene12, (Module*)app->title, 30);
             }
         }
         else if (control->id == 4)

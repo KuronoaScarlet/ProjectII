@@ -234,6 +234,46 @@ bool Title::OnGuiMouseClickEvent(GuiControl* control)
         {
             app->hud->bagEnabled = !app->hud->bagEnabled;
         }
+        if (control->id == 130)
+        {
+            app->hud->bagEnabled = !app->hud->bagEnabled;
+        }
+        if (control->id == 131)
+        {
+            app->hud->bagEnabled = !app->hud->bagEnabled;
+        }
+        if (control->id == 132)
+        {
+            app->hud->bagEnabled = !app->hud->bagEnabled;
+        }
+        if (control->id == 133)
+        {
+            app->hud->bagEnabled = !app->hud->bagEnabled;
+        }
+        if (control->id == 134)
+        {
+            app->hud->bagEnabled = !app->hud->bagEnabled;
+        }
+        if (control->id == 135)
+        {
+            app->hud->bagEnabled = !app->hud->bagEnabled;
+        }
+        if (control->id == 136)
+        {
+            app->hud->bagEnabled = !app->hud->bagEnabled;
+        }
+        if (control->id == 137)
+        {
+            app->hud->bagEnabled = !app->hud->bagEnabled;
+        }
+        if (control->id == 138)
+        {
+            app->hud->bagEnabled = !app->hud->bagEnabled;
+        }
+        if (control->id == 139)
+        {
+            app->hud->bagEnabled = !app->hud->bagEnabled;
+        }
         if (control->id == 101)
         {
             if (app->battleScene->playerTurn == true)

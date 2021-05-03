@@ -269,7 +269,7 @@ void PlayerEntity::Collision(Collider* coll)
 	}
 	if ((coll->type == Collider::Type::TP1TO2 && godMode == false))
 	{
-		app->scene1->passingToLvl2 = !app->scene1->passingToLvl2;
+		app->scene1->passingToLvl2 = true;
 	}
 }
 

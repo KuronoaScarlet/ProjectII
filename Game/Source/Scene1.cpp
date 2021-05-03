@@ -83,10 +83,13 @@ bool Scene1::Update(float dt)
 {
 	app->map->Draw();
 	app->map->LoadColliders();
-	if (app->scene1->passingToLvl2)
+
+	if (app->scene1->passingToLvl2== true && lpl == false)
 	{
 		app->fade->Fade((Module*)app->scene1, (Module*)app->scene12, 10);
+		lpl = true;
 	}
+
 	if (app->title->exi == true)
 	{
 		return false;

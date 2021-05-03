@@ -52,6 +52,7 @@ public:
 	Collider* tp1to23 = nullptr;
 
 	bool passingToLvl2 = false;
+	bool lpl = false;
 
 
 private:

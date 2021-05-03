@@ -88,7 +88,6 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	deathScreen->active = false;
 	winScreen->active = false;
 	hud->active = false;
-
 	playerPosition = { 600.0f, 800.0f };
 }
 

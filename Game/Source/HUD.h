@@ -50,6 +50,16 @@ public:
 	SDL_Texture* inventoryTab = nullptr;
 
 	bool bagEnabled = false;
+	bool pencilEnabled = false;
+	bool ballEnabled = false;
+	bool bookEnabled = false;
+	bool calculatorEnabled = false;
+	bool coffeeEnabled = false;
+	bool colaEnabled = false;
+	bool eraserEnabled = false;
+	bool ruleEnabled = false;
+	bool tipexEnabled = false;
+	bool snackEnabled = false;
 
 	GuiButton* bag;
 

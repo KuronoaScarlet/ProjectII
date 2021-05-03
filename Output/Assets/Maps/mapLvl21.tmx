@@ -53,8 +53,8 @@
  </imagelayer>
  <layer id="1" name="floor" width="102" height="57">
   <properties>
-   <property name="Collisions" type="int" value="0"/>
    <property name="drawable" type="int" value="1"/>
+   <property name="Collisions" type="int" value="0"/>
   </properties>
   <data>
    <tile/>
@@ -5875,8 +5875,8 @@
  </layer>
  <layer id="27" name="asd" width="102" height="57">
   <properties>
-   <property name="Collisions" type="int" value="0"/>
    <property name="drawable" type="int" value="1"/>
+   <property name="Collisions" type="int" value="0"/>
   </properties>
   <data>
    <tile/>
@@ -11697,8 +11697,8 @@
  </layer>
  <layer id="2" name="WallsBot" width="102" height="57">
   <properties>
-   <property name="Collisions" type="int" value="0"/>
    <property name="drawable" type="int" value="1"/>
+   <property name="Collisions" type="int" value="0"/>
   </properties>
   <data>
    <tile/>
@@ -17519,8 +17519,8 @@
  </layer>
  <layer id="23" name="EspecialDec" width="102" height="57">
   <properties>
-   <property name="Collisions" type="int" value="0"/>
    <property name="drawable" type="int" value="1"/>
+   <property name="Collisions" type="int" value="0"/>
   </properties>
   <data>
    <tile/>
@@ -23341,8 +23341,8 @@
  </layer>
  <layer id="3" name="walls" width="102" height="57">
   <properties>
-   <property name="Collisions" type="int" value="0"/>
    <property name="drawable" type="int" value="1"/>
+   <property name="Collisions" type="int" value="0"/>
   </properties>
   <data>
    <tile/>
@@ -29163,8 +29163,8 @@
  </layer>
  <layer id="4" name="walls3" width="102" height="57">
   <properties>
-   <property name="Collisions" type="int" value="0"/>
    <property name="drawable" type="int" value="1"/>
+   <property name="Collisions" type="int" value="0"/>
   </properties>
   <data>
    <tile/>
@@ -34985,8 +34985,8 @@
  </layer>
  <layer id="20" name="shadows" width="102" height="57">
   <properties>
-   <property name="Collisions" type="int" value="0"/>
    <property name="drawable" type="int" value="1"/>
+   <property name="Collisions" type="int" value="0"/>
   </properties>
   <data>
    <tile/>
@@ -40807,8 +40807,8 @@
  </layer>
  <layer id="24" name="Charis" width="102" height="57">
   <properties>
-   <property name="Collisions" type="int" value="0"/>
    <property name="drawable" type="int" value="1"/>
+   <property name="Collisions" type="int" value="0"/>
   </properties>
   <data>
    <tile/>
@@ -46629,8 +46629,8 @@
  </layer>
  <layer id="5" name="Decorations" width="102" height="57">
   <properties>
-   <property name="Collisions" type="int" value="0"/>
    <property name="drawable" type="int" value="1"/>
+   <property name="Collisions" type="int" value="0"/>
   </properties>
   <data>
    <tile/>
@@ -52451,8 +52451,8 @@
  </layer>
  <layer id="6" name="walls2" width="102" height="57">
   <properties>
-   <property name="Collisions" type="int" value="0"/>
    <property name="drawable" type="int" value="1"/>
+   <property name="Collisions" type="int" value="0"/>
   </properties>
   <data>
    <tile/>
@@ -58273,8 +58273,8 @@
  </layer>
  <layer id="7" name="Decorations2" width="102" height="57">
   <properties>
-   <property name="Collisions" type="int" value="0"/>
    <property name="drawable" type="int" value="1"/>
+   <property name="Collisions" type="int" value="0"/>
   </properties>
   <data>
    <tile/>
@@ -64095,8 +64095,8 @@
  </layer>
  <layer id="25" name="Dec3" width="102" height="57" visible="0">
   <properties>
-   <property name="Collisions" type="int" value="0"/>
    <property name="drawable" type="int" value="1"/>
+   <property name="Collisions" type="int" value="0"/>
   </properties>
   <data>
    <tile/>
@@ -70055,8 +70055,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="1"/>
    <tile/>
    <tile/>
    <tile/>
@@ -70158,6 +70157,7 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="1"/>
    <tile/>
    <tile/>
    <tile/>
@@ -70259,7 +70259,7 @@
    <tile gid="1"/>
    <tile gid="1"/>
    <tile gid="1"/>
-   <tile/>
+   <tile gid="1"/>
    <tile/>
    <tile/>
    <tile/>
@@ -70361,7 +70361,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="1"/>
    <tile/>
    <tile/>
    <tile/>
@@ -70463,7 +70463,7 @@
    <tile/>
    <tile/>
    <tile gid="1"/>
-   <tile/>
+   <tile gid="1"/>
    <tile/>
    <tile/>
    <tile/>
@@ -70565,7 +70565,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="1"/>
    <tile/>
    <tile/>
    <tile/>
@@ -70667,7 +70667,7 @@
    <tile/>
    <tile/>
    <tile gid="1"/>
-   <tile/>
+   <tile gid="1"/>
    <tile/>
    <tile/>
    <tile/>
@@ -70755,7 +70755,6 @@
    <tile/>
    <tile/>
    <tile gid="1"/>
-   <tile/>
    <tile/>
    <tile/>
    <tile/>
@@ -70770,6 +70769,7 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="1"/>
    <tile/>
    <tile/>
    <tile/>
@@ -70871,7 +70871,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="1"/>
    <tile/>
    <tile/>
    <tile/>
@@ -70973,7 +70973,7 @@
    <tile gid="1"/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="1"/>
    <tile/>
    <tile/>
    <tile/>
@@ -71073,9 +71073,9 @@
    <tile/>
    <tile/>
    <tile gid="1"/>
-   <tile/>
    <tile/>
    <tile/>
+   <tile gid="1"/>
    <tile/>
    <tile/>
    <tile/>
@@ -71177,7 +71177,7 @@
    <tile gid="1"/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="1"/>
    <tile/>
    <tile/>
    <tile/>

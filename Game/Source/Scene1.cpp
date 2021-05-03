@@ -62,7 +62,8 @@ bool Scene1::Start()
 		app->loadingGame = false;
 	}
 
-	app->map->Load("mapLvl2.tmx");
+	app->map->Load("mapLvl21.tmx");
+	//app->map->Load("mapLvl22.tmx");
 
 	return true;
 }

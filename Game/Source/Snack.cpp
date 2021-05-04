@@ -1,4 +1,4 @@
-#include "Pencil.h"
+#include "Snack.h"
 #include "App.h"
 #include "Render.h"
 #include "Collisions.h"
@@ -16,7 +16,7 @@
 #include "PlayerEntity.h"
 
 
-Pencil::Pencil(Module* listener, fPoint position, SDL_Texture* texture, Type type) : Entity(listener, position, texture, type)
+Snack::Snack(Module* listener, fPoint position, SDL_Texture* texture, Type type) : Entity(listener, position, texture, type)
 {
 	idleAnimation.loop = true;
 	idleAnimation.PushBack({ 0, 0, 32, 32 });
@@ -30,12 +30,12 @@ Pencil::Pencil(Module* listener, fPoint position, SDL_Texture* texture, Type typ
 	collider = app->collisions->AddCollider(SDL_Rect({ (int)position.x, (int)position.y, 32, 32 }), Collider::Type::PENCIL, listener);
 }
 
-bool Pencil::Start()
+bool Snack::Start()
 {
 	return true;
 }
 
-bool Pencil::Update(float dt)
+bool Snack::Update(float dt)
 {
 
 	currentAnimation->Update();
@@ -44,7 +44,7 @@ bool Pencil::Update(float dt)
 	return true;
 }
 
-bool Pencil::Draw()
+bool Snack::Draw()
 {
 	SDL_Rect rect = currentAnimation->GetCurrentFrame();
 	app->render->DrawTexture(texture, position.x, position.y, &rect);
@@ -52,13 +52,13 @@ bool Pencil::Draw()
 	return true;
 }
 
-bool Pencil::Interaction()
+bool Snack::Interaction()
 {
 	if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN) && picked == false)
 	{
-		app->entityManager->playerData.Pencil++;
+		app->entityManager->playerData.snack++;
 		CleanUp();
-		printf("%d", app->entityManager->playerData.Pencil);
+		printf("%d", app->entityManager->playerData.snack);
 		picked = true;
 
 	}
@@ -66,12 +66,12 @@ bool Pencil::Interaction()
 	return true;
 }
 
-void Pencil::Collision(Collider* coll)
+void Snack::Collision(Collider* coll)
 {
 	
 }
 
-void Pencil::CleanUp()
+void Snack::CleanUp()
 {
 	pendingToDelete = true;
 	collider->pendingToDelete = true;

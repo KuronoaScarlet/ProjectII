@@ -56,9 +56,9 @@ bool Calculator::Interaction()
 {
 	if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN) && picked == false)
 	{
-		app->entityManager->playerData.Pencil++;
+		app->entityManager->playerData.calculator++;
 		CleanUp();
-		printf("%d", app->entityManager->playerData.Pencil);
+		printf("%d", app->entityManager->playerData.calculator);
 		picked = true;
 
 	}

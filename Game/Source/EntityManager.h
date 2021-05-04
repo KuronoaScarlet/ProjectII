@@ -135,6 +135,17 @@ private:
 
 	Entity* entityPencil;
 	Entity* entityBall;
+	Entity* entityBook;
+	Entity* entityCalculator;
+	Entity* entityCan;
+	Entity* entityCoffee;
+	Entity* entityFistAidKit;
+	Entity* entityLiquidPaper;
+	Entity* entityPencilSharpener;
+	Entity* entityRubber;
+	Entity* entityRule;
+	Entity* entityScotchTape;
+	Entity* entitySnack;
 
 	//Fonts
 	int scoreFont = -1;

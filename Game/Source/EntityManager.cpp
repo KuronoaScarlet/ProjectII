@@ -282,6 +282,50 @@ void EntityManager::AddEntity(fPoint position, Entity::Type type)
 		entityBall = (Entity*)(new Ball((Module*)this, position, texItem, type));
 		entityList.Add(entityBall);
 		break;
+	case Entity::Type::BOOK:
+		entityBook = (Entity*)(new Ball((Module*)this, position, texItem, type));
+		entityList.Add(entityBook);
+		break;
+	case Entity::Type::CALCULATOR:
+		entityCalculator = (Entity*)(new Ball((Module*)this, position, texItem, type));
+		entityList.Add(entityCalculator);
+		break;
+	case Entity::Type::CAN:
+		entityCan = (Entity*)(new Ball((Module*)this, position, texItem, type));
+		entityList.Add(entityCan);
+		break;
+	case Entity::Type::COFFEE:
+		entityCoffee = (Entity*)(new Ball((Module*)this, position, texItem, type));
+		entityList.Add(entityCoffee);
+		break;
+	case Entity::Type::FAK:
+		entityFistAidKit = (Entity*)(new Ball((Module*)this, position, texItem, type));
+		entityList.Add(entityFistAidKit);
+		break;
+	case Entity::Type::LIQUIDPAPER:
+		entityLiquidPaper = (Entity*)(new Ball((Module*)this, position, texItem, type));
+		entityList.Add(entityLiquidPaper);
+		break;
+	case Entity::Type::PENCILSHARPENER:
+		entityPencilSharpener = (Entity*)(new Ball((Module*)this, position, texItem, type));
+		entityList.Add(entityPencilSharpener);
+		break;
+	case Entity::Type::RUBBER:
+		entityRubber = (Entity*)(new Ball((Module*)this, position, texItem, type));
+		entityList.Add(entityRubber);
+		break;
+	case Entity::Type::RULE:
+		entityRule = (Entity*)(new Ball((Module*)this, position, texItem, type));
+		entityList.Add(entityRule);
+		break;
+	case Entity::Type::SCOTCHTAPE:
+		entityScotchTape = (Entity*)(new Ball((Module*)this, position, texItem, type));
+		entityList.Add(entityScotchTape);
+		break;
+	case Entity::Type::SNACK:
+		entitySnack = (Entity*)(new Ball((Module*)this, position, texItem, type));
+		entityList.Add(entitySnack);
+		break;
 	////////
 	}
 }

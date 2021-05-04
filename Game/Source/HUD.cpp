@@ -46,43 +46,43 @@ bool Hud::Start()
 
 	pencil = new GuiButton(130, { 204,73, 69, 72 }, "PENCIL");// 1155,20
 	pencil->SetObserver(this);
-	pencil->SetTexture(app->tex->Load("Assets/Textures/Items/Pencil.png"), app->tex->Load("Assets/Textures/Items/Pencil.png"), app->tex->Load("Assets/Textures/Items/Pencil.png"));
+	pencil->SetTexture(app->tex->Load("Assets/Textures/Items/Pencil.png"), app->tex->Load("Assets/Textures/Items/Pencil_1.png"), app->tex->Load("Assets/Textures/Items/Pencil_2.png"));
 
 	ball = new GuiButton(131, { 617,76, 70, 70 }, "PENCIL");// 1155,20
 	ball->SetObserver(this);
-	ball->SetTexture(app->tex->Load("Assets/Textures/Items/ball.png"), app->tex->Load("Assets/Textures/Items/ball.png"), app->tex->Load("Assets/Textures/Items/ball.png"));
+	ball->SetTexture(app->tex->Load("Assets/Textures/Items/ball.png"), app->tex->Load("Assets/Textures/Items/ball_1.png"), app->tex->Load("Assets/Textures/Items/ball_2.png"));
 
 	book = new GuiButton(132, { 441,423, 47, 70 }, "PENCIL");// 1155,20
 	book->SetObserver(this);
-	book->SetTexture(app->tex->Load("Assets/Textures/Items/book.png"), app->tex->Load("Assets/Textures/Items/book.png"), app->tex->Load("Assets/Textures/Items/book.png"));
+	book->SetTexture(app->tex->Load("Assets/Textures/Items/book.png"), app->tex->Load("Assets/Textures/Items/book_1.png"), app->tex->Load("Assets/Textures/Items/book_2.png"));
 
 	calculator = new GuiButton(133, { 424,320, 71, 69 }, "PENCIL");// 1155,20
 	calculator->SetObserver(this);
-	calculator->SetTexture(app->tex->Load("Assets/Textures/Items/calculator.png"), app->tex->Load("Assets/Textures/Items/calculator.png"), app->tex->Load("Assets/Textures/Items/calculator.png"));
+	calculator->SetTexture(app->tex->Load("Assets/Textures/Items/calculator.png"), app->tex->Load("Assets/Textures/Items/calculator_1.png"), app->tex->Load("Assets/Textures/Items/calculator_2.png"));
 
 	coffee = new GuiButton(134, { 418,182, 83, 80 }, "PENCIL");// 1155,20
 	coffee->SetObserver(this);
-	coffee->SetTexture(app->tex->Load("Assets/Textures/Items/coffe.png"), app->tex->Load("Assets/Textures/Items/coffe.png"), app->tex->Load("Assets/Textures/Items/coffe.png"));
+	coffee->SetTexture(app->tex->Load("Assets/Textures/Items/coffe.png"), app->tex->Load("Assets/Textures/Items/coffe_1.png"), app->tex->Load("Assets/Textures/Items/coffe_2.png"));
 
 	cola = new GuiButton(135, { 441,76, 37, 69 }, "PENCIL");// 1155,20
 	cola->SetObserver(this);
-	cola->SetTexture(app->tex->Load("Assets/Textures/Items/cola.png"), app->tex->Load("Assets/Textures/Items/cola.png"), app->tex->Load("Assets/Textures/Items/cola.png"));
+	cola->SetTexture(app->tex->Load("Assets/Textures/Items/cola.png"), app->tex->Load("Assets/Textures/Items/cola_1.png"), app->tex->Load("Assets/Textures/Items/cola_2.png"));
 
 	eraser = new GuiButton(136, { 204,426, 64, 70 }, "PENCIL");// 1155,20
 	eraser->SetObserver(this);
-	eraser->SetTexture(app->tex->Load("Assets/Textures/Items/eraser.png"), app->tex->Load("Assets/Textures/Items/eraser.png"), app->tex->Load("Assets/Textures/Items/eraser.png"));
+	eraser->SetTexture(app->tex->Load("Assets/Textures/Items/eraser.png"), app->tex->Load("Assets/Textures/Items/eraser_1.png"), app->tex->Load("Assets/Textures/Items/eraser_2.png"));
 
 	rule = new GuiButton(137, { 204,307, 74, 74 }, "PENCIL");// 1155,20
 	rule->SetObserver(this);
-	rule->SetTexture(app->tex->Load("Assets/Textures/Items/rule.png"), app->tex->Load("Assets/Textures/Items/rule.png"), app->tex->Load("Assets/Textures/Items/rule.png"));
+	rule->SetTexture(app->tex->Load("Assets/Textures/Items/rule.png"), app->tex->Load("Assets/Textures/Items/rule_1.png"), app->tex->Load("Assets/Textures/Items/rule_2.png"));
 
 	snack = new GuiButton(138, { 204,190, 67, 72 }, "PENCIL");// 1155,20
 	snack->SetObserver(this);
-	snack->SetTexture(app->tex->Load("Assets/Textures/Items/snack.png"), app->tex->Load("Assets/Textures/Items/snack.png"), app->tex->Load("Assets/Textures/Items/snack.png"));
+	snack->SetTexture(app->tex->Load("Assets/Textures/Items/snack.png"), app->tex->Load("Assets/Textures/Items/snack_1.png"), app->tex->Load("Assets/Textures/Items/snack_2.png"));
 
 	tipex = new GuiButton(139, { 629,193, 46, 80 }, "PENCIL");// 1155,20
 	tipex->SetObserver(this);
-	tipex->SetTexture(app->tex->Load("Assets/Textures/Items/tipex.png"), app->tex->Load("Assets/Textures/Items/tipex.png"), app->tex->Load("Assets/Textures/Items/tipex.png"));
+	tipex->SetTexture(app->tex->Load("Assets/Textures/Items/tipex.png"), app->tex->Load("Assets/Textures/Items/tipex_1.png"), app->tex->Load("Assets/Textures/Items/tipex_2.png"));
 
 
 	inventoryTab = app->tex->Load("Assets/Textures/inventory_tab.png");

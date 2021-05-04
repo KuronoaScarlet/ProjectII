@@ -153,6 +153,9 @@
     <ClCompile Include="Source\Scene12.cpp">
       <Filter>Scenes\Levels</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Snack.cpp">
+      <Filter>Entities\Items</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -341,6 +344,9 @@
     </ClInclude>
     <ClInclude Include="Source\Scene12.h">
       <Filter>Scenes\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Snack.h">
+      <Filter>Entities\Items</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

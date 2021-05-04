@@ -1,5 +1,5 @@
-#ifndef _PENCIL_H_
-#define _PENCIL_H_
+#ifndef _SNACK_H_
+#define _SNACK_H_
 
 #include "Point.h"
 #include "Entity.h"
@@ -11,10 +11,10 @@
 struct SDL_Texture;
 struct Collider;
 
-class Pencil : Entity
+class Snack : Entity
 {
 public:
-	Pencil(Module* listener, fPoint position, SDL_Texture* texture, Type type);
+	Snack(Module* listener, fPoint position, SDL_Texture* texture, Type type);
 
 	bool Start();
 

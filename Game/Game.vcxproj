@@ -134,6 +134,7 @@
     <ClCompile Include="Source\Render.cpp" />
     <ClCompile Include="Source\Scene12.cpp" />
     <ClCompile Include="Source\ScotchTape.cpp" />
+    <ClCompile Include="Source\Snack.cpp" />
     <ClCompile Include="Source\Textures.cpp" />
     <ClCompile Include="Source\Timer.cpp" />
     <ClCompile Include="Source\Title.cpp" />
@@ -189,6 +190,7 @@
     <ClInclude Include="Source\Render.h" />
     <ClInclude Include="Source\Scene12.h" />
     <ClInclude Include="Source\ScotchTape.h" />
+    <ClInclude Include="Source\Snack.h" />
     <ClInclude Include="Source\Textures.h" />
     <ClInclude Include="Source\Timer.h" />
     <ClInclude Include="Source\Title.h" />

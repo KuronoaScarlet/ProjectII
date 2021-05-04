@@ -77,6 +77,17 @@ public:
 
 		//Items
 		int Pencil = 0;
+		int ball = 0;
+		int book = 0;
+		int calculator = 0;
+		int cola = 0;
+		int coffee = 0;
+		int fak = 0;//first aid kit
+		int tipex = 0;
+		int eraser = 0;
+		int rule = 0;
+		int celo = 0;
+		int snack = 0;
 		int PencilSharp = 0;
 	};
 
@@ -123,6 +134,7 @@ private:
 	Entity* entityCanonEnemy;
 
 	Entity* entityPencil;
+	Entity* entityBall;
 
 	//Fonts
 	int scoreFont = -1;

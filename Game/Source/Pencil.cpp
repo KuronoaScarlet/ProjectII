@@ -60,7 +60,6 @@ bool Pencil::Interaction()
 		CleanUp();
 		printf("%d", app->entityManager->playerData.Pencil);
 		picked = true;
-
 	}
 	
 	return true;

@@ -166,10 +166,6 @@ bool Hud::PostUpdate()
 	}
 	if (app->hud->bagEnabled && !app->entityManager->settingsEnabled)
 	{
-		app->render->DrawTexture(inventoryTab, -app->render->camera.x + 0, -app->render->camera.y + 0, NULL);
-	}
-	if (app->hud->bagEnabled && !app->entityManager->settingsEnabled)
-	{
 		pencil->Draw(app->render);
 		ball->Draw(app->render);
 		book->Draw(app->render);
@@ -180,6 +176,62 @@ bool Hud::PostUpdate()
 		rule->Draw(app->render);
 		snack->Draw(app->render);
 		tipex->Draw(app->render);
+
+		char pencilCount[80] = { 0 };
+		sprintf_s(pencilCount, 80, "x%d", app->entityManager->playerData.Pencil);
+		app->render->DrawText(app->render->font, pencilCount, 300, 70, 60, 0, { 0, 0, 0, 255 });
+
+		char ballCount[80] = { 0 };
+		sprintf_s(ballCount, 80, "x%d", app->entityManager->playerData.ball);
+		app->render->DrawText(app->render->font, ballCount, 700, 70, 60, 0, { 0, 0, 0, 255 });
+
+		char bookCount[80] = { 0 };
+		sprintf_s(bookCount, 80, "x%d", app->entityManager->playerData.book);
+		app->render->DrawText(app->render->font, bookCount, 500, 430, 60, 0, { 0, 0, 0, 255 });
+
+		char calculatorCount[80] = { 0 };
+		sprintf_s(calculatorCount, 80, "x%d", app->entityManager->playerData.calculator);
+		app->render->DrawText(app->render->font, calculatorCount, 500, 330, 60, 0, { 0, 0, 0, 255 });
+
+		char colaCount[80] = { 0 };
+		sprintf_s(colaCount, 80, "x%d", app->entityManager->playerData.cola);
+		app->render->DrawText(app->render->font, colaCount, 500, 70, 60, 0, { 0, 0, 0, 255 });
+
+		/*char fakCount[80] = { 0 };
+		sprintf_s(fakCount, 80, "x%d", app->entityManager->playerData.fak);
+		app->render->DrawText(app->render->font, fakCount, 300, 70, 60, 0, { 0, 0, 0, 255 });*/
+
+
+		char coffeeCount[80] = { 0 };
+		sprintf_s(coffeeCount, 80, "x%d", app->entityManager->playerData.coffee);
+		app->render->DrawText(app->render->font, coffeeCount, 500, 200, 60, 0, { 0, 0, 0, 255 });
+
+
+		char tipexCount[80] = { 0 };
+		sprintf_s(tipexCount, 80, "x%d", app->entityManager->playerData.tipex);
+		app->render->DrawText(app->render->font, tipexCount, 700, 200, 60, 0, { 0, 0, 0, 255 });
+
+
+		char eraserCount[80] = { 0 };
+		sprintf_s(eraserCount, 80, "x%d", app->entityManager->playerData.eraser);
+		app->render->DrawText(app->render->font, eraserCount, 300, 430, 60, 0, { 0, 0, 0, 255 });
+
+
+		char ruleCount[80] = { 0 };
+		sprintf_s(ruleCount, 80, "x%d", app->entityManager->playerData.rule);
+		app->render->DrawText(app->render->font, ruleCount, 300, 330, 60, 0, { 0, 0, 0, 255 });
+
+		/*char celoCount[80] = { 0 };
+		sprintf_s(celoCount, 80, "x%d", app->entityManager->playerData.celo);
+		app->render->DrawText(app->render->font, celoCount, 300, 70, 60, 0, { 0, 0, 0, 255 });*/
+
+		char snackCount[80] = { 0 };
+		sprintf_s(snackCount, 80, "x%d", app->entityManager->playerData.snack);
+		app->render->DrawText(app->render->font, snackCount, 300, 200, 60, 0, { 0, 0, 0, 255 });
+	}
+	if (app->hud->bagEnabled && !app->entityManager->settingsEnabled)
+	{
+		app->render->DrawTexture(inventoryTab, -app->render->camera.x + 0, -app->render->camera.y + 0, NULL);
 	}
 
 	return ret;

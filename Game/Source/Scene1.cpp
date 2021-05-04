@@ -48,6 +48,8 @@ bool Scene1::Start()
 	app->entityManager->AddEntity({ 224.0f, 352.0f }, Entity::Type::NPC3);
 	
 	app->entityManager->AddEntity({ 192.0f, 416.0f}, Entity::Type::PENCIL);
+	app->entityManager->AddEntity({ 480.0f, 1600.0f}, Entity::Type::BALL);
+
 	app->entityManager->AddEntity({ app->playerPosition.x, app->playerPosition.y }, Entity::Type::PLAYER);
 
 	app->render->camera.y = 0;

@@ -152,10 +152,17 @@ bool PlayerEntity::Update(float dt)
 		{
 			if (position.DistanceTo(tmp->data->position) < 50)
 			{
-				
 				tmp->data->Interaction();
+				break;
 			}
-
+		}
+		else if (tmp->data->type == Type::BALL)
+		{
+			if (position.DistanceTo(tmp->data->position) < 50)
+			{
+				tmp->data->Interaction();
+				break;
+			}
 		}
 
 		tmp = tmp->next;

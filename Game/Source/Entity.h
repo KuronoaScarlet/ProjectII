@@ -22,7 +22,10 @@ public:
 		EQUILIBRATED_ENEMY,
 		TANK_ENEMY,
 		DAMAGE_ENEMY,
-		PENCIL
+		PENCIL,
+		BALL,
+		ERASER,
+		BOOK,
 	};
 
 	Entity(Module* listener, fPoint position, SDL_Texture* texture, Type type) : listener(listener), position(position), texture(texture), type(type)

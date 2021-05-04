@@ -18,6 +18,7 @@
 #include "Enemy2.h"
 #include "Enemy3.h"
 #include "Pencil.h"
+#include "Ball.h"
 
 
 EntityManager::EntityManager() : Module()
@@ -276,6 +277,10 @@ void EntityManager::AddEntity(fPoint position, Entity::Type type)
 	case Entity::Type::PENCIL:
 		entityPencil = (Entity*)(new Pencil((Module*)this, position, texItem, type));
 		entityList.Add(entityPencil);
+		break;
+	case Entity::Type::BALL:
+		entityBall = (Entity*)(new Ball((Module*)this, position, texItem, type));
+		entityList.Add(entityBall);
 		break;
 	////////
 	}

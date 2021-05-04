@@ -9,6 +9,7 @@
 #include "Animation.h"
 #include "Logo.h"
 #include "FadeToBlack.h"
+#include "Easings.h"
 
 
 #include "Defs.h"
@@ -39,6 +40,13 @@ bool Logo::Start()
 
     bool ret = true;
 
+    currentIteration = 0;
+    totalIterations = 120;
+    initialPosition = -1500;
+    deltaPosition = 1500;
+
+    position_x = -500;
+
     screen = app->tex->Load("Assets/Textures/Screens/team_logo.png");
     app->audio->PlayMusic("Assets/Audio/Music/logoscreen_fx.ogg");
 
@@ -67,15 +75,23 @@ bool Logo::PostUpdate()
 {
     bool ret = true;
     // Draw everything --------------------------------------
-    if (timer > 2 && trans == true)
+    position_x = easing->backEaseInOut(currentIteration, initialPosition, deltaPosition, totalIterations);
+
+    if (position_x == 0.0f && trans == true)
     {
         trans = false;
-        app->fade->Fade(this, (Module*)app->title, 10);
-
+        app->fade->Fade(this, (Module*)app->title, 0);
+        /*CleanUp();
+        app->title->Init();
+        app->title->Start();*/
     }
     //if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
-   
-   app->render->DrawTexture(screen, 0, 0, NULL);
+    if (currentIteration < totalIterations)
+    {
+        ++currentIteration;
+    }
+   app->render->DrawRectangle({ 0,0,1280, 720 }, 241, 241, 241, 255);
+   app->render->DrawTexture(screen, position_x, 0, NULL);
  
     return ret;
 }

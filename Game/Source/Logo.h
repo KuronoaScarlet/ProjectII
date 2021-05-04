@@ -3,6 +3,7 @@
 
 #include "Module.h"
 #include "Animation.h"
+#include "Easings.h"
 
 struct SDL_Texture;
 
@@ -36,6 +37,17 @@ public:
 public:
     // The scene sprite sheet loaded into an SDL_Texture
     SDL_Texture* screen = nullptr;
+
+    Easing* easing;
+    float position_x;
+    float position_y;
+
+
+    float currentIteration;
+    float totalIterations;
+    float initialPosition;
+    float deltaPosition;
+
 
     float timer;
     bool trans;

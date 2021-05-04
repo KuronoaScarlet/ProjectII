@@ -166,6 +166,11 @@ bool Hud::PostUpdate()
 	}
 	if (app->hud->bagEnabled && !app->entityManager->settingsEnabled)
 	{
+		app->render->DrawTexture(inventoryTab, -app->render->camera.x + 0, -app->render->camera.y + 0, NULL);
+	}
+
+	if (app->hud->bagEnabled && !app->entityManager->settingsEnabled)
+	{
 		pencil->Draw(app->render);
 		ball->Draw(app->render);
 		book->Draw(app->render);
@@ -229,11 +234,6 @@ bool Hud::PostUpdate()
 		sprintf_s(snackCount, 80, "x%d", app->entityManager->playerData.snack);
 		app->render->DrawText(app->render->font, snackCount, 300, 200, 60, 0, { 0, 0, 0, 255 });
 	}
-	if (app->hud->bagEnabled && !app->entityManager->settingsEnabled)
-	{
-		app->render->DrawTexture(inventoryTab, -app->render->camera.x + 0, -app->render->camera.y + 0, NULL);
-	}
-
 	return ret;
 }
 

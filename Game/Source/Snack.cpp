@@ -46,6 +46,7 @@ bool Snack::Update(float dt)
 
 bool Snack::Draw()
 {
+	
 	SDL_Rect rect = currentAnimation->GetCurrentFrame();
 	app->render->DrawTexture(texture, position.x, position.y, &rect);
 

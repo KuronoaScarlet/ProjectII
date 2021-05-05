@@ -132,7 +132,7 @@ bool Title::PreUpdate()
 bool Title::Update(float dt)
 {
 
-    if (creditSceneFlag == false)
+    if (creditSceneFlag == false && positionTitleCaronte == 430)
     {
         play->Update(app->input, dt);
         newGame->Update(app->input, dt);
@@ -204,35 +204,37 @@ bool Title::PostUpdate()
 
     if (!creditSceneFlag)
     {
-        
+
         app->render->camera.y = 0;
         app->render->DrawTexture(screen, 0, 0, NULL);
 
+        if (positionTitleCaronte == 430)
+        {
+            // start->Draw(app->render);
+            // SDL_Rect rectPlayer = playerData.currentAnim->GetCurrentFrame();
+            play->Draw(app->render);
 
-        // start->Draw(app->render);
-        // SDL_Rect rectPlayer = playerData.currentAnim->GetCurrentFrame();
-        play->Draw(app->render);
-       
-        if (!app->fileSaved)
-        {
-           
-            newGame->Draw(app->render);
-        }
-        else
-        {
-            newGame->Draw(app->render);
-            
-        }
-       
-        options->Draw(app->render);
-       
-        credits->Draw(app->render);
+            if (!app->fileSaved)
+            {
 
-        exit->Draw(app->render);
-        if (app->title->configOn)
-        {
-            app->render->DrawTexture(app->title->settingsPost2, 875, 100, NULL);
-            fullScreen->Draw(app->render);
+                newGame->Draw(app->render);
+            }
+            else
+            {
+                newGame->Draw(app->render);
+
+            }
+
+            options->Draw(app->render);
+
+            credits->Draw(app->render);
+
+            exit->Draw(app->render);
+            if (app->title->configOn)
+            {
+                app->render->DrawTexture(app->title->settingsPost2, 875, 100, NULL);
+                fullScreen->Draw(app->render);
+            }
         }
     }
    

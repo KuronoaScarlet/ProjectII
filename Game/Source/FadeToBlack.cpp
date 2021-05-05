@@ -72,7 +72,6 @@ bool FadeToBlack::Update(float dt)
 		}
 		break;
 	}
-	printf("%.2f---%.4f---%.2f---%d\n", alpha, dt, speed, currentStep);
 	return true;
 }
 

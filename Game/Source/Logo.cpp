@@ -80,7 +80,7 @@ bool Logo::PostUpdate()
     if (position_x == 0.0f && trans == true)
     {
         trans = false;
-        app->fade->Fade(this, (Module*)app->title, 0);
+        app->fade->Fade(this, (Module*)app->title);
         /*CleanUp();
         app->title->Init();
         app->title->Start();*/

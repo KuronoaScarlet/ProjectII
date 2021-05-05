@@ -88,7 +88,7 @@ bool Scene1::Update(float dt)
 
 	if (app->scene1->passingToLvl2== true && lpl == false)
 	{
-		app->fade->Fade((Module*)app->scene1, (Module*)app->scene12, 10);
+		app->fade->Fade((Module*)app->scene1, (Module*)app->scene12);
 		lpl = true;
 	}
 

@@ -31,7 +31,7 @@ public:
     // Called from another module
     // Starts the fade process which has two steps, fade_out and fade_in
     // After the first step, the modules should be switched
-    bool Fade(Module* toDisable, Module* toEnable, float frames = 60);
+    bool Fade(Module* toDisable, Module* toEnable, float new_speed = 200);
 
 private:
 
@@ -39,12 +39,13 @@ private:
     {
         NONE,
         TO_BLACK,
+        WAIT,
         FROM_BLACK
     } currentStep = Fade_Step::NONE;
 
     // A frame count system to handle the fade time and ratio
-    Uint32 frameCount = 0;
-    Uint32 maxFadeFrames = 0;
+    float alpha = 0;
+    float speed = 0;
 
     // The rectangle of the screen, used to render the black rectangle
     SDL_Rect screenRect;

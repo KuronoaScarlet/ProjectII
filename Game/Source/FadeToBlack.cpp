@@ -37,19 +37,17 @@ bool FadeToBlack::Start()
 bool FadeToBlack::Update(float dt)
 {
 	// Exit this function if we are not performing a fade
-	//if (currentStep == Fade_Step::NONE) return Update_Status::UPDATE_CONTINUE;
-
-
-	if (currentStep == Fade_Step::NONE)
+	switch (currentStep)
 	{
+	case Fade_Step::NONE:
 		return true;
-	}
-	if (currentStep == Fade_Step::TO_BLACK)
-	{
-		++frameCount;
-		if (frameCount >= maxFadeFrames)
+		break;
+	case Fade_Step::TO_BLACK:
+		alpha += speed * dt;
+		if (alpha > 255)
 		{
-			currentStep = Fade_Step::FROM_BLACK;
+			alpha = 255;
+			currentStep = Fade_Step::WAIT;
 
 			if (moduleToDisable->active)
 			{
@@ -61,33 +59,35 @@ bool FadeToBlack::Update(float dt)
 				moduleToEnable->Start();
 			}
 		}
-	}
-	else
-	{
-		--frameCount;
-		if (frameCount <= 0)
+		break;
+	case Fade_Step::WAIT:
+		currentStep = Fade_Step::FROM_BLACK;
+		break;
+	case Fade_Step::FROM_BLACK:
+		alpha -= speed * dt;
+		if (alpha < 0)
 		{
+			alpha = 0;
 			currentStep = Fade_Step::NONE;
 		}
+		break;
 	}
-
+	printf("%.2f---%.4f---%.2f---%d\n", alpha, dt, speed, currentStep);
 	return true;
 }
 
 bool FadeToBlack::PostUpdate()
 {
 	// Exit this function if we are not performing a fade
-//	if (currentStep == Fade_Step::NONE) return Update_Status::UPDATE_CONTINUE;
-
 	if (currentStep == Fade_Step::NONE)
 	{
 		return true;
 	}
 
-	float fadeRatio = (float)frameCount / (float)maxFadeFrames;
+	//float fadeRatio = (float)frameCount / (float)maxFadeFrames;
 
 	// Render the black square with alpha on the screen
-	SDL_SetRenderDrawColor(app->render->renderer, 0, 0, 0, (Uint8)(fadeRatio * 255.0f));
+	SDL_SetRenderDrawColor(app->render->renderer, 0, 0, 0, alpha);
 	SDL_RenderFillRect(app->render->renderer, &screenRect);
 
 	return true;
@@ -101,27 +101,19 @@ bool FadeToBlack::CleanUp()
 	return true;
 }
 
-bool FadeToBlack::Fade(Module* toDisable, Module* toEnable, float frames)
+bool FadeToBlack::Fade(Module* toDisable, Module* toEnable, float new_speed)
 {
-	bool ret = true;
-	currentStep = Fade_Step::NONE;
-	
+	// If we are already in a fade process, ignore this call
+	if (currentStep == Fade_Step::TO_BLACK)
+	{
+		return true;
+	}
+	currentStep = Fade_Step::TO_BLACK;
+	speed = new_speed;
+	alpha = 0;
+
 	moduleToDisable = toDisable;
 	moduleToEnable = toEnable;
-
-	// If we are already in a fade process, ignore this call
-	if (currentStep == Fade_Step::NONE)
-	{
-		currentStep = Fade_Step::TO_BLACK;
-		maxFadeFrames = frames;
-
-		ret = true;
-	}
-	else
-	{
-		ret = false;
-	}
-
-	frameCount = 0;
-	return ret;
+	
+	return true;
 }

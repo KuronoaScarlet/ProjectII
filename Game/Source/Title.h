@@ -7,6 +7,7 @@
 #include "GuiButton.h"
 #include "GuiSlider.h"
 #include "GuiCheckBox.h"
+#include "Easings.h"
 
 class GuiControl;
 class GuiSlider;
@@ -45,9 +46,20 @@ public:
 
 
 public:
+    Easing* easing;
     bool configOn = false;
     // The scene sprite sheet loaded into an SDL_Texture
     SDL_Texture* screen = nullptr;
+    SDL_Texture* bck = nullptr;
+    SDL_Texture* caronte = nullptr;
+    SDL_Texture* mandate = nullptr;
+    ////////Easings
+    float positionTitleBack;
+    float positionTitleCaronte;
+    float positionTitleMandate;
+    float currentIteration;
+    float totalIterations;
+
     SDL_Texture* creditsScene = nullptr;
 
     bool creditSceneFlag;

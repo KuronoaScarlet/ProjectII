@@ -45,6 +45,12 @@ bool Title::Start()
 
     bool ret = true;
 
+    currentIteration = 0;
+    totalIterations = 120;
+    positionTitleBack = -700;
+    positionTitleCaronte = -700;
+    positionTitleMandate = 1280+700;
+
     pugi::xml_parse_result result = app->saveLoadFile.load_file("save_game.xml");
     if (result != NULL)
     {
@@ -57,6 +63,7 @@ bool Title::Start()
     }
 
     screen = app->tex->Load("Assets/Textures/Screens/title_screen.png");
+    bck = app->tex->Load("Assets/Textures/Screens/title_background.png");
     app->audio->PlayMusic("Assets/Audio/Music/menu_music.ogg");
 
     settingsPost2 = app->tex->Load("Assets/Textures/postit.png");
@@ -120,6 +127,7 @@ bool Title::PreUpdate()
 
 bool Title::Update(float dt)
 {
+
     if (creditSceneFlag == false)
     {
         play->Update(app->input, dt);
@@ -141,6 +149,13 @@ bool Title::Update(float dt)
         creditSceneFlag = false;
         creditsOnScreen = false;
     }
+
+    if (currentIteration < totalIterations)
+    {
+        ++currentIteration;
+    }
+
+    positionTitleBack = easing->backEaseIn(currentIteration, -700, 700, totalIterations);
     return true;
 }
 
@@ -211,6 +226,7 @@ bool Title::PostUpdate()
     }
     
     
+    app->render->DrawTexture(bck, 0, 0, NULL);
 
     return ret;
 }

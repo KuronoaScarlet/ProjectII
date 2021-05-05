@@ -43,10 +43,18 @@ public:
 		app->title->OnGuiMouseClickEvent(control);
 		return true;
 	}
-
+	bool passingToLvl1 = false;
 	bool firstEntry = true;
 	bool on;
+	bool lpl = false;
 
+	Collider* tp2to11 = nullptr;
+	Collider* tp2to12 = nullptr;
+	Collider* tp2to13 = nullptr;
+
+	Collider* tp2to14 = nullptr;
+	Collider* tp2to15 = nullptr;
+	Collider* tp2to16 = nullptr;
 private:
 	//GuiButton* play;
 		

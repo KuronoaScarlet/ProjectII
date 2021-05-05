@@ -51,6 +51,10 @@ public:
 	Collider* tp1to22 = nullptr;
 	Collider* tp1to23 = nullptr;
 
+	Collider* tp1to24 = nullptr;
+	Collider* tp1to25 = nullptr;
+	Collider* tp1to26 = nullptr;
+
 	bool passingToLvl2 = false;
 	bool lpl = false;
 

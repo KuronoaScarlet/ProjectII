@@ -13,6 +13,7 @@
 #include "Title.h"
 #include "DialogSystem.h"
 #include "HUD.h"
+#include "Scene12.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -39,6 +40,8 @@ bool Scene1::Awake()
 // Called before the first frame
 bool Scene1::Start()
 {
+	app->scene12->lpl = false;
+	app->scene1->passingToLvl2 = false;
 	app->scene1->active = true;
 	app->hud->Start();
 	app->entityManager->AddEntity({ 800.0f, 736.0f }, Entity::Type::NPC1);
@@ -50,17 +53,18 @@ bool Scene1::Start()
 	app->entityManager->AddEntity({ 192.0f, 416.0f}, Entity::Type::PENCIL);
 	app->entityManager->AddEntity({ 480.0f, 1600.0f}, Entity::Type::BALL);
 
-	app->entityManager->AddEntity({ app->playerPosition.x, app->playerPosition.y }, Entity::Type::PLAYER);
+	app->entityManager->AddEntity({app->playerPosition.x, app->playerPosition.y }, Entity::Type::PLAYER);
 
 	app->render->camera.y = 0;
 	app->render->camera.x = 0;
 
 	app->map->active = true;
 
-	tp1to21 = app->collisions->AddCollider(SDL_Rect({ 992, 416, 32, 32 }), Collider::Type::TP1TO2, this);
-	tp1to22 = app->collisions->AddCollider(SDL_Rect({ 992, 448, 32, 32 }), Collider::Type::TP1TO2, this);
-	tp1to23 = app->collisions->AddCollider(SDL_Rect({ 992, 480, 32, 32 }), Collider::Type::TP1TO2, this);
+	//Up
+	tp1to21 = app->collisions->AddCollider(SDL_Rect({ 1024, 448, 32, 64 }), Collider::Type::TP1TO2, this);
 
+	//Down
+	tp1to21 = app->collisions->AddCollider(SDL_Rect({ 992, 1056, 32, 96 }), Collider::Type::TP1TO2, this);
 	app->audio->PlayMusic("Assets/Audio/Music/scene1_music.ogg");
 
 	if (app->loadingGame == true)

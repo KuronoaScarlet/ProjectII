@@ -26,6 +26,8 @@ public:
 
 	void CleanUp();
 
+	bool Tp(Collider* collider);
+
 private:
 	bool godMode = false;
 
@@ -46,9 +48,6 @@ private:
 	//// Items
 
 	Collider* frontCollider = nullptr;
-
-
-	
 };
 
 #endif // _GROUNDENEMY_H_

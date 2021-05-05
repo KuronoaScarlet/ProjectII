@@ -227,7 +227,7 @@ bool Hud::PostUpdate()
 		app->render->DrawText(app->render->font, ruleCount, 300, 330, 60, 0, { 0, 0, 0, 255 });
 
 		/*char celoCount[80] = { 0 };
-		sprintf_s(celoCount, 80, "x%d", app->entityManager->playerData.celo);
+		sprintf_s(celoCount, 80, "x%d", app->entityManager->playerData.celo); 
 		app->render->DrawText(app->render->font, celoCount, 300, 70, 60, 0, { 0, 0, 0, 255 });*/
 
 		char snackCount[80] = { 0 };

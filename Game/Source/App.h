@@ -131,6 +131,10 @@ public:
 
 	fPoint playerPosition;
 
+
+	bool up = true;
+	bool down = false;
+
 private:
 
 	int argc;

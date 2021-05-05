@@ -39,10 +39,11 @@ bool Scene12::Awake()
 // Called before the first frame
 bool Scene12::Start()
 {
+	app->scene1->lpl = false;
+	app->scene12->passingToLvl1 = false;
 	app->scene12->active = true;
 	app->hud->Start();
-	app->playerPosition.x = 32;
-	app->playerPosition.y = 416;
+
 	app->entityManager->AddEntity({ app->playerPosition.x,app->playerPosition.y }, Entity::Type::PLAYER);
 
 	app->render->camera.y = 0;
@@ -57,6 +58,10 @@ bool Scene12::Start()
 		app->LoadGameRequest();
 		app->loadingGame = false;
 	}
+	//Up
+	tp2to11 = app->collisions->AddCollider(SDL_Rect({ 32, 416, 32, 64 }), Collider::Type::TP2TO1, this);
+	//Down
+	tp2to14 = app->collisions->AddCollider(SDL_Rect({ 32, 1024, 32, 96 }), Collider::Type::TP2TO1, this);
 
 	app->map->Load("mapLvl22.tmx");
 
@@ -74,6 +79,12 @@ bool Scene12::Update(float dt)
 {
 	app->map->Draw();
 	app->map->LoadColliders();
+
+	if (app->scene12->passingToLvl1 == true && lpl == false)
+	{
+		app->fade->Fade((Module*)app->scene12, (Module*)app->scene1);
+		lpl = true;
+	}
 
 	if (app->title->exi == true)
 	{

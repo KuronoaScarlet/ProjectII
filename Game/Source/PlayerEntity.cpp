@@ -278,11 +278,42 @@ void PlayerEntity::Collision(Collider* coll)
 	}
 	if ((coll->type == Collider::Type::TP1TO2 && godMode == false))
 	{
+		Tp(coll);
 		app->scene1->passingToLvl2 = true;
+	}
+	if ((coll->type == Collider::Type::TP2TO1 && godMode == false))
+	{
+		Tp(coll);
+		app->scene12->passingToLvl1 = true;
 	}
 }
 
 void PlayerEntity::CleanUp()
 {
 
+}
+bool PlayerEntity::Tp(Collider* collider)
+{
+	//SCENE 1 TO SCENE 2
+	if ((collider->rect.y == 448 && collider->rect.x == 1024))
+	{
+		app->playerPosition = { 64.0f, 416.0f };
+		return true;
+	}
+	if (collider->rect.x == 992 && collider->rect.y == 1056 )
+	{
+		app->playerPosition = { 64.0f, 1024.0f };
+		return false;
+	}
+	//SCENE 2 TO SCENE 1
+	if (collider->rect.x == 32 && collider->rect.y == 416)
+	{
+		app->playerPosition = { 960.0f, 448.0f };
+		return true;
+	}
+	if (collider->rect.x == 32 && collider->rect.y == 1024)
+	{
+		app->playerPosition = { 960.0f, 1088.0f };
+		return false;
+	}
 }

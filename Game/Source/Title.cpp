@@ -44,10 +44,12 @@ bool Title::Start()
     LOG("Loading Logo assets");
 
     bool ret = true;
-
-    currentIteration = 0;
+  
+    currentIterationBck = 0;
+    currentIterationCaronte = 0;
+    currentIterationMandate = 0;
     totalIterations = 120;
-    positionTitleBack = -700;
+    positionTitleBack = -1500;
     positionTitleCaronte = -700;
     positionTitleMandate = 1280+700;
 
@@ -64,6 +66,8 @@ bool Title::Start()
 
     screen = app->tex->Load("Assets/Textures/Screens/title_screen.png");
     bck = app->tex->Load("Assets/Textures/Screens/title_background.png");
+    caronte = app->tex->Load("Assets/Textures/Screens/title_1.png");
+    mandate = app->tex->Load("Assets/Textures/Screens/title_2.png");
     app->audio->PlayMusic("Assets/Audio/Music/menu_music.ogg");
 
     settingsPost2 = app->tex->Load("Assets/Textures/postit.png");
@@ -150,12 +154,27 @@ bool Title::Update(float dt)
         creditsOnScreen = false;
     }
 
-    if (currentIteration < totalIterations)
+    positionTitleBack = easing->backEaseIn(currentIterationBck, -1500, 1700, totalIterations);
+    
+    if (positionTitleBack == 200)
     {
-        ++currentIteration;
+        
+        positionTitleCaronte = easing->elasticEaseIn(currentIterationCaronte, -1500, 1930, totalIterations);
+        if (currentIterationCaronte < totalIterations)
+        {
+            ++currentIterationCaronte;
+        }
+        positionTitleMandate = easing->elasticEaseIn(currentIterationMandate, 1500, -1070, totalIterations);
+        if (currentIterationMandate < totalIterations)
+        {
+            ++currentIterationMandate;
+        }
     }
 
-    positionTitleBack = easing->backEaseIn(currentIteration, -700, 700, totalIterations);
+    if (currentIterationBck < totalIterations)
+    {
+        ++currentIterationBck;
+    }
     return true;
 }
 
@@ -226,7 +245,9 @@ bool Title::PostUpdate()
     }
     
     
-    app->render->DrawTexture(bck, 0, 0, NULL);
+    app->render->DrawTexture(bck, positionTitleBack, 0, NULL);
+    app->render->DrawTexture(caronte, positionTitleCaronte, 20, NULL);//430
+    app->render->DrawTexture(mandate, positionTitleMandate, 100, NULL);
 
     return ret;
 }

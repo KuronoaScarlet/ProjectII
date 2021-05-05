@@ -57,8 +57,11 @@ public:
     float positionTitleBack;
     float positionTitleCaronte;
     float positionTitleMandate;
-    float currentIteration;
+    float currentIterationBck;
+    float currentIterationCaronte;
+    float currentIterationMandate;
     float totalIterations;
+    bool startCaronte = true;
 
     SDL_Texture* creditsScene = nullptr;
 

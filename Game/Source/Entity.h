@@ -36,6 +36,8 @@ public:
 		RULE,
 		SCOTCHTAPE,
 		SNACK,
+		ENEMYLANTERN1,
+		ENEMYLANTERN2
 	};
 
 	Entity(Module* listener, fPoint position, SDL_Texture* texture, Type type) : listener(listener), position(position), texture(texture), type(type)
@@ -90,6 +92,7 @@ public:
 	SDL_Texture* texture;
 
 	Collider* collider = nullptr;
+	
 
 	bool pendingToDelete = false;
 

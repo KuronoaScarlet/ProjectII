@@ -19,6 +19,8 @@
 #include "Enemy3.h"
 #include "Pencil.h"
 #include "Ball.h"
+#include "EnemyLantern1.h"
+#include "EnemyLantern2.h"
 
 
 EntityManager::EntityManager() : Module()
@@ -51,6 +53,7 @@ bool EntityManager::Start()
 	texItem = app->tex->Load("Assets/Textures/Items/Shine.png");
 
 	texEnemy1 = app->tex->Load("Assets/Textures/Entities/Enemies/Halloween_Kid_1_idle_anim_32x32.png");
+	texEnemyLantern1 = app->tex->Load("Assets/Textures/Entities/NPC/npc_samuel_jacko.png");
 	texEnemy3 = app->tex->Load("Assets/Textures/Entities/Enemies/Fishmonger_2_idle_anim_32x32.png");
 
 	playerData.pauseMenu = app->tex->Load("Assets/Textures/Screens/pause_screen.png");
@@ -271,6 +274,14 @@ void EntityManager::AddEntity(fPoint position, Entity::Type type)
 		entityCanonEnemy = (Entity*)(new Enemy3((Module*)this, position, texEnemy3, type));
 		entityList.Add(entityCanonEnemy);
 		LoadStats(entityCanonEnemy);
+		break;
+	case Entity::Type::ENEMYLANTERN1:
+		entityEnemyLantern1 = (Entity*)(new EnemyLantern1((Module*)this, position, texEnemyLantern1, type));
+		entityList.Add(entityEnemyLantern1);
+		break;
+	case Entity::Type::ENEMYLANTERN2:
+		entityEnemyLantern2 = (Entity*)(new EnemyLantern2((Module*)this, position, texEnemyLantern1, type));
+		entityList.Add(entityEnemyLantern2);
 		break;
 	//////////
 	///ITEMS/////

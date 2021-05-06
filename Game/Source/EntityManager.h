@@ -118,6 +118,7 @@ private:
 
 	SDL_Texture* texEnemy1;
 	SDL_Texture* texEnemy3;
+	SDL_Texture* texEnemyLantern1;
 
 	SDL_Texture* texItem;
 
@@ -132,6 +133,8 @@ private:
 	Entity* entityGhostEnemy;
 	Entity* entityTankEnemy;
 	Entity* entityCanonEnemy;
+	Entity* entityEnemyLantern1;
+	Entity* entityEnemyLantern2;
 
 	Entity* entityPencil;
 	Entity* entityBall;

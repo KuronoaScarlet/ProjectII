@@ -41,9 +41,15 @@ bool SceneBath::Start()
 {
 	app->sceneBath->active = true;
 	app->hud->Start();
-	app->playerPosition.x = 672.0f;
-	app->playerPosition.y = 288.0f;
+	app->playerPosition.x = 320.0f;
+	app->playerPosition.y = 768.0f;
 	app->entityManager->AddEntity({ app->playerPosition.x,app->playerPosition.y }, Entity::Type::PLAYER);
+	app->entityManager->AddEntity({ 640,384 }, Entity::Type::ENEMYLANTERN1);
+	app->entityManager->AddEntity({ 288,640 }, Entity::Type::ENEMYLANTERN1);
+	app->entityManager->AddEntity({ 544,576 }, Entity::Type::ENEMYLANTERN2);
+
+	godown1 = app->collisions->AddCollider(SDL_Rect({ 310, 572, 10, 10 }), Collider::Type::GODOWN, this);
+	//tp1to21 = app->collisions->AddCollider(SDL_Rect({ 320, 572, 32, 96 }), Collider::Type::GODOWN, this);
 
 	app->render->camera.y = 0;
 	app->render->camera.x = 0;

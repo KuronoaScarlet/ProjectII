@@ -20,6 +20,12 @@ struct Collider
 		NPC,
 		ENEMY,
 		PENCIL,
+		ENEMYLANTERN,
+		ENEMYLANTERN2,
+		GOLEFT,
+		GORIGHT,
+		GOUP,
+		GODOWN,
 
 		MAX
 	};

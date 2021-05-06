@@ -14,8 +14,29 @@ Collisions::Collisions(bool startEnabled) : Module()
 	matrix[Collider::Type::PLAYER][Collider::Type::PLAYER] = false;
 	matrix[Collider::Type::PLAYER][Collider::Type::NPC] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::ENEMY] = true;
+	matrix[Collider::Type::PLAYER][Collider::Type::ENEMYLANTERN] = true;
+	matrix[Collider::Type::PLAYER][Collider::Type::ENEMYLANTERN2] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::TP1TO2] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::TP2TO1] = true;
+
+	matrix[Collider::Type::ENEMYLANTERN][Collider::Type::PLAYER] = true;
+	matrix[Collider::Type::ENEMYLANTERN2][Collider::Type::PLAYER] = true;
+	matrix[Collider::Type::ENEMYLANTERN2][Collider::Type::GOLEFT] = true;
+	matrix[Collider::Type::ENEMYLANTERN2][Collider::Type::GORIGHT] = true;
+	matrix[Collider::Type::ENEMYLANTERN2][Collider::Type::GOUP] = true;
+	matrix[Collider::Type::ENEMYLANTERN2][Collider::Type::ENEMYLANTERN2] = false;
+	matrix[Collider::Type::ENEMYLANTERN2][Collider::Type::GODOWN] = true;
+
+	matrix[Collider::Type::GODOWN][Collider::Type::ENEMYLANTERN2] = true;
+	matrix[Collider::Type::GOUP][Collider::Type::ENEMYLANTERN2] = true;
+	matrix[Collider::Type::GOLEFT][Collider::Type::ENEMYLANTERN2] = true;
+	matrix[Collider::Type::GORIGHT][Collider::Type::ENEMYLANTERN2] = true;
+
+	matrix[Collider::Type::GOUP][Collider::Type::GOUP] = false;
+	matrix[Collider::Type::GODOWN][Collider::Type::GODOWN] = false;
+	matrix[Collider::Type::GOLEFT][Collider::Type::GOLEFT] = false;
+	matrix[Collider::Type::GORIGHT][Collider::Type::GORIGHT] = false;
+
 
 	matrix[Collider::Type::WALL][Collider::Type::WALL] = false;
 	matrix[Collider::Type::WALL][Collider::Type::PLAYER] = true;
@@ -23,6 +44,7 @@ Collisions::Collisions(bool startEnabled) : Module()
 	matrix[Collider::Type::NPC][Collider::Type::PLAYER] = true;
 
 	matrix[Collider::Type::ENEMY][Collider::Type::PLAYER] = true;
+	
 
 	matrix[Collider::Type::FRONTPLAYER][Collider::Type::PENCIL] = true;
 	matrix[Collider::Type::FRONTPLAYER][Collider::Type::FRONTPLAYER] = false;
@@ -94,7 +116,8 @@ bool Collisions::Update(float dt)
 			if (matrix[c1->type][c2->type] && c1->Intersects(c2->rect))
 			{
 				for (uint i = 0; i < MAX_LISTENERS; ++i)
-					if (c1->listeners[i] != nullptr) c1->listeners[i]->OnCollision(c1, c2);
+					if (c1->listeners[i] != nullptr)
+							c1->listeners[i]->OnCollision(c1, c2);
 
 				for (uint i = 0; i < MAX_LISTENERS; ++i)
 					if (c2->listeners[i] != nullptr) c2->listeners[i]->OnCollision(c2, c1);
@@ -190,6 +213,24 @@ void Collisions::DebugDraw()
 			break;
 		case Collider::Type::TP1TO2:
 			app->render->DrawRectangle(colliders[i]->rect, 50, 0, 90, alpha);
+			break;
+		case Collider::Type::ENEMYLANTERN:
+			app->render->DrawRectangle(colliders[i]->rect, 150, 50, 90, alpha);
+			break;
+		case Collider::Type::ENEMYLANTERN2:
+			app->render->DrawRectangle(colliders[i]->rect, 150, 50, 90, alpha);
+			break;
+		case Collider::Type::GOLEFT:
+			app->render->DrawRectangle(colliders[i]->rect, 255, 255, 0, alpha);
+			break;
+		case Collider::Type::GORIGHT:
+			app->render->DrawRectangle(colliders[i]->rect, 255, 255, 0, alpha);
+			break;
+		case Collider::Type::GOUP:
+			app->render->DrawRectangle(colliders[i]->rect, 255, 255, 0, alpha);
+			break;
+		case Collider::Type::GODOWN:
+			app->render->DrawRectangle(colliders[i]->rect, 255, 255, 0, alpha);
 			break;
 		}
 	}

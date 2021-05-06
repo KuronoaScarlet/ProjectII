@@ -51,6 +51,11 @@ public:
 	Collider* tp1to22 = nullptr;
 	Collider* tp1to23 = nullptr;
 
+	Collider* godown1 = nullptr;
+	Collider* goup = nullptr;
+	Collider* goright = nullptr;
+	Collider* goleft = nullptr;
+
 	Collider* tp1to24 = nullptr;
 	Collider* tp1to25 = nullptr;
 	Collider* tp1to26 = nullptr;

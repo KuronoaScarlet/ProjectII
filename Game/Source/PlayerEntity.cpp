@@ -291,6 +291,16 @@ void PlayerEntity::Collision(Collider* coll)
 		Tp(coll);
 		app->scene12->passingToLvl1 = true;
 	}
+	if ((coll->type == Collider::Type::ENEMYLANTERN && godMode == false))
+	{
+		position.x = 320.0f;
+		position.y = 768.0f;
+	}
+	if ((coll->type == Collider::Type::ENEMYLANTERN2 && godMode == false))
+	{
+		position.x = 320.0f;
+		position.y = 768.0f;
+	}
 }
 
 void PlayerEntity::CleanUp()

@@ -25,6 +25,7 @@ EnemyLantern1::EnemyLantern1(Module* listener, fPoint position, SDL_Texture* tex
 	idleAnimation.PushBack({ 914, 151, 62, 121 });
 	idleAnimation.speed = 0.2f;
 
+
 	currentAnimation = &idleAnimation;
 
 	collider = app->collisions->AddCollider(SDL_Rect({ (int)position.x, (int)position.y+50, 62, 73 }), Collider::Type::ENEMYLANTERN, listener);

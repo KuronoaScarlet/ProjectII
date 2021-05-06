@@ -39,6 +39,8 @@ private:
 	Animation* currentAnimation;
 
 	Collider* collider2 = nullptr;
+	Collider* collider3 = nullptr;
+	Collider* collider4 = nullptr;
 
 	bool goup = false;
 	bool godown = false;

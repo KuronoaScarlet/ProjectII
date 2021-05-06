@@ -48,8 +48,10 @@ bool SceneBath::Start()
 	app->entityManager->AddEntity({ 288,640 }, Entity::Type::ENEMYLANTERN1);
 	app->entityManager->AddEntity({ 544,576 }, Entity::Type::ENEMYLANTERN2);
 
-	godown1 = app->collisions->AddCollider(SDL_Rect({ 310, 572, 10, 10 }), Collider::Type::GODOWN, this);
-	//tp1to21 = app->collisions->AddCollider(SDL_Rect({ 320, 572, 32, 96 }), Collider::Type::GODOWN, this);
+	godown1 = app->collisions->AddCollider(SDL_Rect({ 310, 600, 10, 10 }), Collider::Type::GODOWN, this);
+	goup = app->collisions->AddCollider(SDL_Rect({ 672, 736, 10, 10 }), Collider::Type::GOUP, this);
+	goright = app->collisions->AddCollider(SDL_Rect({ 340, 768, 10, 10 }), Collider::Type::GORIGHT, this);
+	goleft = app->collisions->AddCollider(SDL_Rect({ 672, 576, 10, 10 }), Collider::Type::GOLEFT, this);
 
 	app->render->camera.y = 0;
 	app->render->camera.x = 0;

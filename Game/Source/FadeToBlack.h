@@ -31,7 +31,7 @@ public:
     // Called from another module
     // Starts the fade process which has two steps, fade_out and fade_in
     // After the first step, the modules should be switched
-    bool Fade(Module* toDisable, Module* toEnable, float new_speed = 200);
+    bool Fade(Module* toDisable, Module* toEnable, float new_speed = 400);
 
 private:
 

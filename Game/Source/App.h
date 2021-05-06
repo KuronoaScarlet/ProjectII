@@ -27,6 +27,7 @@ class Title;
 class Intro;
 class Scene1;
 class Scene12;
+class SceneBath;
 class BattleScene;
 class FadeToBlack;
 class DeathScreen;

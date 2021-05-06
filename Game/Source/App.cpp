@@ -75,7 +75,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(winScreen);
 	AddModule(hud);
 	AddModule(scene12);
-	// Render last to swap buffer
+//  Render last to swap buffer
 
 	AddModule(collisions);
 	AddModule(render);

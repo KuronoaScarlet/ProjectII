@@ -10,6 +10,7 @@
 #include "Scene1.h"
 #include "Scene12.h"
 #include "SceneBath.h"
+#include "SceneGym.h"
 #include "BattleScene.h"
 #include "Map.h"
 #include "Options.h"
@@ -48,6 +49,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	scene1 = new Scene1();
 	scene12 = new Scene12();
 	sceneBath = new SceneBath();
+	sceneGym = new SceneGym();
 	battleScene = new BattleScene();
 	map = new Map();
 	entityManager = new EntityManager();
@@ -69,6 +71,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(intro);
 	AddModule(scene1);
 	AddModule(sceneBath);
+	AddModule(sceneGym);
 	AddModule(battleScene);
 	AddModule(map);
 	AddModule(entityManager);
@@ -87,6 +90,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	scene1->active = false;
 	scene12->active = false;
 	sceneBath->active = false;
+	sceneGym->active = false;
 	intro->active = false;
 	battleScene->active = false;
 	deathScreen->active = false;

@@ -104,6 +104,10 @@ bool Scene1::Update(float dt)
 	{
 		app->fade->Fade((Module*)this, (Module*)app->sceneBath);
 	}
+	if (app->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
+	{
+		app->fade->Fade((Module*)this, (Module*)app->sceneGym);
+	}
 	return true;
 }
 

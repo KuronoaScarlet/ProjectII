@@ -19,6 +19,10 @@
   <image source="18_Jail_32x32.png" width="512" height="1440"/>
  </tileset>
  <layer id="3" name="floor" width="57" height="30">
+   <properties>
+     <property name="drawable" type="int" value="1"/>
+     <property name="Collisions" type="int" value="0"/>
+   </properties>
   <data>
    <tile gid="937"/>
    <tile gid="937"/>
@@ -1733,6 +1737,10 @@
   </data>
  </layer>
  <layer id="2" name="Walls0" width="57" height="30">
+   <properties>
+     <property name="drawable" type="int" value="1"/>
+     <property name="Collisions" type="int" value="0"/>
+   </properties>
   <data>
    <tile gid="446"/>
    <tile gid="446"/>
@@ -3447,6 +3455,10 @@
   </data>
  </layer>
  <layer id="1" name="Walls1" width="57" height="30">
+   <properties>
+     <property name="drawable" type="int" value="1"/>
+     <property name="Collisions" type="int" value="0"/>
+   </properties>
   <data>
    <tile gid="363"/>
    <tile/>
@@ -5161,6 +5173,10 @@
   </data>
  </layer>
  <layer id="4" name="collisions" width="57" height="30">
+   <properties>
+     <property name="Collisions" type="int" value="1"/>
+     <property name="drawable" type="int" value="0"/>
+   </properties>
   <data>
    <tile gid="1"/>
    <tile gid="1"/>

@@ -28,6 +28,10 @@
   <image source="collisions.png" width="256" height="32"/>
  </tileset>
  <layer id="2" name="flooor" width="30" height="30">
+   <properties>
+     <property name="drawable" type="int" value="1"/>
+     <property name="Collisions" type="int" value="0"/>
+   </properties>
   <data>
    <tile/>
    <tile/>
@@ -932,6 +936,10 @@
   </data>
  </layer>
  <layer id="4" name="Walls2" width="30" height="30">
+   <properties>
+     <property name="drawable" type="int" value="1"/>
+     <property name="Collisions" type="int" value="0"/>
+   </properties>
   <data>
    <tile/>
    <tile/>
@@ -1836,6 +1844,10 @@
   </data>
  </layer>
  <layer id="3" name="Walls1" width="30" height="30">
+   <properties>
+     <property name="drawable" type="int" value="1"/>
+     <property name="Collisions" type="int" value="0"/>
+   </properties>
   <data>
    <tile/>
    <tile/>
@@ -2740,6 +2752,10 @@
   </data>
  </layer>
  <layer id="5" name="Decorations1" width="30" height="30">
+   <properties>
+     <property name="drawable" type="int" value="1"/>
+     <property name="Collisions" type="int" value="0"/>
+   </properties>
   <data>
    <tile/>
    <tile/>
@@ -3644,6 +3660,10 @@
   </data>
  </layer>
  <layer id="6" name="Collisions" width="30" height="30">
+   <properties>
+     <property name="Collisions" type="int" value="1"/>
+     <property name="drawable" type="int" value="0"/>
+   </properties>
   <data>
    <tile/>
    <tile/>

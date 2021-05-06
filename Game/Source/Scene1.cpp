@@ -90,7 +90,7 @@ bool Scene1::Update(float dt)
 	app->map->Draw();
 	app->map->LoadColliders();
 
-	if (app->scene1->passingToLvl2== true && lpl == false)
+	if (app->scene1->passingToLvl2 == true && lpl == false)
 	{
 		app->fade->Fade((Module*)app->scene1, (Module*)app->scene12);
 		lpl = true;
@@ -100,8 +100,10 @@ bool Scene1::Update(float dt)
 	{
 		return false;
 	}
-
-
+	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
+	{
+		app->fade->Fade((Module*)this, (Module*)app->sceneBath);
+	}
 	return true;
 }
 

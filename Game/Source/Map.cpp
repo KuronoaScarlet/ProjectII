@@ -534,7 +534,6 @@ void Map::LoadColliders()
 {
 	if (mapLoaded == false) return;
 
-
 	ListItem<MapLayer*>* L = data.layers.start;
 	ListItem<TileSet*>* T = data.tilesets.start;
 	TileSet* tileSet = data.tilesets.start->data;

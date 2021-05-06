@@ -134,6 +134,8 @@
     <ClCompile Include="Source\Scene1.cpp" />
     <ClCompile Include="Source\Render.cpp" />
     <ClCompile Include="Source\Scene12.cpp" />
+    <ClCompile Include="Source\SceneBath.cpp" />
+    <ClCompile Include="Source\SceneGym.cpp" />
     <ClCompile Include="Source\ScotchTape.cpp" />
     <ClCompile Include="Source\Snack.cpp" />
     <ClCompile Include="Source\Textures.cpp" />
@@ -191,6 +193,8 @@
     <ClInclude Include="Source\Module.h" />
     <ClInclude Include="Source\Render.h" />
     <ClInclude Include="Source\Scene12.h" />
+    <ClInclude Include="Source\SceneBath.h" />
+    <ClInclude Include="Source\SceneGym.h" />
     <ClInclude Include="Source\ScotchTape.h" />
     <ClInclude Include="Source\Snack.h" />
     <ClInclude Include="Source\Textures.h" />

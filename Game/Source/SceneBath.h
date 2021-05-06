@@ -11,14 +11,14 @@ class GuiControl;
 #include "GuiButton.h"
 #include "GuiCheckBox.h"
 
-class Scene1 : public Module
+class SceneBath : public Module
 {
 public:
 
-	Scene1();
+	SceneBath();
 
 	// Destructor
-	virtual ~Scene1();
+	virtual ~SceneBath();
 
 	// Called before render is available
 	bool Awake();
@@ -65,4 +65,4 @@ private:
 };
 
 
-#endif // __SCENE1_H__
+#endif // __SCENEBATH_H__

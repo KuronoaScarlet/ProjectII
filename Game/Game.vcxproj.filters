@@ -159,6 +159,12 @@
     <ClCompile Include="Source\Easings.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
+    <ClCompile Include="Source\SceneBath.cpp">
+      <Filter>Scenes\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SceneGym.cpp">
+      <Filter>Scenes\Levels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -353,6 +359,12 @@
     </ClInclude>
     <ClInclude Include="Source\Easings.h">
       <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SceneGym.h">
+      <Filter>Scenes\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SceneBath.h">
+      <Filter>Scenes\Levels</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

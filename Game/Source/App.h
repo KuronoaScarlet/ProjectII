@@ -105,6 +105,7 @@ public:
 	Intro* intro;
 	Scene1* scene1;
 	Scene12* scene12;
+	SceneBath* sceneBath;
 	BattleScene* battleScene;
 	Map* map;
 	EntityManager* entityManager;

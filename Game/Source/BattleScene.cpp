@@ -12,6 +12,7 @@
 #include "Title.h"
 #include "DialogSystem.h"
 #include "WinScreen.h"
+#include "SceneManager.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -40,7 +41,7 @@ bool BattleScene::Awake()
 // Called before the first frame
 bool BattleScene::Start()
 {
-	app->battleScene->active = true;
+	active = true;
 
 	onTurn = false;
 	playerTurn = false;
@@ -175,40 +176,40 @@ bool BattleScene::Update(float dt)
 				}
 				else if (attackMenu == true && endTurn == false)
 				{
-					if (app->battleScene->rngEnemyNum == 0)
+					if (rngEnemyNum == 0)
 					{
-						sprintf_s(app->battleScene->battleText, 64, "Pulsa 1, 2 o 3 y ataca al enemigo!");
+						sprintf_s(battleText, 64, "Pulsa 1, 2 o 3 y ataca al enemigo!");
 						if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
 						{
-							sprintf_s(app->battleScene->battleText, 64, "Player ha atacado a Enemy 1!");
-							app->battleScene->DealDamage(pointer, app->entityManager->entityList.start->data, defendOn);
-							endTurn = true;
-						}
-						if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN && app->entityManager->entityList.start->next->data->collider->type != Collider::Type::PLAYER)
-						{
-							sprintf_s(app->battleScene->battleText, 64, "Player ha atacado a Enemy 2!");
-							app->battleScene->DealDamage(pointer, app->entityManager->entityList.start->next->data, defendOn);
-							endTurn = true;
-						}
-						if (app->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN && app->entityManager->entityList.start->next->data->collider->type != Collider::Type::PLAYER)
-						{
-							sprintf_s(app->battleScene->battleText, 64, "Player ha atacado a Enemy 3!");
-							app->battleScene->DealDamage(pointer, app->entityManager->entityList.start->next->next->data, defendOn);
-							endTurn = true;
-						}
-					}
-					if (app->battleScene->rngEnemyNum != 0)
-					{
-						sprintf_s(app->battleScene->battleText, 64, "Pulsa 1 o 2 y ataca al enemigo!");
-						if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
-						{
-							sprintf_s(app->battleScene->battleText, 64, "Player ha atacado a Enemy 1!");
+							sprintf_s(battleText, 64, "Player ha atacado a Enemy 1!");
 							DealDamage(pointer, app->entityManager->entityList.start->data, defendOn);
 							endTurn = true;
 						}
 						if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN && app->entityManager->entityList.start->next->data->collider->type != Collider::Type::PLAYER)
 						{
-							sprintf_s(app->battleScene->battleText, 64, "Player ha atacado a Enemy 2!");
+							sprintf_s(battleText, 64, "Player ha atacado a Enemy 2!");
+							DealDamage(pointer, app->entityManager->entityList.start->next->data, defendOn);
+							endTurn = true;
+						}
+						if (app->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN && app->entityManager->entityList.start->next->data->collider->type != Collider::Type::PLAYER)
+						{
+							sprintf_s(battleText, 64, "Player ha atacado a Enemy 3!");
+							DealDamage(pointer, app->entityManager->entityList.start->next->next->data, defendOn);
+							endTurn = true;
+						}
+					}
+					if (rngEnemyNum != 0)
+					{
+						sprintf_s(battleText, 64, "Pulsa 1 o 2 y ataca al enemigo!");
+						if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+						{
+							sprintf_s(battleText, 64, "Player ha atacado a Enemy 1!");
+							DealDamage(pointer, app->entityManager->entityList.start->data, defendOn);
+							endTurn = true;
+						}
+						if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN && app->entityManager->entityList.start->next->data->collider->type != Collider::Type::PLAYER)
+						{
+							sprintf_s(battleText, 64, "Player ha atacado a Enemy 2!");
 							DealDamage(pointer, app->entityManager->entityList.start->next->data, defendOn);
 							endTurn = true;
 						}
@@ -234,40 +235,40 @@ bool BattleScene::Update(float dt)
 				}
 				else if (attackMenu == true && endTurn == false)
 				{
-					if (app->battleScene->rngEnemyNum == 0)
+					if (rngEnemyNum == 0)
 					{
-						sprintf_s(app->battleScene->battleText, 64, "Pulsa 1, 2 o 3 y ataca al enemigo!");
+						sprintf_s(battleText, 64, "Pulsa 1, 2 o 3 y ataca al enemigo!");
 						if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
 						{
-							sprintf_s(app->battleScene->battleText, 64, "Ally 1 ha atacado a Enemy 1!");
-							app->battleScene->DealDamage(pointer, app->entityManager->entityList.start->data, defendOn);
-							endTurn = true;
-						}
-						if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN && app->entityManager->entityList.start->next->data->collider->type != Collider::Type::PLAYER)
-						{
-							sprintf_s(app->battleScene->battleText, 64, "Ally 1 ha atacado a Enemy 2!");
-							app->battleScene->DealDamage(pointer, app->entityManager->entityList.start->next->data, defendOn);
-							endTurn = true;
-						}
-						if (app->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN && app->entityManager->entityList.start->next->data->collider->type != Collider::Type::PLAYER)
-						{
-							sprintf_s(app->battleScene->battleText, 64, "Ally 1 ha atacado a Enemy 3!");
-							app->battleScene->DealDamage(pointer, app->entityManager->entityList.start->next->next->data, defendOn);
-							endTurn = true;
-						}
-					}
-					if (app->battleScene->rngEnemyNum != 0)
-					{
-						sprintf_s(app->battleScene->battleText, 64, "Pulsa 1 o 2 y ataca al enemigo!");
-						if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
-						{
-							sprintf_s(app->battleScene->battleText, 64, "Ally 1 ha atacado a Enemy 1!");
+							sprintf_s(battleText, 64, "Ally 1 ha atacado a Enemy 1!");
 							DealDamage(pointer, app->entityManager->entityList.start->data, defendOn);
 							endTurn = true;
 						}
 						if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN && app->entityManager->entityList.start->next->data->collider->type != Collider::Type::PLAYER)
 						{
-							sprintf_s(app->battleScene->battleText, 64, "Ally 1 ha atacado a Enemy 2!");
+							sprintf_s(battleText, 64, "Ally 1 ha atacado a Enemy 2!");
+							DealDamage(pointer, app->entityManager->entityList.start->next->data, defendOn);
+							endTurn = true;
+						}
+						if (app->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN && app->entityManager->entityList.start->next->data->collider->type != Collider::Type::PLAYER)
+						{
+							sprintf_s(battleText, 64, "Ally 1 ha atacado a Enemy 3!");
+							DealDamage(pointer, app->entityManager->entityList.start->next->next->data, defendOn);
+							endTurn = true;
+						}
+					}
+					if (rngEnemyNum != 0)
+					{
+						sprintf_s(battleText, 64, "Pulsa 1 o 2 y ataca al enemigo!");
+						if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+						{
+							sprintf_s(battleText, 64, "Ally 1 ha atacado a Enemy 1!");
+							DealDamage(pointer, app->entityManager->entityList.start->data, defendOn);
+							endTurn = true;
+						}
+						if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN && app->entityManager->entityList.start->next->data->collider->type != Collider::Type::PLAYER)
+						{
+							sprintf_s(battleText, 64, "Ally 1 ha atacado a Enemy 2!");
 							DealDamage(pointer, app->entityManager->entityList.start->next->data, defendOn);
 							endTurn = true;
 						}
@@ -275,7 +276,7 @@ bool BattleScene::Update(float dt)
 				}
 				else if (defenseMenu == true && endTurn == false)
 				{
-					sprintf_s(app->battleScene->battleText, 64, "Ally 1 se ha defendido!");
+					sprintf_s(battleText, 64, "Ally 1 se ha defendido!");
 					pointer->defending = true;
 					endTurn = true;
 				}
@@ -340,7 +341,7 @@ bool BattleScene::Update(float dt)
 	if (loose == true)
 	{
 		loose = false;
-		app->fade->Fade(this, (Module*)app->scene1);
+		app->sceneManager->ChangeScene(SCENE1);
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && win == false)
@@ -383,7 +384,7 @@ bool BattleScene::PostUpdate()
 				if (app->entityManager->winCount == 3)
 				{
 					winScreenOnSceen = true;
-					app->fade->Fade(this, (Module*)app->winScreen);
+					app->sceneManager->ChangeScene(WIN);
 				}
 			}
 		}
@@ -399,7 +400,7 @@ bool BattleScene::PostUpdate()
 		counter = timerr.ReadSec();
 		if (counter < 3)
 		{
-			app->fade->Fade(this, (Module*)app->scene1);
+			app->sceneManager->ChangeScene(SCENE1);
 		}
 	}
 
@@ -442,7 +443,7 @@ bool BattleScene::CleanUp()
 	app->tex->UnLoad(screen);
 	app->tex->UnLoad(combatBox);
 
-	app->battleScene->active = false;
+	active = false;
 
 	LOG("Freeing scene");
 	return true;

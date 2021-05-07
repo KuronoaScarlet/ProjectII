@@ -22,6 +22,7 @@
 #include "Pathfinding.h"
 #include "DialogSystem.h"
 #include "HUD.h"
+#include "SceneManager.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -43,22 +44,13 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	render = new Render();
 	tex = new Textures();
 	audio = new Audio();
-	logo = new Logo();
-	title = new Title();
-	intro = new Intro();
-	scene1 = new Scene1();
-	scene12 = new Scene12();
-	sceneBath = new SceneBath();
-	sceneGym = new SceneGym();
-	battleScene = new BattleScene();
 	map = new Map();
 	entityManager = new EntityManager();
-	fade = new FadeToBlack();
 	collisions = new Collisions(false);
-	deathScreen = new DeathScreen();
-	winScreen = new WinScreen();
 	hud = new Hud();
+	title = new Title;
 	dialogueSystem = new DialogueSystem(input, render, tex);
+	sceneManager = new SceneManager(LOGO);
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
 
@@ -66,35 +58,17 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(win);
 	AddModule(tex);
 	AddModule(audio);
-	AddModule(logo);
-	AddModule(title);
-	AddModule(intro);
-	AddModule(scene1);
-	AddModule(sceneBath);
-	AddModule(sceneGym);
-	AddModule(battleScene);
 	AddModule(map);
+	//AddModule(title);
 	AddModule(entityManager);
 	AddModule(dialogueSystem);
-	AddModule(fade);
-	AddModule(deathScreen);
-	AddModule(winScreen);
 	AddModule(hud);
-	AddModule(scene12);
+	AddModule(sceneManager);
 //  Render last to swap buffer
 
 	AddModule(collisions);
 	AddModule(render);
 
-	title->active = false;
-	scene1->active = false;
-	scene12->active = false;
-	sceneBath->active = false;
-	sceneGym->active = false;
-	intro->active = false;
-	battleScene->active = false;
-	deathScreen->active = false;
-	winScreen->active = false;
 	hud->active = false;
 	playerPosition = { 600.0f, 800.0f };
 }

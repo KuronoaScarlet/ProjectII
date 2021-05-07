@@ -11,6 +11,7 @@
 #include "FadeToBlack.h"
 #include "DialogSystem.h"
 #include "EntityManager.h"
+#include "SceneManager.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -90,6 +91,6 @@ bool Intro::CleanUp()
 {
     if (!active)return true;
     LOG("Freeing Logo");
-    app->intro->active = false;
+    active = false;
     return true;
 }

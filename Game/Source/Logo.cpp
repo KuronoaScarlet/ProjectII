@@ -10,6 +10,7 @@
 #include "Logo.h"
 #include "FadeToBlack.h"
 #include "Easings.h"
+#include "SceneManager.h"
 
 
 #include "Defs.h"
@@ -80,7 +81,7 @@ bool Logo::PostUpdate()
     if (position_x == 0.0f && trans == true)
     {
         trans = false;
-        app->fade->Fade(this, (Module*)app->title);
+        app->sceneManager->ChangeScene(TITLE);
         /*CleanUp();
         app->title->Init();
         app->title->Start();*/
@@ -100,7 +101,7 @@ bool Logo::CleanUp()
 {
     if (!active)return true;
     LOG("Freeing Logo");
-    app->logo->active = false;
+    active = false;
     app->tex->UnLoad(screen);
     return true;
 }

@@ -628,7 +628,7 @@ bool Map::LoadState(pugi::xml_node& data)
 bool Map::SaveState(pugi::xml_node& data) const
 {
 	pugi::xml_node scene = data.append_child("scene");
-	if (app->scene1->active == true)
+	if (active == true)
 	{
 		scene.append_attribute("currentlyOn").set_value(1);
 	}

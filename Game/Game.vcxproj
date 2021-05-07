@@ -138,6 +138,7 @@
     <ClCompile Include="Source\Scene12.cpp" />
     <ClCompile Include="Source\SceneBath.cpp" />
     <ClCompile Include="Source\SceneGym.cpp" />
+    <ClCompile Include="Source\SceneManager.cpp" />
     <ClCompile Include="Source\ScotchTape.cpp" />
     <ClCompile Include="Source\Snack.cpp" />
     <ClCompile Include="Source\Textures.cpp" />
@@ -199,6 +200,7 @@
     <ClInclude Include="Source\Scene12.h" />
     <ClInclude Include="Source\SceneBath.h" />
     <ClInclude Include="Source\SceneGym.h" />
+    <ClInclude Include="Source\SceneManager.h" />
     <ClInclude Include="Source\ScotchTape.h" />
     <ClInclude Include="Source\Snack.h" />
     <ClInclude Include="Source\Textures.h" />

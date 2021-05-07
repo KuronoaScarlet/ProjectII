@@ -15,6 +15,7 @@
 #include "BattleScene.h"
 #include "HUD.h"
 #include "Scene12.h"
+#include "SceneManager.h"
 
 
 #include "Defs.h"
@@ -186,7 +187,7 @@ bool Title::PostUpdate()
    // Draw everything --------------------------------------
     if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
     {
-        app->fade->Fade(this, (Module*)app->scene1);
+        app->sceneManager->ChangeScene(SCENE1);
 
     }
     if (app->title->creditsOnScreen)
@@ -314,7 +315,7 @@ bool Title::OnGuiMouseClickEvent(GuiControl* control)
         {
             app->hud->bagEnabled = !app->hud->bagEnabled;
         }
-        if (control->id == 101)
+        /*if (control->id == 101)
         {
             if (app->battleScene->playerTurn == true)
             {
@@ -336,10 +337,10 @@ bool Title::OnGuiMouseClickEvent(GuiControl* control)
                     app->battleScene->endTurn = false;
                 }
             }
-        }
+        }*/
         if (control->id == 103)
         {
-            app->fade->Fade((Module*)app->battleScene, (Module*)app->scene1);
+            app->sceneManager->ChangeScene(SCENE1);
         }
         if (control->id == 13)
         {
@@ -366,7 +367,7 @@ bool Title::OnGuiMouseClickEvent(GuiControl* control)
             pugi::xml_node map = generalNode.child("map");
             app->map->LoadState(map);
 
-            if (app->currentLevel == 1) app->fade->Fade((Module*)app->title, (Module*)app->scene1);
+            if (app->currentLevel == 1) app->sceneManager->ChangeScene(SCENE1);
         }
         else if (control->id == 2)
         {
@@ -379,14 +380,7 @@ bool Title::OnGuiMouseClickEvent(GuiControl* control)
             app->entityManager->playerData.pauseCondition = false;
 
             //Back to title
-            if (app->scene1->active == true)
-            {
-                app->fade->Fade((Module*)app->scene1, (Module*)app->title);
-            }
-            if (app->scene12->active == true)
-            {
-                app->fade->Fade((Module*)app->scene12, (Module*)app->title);
-            }
+            app->sceneManager->ChangeScene(TITLE);
         }
         else if (control->id == 4)
         {
@@ -408,7 +402,7 @@ bool Title::OnGuiMouseClickEvent(GuiControl* control)
         }
         else if (control->id == 12)
         {
-            app->fade->Fade((Module*)app->title, (Module*)app->intro);
+            app->sceneManager->ChangeScene(INTRO);
         }
         else if (control->id == 13)
         {

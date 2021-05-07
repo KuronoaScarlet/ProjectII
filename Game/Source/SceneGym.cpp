@@ -14,6 +14,7 @@
 #include "DialogSystem.h"
 #include "HUD.h"
 #include "Scene12.h"
+#include "SceneManager.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -40,7 +41,7 @@ bool SceneGym::Awake()
 // Called before the first frame
 bool SceneGym::Start()
 {
-	app->sceneGym->active = true;
+	active = true;
 	app->hud->Start();
 
 	app->playerPosition.x = 672.0f;
@@ -102,7 +103,7 @@ bool SceneGym::CleanUp()
 	app->collisions->CleanUp();
 	app->map->CleanUp();
 
-	app->sceneGym->active = false;
+	active = false;
 
 	LOG("Freeing scene");
 	return true;

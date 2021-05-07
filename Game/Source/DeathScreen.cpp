@@ -11,6 +11,7 @@
 #include "Scene1.h"
 #include "FadeToBlack.h"
 #include "EntityManager.h"
+#include "SceneManager.h"
 
 
 #include "Defs.h"
@@ -78,7 +79,7 @@ bool DeathScreen::CleanUp()
 {
     if (!active)return true;
     LOG("Freeing intro");
-    app->deathScreen->active = false;
+    active = false;
     app->tex->UnLoad(screen);
     return true;
 }

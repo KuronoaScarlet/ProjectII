@@ -13,6 +13,7 @@
 #include "Title.h"
 #include "DialogSystem.h"
 #include "HUD.h"
+#include "SceneManager.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -39,7 +40,7 @@ bool SceneBath::Awake()
 // Called before the first frame
 bool SceneBath::Start()
 {
-	app->sceneBath->active = true;
+	active = true;
 	app->hud->Start();
 	app->playerPosition.x = 320.0f;
 	app->playerPosition.y = 768.0f;

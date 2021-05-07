@@ -11,6 +11,7 @@
 #include "Scene1.h"
 #include "FadeToBlack.h"
 #include "EntityManager.h"
+#include "SceneManager.h"
 
 
 #include "Defs.h"
@@ -65,7 +66,7 @@ bool WinScreen::PostUpdate()
     finalTimer = count - timer.ReadSec();
     if (finalTimer == 0)
     {
-        app->fade->Fade(this, (Module*)app->title);
+        app->sceneManager->ChangeScene(TITLE);
         //finalTimer = 10;
     }
     bool ret = true;
@@ -81,7 +82,7 @@ bool WinScreen::CleanUp()
 {
     if (!active)return true;
     LOG("Freeing intro");
-    app->winScreen->active = false;
+    active = false;
     app->tex->UnLoad(screen);
     app->entityManager->CleanUp();
     app->map->CleanUp();

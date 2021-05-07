@@ -14,6 +14,7 @@
 #include "DialogSystem.h"
 #include "HUD.h"
 #include "Scene12.h"
+#include "SceneManager.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -40,9 +41,9 @@ bool Scene1::Awake()
 // Called before the first frame
 bool Scene1::Start()
 {
-	app->scene12->lpl = false;
-	app->scene1->passingToLvl2 = false;
-	app->scene1->active = true;
+	//app->scene12->lpl = false;
+	passingToLvl2 = false;
+	active = true;
 	app->hud->Start();
 	app->entityManager->AddEntity({ 800.0f, 736.0f }, Entity::Type::NPC1);
 	app->entityManager->AddEntity({ 352.0f, 1312.0f }, Entity::Type::NPC2);
@@ -90,9 +91,9 @@ bool Scene1::Update(float dt)
 	app->map->Draw();
 	app->map->LoadColliders();
 
-	if (app->scene1->passingToLvl2 == true && lpl == false)
+	if (passingToLvl2 == true && lpl == false)
 	{
-		app->fade->Fade((Module*)app->scene1, (Module*)app->scene12);
+		app->sceneManager->ChangeScene(SCENE12);
 		lpl = true;
 	}
 
@@ -102,11 +103,11 @@ bool Scene1::Update(float dt)
 	}
 	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
 	{
-		app->fade->Fade((Module*)this, (Module*)app->sceneBath);
+		app->sceneManager->ChangeScene(BATH);
 	}
 	if (app->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
 	{
-		app->fade->Fade((Module*)this, (Module*)app->sceneGym);
+		app->sceneManager->ChangeScene(GYM);
 	}
 	return true;
 }
@@ -143,7 +144,7 @@ bool Scene1::CleanUp()
 	app->collisions->CleanUp();
 	app->map->CleanUp();
 
-	app->scene1->active = false;
+	active = false;
 
 	LOG("Freeing scene");
 	return true;

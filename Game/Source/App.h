@@ -20,19 +20,10 @@ class Map;
 class Collisions;
 class DialogueSystem;
 class Hud;
+class SceneManager;
 
 //Scenes
-class Logo;
 class Title;
-class Intro;
-class Scene1;
-class Scene12;
-class SceneGym;
-class SceneBath;
-class BattleScene;
-class FadeToBlack;
-class DeathScreen;
-class WinScreen;
 
 class App
 {
@@ -101,22 +92,13 @@ public:
 	Render* render;
 	Textures* tex;
 	Audio* audio;
-	Logo* logo;
-	Title* title;
-	Intro* intro;
-	Scene1* scene1;
-	Scene12* scene12;
-	SceneBath* sceneBath;
-	SceneGym* sceneGym;
-	BattleScene* battleScene;
 	Map* map;
 	EntityManager* entityManager;
-	FadeToBlack* fade;
 	Collisions* collisions;
-	DeathScreen* deathScreen;
-	WinScreen* winScreen;
 	DialogueSystem* dialogueSystem;
 	Hud* hud;
+	Title* title;
+	SceneManager* sceneManager;
 
 	uint activeFonts = 0;
 	uint totalFonts = 0;

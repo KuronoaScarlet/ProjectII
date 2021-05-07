@@ -6,6 +6,7 @@
 #include "Fonts.h"
 #include "EntityManager.h"
 #include "FadeToBlack.h"
+#include "SceneManager.h"
 
 #include "Scene1.h"
 #include "Intro.h"
@@ -61,7 +62,7 @@ bool DialogueSystem::Update(float dt)
 			{
 				app->entityManager->playerData.onDialog = false;
 				app->playerPosition = app->entityManager->playerData.position;
-				app->fade->Fade(app->scene1, app->battleScene, 30);
+				app->sceneManager->ChangeScene(BATTLE);
 			}
 		}
 
@@ -114,7 +115,7 @@ bool DialogueSystem::Update(float dt)
 			{
 				app->entityManager->playerData.onDialog = false;
 				app->audio->PlayFx(battleTransition);
-				app->fade->Fade(app->intro, app->scene1, 30);
+				app->sceneManager->ChangeScene(SCENE1);
 			}
 		}
 	}

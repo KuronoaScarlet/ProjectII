@@ -14,6 +14,7 @@
 #include "DialogSystem.h"
 #include "HUD.h"
 #include "Scene1.h"
+#include "SceneManager.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -39,9 +40,9 @@ bool Scene12::Awake()
 // Called before the first frame
 bool Scene12::Start()
 {
-	app->scene1->lpl = false;
-	app->scene12->passingToLvl1 = false;
-	app->scene12->active = true;
+	//app->scene1->lpl = false;
+	passingToLvl1 = false;
+	active = true;
 	app->hud->Start();
 
 	app->entityManager->AddEntity({ app->playerPosition.x,app->playerPosition.y }, Entity::Type::PLAYER);
@@ -80,9 +81,9 @@ bool Scene12::Update(float dt)
 	app->map->Draw();
 	app->map->LoadColliders();
 
-	if (app->scene12->passingToLvl1 == true && lpl == false)
+	if (passingToLvl1 == true && lpl == false)
 	{
-		app->fade->Fade((Module*)app->scene12, (Module*)app->scene1);
+		app->sceneManager->ChangeScene(SCENE1);
 		lpl = true;
 	}
 
@@ -125,7 +126,7 @@ bool Scene12::CleanUp()
 	app->collisions->CleanUp();
 	app->map->CleanUp();
 
-	app->scene12->active = false;
+	active = false;
 
 	LOG("Freeing scene");
 	return true;

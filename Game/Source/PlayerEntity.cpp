@@ -15,6 +15,7 @@
 #include "DialogSystem.h"
 #include "Input.h"
 #include "Scene12.h"
+#include "SceneManager.h"
 
 PlayerEntity::PlayerEntity(Module* listener, fPoint position, SDL_Texture* texture, Type type) : Entity(listener, position, texture, type)
 {
@@ -73,10 +74,10 @@ PlayerEntity::PlayerEntity(Module* listener, fPoint position, SDL_Texture* textu
 	battleIdle.PushBack({ 160, 80, 29, 47 });
 
 	currentAnimation = &idleAnimation;
-	if (app->battleScene->active == true)
+	/*if (app->battleScene->active == true)
 	{
 		currentAnimation = &battleIdle;
-	}
+	}*/
 
 	collider = app->collisions->AddCollider(SDL_Rect({ (int)position.x + 6, (int)position.y + 34, 22, 12 }), Collider::Type::PLAYER, listener);
 
@@ -284,12 +285,12 @@ void PlayerEntity::Collision(Collider* coll)
 	if ((coll->type == Collider::Type::TP1TO2 && godMode == false))
 	{
 		Tp(coll);
-		app->scene1->passingToLvl2 = true;
+		app->sceneManager->ChangeScene(SCENE12);
 	}
 	if ((coll->type == Collider::Type::TP2TO1 && godMode == false))
 	{
 		Tp(coll);
-		app->scene12->passingToLvl1 = true;
+		app->sceneManager->ChangeScene(SCENE1);
 	}
 	if ((coll->type == Collider::Type::ENEMYLANTERN && godMode == false))
 	{

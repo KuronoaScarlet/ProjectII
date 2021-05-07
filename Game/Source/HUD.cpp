@@ -13,6 +13,7 @@
 #include "Title.h"
 #include "HUD.h"
 #include "DialogSystem.h"
+#include "SceneManager.h"
 
 #include "Defs.h"
 #include "Log.h"

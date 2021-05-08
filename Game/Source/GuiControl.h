@@ -84,6 +84,14 @@ public:
         observer->OnGuiMouseClickEvent(this);
     }
 
+    void CleanUp()
+    {
+        SDL_DestroyTexture(textureIdle);
+        SDL_DestroyTexture(textureFocused);
+        SDL_DestroyTexture(texturePressed);
+        SDL_DestroyTexture(textureDisable);
+    }
+
 public:
 
     uint32 id;

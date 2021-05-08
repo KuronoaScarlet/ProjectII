@@ -442,7 +442,10 @@ bool BattleScene::CleanUp()
 	app->collisions->CleanUp();
 	app->tex->UnLoad(screen);
 	app->tex->UnLoad(combatBox);
-
+	attack->CleanUp();
+	defend->CleanUp();
+	run->CleanUp();
+	combine->CleanUp();
 	active = false;
 
 	LOG("Freeing scene");

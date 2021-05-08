@@ -243,7 +243,18 @@ bool Hud::CleanUp()
 {
 	app->hud->active = false;
 	if (!active)return true;
+	bag->CleanUp();
 
+	pencil->CleanUp();
+	ball->CleanUp();
+	book->CleanUp();
+	calculator->CleanUp();
+	coffee->CleanUp();
+	cola->CleanUp();
+	eraser->CleanUp();
+	rule->CleanUp();
+	tipex->CleanUp();
+	snack->CleanUp();
 	app->entityManager->CleanUp();
 
 	LOG("Freeing scene");

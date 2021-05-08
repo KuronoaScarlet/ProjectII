@@ -259,6 +259,13 @@ bool Title::CleanUp()
 {
     if (!active)return true;
     LOG("Freeing Logo");
+    play->CleanUp();
+    newGame->CleanUp();
+    escCredits->CleanUp();
+    options->CleanUp();
+    credits->CleanUp();
+    exit->CleanUp();
+    backButton->CleanUp();
     app->title->active = false;
     app->tex->UnLoad(screen);
     app->tex->UnLoad(creditsScene);

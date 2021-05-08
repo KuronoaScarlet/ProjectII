@@ -72,6 +72,7 @@ public:
 	bool winScreenOnSceen = false;
 	bool loose = false;
 
+	
 	GuiButton* attack;
 	GuiButton* defend;
 	GuiButton* run;

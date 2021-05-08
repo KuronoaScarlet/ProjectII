@@ -76,8 +76,6 @@ bool EntityManager::Start()
 	exitButton->SetObserver(this);
 	exitButton->SetTexture(app->tex->Load("Assets/Textures/exit.png"), app->tex->Load("Assets/Textures/exit_selected.png"), app->tex->Load("Assets/Textures/exit_pressed.png"));
 
-
-
 	return true;
 }
 
@@ -171,8 +169,6 @@ bool EntityManager::CleanUp()
 		ListItem<Entity*>* entity = entityList.At(i);
 		entity->data->pendingToDelete = true;
 	}
-
-	entityList.Clear();
 
 	return true;
 }

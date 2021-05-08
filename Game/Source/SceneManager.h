@@ -44,7 +44,7 @@ public:
 
 	bool PostUpdate();
 
-	void ChangeScene(SceneType type, float new_speed = 500);
+	void ChangeScene(SceneType type, float new_speed = 1000);
 
 };
 

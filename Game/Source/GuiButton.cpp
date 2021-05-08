@@ -17,8 +17,6 @@ GuiButton::GuiButton(uint32 id, SDL_Rect bounds, const char* text) : GuiControl(
 GuiButton::~GuiButton()
 {
 
-
-
 }
 
 bool GuiButton::Update(Input* input, float dt)

@@ -8,6 +8,8 @@
 #include "Intro.h"
 #include "Scene1.h"
 #include "Scene12.h"
+#include "SceneBath.h"
+#include "SceneGym.h"
 
 SceneManager::SceneManager(SceneType type)
 {
@@ -88,6 +90,8 @@ void SceneManager::ChangeScene(SceneType type, float new_speed)
 	case INTRO: next_scene = new Intro; break;
 	case SCENE1: next_scene = new Scene1; break;
 	case SCENE12: next_scene = new Scene12; break;
+	case BATH: next_scene = new SceneBath; break;
+	case GYM: next_scene = new SceneGym; break;
 	}
 }
 

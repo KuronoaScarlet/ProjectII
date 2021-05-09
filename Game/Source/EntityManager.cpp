@@ -41,8 +41,6 @@ bool EntityManager::Start()
 		LOG("Could not load saved game xml file. Pugi error: %s", result.description());
 	}
 
-	settingsPost = app->tex->Load("Assets/Textures/postit.png");
-
 	texPlayer = app->tex->Load("Assets/Textures/Entities/Playable/player.png");
 	texAlly1 = app->tex->Load("Assets/Textures/Entities/Playable/Ash_idle_anim_32x32.png");
 
@@ -56,26 +54,6 @@ bool EntityManager::Start()
 	texEnemyLantern1 = app->tex->Load("Assets/Textures/Entities/NPC/npc_samuel_jacko.png");
 	texEnemy3 = app->tex->Load("Assets/Textures/Entities/Enemies/Fishmonger_2_idle_anim_32x32.png");
 
-	playerData.pauseMenu = app->tex->Load("Assets/Textures/Screens/pause_screen.png");
-	//resumeButtton = app->tex->Load("Assets/Textures/resume.png");
-
-
-	resumeButton = new GuiButton(32, {517,304, 240, 60 }, "CONTINUE");
-	resumeButton->SetObserver(this);
-	resumeButton->SetTexture(app->tex->Load("Assets/Textures/resume.png"), app->tex->Load("Assets/Textures/resume_selected.png"), app->tex->Load("Assets/Textures/resume_pressed.png"));
-
-	settingsButton = new GuiButton(17, { 517, 409, 234, 55 }, "SETTINGS");
-	settingsButton->SetObserver(this);
-	settingsButton->SetTexture(app->tex->Load("Assets/Textures/settings.png"), app->tex->Load("Assets/Textures/settings_selected.png"), app->tex->Load("Assets/Textures/settings_pressed.png"));
-
-	fullScreen = new GuiCheckBox(7, { 620,400, 300, 60 }, "FULLSCREEN");
-	fullScreen->SetObserver(this);
-	fullScreen->SetTexture(app->tex->Load("Assets/Textures/fs1.png"), app->tex->Load("Assets/Textures/fs2.png"), app->tex->Load("Assets/Textures/fs2.png"));
-	
-	exitButton = new GuiButton(11, { 551, 360, 172, 55 }, "CREDITS");
-	exitButton->SetObserver(this);
-	exitButton->SetTexture(app->tex->Load("Assets/Textures/exit.png"), app->tex->Load("Assets/Textures/exit_selected.png"), app->tex->Load("Assets/Textures/exit_pressed.png"));
-
 	return true;
 }
 
@@ -86,10 +64,6 @@ bool EntityManager::PreUpdate()
 
 bool EntityManager::Update(float dt)
 {
-	if (app->entityManager->playerData.pauseCondition == false)
-	{
-		settingsEnabled = false;
-	}
 	ListItem<Entity*>* entity = entityList.start;
 
 	while (entity != nullptr)
@@ -106,58 +80,16 @@ bool EntityManager::Update(float dt)
 		entity = entity->next;
 	}
 
-	if (app->entityManager->playerData.pauseCondition)
-	{
-		resumeButton->Update(app->input, dt);
-		settingsButton->Update(app->input, dt);
-		exitButton->Update(app->input, dt);
-		fullScreen->Update(app->input, dt);
-		app->audio->Volume(20, '0');
-
-	}
-	if (!app->entityManager->playerData.pauseCondition)
-	{
-		app->audio->Volume(100, '0');
-
-	}
-	if (app->title->exi)	return false;
-
 	return true;
 }
 
 bool EntityManager::PostUpdate()
 {
-	resumeButton->bounds.x = -app->render->camera.x+537;
-	resumeButton->bounds.y = -app->render->camera.y+200;
-	settingsButton->bounds.x = -app->render->camera.x + 537;
-	settingsButton->bounds.y = -app->render->camera.y + 260;
-	exitButton->bounds.x = -app->render->camera.x + 557;
-	exitButton->bounds.y = -app->render->camera.y + 360;
-	fullScreen->bounds.x = -app->render->camera.x + 900;
-	fullScreen->bounds.y = -app->render->camera.y + 200;
-
-
 	for (int i = 0; i < entityList.Count(); i++)
 	{
 		ListItem<Entity*>* entity = entityList.At(i);
 		entity->data->Draw();
 	}
-	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN) app->entityManager->playerData.pauseCondition = !app->entityManager->playerData.pauseCondition;
-
-	if (app->entityManager->playerData.pauseCondition)
-	{
-		app->render->DrawTexture(playerData.pauseMenu, -app->render->camera.x, -app->render->camera.y, NULL);
-		//fullScreen->Draw(app->render);
-		resumeButton->Draw(app->render);
-		settingsButton->Draw(app->render);
-		exitButton->Draw(app->render);
-		if (settingsEnabled)
-		{
-			app->render->DrawTexture(settingsPost, -app->render->camera.x + 875, -app->render->camera.y + 100, NULL);
-			fullScreen->Draw(app->render);
-		}
-	}
-	
 
 	return true;
 }

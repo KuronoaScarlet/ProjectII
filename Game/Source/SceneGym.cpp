@@ -77,10 +77,6 @@ bool SceneGym::Update(float dt)
 	app->map->Draw();
 	app->map->LoadColliders();
 
-	if (app->title->exi == true)
-	{
-		return false;
-	}
 
 
 	return true;

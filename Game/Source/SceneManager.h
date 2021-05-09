@@ -37,7 +37,7 @@ public:
 
     SceneType id = LOGO;
 
-	SceneManager(SceneType type);
+	SceneManager();
 	~SceneManager();
 
 	bool Update(float dt);
@@ -45,6 +45,28 @@ public:
 	bool PostUpdate();
 
 	void ChangeScene(SceneType type, float new_speed = 1000);
+
+    bool OnGuiMouseClickEvent(GuiControl* control)
+    {
+        if(scene) scene->OnGuiMouseClickEvent(control);
+        return true;
+    }
+
+    //PAUSE.........................................................
+    GuiButton* resumeButton;
+    GuiButton* settingsButton;
+    GuiButton* exitButton;
+
+    GuiCheckBox* fullScreen;
+
+    SDL_Texture* settingsPost;
+    SDL_Texture* pauseMenu = nullptr;
+
+    bool pauseCondition = false;
+    bool settingsEnabled = false;
+   
+    //HUD.........................................................
+
 
 };
 

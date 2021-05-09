@@ -361,7 +361,7 @@ bool Title::OnGuiMouseClickEvent(GuiControl* control)
         if (control->id == 17)
         {
             //Play
-            app->entityManager->settingsEnabled = !app->entityManager->settingsEnabled;
+            app->sceneManager->settingsEnabled = !app->sceneManager->settingsEnabled;
         }
         if (control->id == 1)
         {
@@ -384,7 +384,7 @@ bool Title::OnGuiMouseClickEvent(GuiControl* control)
         }
         else if (control->id == 11)
         {
-            app->entityManager->playerData.pauseCondition = false;
+            app->sceneManager->pauseCondition = false;
 
             //Back to title
             app->sceneManager->ChangeScene(TITLE);
@@ -417,7 +417,7 @@ bool Title::OnGuiMouseClickEvent(GuiControl* control)
         }
         else if (control->id == 32)
         {
-            app->entityManager->playerData.pauseCondition = false;
+            app->sceneManager->pauseCondition = false;
         }
     }
     case GuiControlType::SLIDER:

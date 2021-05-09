@@ -9,6 +9,7 @@
 #include "GuiButton.h"
 #include "GuiCheckBox.h"
 #include "Title.h"
+#include "SceneManager.h"
 
 #include "PugiXml/src/pugixml.hpp"
 
@@ -48,24 +49,13 @@ public:
 
 	void LoadStats(Entity* e);
 
-	bool OnGuiMouseClickEvent(GuiControl* control)
-	{
-		app->title->OnGuiMouseClickEvent(control);
-		return true;
-	}
-
-
 	struct PlayerData 
 	{
 		fPoint position;
 
 		//Pause Menu
-		bool pauseCondition = false;
 		bool debug = false;
 		bool resetCamera;
-
-		SDL_Texture* pauseMenu = nullptr;
-		SDL_Texture* resumeButtton = nullptr;
 
 		SDL_Rect cameraBckUp;
 
@@ -91,12 +81,6 @@ public:
 		int PencilSharp = 0;
 	};
 
-	GuiButton* resumeButton;
-	GuiButton* settingsButton;
-	GuiButton* exitButton;
-
-	GuiCheckBox* fullScreen;
-
 	int winCount = 0;
 
 	PlayerData playerData;
@@ -105,12 +89,10 @@ public:
 
 	pugi::xml_document combatStats;
 
-	bool settingsEnabled = false;
 
 private:
 	SDL_Texture* texPlayer;
 	SDL_Texture* texAlly1;
-	SDL_Texture* settingsPost;
 
 	SDL_Texture* texNPC1;
 	SDL_Texture* texNPC2;

@@ -48,9 +48,8 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	entityManager = new EntityManager();
 	collisions = new Collisions(false);
 	hud = new Hud();
-	title = new Title;
 	dialogueSystem = new DialogueSystem(input, render, tex);
-	sceneManager = new SceneManager(LOGO);
+	sceneManager = new SceneManager();
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
 
@@ -59,7 +58,6 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(tex);
 	AddModule(audio);
 	AddModule(map);
-	//AddModule(title);
 	AddModule(entityManager);
 	AddModule(dialogueSystem);
 	AddModule(hud);
@@ -134,6 +132,9 @@ bool App::Start()
 	}
 	PERF_PEEK(perfTimer);
 	caped = false;
+
+	sceneManager->ChangeScene(LOGO);
+
 	return ret;
 }
 

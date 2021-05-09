@@ -96,11 +96,6 @@ bool Scene1::Update(float dt)
 		app->sceneManager->ChangeScene(SCENE12);
 		lpl = true;
 	}
-
-	if (app->title->exi == true)
-	{
-		return false;
-	}
 	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
 	{
 		app->sceneManager->ChangeScene(BATH);

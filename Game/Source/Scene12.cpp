@@ -87,7 +87,7 @@ bool Scene12::Update(float dt)
 		lpl = true;
 	}
 
-	if (app->title->exi == true)
+	if (app->sceneManager->exi == true)
 	{
 		return false;
 	}

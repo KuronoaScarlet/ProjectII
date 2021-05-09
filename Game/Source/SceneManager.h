@@ -2,6 +2,8 @@
 #define __SCENEMANAGER_H__
 
 #include "Module.h"
+#include "GuiButton.h"
+#include "GuiCheckBox.h"
 
 enum SceneType
 {
@@ -40,17 +42,15 @@ public:
 	SceneManager();
 	~SceneManager();
 
+    bool Start(SceneType type);
+
 	bool Update(float dt);
 
 	bool PostUpdate();
 
 	void ChangeScene(SceneType type, float new_speed = 1000);
 
-    bool OnGuiMouseClickEvent(GuiControl* control)
-    {
-        if(scene) scene->OnGuiMouseClickEvent(control);
-        return true;
-    }
+    bool OnGuiMouseClickEvent(GuiControl* control);
 
     //PAUSE.........................................................
     GuiButton* resumeButton;
@@ -64,6 +64,14 @@ public:
 
     bool pauseCondition = false;
     bool settingsEnabled = false;
+    bool creditsOnScreen = false;
+    bool creditSceneFlag;
+    bool configOn = false;
+    bool fullSc;
+    bool vsync;
+    bool exi;
+
+    int volumMusic;
    
     //HUD.........................................................
 

@@ -113,11 +113,11 @@ bool Title::Start()
     backButton->SetTexture(app->tex->Load("Assets/Textures/Buttons/states/play.png"), app->tex->Load("Assets/Textures/Buttons/states/focused.png"), app->tex->Load("Assets/Textures/Buttons/states/pressed.png"));
 
     creditsScene = app->tex->Load("Assets/Textures/Screens/credits_screen.png");
-    creditSceneFlag = false;
+    app->sceneManager->creditSceneFlag = false;
     pauseBool = false;
-    fullSc = false;
-    vsync = true;
-    exi = false;
+    app->sceneManager->fullSc = false;
+    app->sceneManager->vsync = true;
+    app->sceneManager->exi = false;
 
     app->render->camera.x = 0;
     //app->render->camera.y = 1000000000; XD, THIS DOES NOTHING
@@ -133,7 +133,7 @@ bool Title::PreUpdate()
 bool Title::Update(float dt)
 {
 
-    if (creditSceneFlag == false && positionTitleCaronte == 430)
+    if (app->sceneManager->creditSceneFlag == false && positionTitleCaronte == 430)
     {
         play->Update(app->input, dt);
         newGame->Update(app->input, dt);
@@ -141,18 +141,18 @@ bool Title::Update(float dt)
         credits->Update(app->input, dt);
         exit->Update(app->input, dt);
     }
-    if (app->title->configOn)
+    if (app->sceneManager->configOn)
     {
         fullScreen->Update(app->input, dt);
     }
-    if (creditsOnScreen)
+    if (app->sceneManager->creditsOnScreen)
     {
         escCredits->Update(app->input, dt);
     }
     if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
     {
-        creditSceneFlag = false;
-        creditsOnScreen = false;
+        app->sceneManager->creditSceneFlag = false;
+        app->sceneManager->creditsOnScreen = false;
     }
 
     positionTitleBack = easing->backEaseIn(currentIterationBck, -1500, 1700, totalIterations);
@@ -190,40 +190,42 @@ bool Title::PostUpdate()
         app->sceneManager->ChangeScene(SCENE1);
 
     }
-    if (app->title->creditsOnScreen)
+   // if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+    
+
+    app->render->DrawTexture(screen, 0, 0, NULL);
+
+    app->render->DrawTexture(bck, positionTitleBack, 0, NULL);
+    app->render->DrawTexture(caronte, positionTitleCaronte, 20, NULL);//430
+    app->render->DrawTexture(mandate, positionTitleMandate, 100, NULL);
+
+    if (app->sceneManager->creditsOnScreen)
     {
         app->render->DrawTexture(creditsScene, 0, 0, NULL);
     }
-   // if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
-    
-    if (creditSceneFlag == true)
+
+    if (app->sceneManager->creditSceneFlag == true)
     {
         app->render->DrawTexture(creditsScene, 0, 0, NULL);
         escCredits->Draw(app->render);
-        configOn = false;
+        app->sceneManager->configOn = false;
     }
 
-    if (!creditSceneFlag)
+    if (!app->sceneManager->creditSceneFlag)
     {
-
         app->render->camera.y = 0;
-        app->render->DrawTexture(screen, 0, 0, NULL);
 
         if (positionTitleCaronte == 430)
         {
-            // start->Draw(app->render);
-            // SDL_Rect rectPlayer = playerData.currentAnim->GetCurrentFrame();
             play->Draw(app->render);
 
             if (!app->fileSaved)
             {
-
                 newGame->Draw(app->render);
             }
             else
             {
                 newGame->Draw(app->render);
-
             }
 
             options->Draw(app->render);
@@ -231,26 +233,13 @@ bool Title::PostUpdate()
             credits->Draw(app->render);
 
             exit->Draw(app->render);
-            if (app->title->configOn)
+            if (app->sceneManager->configOn)
             {
-                app->render->DrawTexture(app->title->settingsPost2, 875, 100, NULL);
+                app->render->DrawTexture(settingsPost2, 875, 100, NULL);
                 fullScreen->Draw(app->render);
             }
         }
     }
-   
-    
-    
-
-    if (exi == true) 
-    {
-        return false;
-    }
-    
-    
-    app->render->DrawTexture(bck, positionTitleBack, 0, NULL);
-    app->render->DrawTexture(caronte, positionTitleCaronte, 20, NULL);//430
-    app->render->DrawTexture(mandate, positionTitleMandate, 100, NULL);
 
     return ret;
 }
@@ -266,199 +255,9 @@ bool Title::CleanUp()
     credits->CleanUp();
     exit->CleanUp();
     backButton->CleanUp();
-    app->title->active = false;
+    active = false;
     app->tex->UnLoad(screen);
     app->tex->UnLoad(creditsScene);
     return true;
 }
 
-bool Title::OnGuiMouseClickEvent(GuiControl* control)
-{
-    switch (control->type)
-    {
-    case GuiControlType::BUTTON:
-    {
-        if (control->id == 120)
-        {
-            app->hud->bagEnabled = !app->hud->bagEnabled;
-        }
-        if (control->id == 130)
-        {
-            app->hud->bagEnabled = !app->hud->bagEnabled;
-        }
-        if (control->id == 131)
-        {
-            app->hud->bagEnabled = !app->hud->bagEnabled;
-        }
-        if (control->id == 132)
-        {
-            app->hud->bagEnabled = !app->hud->bagEnabled;
-        }
-        if (control->id == 133)
-        {
-            app->hud->bagEnabled = !app->hud->bagEnabled;
-        }
-        if (control->id == 134)
-        {
-            app->hud->bagEnabled = !app->hud->bagEnabled;
-        }
-        if (control->id == 135)
-        {
-            app->hud->bagEnabled = !app->hud->bagEnabled;
-        }
-        if (control->id == 136)
-        {
-            app->hud->bagEnabled = !app->hud->bagEnabled;
-        }
-        if (control->id == 137)
-        {
-            app->hud->bagEnabled = !app->hud->bagEnabled;
-        }
-        if (control->id == 138)
-        {
-            app->hud->bagEnabled = !app->hud->bagEnabled;
-        }
-        if (control->id == 139)
-        {
-            app->hud->bagEnabled = !app->hud->bagEnabled;
-        }
-        /*if (control->id == 101)
-        {
-            if (app->battleScene->playerTurn == true)
-            {
-                if (control->id == 101)
-                {
-                    app->battleScene->playerTurn = false;
-                    app->battleScene->attackMenu = true;
-                }
-            }
-        }
-        if (control->id == 102)
-        {
-            if (app->battleScene->playerTurn == true)
-            {
-                if (control->id == 102)
-                {
-                    app->battleScene->playerTurn = false;
-                    app->battleScene->defenseMenu = true;
-                    app->battleScene->endTurn = false;
-                }
-            }
-        }*/
-        if (control->id == 103)
-        {
-            app->sceneManager->ChangeScene(SCENE1);
-        }
-        if (control->id == 13)
-        {
-            app->title->creditsOnScreen = true;
-        }
-        if (control->id == 18)
-        {
-            app->title->creditsOnScreen = false;
-            app->title->creditSceneFlag = false;
-        }
-        if (control->id == 17)
-        {
-            //Play
-            app->sceneManager->settingsEnabled = !app->sceneManager->settingsEnabled;
-        }
-        if (control->id == 1)
-        {
-            //LoadGame
-            app->loadingGame = true;
-            pugi::xml_document savedGame;
-            savedGame.load_file("save_game.xml");
-
-            pugi::xml_node generalNode = savedGame.child("save");
-            pugi::xml_node map = generalNode.child("map");
-            app->map->LoadState(map);
-
-            if (app->currentLevel == 1) app->sceneManager->ChangeScene(SCENE1);
-        }
-        else if (control->id == 2)
-        {
-            //Settings
-
-            app->title->configOn = !app->title->configOn;
-        }
-        else if (control->id == 11)
-        {
-            app->sceneManager->pauseCondition = false;
-
-            //Back to title
-            app->sceneManager->ChangeScene(TITLE);
-        }
-        else if (control->id == 4)
-        {
-            //Exit
-            app->title->exi = true;
-        }
-       else if (control->id == 8)
-        {
-            //Vsync
-            if (app->title->vsync == true)
-            {
-                
-                app->title->vsync = false;
-            }
-       }
-        else if (control->id == 9)
-        {
-                       
-        }
-        else if (control->id == 12)
-        {
-            app->sceneManager->ChangeScene(INTRO);
-        }
-        else if (control->id == 13)
-        {
-            app->title->creditSceneFlag = true;
-        }
-        else if (control->id == 32)
-        {
-            app->sceneManager->pauseCondition = false;
-        }
-    }
-    case GuiControlType::SLIDER:
-    {
-        if (control->id == 5)
-        {
-            //Volume
-            if(control->bounds.x == 143 || control->bounds.x == 156.5f|| control->bounds.x == 170|| control->bounds.x == 183.5f|| control->bounds.x == 197|| control->bounds.x == 210.5f|| control->bounds.x == 224 || control->bounds.x == 237.5f || control->bounds.x == 251 || control->bounds.x == 264.5f || control->bounds.x == 278)
-            {
-                app->title->volumMusic = ((control->bounds.x - 143) / 13.5) * 10;
-                app->audio->Volume(app->title->volumMusic, '0');
-            }
-        }
-        else if (control->id == 6)
-        {
-            //FxVolume
-            if (control->bounds.x == 143 || control->bounds.x == 156.5f || control->bounds.x == 170 || control->bounds.x == 183.5f || control->bounds.x == 197 || control->bounds.x == 210.5f || control->bounds.x == 224 || control->bounds.x == 237.5f || control->bounds.x == 251 || control->bounds.x == 264.5f || control->bounds.x == 278)
-            {
-                app->title->volumMusic = ((control->bounds.x - 143) / 13.5) * 10;
-                app->audio->Volume(app->title->volumMusic, '1');
-            }
-        }
-    }
-    case GuiControlType::CHECKBOX:
-    {
-        if (control->id == 7)
-        {
-            //FullScreen
-            if (app->title->fullSc == false)
-            {
-                SDL_SetWindowFullscreen(app->win->window, SDL_WINDOW_FULLSCREEN);
-                app->title->fullSc = true;
-            }
-            else
-            {
-                SDL_SetWindowFullscreen(app->win->window, SDL_WINDOW_RESIZABLE);
-            }
-        }
-    }
-    default: break;
-    }
-
-    return true;
-}

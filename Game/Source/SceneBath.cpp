@@ -82,7 +82,7 @@ bool SceneBath::Update(float dt)
 	app->map->Draw();
 	app->map->LoadColliders();
 
-	if (app->title->exi == true)
+	if (app->sceneManager->exi == true)
 	{
 		return false;
 	}

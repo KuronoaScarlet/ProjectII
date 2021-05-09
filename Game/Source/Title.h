@@ -8,6 +8,7 @@
 #include "GuiSlider.h"
 #include "GuiCheckBox.h"
 #include "Easings.h"
+#include "SceneManager.h"
 
 class GuiControl;
 class GuiSlider;
@@ -41,13 +42,16 @@ public:
 
     bool CleanUp();
 
-    bool OnGuiMouseClickEvent(GuiControl* control);
+    bool OnGuiMouseClickEvent(GuiControl* control)
+    {
+        app->sceneManager->OnGuiMouseClickEvent(control);
+        return true;
+    }
 
 
 
 public:
     Easing* easing;
-    bool configOn = false;
     // The scene sprite sheet loaded into an SDL_Texture
     SDL_Texture* screen = nullptr;
     SDL_Texture* bck = nullptr;
@@ -65,7 +69,7 @@ public:
 
     SDL_Texture* creditsScene = nullptr;
 
-    bool creditSceneFlag;
+    
     SDL_Texture* settingsPost2;
     GuiButton* play;
     GuiButton* newGame;
@@ -76,13 +80,7 @@ public:
     GuiButton* backButton;
     GuiCheckBox* fullScreen;
     
-    bool creditsOnScreen = false;
-    bool fullSc;
-    bool vsync;
-    bool exi;
     bool pauseBool;
-
-    int volumMusic;
 
     char text[64] = { 0 };
 };

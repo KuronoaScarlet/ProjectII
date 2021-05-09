@@ -171,7 +171,7 @@ bool PlayerEntity::Update(float dt)
 
 	GamePad& pad = app->input->pads[0];
 	tempPlayerPosition = position;
-	if (!app->entityManager->playerData.pauseCondition)
+	if (!app->sceneManager->pauseCondition)
 	{
 		if (app->entityManager->playerData.onDialog == false)
 		{

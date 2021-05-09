@@ -50,7 +50,7 @@ public:
 
 	bool OnGuiMouseClickEvent(GuiControl* control)
 	{
-		app->title->OnGuiMouseClickEvent(control);
+		app->sceneManager->OnGuiMouseClickEvent(control);
 		return true;
 	}
 

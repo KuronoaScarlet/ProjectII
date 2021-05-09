@@ -133,7 +133,7 @@ bool App::Start()
 	PERF_PEEK(perfTimer);
 	caped = false;
 
-	sceneManager->ChangeScene(LOGO);
+	sceneManager->Start(LOGO);
 
 	return ret;
 }

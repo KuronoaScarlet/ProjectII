@@ -100,11 +100,11 @@ bool Hud::PreUpdate()
 // Called each loop iteration
 bool Hud::Update(float dt)
 {
-	if (!app->entityManager->settingsEnabled)
+	if (!app->sceneManager->settingsEnabled)
 	{
 		app->hud->bag->Update(app->input, dt);
 	}
-	if (!app->entityManager->settingsEnabled && app->hud->bagEnabled)
+	if (!app->sceneManager->settingsEnabled && app->hud->bagEnabled)
 	{
 		app->hud->pencil->Update(app->input, dt);
 		app->hud->ball->Update(app->input, dt);
@@ -161,16 +161,16 @@ bool Hud::PostUpdate()
 	bool ret = true;
 
 	
-	if (!app->entityManager->settingsEnabled)
+	if (!app->sceneManager->settingsEnabled)
 	{
 		bag->Draw(app->render);
 	}
-	if (app->hud->bagEnabled && !app->entityManager->settingsEnabled)
+	if (app->hud->bagEnabled && !app->sceneManager->settingsEnabled)
 	{
 		app->render->DrawTexture(inventoryTab, -app->render->camera.x + 0, -app->render->camera.y + 0, NULL);
 	}
 
-	if (app->hud->bagEnabled && !app->entityManager->settingsEnabled)
+	if (app->hud->bagEnabled && !app->sceneManager->settingsEnabled)
 	{
 		pencil->Draw(app->render);
 		ball->Draw(app->render);

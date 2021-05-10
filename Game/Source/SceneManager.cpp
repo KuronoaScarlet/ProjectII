@@ -187,7 +187,11 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
     {
         if (control->id == 120)
         {
-            app->hud->bagEnabled = !app->hud->bagEnabled;
+            app->hud->bagEnabled = true;
+        }
+        if (control->id == 122)
+        {
+            app->hud->bagEnabled = false;
         }
         /*if (control->id == 101)
         {

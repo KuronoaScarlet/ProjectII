@@ -41,9 +41,17 @@ bool Hud::Start()
 {
 	active = true;
 	app->hud->active = true;
-	bag = new GuiButton(120, { 1155,20, 90, 125 }, "BAG");// 1155,20
+	bag = new GuiButton(120, { 275,552, 90, 125 }, "BAG");// 1155,20
 	bag->SetObserver(this);
 	bag->SetTexture(app->tex->Load("Assets/Textures/bag.png"), app->tex->Load("Assets/Textures/bag2.png"), app->tex->Load("Assets/Textures/bag2.png"));
+
+	stats = new GuiButton(121, { 947,556, 90, 125 }, "BAG");// 1155,20
+	stats->SetObserver(this);
+	stats->SetTexture(app->tex->Load("Assets/Textures/face.png"), app->tex->Load("Assets/Textures/face2.png"), app->tex->Load("Assets/Textures/face2.png"));
+
+	quitStatsAndInvetory = new GuiButton(122, { 44,39, 86, 98 }, "BAG");// 1155,20
+	quitStatsAndInvetory->SetObserver(this);
+	quitStatsAndInvetory->SetTexture(app->tex->Load("Assets/Textures/esc4.png"), app->tex->Load("Assets/Textures/esc5.png"), app->tex->Load("Assets/Textures/esc6.png"));
 
 	pencil = new GuiButton(130, { 204,73, 69, 72 }, "PENCIL");// 1155,20
 	pencil->SetObserver(this);
@@ -100,9 +108,15 @@ bool Hud::PreUpdate()
 // Called each loop iteration
 bool Hud::Update(float dt)
 {
+	if (app->input->GetKey(SDL_SCANCODE_I) == KEY_DOWN)
+	{
+		inventoryAndStatsRequest = !inventoryAndStatsRequest;
+	}
+
 	if (!app->sceneManager->settingsEnabled)
 	{
 		app->hud->bag->Update(app->input, dt);
+		app->hud->stats->Update(app->input, dt);
 	}
 	if (!app->sceneManager->settingsEnabled && app->hud->bagEnabled)
 	{
@@ -116,7 +130,9 @@ bool Hud::Update(float dt)
 		app->hud->rule->Update(app->input, dt);
 		app->hud->snack->Update(app->input, dt);
 		app->hud->tipex->Update(app->input, dt);
+		app->hud->quitStatsAndInvetory->Update(app->input, dt);
 	}
+
 
 	return true;
 }
@@ -124,8 +140,20 @@ bool Hud::Update(float dt)
 // Called each loop iteration
 bool Hud::PostUpdate()
 {
-	bag->bounds.x = -app->render->camera.x + 1155;
-	bag->bounds.y = -app->render->camera.y + 20;
+
+	bag->bounds.x = -app->render->camera.x + 275;
+	bag->bounds.y = -app->render->camera.y + 552;
+
+	stats->bounds.x = -app->render->camera.x + 947;
+	stats->bounds.y = -app->render->camera.y + 556;
+
+	quitStatsAndInvetory->bounds.x = -app->render->camera.x + 44;
+	quitStatsAndInvetory->bounds.y = -app->render->camera.y + 39;
+
+	if (inventoryAndStatsRequest)
+	{
+		InventoryAndStatsRequest();
+	}
 
 	pencil->bounds.x = -app->render->camera.x + 204;
 	pencil->bounds.y = -app->render->camera.y + 73;
@@ -160,11 +188,6 @@ bool Hud::PostUpdate()
 
 	bool ret = true;
 
-	
-	if (!app->sceneManager->settingsEnabled)
-	{
-		bag->Draw(app->render);
-	}
 	if (app->hud->bagEnabled && !app->sceneManager->settingsEnabled)
 	{
 		app->render->DrawTexture(inventoryTab, -app->render->camera.x + 0, -app->render->camera.y + 0, NULL);
@@ -182,6 +205,7 @@ bool Hud::PostUpdate()
 		rule->Draw(app->render);
 		snack->Draw(app->render);
 		tipex->Draw(app->render);
+		quitStatsAndInvetory->Draw(app->render);
 
 		char pencilCount[80] = { 0 };
 		sprintf_s(pencilCount, 80, "x%d", app->entityManager->playerData.Pencil);
@@ -260,4 +284,13 @@ bool Hud::CleanUp()
 
 	LOG("Freeing scene");
 	return true;
+}
+
+void Hud::InventoryAndStatsRequest()
+{
+
+		app->hud->bag->Draw(app->render);
+		app->hud->stats->Draw(app->render);
+		app->hud->inventoryAndStatsRequest = true;
+	
 }

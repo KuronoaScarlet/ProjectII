@@ -44,6 +44,8 @@ public:
 		return true;
 	}
 
+	void InventoryAndStatsRequest();
+
 	bool firstEntry = true;
 	bool on;
 
@@ -61,7 +63,11 @@ public:
 	bool tipexEnabled = false;
 	bool snackEnabled = false;
 
+	bool inventoryAndStatsRequest = false;
+
 	GuiButton* bag;
+	GuiButton* stats;
+	GuiButton* quitStatsAndInvetory;
 
 	GuiButton* pencil;
 	GuiButton* ball;

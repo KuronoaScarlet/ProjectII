@@ -2,6 +2,7 @@
 #define __SCENEMANAGER_H__
 
 #include "Module.h"
+#include "GuiControl.h"
 #include "GuiButton.h"
 #include "GuiCheckBox.h"
 
@@ -51,6 +52,8 @@ public:
 	void ChangeScene(SceneType type, float new_speed = 1000);
 
     bool OnGuiMouseClickEvent(GuiControl* control);
+
+    void OnMouseAboveButton(GuiControlState state, uint32 id);
 
     //PAUSE.........................................................
     GuiButton* resumeButton;

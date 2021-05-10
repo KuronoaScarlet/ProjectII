@@ -1,4 +1,5 @@
 #include "GuiButton.h"
+#include "SceneManager.h"
 
 GuiButton::GuiButton(uint32 id, SDL_Rect bounds, const char* text) : GuiControl(GuiControlType::BUTTON, id)
 {
@@ -53,6 +54,7 @@ bool GuiButton::Update(Input* input, float dt)
 bool GuiButton::Draw(Render* render)
 {
     // Draw the right button depending on state
+    app->sceneManager->OnMouseAboveButton(state, id);
     if (!app->debugButton)
     {
         switch (state)

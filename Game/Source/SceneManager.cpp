@@ -193,43 +193,135 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         }
         if (control->id == 130)
         {
-            app->hud->bagEnabled = !app->hud->bagEnabled;
+            app->hud->pencilEnabled = !app->hud->pencilEnabled;
+
+            app->hud->ballEnabled = false;
+            app->hud->bookEnabled = false;
+            app->hud->calculatorEnabled = false;
+            app->hud->coffeeEnabled = false;
+            app->hud->colaEnabled = false;
+            app->hud->eraserEnabled = false;
+            app->hud->ruleEnabled = false;
+            app->hud->tipexEnabled = false;
+            app->hud->snackEnabled = false;
         }
         if (control->id == 131)
         {
-            app->hud->bagEnabled = !app->hud->bagEnabled;
+            app->hud->ballEnabled = !app->hud->ballEnabled;
+            app->hud->bookEnabled = false;
+            app->hud->calculatorEnabled = false;
+            app->hud->coffeeEnabled = false;
+            app->hud->colaEnabled = false;
+            app->hud->eraserEnabled = false;
+            app->hud->ruleEnabled = false;
+            app->hud->tipexEnabled = false;
+            app->hud->snackEnabled = false;
+            app->hud->pencilEnabled = false;
+
         }
         if (control->id == 132)
         {
-            app->hud->bagEnabled = !app->hud->bagEnabled;
+            app->hud->bookEnabled = !app->hud->bookEnabled;
+            app->hud->calculatorEnabled = false;
+            app->hud->coffeeEnabled = false;
+            app->hud->colaEnabled = false;
+            app->hud->eraserEnabled = false;
+            app->hud->ruleEnabled = false;
+            app->hud->tipexEnabled = false;
+            app->hud->snackEnabled = false;
+            app->hud->pencilEnabled = false;
+            app->hud->ballEnabled = false;
         }
         if (control->id == 133)
         {
-            app->hud->bagEnabled = !app->hud->bagEnabled;
+            app->hud->calculatorEnabled = !app->hud->calculatorEnabled;
+            app->hud->coffeeEnabled = false;
+            app->hud->colaEnabled = false;
+            app->hud->eraserEnabled = false;
+            app->hud->ruleEnabled = false;
+            app->hud->tipexEnabled = false;
+            app->hud->snackEnabled = false;
+            app->hud->pencilEnabled = false;
+            app->hud->ballEnabled = false;
+            app->hud->bookEnabled = false;
         }
         if (control->id == 134)
         {
-            app->hud->bagEnabled = !app->hud->bagEnabled;
+            app->hud->coffeeEnabled = !app->hud->coffeeEnabled;
+            app->hud->colaEnabled = false;
+            app->hud->eraserEnabled = false;
+            app->hud->ruleEnabled = false;
+            app->hud->tipexEnabled = false;
+            app->hud->snackEnabled = false;
+            app->hud->pencilEnabled = false;
+            app->hud->ballEnabled = false;
+            app->hud->bookEnabled = false;
+            app->hud->calculatorEnabled = false;
         }
         if (control->id == 135)
         {
-            app->hud->bagEnabled = !app->hud->bagEnabled;
+            app->hud->colaEnabled = !app->hud->colaEnabled;
+            app->hud->eraserEnabled = false;
+            app->hud->ruleEnabled = false;
+            app->hud->tipexEnabled = false;
+            app->hud->snackEnabled = false;
+            app->hud->pencilEnabled = false;
+            app->hud->ballEnabled = false;
+            app->hud->bookEnabled = false;
+            app->hud->calculatorEnabled = false;
+            app->hud->coffeeEnabled = false;
         }
         if (control->id == 136)
         {
-            app->hud->bagEnabled = !app->hud->bagEnabled;
+            app->hud->eraserEnabled = !app->hud->eraserEnabled;
+            app->hud->ruleEnabled = false;
+            app->hud->tipexEnabled = false;
+            app->hud->snackEnabled = false;
+            app->hud->pencilEnabled = false;
+            app->hud->ballEnabled = false;
+            app->hud->bookEnabled = false;
+            app->hud->calculatorEnabled = false;
+            app->hud->coffeeEnabled = false;
+            app->hud->colaEnabled = false;
         }
         if (control->id == 137)
         {
-            app->hud->bagEnabled = !app->hud->bagEnabled;
+            app->hud->ruleEnabled = !app->hud->ruleEnabled;
+            app->hud->tipexEnabled = false;
+            app->hud->snackEnabled = false;
+            app->hud->pencilEnabled = false;
+            app->hud->ballEnabled = false;
+            app->hud->bookEnabled = false;
+            app->hud->calculatorEnabled = false;
+            app->hud->coffeeEnabled = false;
+            app->hud->colaEnabled = false;
+            app->hud->eraserEnabled = false;
         }
         if (control->id == 138)
         {
-            app->hud->bagEnabled = !app->hud->bagEnabled;
+            app->hud->snackEnabled = !app->hud->snackEnabled;
+            app->hud->tipexEnabled = false;
+            app->hud->pencilEnabled = false;
+            app->hud->ballEnabled = false;
+            app->hud->bookEnabled = false;
+            app->hud->calculatorEnabled = false;
+            app->hud->coffeeEnabled = false;
+            app->hud->colaEnabled = false;
+            app->hud->eraserEnabled = false;
+            app->hud->ruleEnabled = false;
         }
         if (control->id == 139)
         {
-            app->hud->bagEnabled = !app->hud->bagEnabled;
+            app->hud->tipexEnabled = !app->hud->tipexEnabled;
+            app->hud->pencilEnabled = false;
+            app->hud->ballEnabled = false;
+            app->hud->bookEnabled = false;
+            app->hud->calculatorEnabled = false;
+            app->hud->coffeeEnabled = false;
+            app->hud->colaEnabled = false;
+            app->hud->eraserEnabled = false;
+            app->hud->ruleEnabled = false;
+            app->hud->snackEnabled = false;
         }
         /*if (control->id == 101)
         {

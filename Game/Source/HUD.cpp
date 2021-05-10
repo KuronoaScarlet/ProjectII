@@ -235,6 +235,107 @@ bool Hud::PostUpdate()
 		sprintf_s(snackCount, 80, "x%d", app->entityManager->playerData.snack);
 		app->render->DrawText(app->render->font, snackCount, 300, 200, 60, 0, { 0, 0, 0, 255 });
 	}
+	if (pencilEnabled)
+	{
+		char pencilText[80] = { 0 };
+		sprintf_s(pencilText, 80, "Un lapiz normal y corriente, solo recuerda, no te lo metas por la nariz.");
+		app->render->DrawText(app->render->font, pencilText, 209, 588, 40, 0, { 255, 0, 0, 255 });
+
+		char pencilText2[80] = { 0 };
+		sprintf_s(pencilText2, 80, "Inflige dano leve a un adversario.");
+		app->render->DrawText(app->render->font, pencilText2, 209, 630, 40, 0, { 0, 0, 0, 255 });
+	}
+	if (ballEnabled)
+	{
+		char ballText[80] = { 0 };
+		sprintf_s(ballText, 80, "Parece que esta triste... y realmente lo está.");
+		app->render->DrawText(app->render->font, ballText, 209, 588, 40, 0, { 255, 0, 0, 255 });
+
+		char ballText2[80] = { 0 };
+		sprintf_s(ballText2, 80, "Inflige dano moderado a un enemigo y lo paraliza durante 3 turnos.");
+		app->render->DrawText(app->render->font, ballText2, 209, 630, 40, 0, { 0, 0, 0, 255 });
+	}
+	if (bookEnabled)
+	{
+		char bookText[100] = { 0 };
+		sprintf_s(bookText, 100, "Esta un poco roto pero se puede leer que 'Ya esta disponible en todas las librerias de...'");
+		app->render->DrawText(app->render->font, bookText, 209, 588, 35, 0, { 255, 0, 0, 255 });
+
+		char bookText2[80] = { 0 };
+		sprintf_s(bookText2, 80, "Solo se puede usar para combinar.");
+		app->render->DrawText(app->render->font, bookText2, 209, 630, 35, 0, { 0, 0, 0, 255 });
+	}
+	if (calculatorEnabled)
+	{
+		char calculatorText[80] = { 0 };
+		sprintf_s(calculatorText, 80, "A dia de hoy la sigues usando para hacer operaciones de menos de dos digitos.");
+		app->render->DrawText(app->render->font, calculatorText, 209, 588, 40, 0, { 255, 0, 0, 255 });
+
+		char calculatorText2[80] = { 0 };
+		sprintf_s(calculatorText2, 80, "Causa paralisis durante 2 turnos a un adversario.");
+		app->render->DrawText(app->render->font, calculatorText2, 209, 630, 40, 0, { 0, 0, 0, 255 });
+	}
+	if (coffeeEnabled)
+	{
+		char coffeText[80] = { 0 };
+		sprintf_s(coffeText, 80, "Sin cafeina, no queremos a ninos rebeldes.");
+		app->render->DrawText(app->render->font, coffeText, 209, 588, 40, 0, { 255, 0, 0, 255 });
+
+		char coffeText2[80] = { 0 };
+		sprintf_s(coffeText2, 80, "Aumenta la velocidad de la barra de ATB.");
+		app->render->DrawText(app->render->font, coffeText2, 209, 630, 40, 0, { 0, 0, 0, 255 });
+	}
+	if (colaEnabled)
+	{
+		char colaText[80] = { 0 };
+		sprintf_s(colaText, 80, "Siempre limpia la parte superior antes de beber de ella, no queremos mas bajas.");
+		app->render->DrawText(app->render->font, colaText, 209, 588, 40, 0, { 255, 0, 0, 255 });
+
+		char colaText2[80] = { 0 };
+		sprintf_s(colaText2, 80, "Solo se puede usar para combinar.");
+		app->render->DrawText(app->render->font, colaText2, 209, 630, 40, 0, { 0, 0, 0, 255 });
+	}
+	if (eraserEnabled)
+	{
+		char eraserText[90] = { 0 };
+		sprintf_s(eraserText, 90, "Aun hay marcas de alguien que ha intentado borrar un dibujo hecho con boligrafo.");
+		app->render->DrawText(app->render->font, eraserText, 209, 588, 35, 0, { 255, 0, 0, 255 });
+
+		char eraserText2[80] = { 0 };
+		sprintf_s(eraserText2, 80, "Baja el ataque de un adversario.");
+		app->render->DrawText(app->render->font, eraserText2, 209, 630, 35, 0, { 0, 0, 0, 255 });
+	}
+	if (ruleEnabled)
+	{
+		char ruleText[80] = { 0 };
+		sprintf_s(ruleText, 80, "Con 20 centimetros son mas que suficientes.");
+		app->render->DrawText(app->render->font, ruleText, 209, 588, 40, 0, { 255, 0, 0, 255 });
+
+		char ruleText2[80] = { 0 };
+		sprintf_s(ruleText2, 80, "Inflige dano moderado a un adversario.");
+		app->render->DrawText(app->render->font, ruleText2, 209, 630, 40, 0, { 0, 0, 0, 255 });
+	}
+	if (tipexEnabled)
+	{
+		char ruleText[80] = { 0 };
+		sprintf_s(ruleText, 80, "Todos sabemos que su nombre es Tipex por más que intentemos negarlo.");
+		app->render->DrawText(app->render->font, ruleText, 209, 588, 40, 0, { 255, 0, 0, 255 });
+
+		char ruleText2[80] = { 0 };
+		sprintf_s(ruleText2, 80, "El siguiente ataque del adversario fallara.");
+		app->render->DrawText(app->render->font, ruleText2, 209, 630, 40, 0, { 0, 0, 0, 255 });
+	}
+	if (snackEnabled)
+	{
+		char snackText[200] = { 0 };
+		sprintf_s(snackText, 200, "9 de cada 10 nutricionistas no recomiendan comer entre horas, el otro no quiere sentirse mal con si mismo.");
+		app->render->DrawText(app->render->font, snackText, 209, 588, 25, 0, { 255, 0, 0, 255 });
+
+		char snackText2[80] = { 0 };
+		sprintf_s(snackText2, 80, "Aumenta el dano del jugador durante 2 turnos.");
+		app->render->DrawText(app->render->font, snackText2, 209, 630, 40, 0, { 0, 0, 0, 255 });
+	}
+
 	return ret;
 }
 

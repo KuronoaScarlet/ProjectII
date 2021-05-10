@@ -64,6 +64,7 @@ public:
 	bool snackEnabled = false;
 
 	bool inventoryAndStatsRequest = false;
+	bool cantMoveInInvetory = false;
 
 	GuiButton* bag;
 	GuiButton* stats;

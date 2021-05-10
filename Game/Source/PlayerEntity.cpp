@@ -16,6 +16,7 @@
 #include "Input.h"
 #include "Scene12.h"
 #include "SceneManager.h"
+#include "HUD.h"
 
 PlayerEntity::PlayerEntity(Module* listener, fPoint position, SDL_Texture* texture, Type type) : Entity(listener, position, texture, type)
 {
@@ -171,7 +172,7 @@ bool PlayerEntity::Update(float dt)
 
 	GamePad& pad = app->input->pads[0];
 	tempPlayerPosition = position;
-	if (!app->sceneManager->pauseCondition)
+	if (!app->sceneManager->pauseCondition && !app->hud->cantMoveInInvetory)
 	{
 		if (app->entityManager->playerData.onDialog == false)
 		{

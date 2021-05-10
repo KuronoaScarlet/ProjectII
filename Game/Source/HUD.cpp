@@ -49,7 +49,7 @@ bool Hud::Start()
 	stats->SetObserver(this);
 	stats->SetTexture(app->tex->Load("Assets/Textures/face.png"), app->tex->Load("Assets/Textures/face2.png"), app->tex->Load("Assets/Textures/face2.png"));
 
-	quitStatsAndInvetory = new GuiButton(122, { 44,39, 86, 98 }, "BAG");// 1155,20
+	quitStatsAndInvetory = new GuiButton(122, { 70,39, 86, 98 }, "BAG");// 1155,20
 	quitStatsAndInvetory->SetObserver(this);
 	quitStatsAndInvetory->SetTexture(app->tex->Load("Assets/Textures/esc4.png"), app->tex->Load("Assets/Textures/esc5.png"), app->tex->Load("Assets/Textures/esc6.png"));
 
@@ -111,6 +111,7 @@ bool Hud::Update(float dt)
 	if (app->input->GetKey(SDL_SCANCODE_I) == KEY_DOWN)
 	{
 		inventoryAndStatsRequest = !inventoryAndStatsRequest;
+		cantMoveInInvetory = !cantMoveInInvetory;
 	}
 
 	if (!app->sceneManager->settingsEnabled)
@@ -147,7 +148,7 @@ bool Hud::PostUpdate()
 	stats->bounds.x = -app->render->camera.x + 947;
 	stats->bounds.y = -app->render->camera.y + 556;
 
-	quitStatsAndInvetory->bounds.x = -app->render->camera.x + 44;
+	quitStatsAndInvetory->bounds.x = -app->render->camera.x + 70;
 	quitStatsAndInvetory->bounds.y = -app->render->camera.y + 39;
 
 	if (inventoryAndStatsRequest)

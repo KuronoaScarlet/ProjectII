@@ -62,6 +62,9 @@ public:
 
     GuiCheckBox* fullScreen;
 
+    SDL_Rect musicSliderBack;
+    SDL_Rect fxSliderBack;
+
     SDL_Texture* settingsPost;
     SDL_Texture* pauseMenu = nullptr;
 

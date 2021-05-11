@@ -34,6 +34,9 @@ public:
 
 	void Volume(int num, char flag);
 
+	void MusicVolumeChanger(int val);
+	void FxVolumeChanger(int val);
+
 private:
 
 	_Mix_Music* music;
@@ -42,5 +45,6 @@ private:
 	int vol = 0;
 	int volumeMusic;
 };
+
 
 #endif // __AUDIO_H__

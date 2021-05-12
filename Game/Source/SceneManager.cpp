@@ -12,6 +12,7 @@
 #include "Scene12.h"
 #include "SceneBath.h"
 #include "SceneGym.h"
+#include "BattleScene.h"
 
 SceneManager::SceneManager()
 {
@@ -205,6 +206,7 @@ void SceneManager::ChangeScene(SceneType type, float new_speed)
 	case SCENE12: next_scene = new Scene12; break;
 	case BATH: next_scene = new SceneBath; break;
 	case GYM: next_scene = new SceneGym; break;
+	case BATTLE: next_scene = new BattleScene; break;
 	}
 	/*next_scene->active = true;
 	//next_scene->Awake();

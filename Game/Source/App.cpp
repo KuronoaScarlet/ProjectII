@@ -58,10 +58,10 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(tex);
 	AddModule(audio);
 	AddModule(map);
+	AddModule(sceneManager);
 	AddModule(entityManager);
 	AddModule(dialogueSystem);
 	AddModule(hud);
-	AddModule(sceneManager);
 //  Render last to swap buffer
 
 	AddModule(collisions);

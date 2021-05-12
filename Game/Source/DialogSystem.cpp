@@ -114,7 +114,7 @@ bool DialogueSystem::Update(float dt)
 			if (actionChecks == dialogueTrees[3]->dialogueNodes.size())
 			{
 				app->entityManager->playerData.onDialog = false;
-				app->audio->PlayFx(battleTransition);
+				app->audio->PlayFx(2,battleTransition);
 				app->sceneManager->ChangeScene(SCENE1);
 			}
 		}

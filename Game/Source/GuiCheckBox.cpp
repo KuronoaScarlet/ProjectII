@@ -67,7 +67,7 @@ bool GuiCheckBox::Draw(Render* render)
                 if (audio == false)
                 {
                     audio = true;
-                    app->audio->PlayFx(selectedFx);
+                    app->audio->PlayFx(channel, selectedFx);
                 }
                 break;
             case GuiControlState::PRESSED:
@@ -76,7 +76,7 @@ bool GuiCheckBox::Draw(Render* render)
                 if (audio == false)
                 {
                     audio = true;
-                    app->audio->PlayFx(selectedFx);
+                    app->audio->PlayFx(channel, selectedFx);
                 }
                 break;
             case GuiControlState::SELECTED:
@@ -85,7 +85,7 @@ bool GuiCheckBox::Draw(Render* render)
                 if (audio == false)
                 {
                     audio = true;
-                    app->audio->PlayFx(selectedFx);
+                    app->audio->PlayFx(channel, selectedFx);
                 }
                 break;
             default:

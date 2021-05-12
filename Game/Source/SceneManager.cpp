@@ -68,12 +68,12 @@ bool SceneManager::Update(float dt)
         settingsButton->Update(app->input, dt);
         exitButton->Update(app->input, dt);
         fullScreen->Update(app->input, dt);
-        app->audio->Volume(20, '0');
+      //  app->audio->Volume(20, '0');
 
     }
     if (!pauseCondition)
     {
-        app->audio->Volume(100, '0');
+       // app->audio->Volume(100, '0');
 
     }
     resumeButton->bounds.x = -app->render->camera.x + 537;
@@ -294,7 +294,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
             //Volume
             if (control->bounds.x == 143 || control->bounds.x == 156.5f || control->bounds.x == 170 || control->bounds.x == 183.5f || control->bounds.x == 197 || control->bounds.x == 210.5f || control->bounds.x == 224 || control->bounds.x == 237.5f || control->bounds.x == 251 || control->bounds.x == 264.5f || control->bounds.x == 278)
             {
-                app->audio->MusicVolumeChanger(100 * (control->bounds.x - app->configscene->musicSliderBack.x) / app->configscene->musicSliderBack.w);
+               // app->audio->MusicVolumeChanger(100 * (control->bounds.x - app->configscene->musicSliderBack.x) / app->configscene->musicSliderBack.w);
                // volumMusic = ((control->bounds.x - 143) / 13.5) * 10;
             }
         }
@@ -304,7 +304,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
             if (control->bounds.x == 143 || control->bounds.x == 156.5f || control->bounds.x == 170 || control->bounds.x == 183.5f || control->bounds.x == 197 || control->bounds.x == 210.5f || control->bounds.x == 224 || control->bounds.x == 237.5f || control->bounds.x == 251 || control->bounds.x == 264.5f || control->bounds.x == 278)
             {
                 volumMusic = ((control->bounds.x - 143) / 13.5) * 10;
-                app->audio->Volume(volumMusic, '1');
+              //  app->audio->Volume(volumMusic, '1');
             }
         }
     }

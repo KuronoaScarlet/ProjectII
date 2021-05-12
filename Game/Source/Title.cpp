@@ -50,7 +50,7 @@ bool Title::Start()
     currentIterationCaronte = 0;
     currentIterationMandate = 0;
     totalIterations = 120;
-    positionTitleBack = -1500;
+    positionTitleBack = -100;
     positionTitleCaronte = -700;
     positionTitleMandate = 1280+700;
 
@@ -155,27 +155,25 @@ bool Title::Update(float dt)
         app->sceneManager->creditsOnScreen = false;
     }
 
-    positionTitleBack = easing->backEaseIn(currentIterationBck, -1500, 1700, totalIterations);
-    
-    if (positionTitleBack == 200)
-    {
-        
-        positionTitleCaronte = easing->elasticEaseIn(currentIterationCaronte, -1500, 1930, totalIterations);
-        if (currentIterationCaronte < totalIterations)
-        {
-            ++currentIterationCaronte;
-        }
-        positionTitleMandate = easing->elasticEaseIn(currentIterationMandate, 1500, -1070, totalIterations);
-        if (currentIterationMandate < totalIterations)
-        {
-            ++currentIterationMandate;
-        }
-    }
-
+    positionTitleBack = easing->backEaseIn(currentIterationBck, -300, 300, totalIterations);
     if (currentIterationBck < totalIterations)
     {
         ++currentIterationBck;
     }
+
+    positionTitleCaronte = easing->elasticEaseIn(currentIterationCaronte, -1000, 1430, totalIterations);
+    if (currentIterationCaronte < totalIterations)
+    {
+        ++currentIterationCaronte;
+    }
+    positionTitleMandate = easing->elasticEaseIn(currentIterationMandate, 1500, -1070, totalIterations);
+    if (currentIterationMandate < totalIterations)
+    {
+        ++currentIterationMandate;
+    }
+
+    //if (positionTitleBack == 0)
+
     return true;
 }
 
@@ -195,7 +193,7 @@ bool Title::PostUpdate()
 
     app->render->DrawTexture(screen, 0, 0, NULL);
 
-    app->render->DrawTexture(bck, positionTitleBack, 0, NULL);
+    app->render->DrawTexture(bck, 200, positionTitleBack, NULL);
     app->render->DrawTexture(caronte, positionTitleCaronte, 20, NULL);//430
     app->render->DrawTexture(mandate, positionTitleMandate, 100, NULL);
 

@@ -246,17 +246,31 @@ bool PlayerEntity::Update(float dt)
 				app->input->ShakeController(0, 12, 0.33f);
 			}
 
-			//camera update
+			//CAMERA MANAGEMENT----------------------------------------
 
-			lerpCamera.x += (position.x - lerpCamera.x) * dt * 1.0f;
-			lerpCamera.y += (position.y - lerpCamera.y) * dt * 1.0f;
-			/*if (lerpCamera.x < 640) lerpCamera.x = 640;
-			if (lerpCamera.x > 300) lerpCamera.x = 300;
-			if (lerpCamera.y < 380) lerpCamera.y = 380;
-			if (lerpCamera.y > 1480) lerpCamera.y = 1480;*/
-			printf("%.2f---%.2f\n", position.x, position.y);
+			float speedx = (position.x - lerpCamera.x);// *dt * 1.0f;
+			float speedy = (position.y - lerpCamera.y);// *dt * 1.0f;
+
+			//minimum speed adjust
+			float min = 0.2f;
+			if (bool minimum_speed_camera = 0)
+			{
+				if (speedx < min && speedx > 0) speedx = min;
+				if (speedx > -min && speedx < 0) speedx = -min;
+				if (speedy < min && speedy > 0) speedy = min;
+				if (speedy > -min && speedy < 0) speedy = -min;
+			}
+
+			//if (abs(speedx) < 20 /*&& currentAnimation == &idleAnimation*/) lerpCamera.x += speedx * dt;
+			//if (abs(speedy) < 20 /*&& currentAnimation == &idleAnimation*/) lerpCamera.y += speedy * dt;
+
+			lerpCamera.x += speedx;
+			lerpCamera.y += speedy;
+
+			printf("x(%.2f)//y(%.2f)\n", position.x, position.y);
 			app->render->camera.x = -int(lerpCamera.x) + 640;
 			app->render->camera.y = -int(lerpCamera.y) + 360;
+			//-------------------------------------------------------
 		}
 	}
 	if (app->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN) app->SaveGameRequest();

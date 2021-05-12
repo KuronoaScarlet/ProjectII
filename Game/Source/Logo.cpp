@@ -80,6 +80,7 @@ bool Logo::PostUpdate()
 
     if (position_x == 0.0f && trans == true)
     {
+        //SDL_Delay(200);
         trans = false;
         app->sceneManager->ChangeScene(TITLE);
         /*CleanUp();

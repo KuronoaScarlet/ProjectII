@@ -30,8 +30,9 @@ public:
     enum FadeStep
     {
         NONE,
+        WAIT1,
         TO_BLACK,
-        WAIT,
+        WAIT2,
         FROM_BLACK
     } fadeStep = FadeStep::NONE;
 

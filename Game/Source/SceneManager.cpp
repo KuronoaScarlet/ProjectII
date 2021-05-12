@@ -90,12 +90,15 @@ bool SceneManager::Update(float dt)
 	case FadeStep::NONE:
 		return true;
 		break;
+    case FadeStep::WAIT1:
+        fadeStep = FadeStep::TO_BLACK;
+        break;
 	case FadeStep::TO_BLACK:
 		alpha += speed * dt;
 		if (alpha > 255)
 		{
 			alpha = 255;
-			fadeStep = FadeStep::WAIT;
+			fadeStep = FadeStep::WAIT2;
 
 			if(scene) scene->CleanUp();
 
@@ -109,7 +112,7 @@ bool SceneManager::Update(float dt)
 			scene->Start();
 		}
 		break;
-	case FadeStep::WAIT:
+	case FadeStep::WAIT2:
 		fadeStep = FadeStep::FROM_BLACK;
 		break;
 	case FadeStep::FROM_BLACK:
@@ -157,9 +160,9 @@ bool SceneManager::PostUpdate()
 
 void SceneManager::ChangeScene(SceneType type, float new_speed)
 {
-	if (fadeStep == FadeStep::TO_BLACK) return;
+	if (fadeStep == FadeStep::WAIT1) return;
 
-	fadeStep = FadeStep::TO_BLACK;
+	fadeStep = FadeStep::WAIT1;
 	speed = new_speed;
 	alpha = 0;
 	id = type;

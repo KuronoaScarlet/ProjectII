@@ -248,8 +248,8 @@ bool PlayerEntity::Update(float dt)
 
 			//CAMERA MANAGEMENT----------------------------------------
 
-			float speedx = (position.x - lerpCamera.x);// *dt * 1.0f;
-			float speedy = (position.y - lerpCamera.y);// *dt * 1.0f;
+			float speedx = (position.x - lerpCamera.x) *dt * 1.0f;
+			float speedy = (position.y - lerpCamera.y) *dt * 1.0f;
 
 			//minimum speed adjust
 			float min = 0.2f;

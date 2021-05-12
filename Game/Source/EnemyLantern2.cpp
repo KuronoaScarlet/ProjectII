@@ -57,6 +57,9 @@ EnemyLantern2::EnemyLantern2(Module* listener, fPoint position, SDL_Texture* tex
 	collider = app->collisions->AddCollider(SDL_Rect({ (int)position.x + 14, (int)position.y, 32, 45 }), Collider::Type::ENEMYLANTERN2, listener);
 	collider2 = app->collisions->AddCollider(SDL_Rect({ (int)position.x, (int)position.y + 50, 62, 73 }), Collider::Type::ENEMYLANTERN2, listener);
 
+	//collider3 = app->collisions->AddCollider(SDL_Rect({ 10000, 10000, 73, 63 }), Collider::Type::ENEMYLANTERN2, listener);
+	//collider4 = app->collisions->AddCollider(SDL_Rect({ 10000, 10000, 62, 73 }), Collider::Type::ENEMYLANTERN2, listener);
+
 }
 
 bool EnemyLantern2::Start()
@@ -67,28 +70,42 @@ bool EnemyLantern2::Start()
 bool EnemyLantern2::Update(float dt)
 {
 	currentAnimation->Update();
-	collider->SetPos(position.x + 14, position.y);
-	collider2->SetPos(position.x, position.y + 50);
+
 	
 	if (godown == true)
-	{		
+	{	
+		collider->SetPos(position.x + 70, position.y);
+		collider2->SetPos(position.x+60, position.y +55);
 		currentAnimation = &idleAnimation;
-		position.y += 60 * dt;
+		position.y += 120 * dt;		
 	}
 	else if ( goup == true)
 	{
 		currentAnimation = &upAnimation;
-		position.y -= 60 * dt;
+		position.y -= 120 * dt;
+		collider->SetPos(position.x+70, position.y+35);
+		collider2->SetPos(position.x+60, position.y-20);
 	}
 	else if (goright == true)
 	{
 		currentAnimation = &rightAnimation;
-		position.x += 60 * dt;
+		position.x += 120 * dt;
+		collider->SetPos(position.x+60, position.y);
+		collider2->SetPos(position.x + 100, position.y);
+	}
+	else if (goleft == true)
+	{
+		collider->SetPos(position.x + 74, position.y+30);
+		collider2->SetPos(position.x, position.y+30);
+		currentAnimation = &leftAnimation;
+		position.x -= 120 * dt;
 	}
 	else
 	{
+		collider->SetPos(position.x + 74, position.y);
+		collider2->SetPos(position.x, position.y);
 		currentAnimation = &leftAnimation;
-		position.x -= 60 * dt;
+		position.x -= 120 * dt;		
 	}
 
 	return true;
@@ -97,7 +114,27 @@ bool EnemyLantern2::Update(float dt)
 bool EnemyLantern2::Draw()
 {
 	SDL_Rect rect = currentAnimation->GetCurrentFrame();
-	app->render->DrawTexture(texture, position.x, position.y, &rect);
+
+	if (godown == true)
+	{
+		app->render->DrawTexture(texture, position.x+60, position.y, &rect);
+	}
+	else if (goright == true)
+	{
+		app->render->DrawTexture(texture, position.x + 60, position.y, &rect);
+	}
+	else if (goup == true)
+	{
+		app->render->DrawTexture(texture, position.x + 60, position.y-20, &rect);
+	}
+	else if (goleft == true)
+	{
+		app->render->DrawTexture(texture, position.x , position.y + 30, &rect);
+	}
+	else 
+	{
+		app->render->DrawTexture(texture, position.x, position.y, &rect);
+	}
 
 	return true;
 }
@@ -111,6 +148,7 @@ void EnemyLantern2::Collision(Collider* coll)
 {
 	if ((coll->type == Collider::Type::GODOWN))
 	{
+		//position.x += 20;
 		godown = true;
 		goup = false;
 		goleft = false;
@@ -118,6 +156,7 @@ void EnemyLantern2::Collision(Collider* coll)
 	}
 	if ((coll->type == Collider::Type::GOUP))
 	{
+		
 		godown = false;
 		goleft = false;
 		goright = false;
@@ -132,6 +171,8 @@ void EnemyLantern2::Collision(Collider* coll)
 	}
 	if ((coll->type == Collider::Type::GOLEFT))
 	{
+		//position.x -= 20;
+		//position.y += 40;
 		godown = false;
 		goright = false;
 		goup = false;

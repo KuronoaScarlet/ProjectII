@@ -48,11 +48,18 @@ bool SceneBath::Start()
 	app->entityManager->AddEntity({ 640,384 }, Entity::Type::ENEMYLANTERN1);
 	app->entityManager->AddEntity({ 288,640 }, Entity::Type::ENEMYLANTERN1);
 	app->entityManager->AddEntity({ 544,576 }, Entity::Type::ENEMYLANTERN2);
+	app->entityManager->AddEntity({ 576,352 }, Entity::Type::ENEMYLANTERN2);
+	app->entityManager->AddEntity({ 320, 470 }, Entity::Type::ENEMYLANTERN2);
 
 	godown1 = app->collisions->AddCollider(SDL_Rect({ 310, 600, 10, 10 }), Collider::Type::GODOWN, this);
 	goup = app->collisions->AddCollider(SDL_Rect({ 672, 736, 10, 10 }), Collider::Type::GOUP, this);
 	goright = app->collisions->AddCollider(SDL_Rect({ 340, 768, 10, 10 }), Collider::Type::GORIGHT, this);
 	goleft = app->collisions->AddCollider(SDL_Rect({ 672, 576, 10, 10 }), Collider::Type::GOLEFT, this);
+
+	godown2 = app->collisions->AddCollider(SDL_Rect({ 310, 352, 10, 10 }), Collider::Type::GODOWN, this);
+	goright2 = app->collisions->AddCollider(SDL_Rect({ 320, 512, 10, 10 }), Collider::Type::GORIGHT, this);
+	goleft2 = app->collisions->AddCollider(SDL_Rect({ 660, 330, 10, 10 }), Collider::Type::GOLEFT, this);
+	goup2 = app->collisions->AddCollider(SDL_Rect({ 672, 480, 10, 10 }), Collider::Type::GOUP, this);
 
 	app->render->camera.y = 0;
 	app->render->camera.x = 0;

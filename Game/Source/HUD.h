@@ -83,6 +83,13 @@ public:
 private:
 	//GuiButton* play;
 
+	Easing* easing;
+	
+	float currentIteration;
+	float totalIterations;
+	float initialPosition;
+	float deltaPosition;
+
 };
 
 

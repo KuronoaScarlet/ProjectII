@@ -291,11 +291,11 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
     {
         if (control->id == 5)
         {
-            //Volume
+            //MusicVolume
             if (control->bounds.x == 143 || control->bounds.x == 156.5f || control->bounds.x == 170 || control->bounds.x == 183.5f || control->bounds.x == 197 || control->bounds.x == 210.5f || control->bounds.x == 224 || control->bounds.x == 237.5f || control->bounds.x == 251 || control->bounds.x == 264.5f || control->bounds.x == 278)
             {
-               // app->audio->MusicVolumeChanger(100 * (control->bounds.x - app->configscene->musicSliderBack.x) / app->configscene->musicSliderBack.w);
-               // volumMusic = ((control->bounds.x - 143) / 13.5) * 10;
+                volumMusic = ((control->bounds.x - 143) / 13.5) * 10;
+                app->audio->ChangeMusicVolume(volumMusic);
             }
         }
         else if (control->id == 6)
@@ -304,7 +304,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
             if (control->bounds.x == 143 || control->bounds.x == 156.5f || control->bounds.x == 170 || control->bounds.x == 183.5f || control->bounds.x == 197 || control->bounds.x == 210.5f || control->bounds.x == 224 || control->bounds.x == 237.5f || control->bounds.x == 251 || control->bounds.x == 264.5f || control->bounds.x == 278)
             {
                 volumMusic = ((control->bounds.x - 143) / 13.5) * 10;
-              //  app->audio->Volume(volumMusic, '1');
+                app->audio->ChangeFxVolume(volumMusic);
             }
         }
     }

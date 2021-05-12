@@ -301,7 +301,7 @@ void Audio::SetMusicVolume(int volume)
 // TODO 7: Up/Down Music volume 
 void Audio::ChangeMusicVolume(int volume)
 {
-	volumeMusic += volume;
+	volumeMusic = volume;
 	if (volumeMusic > MIX_MAX_VOLUME) volumeMusic = MIX_MAX_VOLUME;
 	if (volumeMusic < 0) volumeMusic = 0;
 	Mix_VolumeMusic(volumeMusic);
@@ -309,7 +309,7 @@ void Audio::ChangeMusicVolume(int volume)
 // TODO 7: Up/Down Fx volume 
 void Audio::ChangeFxVolume(int volume)
 {
-	volumeFx += volume;
+	volumeFx = volume;
 	if (volumeFx > MIX_MAX_VOLUME) volumeFx = MIX_MAX_VOLUME;
 	if (volumeFx < 0) volumeFx = 0;
 }

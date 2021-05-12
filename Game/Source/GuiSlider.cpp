@@ -1,5 +1,5 @@
 #include "GuiSlider.h"
-#include "SceneManager.h"
+
 GuiSlider::GuiSlider(uint32 id, SDL_Rect bounds, const char* text) : GuiControl(GuiControlType::SLIDER, id)
 {
     this->bounds = bounds;
@@ -14,29 +14,44 @@ bool GuiSlider::Update(Input* input, float dt)
 {
     if (state != GuiControlState::DISABLED)
     {
-        SDL_Point mouse;
-        input->GetMousePosition(mouse.x, mouse.y);
+        int mouseX, mouseY;
+        input->GetMousePosition(mouseX, mouseY);
 
-        SDL_Point motion;
-        input->GetMouseMotion(motion.x, motion.y);
+        int mouseMotionX, mouseMotionY;
+        input->GetMouseMotion(mouseMotionX, mouseMotionY);
 
-        if (SDL_PointInRect(&mouse, &bounds))
+        // Check collision between mouse and button bounds
+        if ((mouseX > bounds.x) && (mouseX < (bounds.x + bounds.w)) && 
+            (mouseY > bounds.y) && (mouseY < (bounds.y + bounds.h)))
         {
             state = GuiControlState::FOCUSED;
+
             if (input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_REPEAT)
             {
+
                 state = GuiControlState::PRESSED;
 
-                bounds.x = mouse.x - (bounds.w / 2);
-                int left = app->sceneManager->musicSliderBack.x + 1;
-                if (bounds.x < left)
-                    bounds.x = left;
-                int right = app->sceneManager->musicSliderBack.x + app->sceneManager->musicSliderBack.w - 1 - bounds.w;
-                if (bounds.x > right)
-                    bounds.x = right;
-
+                if (bounds.x >= 143)
+                {
+                    bounds.x = mouseX - (bounds.w / 2);  // Slider
+                    if (bounds.x + bounds.w <= 170 + 130)
+                    {
+                        bounds.x = mouseX - (bounds.w / 2);  // Slider
+                    }
+                    else
+                    {
+                        bounds.x = 168 + 130 - bounds.w;
+                    }
+                }
+                else
+                {
+                    bounds.x = 145;
+                }
+                
                 NotifyObserver();
+
             }
+            NotifyObserver();
         }
         else state = GuiControlState::NORMAL;
     }

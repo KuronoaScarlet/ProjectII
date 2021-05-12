@@ -88,5 +88,7 @@ private:
 	Textures* tex;
 	uint battleTransition = 0;
 
+	int channel = 2;
+
 };
 #endif // __DIALOGSYSTEM_H__

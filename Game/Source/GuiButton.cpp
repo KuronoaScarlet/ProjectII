@@ -72,7 +72,7 @@ bool GuiButton::Draw(Render* render)
             if (audio == false)
             {
                 audio = true;
-                app->audio->PlayFx(pencilFx);
+                app->audio->PlayFx(channel,pencilFx);
             }
             break;
         case GuiControlState::PRESSED:
@@ -81,7 +81,7 @@ bool GuiButton::Draw(Render* render)
             if (audioB == false)
             {
                 audioB = true;
-                app->audio->PlayFx(selectedFx);
+                app->audio->PlayFx(channel,selectedFx);
             }
           
             break;
@@ -91,7 +91,7 @@ bool GuiButton::Draw(Render* render)
             if (audio == false)
             {
                 audio = true;
-                app->audio->PlayFx(selectedFx);
+                app->audio->PlayFx(channel,selectedFx);
             }
             break;
         default:
@@ -114,7 +114,7 @@ bool GuiButton::Draw(Render* render)
             if (audio == false)
             {
                 audio = true;
-                app->audio->PlayFx(selectedFx);
+                app->audio->PlayFx(channel, selectedFx);
             }
             break;
         case GuiControlState::PRESSED:

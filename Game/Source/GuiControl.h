@@ -122,6 +122,8 @@ public:
     bool audioB;
     bool audioR;
 
+    int channel = 1;
+
 };
 
 #endif // __GUICONTROL_H__

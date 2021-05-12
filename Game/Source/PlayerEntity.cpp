@@ -75,10 +75,10 @@ PlayerEntity::PlayerEntity(Module* listener, fPoint position, SDL_Texture* textu
 	battleIdle.PushBack({ 160, 80, 29, 47 });
 
 	currentAnimation = &idleAnimation;
-	/*if (app->battleScene->active == true)
+	if (app->sceneManager->id == SceneType::BATTLE)
 	{
 		currentAnimation = &battleIdle;
-	}*/
+	}
 
 	collider = app->collisions->AddCollider(SDL_Rect({ (int)position.x + 6, (int)position.y + 34, 22, 12 }), Collider::Type::PLAYER, listener);
 
@@ -174,7 +174,7 @@ bool PlayerEntity::Update(float dt)
 	tempPlayerPosition = position;
 	if (!app->sceneManager->pauseCondition && !app->hud->cantMoveInInvetory)
 	{
-		if (app->entityManager->playerData.onDialog == false)
+		if (app->entityManager->playerData.onDialog == false && app->sceneManager->id != SceneType::BATTLE)
 		{
 			//PlayerData Info Containers
 			app->entityManager->playerData.position.x = position.x;

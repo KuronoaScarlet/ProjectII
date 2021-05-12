@@ -39,9 +39,13 @@ bool Hud::Awake()
 // Called before the first frame
 bool Hud::Start()
 {
+	currentIteration = 0;
+	totalIterations = 120;
+	initialPosition = 700;
+	deltaPosition = -148;
 	active = true;
 	app->hud->active = true;
-	bag = new GuiButton(120, { 275,552, 90, 125 }, "BAG");// 1155,20
+	bag = new GuiButton(120, { 275,(int)initialPosition, 90, 125 }, "BAG");// 1155,20
 	bag->SetObserver(this);
 	bag->SetTexture(app->tex->Load("Assets/Textures/bag.png"), app->tex->Load("Assets/Textures/bag2.png"), app->tex->Load("Assets/Textures/bag2.png"));
 
@@ -110,6 +114,8 @@ bool Hud::Update(float dt)
 {
 	if (app->input->GetKey(SDL_SCANCODE_I) == KEY_DOWN)
 	{
+		currentIteration = 0;
+		bag->bounds.y = -app->render->camera.y;// +700;
 		inventoryAndStatsRequest = !inventoryAndStatsRequest;
 		cantMoveInInvetory = !cantMoveInInvetory;
 	}
@@ -119,19 +125,19 @@ bool Hud::Update(float dt)
 		app->hud->bag->Update(app->input, dt);
 		app->hud->stats->Update(app->input, dt);
 	}
-	if (!app->sceneManager->settingsEnabled && app->hud->bagEnabled)
+	if (!app->sceneManager->settingsEnabled && bagEnabled)
 	{
-		app->hud->pencil->Update(app->input, dt);
-		app->hud->ball->Update(app->input, dt);
-		app->hud->calculator->Update(app->input, dt);
-		app->hud->book->Update(app->input, dt);
-		app->hud->coffee->Update(app->input, dt);
-		app->hud->cola->Update(app->input, dt);
-		app->hud->eraser->Update(app->input, dt);
-		app->hud->rule->Update(app->input, dt);
-		app->hud->snack->Update(app->input, dt);
-		app->hud->tipex->Update(app->input, dt);
-		app->hud->quitStatsAndInvetory->Update(app->input, dt);
+		pencil->Update(app->input, dt);
+		ball->Update(app->input, dt);
+		calculator->Update(app->input, dt);
+		book->Update(app->input, dt);
+		coffee->Update(app->input, dt);
+		cola->Update(app->input, dt);
+		eraser->Update(app->input, dt);
+		rule->Update(app->input, dt);
+		snack->Update(app->input, dt);
+		tipex->Update(app->input, dt);
+		quitStatsAndInvetory->Update(app->input, dt);
 	}
 
 
@@ -143,7 +149,12 @@ bool Hud::PostUpdate()
 {
 
 	bag->bounds.x = -app->render->camera.x + 275;
-	bag->bounds.y = -app->render->camera.y + 552;
+	bag->bounds.y = easing->backEaseInOut(currentIteration, -app->render->camera.y + 700, deltaPosition, totalIterations);
+	
+	if (currentIteration < totalIterations)
+	{
+		++currentIteration;
+	}
 
 	stats->bounds.x = -app->render->camera.x + 947;
 	stats->bounds.y = -app->render->camera.y + 556;

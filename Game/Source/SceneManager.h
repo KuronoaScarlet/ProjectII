@@ -5,6 +5,7 @@
 #include "GuiControl.h"
 #include "GuiButton.h"
 #include "GuiCheckBox.h"
+#include "GuiSlider.h"
 
 enum SceneType
 {
@@ -60,6 +61,9 @@ public:
     GuiButton* resumeButton;
     GuiButton* settingsButton;
     GuiButton* exitButton;
+
+    GuiSlider* musicSlider;
+    GuiSlider* fxSlider;
 
     GuiCheckBox* fullScreen;
 

@@ -1,0 +1,41 @@
+<!-- Quest Data -->
+<quests>
+  <quest DNI ="1111" Reward="15">
+    <ActivationEvent Type ="1">
+      <Object x="134" y ="255" w ="100" h ="100"/>
+    </ActivationEvent>
+    <SubEvent Type="1">
+      <Object x="134" y ="390" w ="100" h ="100"/>
+    </SubEvent>
+    <SubEvent Type="1">
+      <Object x="134" y ="500" w ="100" h ="100"/>
+    </SubEvent>
+    <SubEvent Type="1">
+      <Object x="134" y ="620" w ="100" h ="100"/>
+    </SubEvent>
+  </quest>
+
+	<quest DNI ="2222" Reward="20">
+    <ActivationEvent Type ="1">
+      <Object x="460" y ="415" w ="100" h ="100"/>
+    </ActivationEvent>
+    <SubEvent Type="1">
+      <Object x="460" y ="550" w ="100" h ="100"/>
+    </SubEvent> 
+  </quest>
+
+	<quest DNI ="3333" Reward="20">
+    <ActivationEvent Type ="1">
+      <Object x="787" y ="255" w ="100" h ="100"/>
+    </ActivationEvent>
+    <SubEvent Type="1">
+      <Object x="787" y ="390" w ="100" h ="100"/>
+    </SubEvent>
+    <SubEvent Type="1">
+      <Object x="787" y ="500" w ="100" h ="100"/>
+    </SubEvent>
+    <SubEvent Type="1">
+      <Object x="787" y ="620" w ="100" h ="100"/>
+    </SubEvent>
+  </quest>
+</quests>

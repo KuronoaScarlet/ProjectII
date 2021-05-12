@@ -45,11 +45,20 @@ bool SceneManager::Start(SceneType type)
     fullScreen->SetObserver(this);
     fullScreen->SetTexture(app->tex->Load("Assets/Textures/fs1.png"), app->tex->Load("Assets/Textures/fs2.png"), app->tex->Load("Assets/Textures/fs2.png"));
 
+    musicSlider = new GuiSlider(1, { 620,400, 40, 40 }, "FULLSCREEN");
+    musicSlider->SetObserver(this);
+    musicSlider->SetTexture(app->tex->Load("Assets/Textures/fx.png"), app->tex->Load("Assets/Textures/fx_selected.png"), app->tex->Load("Assets/Textures/fx_focused.png"));
+
+    fxSlider = new GuiSlider(2, { 620,400, 40, 40 }, "FULLSCREEN");
+    fxSlider->SetObserver(this);
+    fxSlider->SetTexture(app->tex->Load("Assets/Textures/fx.png"), app->tex->Load("Assets/Textures/fx_selected.png"), app->tex->Load("Assets/Textures/fx_focused.png"));
+
     exitButton = new GuiButton(11, { 551, 360, 172, 55 }, "CREDITS");
     exitButton->SetObserver(this);
     exitButton->SetTexture(app->tex->Load("Assets/Textures/exit.png"), app->tex->Load("Assets/Textures/exit_selected.png"), app->tex->Load("Assets/Textures/exit_pressed.png"));
 
-
+    musicSliderBack = { 900,300,300,40 };
+    fxSliderBack = { 900,350,300,40 };
 
     return false;
 }
@@ -68,11 +77,14 @@ bool SceneManager::Update(float dt)
         settingsButton->Update(app->input, dt);
         exitButton->Update(app->input, dt);
         fullScreen->Update(app->input, dt);
+        musicSlider->Update(app->input, dt);
+        fxSlider->Update(app->input, dt);
       //  app->audio->Volume(20, '0');
 
     }
     if (!pauseCondition)
     {
+       
        // app->audio->Volume(100, '0');
 
     }
@@ -82,8 +94,22 @@ bool SceneManager::Update(float dt)
     settingsButton->bounds.y = -app->render->camera.y + 260;
     exitButton->bounds.x = -app->render->camera.x + 557;
     exitButton->bounds.y = -app->render->camera.y + 360;
+
     fullScreen->bounds.x = -app->render->camera.x + 900;
     fullScreen->bounds.y = -app->render->camera.y + 200;
+
+    musicSlider->bounds.x = -app->render->camera.x + 900;
+    musicSlider->bounds.y = -app->render->camera.y + 300;
+
+    fxSlider->bounds.x = -app->render->camera.x + 900;
+    fxSlider->bounds.y = -app->render->camera.y + 350;
+
+    //RECT OF THE BACKGORUND ONLY UPDATE IF UPDATE THE SLIDERS.
+    musicSliderBack.x = -app->render->camera.x + 900;
+    musicSliderBack.y = -app->render->camera.y + 300;
+
+    fxSliderBack.x = -app->render->camera.x + 900;
+    fxSliderBack.y = -app->render->camera.y + 350;
 
 	switch (fadeStep)
 	{
@@ -134,18 +160,22 @@ bool SceneManager::PostUpdate()
 	SDL_SetRenderDrawColor(app->render->renderer, 0, 0, 0, alpha);
 	SDL_Rect screen{ 0,0,SCREEN_WIDTH,SCREEN_HEIGHT };
 	SDL_RenderFillRect(app->render->renderer, &screen);
-
+    if (settingsEnabled)
+    {
+        app->render->DrawTexture(settingsPost, -app->render->camera.x + 875, -app->render->camera.y + 100, NULL);
+        fullScreen->Draw(app->render);
+        app->render->DrawRectangle(musicSliderBack, 255, 0, 255, 255);
+        app->render->DrawRectangle(fxSliderBack, 255, 0, 255, 255);
+        musicSlider->Draw(app->render);
+        fxSlider->Draw(app->render);
+    }
     if (pauseCondition)
     {
         app->render->DrawTexture(pauseMenu, -app->render->camera.x, -app->render->camera.y, NULL);
         resumeButton->Draw(app->render);
         settingsButton->Draw(app->render);
         exitButton->Draw(app->render);
-        if (settingsEnabled)
-        {
-            app->render->DrawTexture(settingsPost, -app->render->camera.x + 875, -app->render->camera.y + 100, NULL);
-            fullScreen->Draw(app->render);
-        }
+       
     }
 
     if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN) pauseCondition = !pauseCondition;
@@ -292,23 +322,20 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
     }
     case GuiControlType::SLIDER:
     {
-        if (control->id == 5)
+        if (control->id == 1)
         {
             //MusicVolume
-            if (control->bounds.x == 143 || control->bounds.x == 156.5f || control->bounds.x == 170 || control->bounds.x == 183.5f || control->bounds.x == 197 || control->bounds.x == 210.5f || control->bounds.x == 224 || control->bounds.x == 237.5f || control->bounds.x == 251 || control->bounds.x == 264.5f || control->bounds.x == 278)
+            
+            if (app->sceneManager->musicSliderBack.w > 0)
             {
-                volumMusic = ((control->bounds.x - 143) / 13.5) * 10;
-                app->audio->ChangeMusicVolume(volumMusic);
+             app->audio->ChangeMusicVolume(100 * (control->bounds.x - app->sceneManager->musicSliderBack.x) / app->sceneManager->musicSliderBack.w);
             }
+           
         }
-        else if (control->id == 6)
+        else if (control->id == 2)
         {
-            //FxVolume
-            if (control->bounds.x == 143 || control->bounds.x == 156.5f || control->bounds.x == 170 || control->bounds.x == 183.5f || control->bounds.x == 197 || control->bounds.x == 210.5f || control->bounds.x == 224 || control->bounds.x == 237.5f || control->bounds.x == 251 || control->bounds.x == 264.5f || control->bounds.x == 278)
-            {
-                volumMusic = ((control->bounds.x - 143) / 13.5) * 10;
-                app->audio->ChangeFxVolume(volumMusic);
-            }
+         if (app->sceneManager->fxSliderBack.w > 0)
+            app->audio->ChangeFxVolume(100 * (control->bounds.x - app->sceneManager->fxSliderBack.x) / app->sceneManager->fxSliderBack.w);
         }
     }
     case GuiControlType::CHECKBOX:

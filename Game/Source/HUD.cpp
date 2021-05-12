@@ -119,19 +119,19 @@ bool Hud::Update(float dt)
 		app->hud->bag->Update(app->input, dt);
 		app->hud->stats->Update(app->input, dt);
 	}
-	if (!app->sceneManager->settingsEnabled && app->hud->bagEnabled)
+	if (!app->sceneManager->settingsEnabled && bagEnabled)
 	{
-		app->hud->pencil->Update(app->input, dt);
-		app->hud->ball->Update(app->input, dt);
-		app->hud->calculator->Update(app->input, dt);
-		app->hud->book->Update(app->input, dt);
-		app->hud->coffee->Update(app->input, dt);
-		app->hud->cola->Update(app->input, dt);
-		app->hud->eraser->Update(app->input, dt);
-		app->hud->rule->Update(app->input, dt);
-		app->hud->snack->Update(app->input, dt);
-		app->hud->tipex->Update(app->input, dt);
-		app->hud->quitStatsAndInvetory->Update(app->input, dt);
+		pencil->Update(app->input, dt);
+		ball->Update(app->input, dt);
+		calculator->Update(app->input, dt);
+		book->Update(app->input, dt);
+		coffee->Update(app->input, dt);
+		cola->Update(app->input, dt);
+		eraser->Update(app->input, dt);
+		rule->Update(app->input, dt);
+		snack->Update(app->input, dt);
+		tipex->Update(app->input, dt);
+		quitStatsAndInvetory->Update(app->input, dt);
 	}
 
 

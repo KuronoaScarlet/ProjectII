@@ -93,16 +93,16 @@ bool Scene1::Update(float dt)
 
 	if (passingToLvl2 == true && lpl == false)
 	{
-		app->sceneManager->ChangeScene(SCENE12);
+		app->sceneManager->ChangeScene(SCENE12,0);
 		lpl = true;
 	}
 	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
 	{
-		app->sceneManager->ChangeScene(BATH);
+		app->sceneManager->ChangeScene(BATH,0);
 	}
 	if (app->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
 	{
-		app->sceneManager->ChangeScene(GYM);
+		app->sceneManager->ChangeScene(GYM,0);
 	}
 	return true;
 }

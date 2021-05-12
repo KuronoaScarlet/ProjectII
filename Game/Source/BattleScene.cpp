@@ -341,7 +341,7 @@ bool BattleScene::Update(float dt)
 	if (loose == true)
 	{
 		loose = false;
-		app->sceneManager->ChangeScene(SCENE1);
+		app->sceneManager->ChangeScene(SCENE1,0);
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && win == false)
@@ -384,7 +384,7 @@ bool BattleScene::PostUpdate()
 				if (app->entityManager->winCount == 3)
 				{
 					winScreenOnSceen = true;
-					app->sceneManager->ChangeScene(WIN);
+					app->sceneManager->ChangeScene(WIN,0);
 				}
 			}
 		}
@@ -400,7 +400,7 @@ bool BattleScene::PostUpdate()
 		counter = timerr.ReadSec();
 		if (counter < 3)
 		{
-			app->sceneManager->ChangeScene(SCENE1);
+			app->sceneManager->ChangeScene(SCENE1,0);
 		}
 	}
 

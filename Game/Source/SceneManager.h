@@ -6,6 +6,7 @@
 #include "GuiButton.h"
 #include "GuiCheckBox.h"
 #include "GuiSlider.h"
+#include "Easings.h"
 
 enum SceneType
 {
@@ -31,6 +32,7 @@ public:
     enum FadeStep
     {
         NONE,
+        LOAD,
         WAIT1,
         TO_BLACK,
         WAIT2,
@@ -42,6 +44,8 @@ public:
 
     SceneType id = LOGO;
 
+    int transId = 0;
+
 	SceneManager();
 	~SceneManager();
 
@@ -51,7 +55,7 @@ public:
 
 	bool PostUpdate();
 
-	void ChangeScene(SceneType type, float new_speed = 1000);
+	void ChangeScene(SceneType type, int transId, float new_speed = 1000);
 
     bool OnGuiMouseClickEvent(GuiControl* control);
 
@@ -83,6 +87,14 @@ public:
     bool exi;
 
     int volumMusic;
+
+    SDL_Texture* trans = nullptr;
+
+    int position = 0;
+
+    Easing* easing;
+    float currentIteration;
+    float totalIterations;
    
     //HUD.........................................................
 

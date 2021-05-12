@@ -62,7 +62,7 @@ bool DialogueSystem::Update(float dt)
 			{
 				app->entityManager->playerData.onDialog = false;
 				app->playerPosition = app->entityManager->playerData.position;
-				app->sceneManager->ChangeScene(BATTLE);
+				app->sceneManager->ChangeScene(BATTLE,0);
 			}
 		}
 
@@ -115,7 +115,7 @@ bool DialogueSystem::Update(float dt)
 			{
 				app->entityManager->playerData.onDialog = false;
 				app->audio->PlayFx(2,battleTransition);
-				app->sceneManager->ChangeScene(SCENE1);
+				app->sceneManager->ChangeScene(SCENE1,0);
 			}
 		}
 	}

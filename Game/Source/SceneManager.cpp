@@ -28,7 +28,7 @@ bool SceneManager::Start(SceneType type)
 {
     //SDL_SetRenderDrawBlendMode(app->render->renderer, SDL_BLENDMODE_BLEND);
 
-    ChangeScene(type,0);
+    ChangeScene(type);
 
     //PAUSE.................................................................
     pauseMenu = app->tex->Load("Assets/Textures/Screens/pause_screen.png");
@@ -60,10 +60,6 @@ bool SceneManager::Start(SceneType type)
 
     musicSliderBack = { 900,300,300,40 };
     fxSliderBack = { 900,350,300,40 };
-
-    trans = app->tex->Load("Assets/Textures/Screens/team_logo.png");
-    currentIteration = 0;
-    totalIterations = 120;
 
     return false;
 }
@@ -122,92 +118,37 @@ bool SceneManager::Update(float dt)
 		return true;
 		break;
     case FadeStep::WAIT1:
-        fadeStep = FadeStep::LOAD;
-        break;
-    case FadeStep::LOAD:
-        if (id == 1)
-        {
-            while (currentIteration < totalIterations)
-            {
-                position = easing->circularEaseIn(currentIteration, -1500, 1500, totalIterations);
-                if (currentIteration < totalIterations)
-                {
-                    ++currentIteration;
-                }
-            }
-        }
-        next_scene->active = true;
-        //next_scene->Awake();
-        next_scene->Init();
-        next_scene->Start();
         fadeStep = FadeStep::TO_BLACK;
         break;
 	case FadeStep::TO_BLACK:
-        if (transId == 0)
-        {
-            alpha += speed * dt;
-            if (alpha > 255)
-            {
-                alpha = 255;
-                fadeStep = FadeStep::WAIT2;
+		alpha += speed * dt;
+		if (alpha > 255)
+		{
+			alpha = 255;
+			fadeStep = FadeStep::WAIT2;
 
-                if (scene) scene->CleanUp();
+			if(scene) scene->CleanUp();
 
-                delete scene;
-                scene = next_scene;
-                next_scene = nullptr;
+			delete scene;
+			scene = next_scene;
+			next_scene = nullptr;
 
-                //scene->active = true;
-                ////scene->Awake();
-                //scene->Init();
-                //scene->Start();
-            }
-        }
-        else if (transId == 1)
-        {
-            if(currentIteration == totalIterations)
-            {
-                fadeStep = FadeStep::WAIT2;
-
-                if (scene) scene->CleanUp();
-
-                delete scene;
-                scene = next_scene;
-                next_scene = nullptr;
-
-                //scene->active = true;
-                ////scene->Awake();
-                //scene->Init();
-                //scene->Start();
-            }
-        }
+			scene->active = true;
+			//scene->Awake();
+			scene->Init();
+			scene->Start();
+		}
 		break;
 	case FadeStep::WAIT2:
-        currentIteration = 0;
 		fadeStep = FadeStep::FROM_BLACK;
 		break;
 	case FadeStep::FROM_BLACK:
-        if (transId == 0)
-        {
-            alpha -= speed * dt;
-            if (alpha < 0)
-            {
-                alpha = 0;
-                fadeStep = FadeStep::NONE;
-            }
-        }
-        else if (transId == 1)
-        {
-            position = easing->circularEaseIn(currentIteration, 0, 1500, totalIterations);
-            if (currentIteration < totalIterations)
-            {
-                ++currentIteration;
-            }
-            else
-            {
-                fadeStep = FadeStep::NONE;
-            }
-        }
+		alpha -= speed * dt;
+		if (alpha < 0)
+		{
+			alpha = 0;
+			fadeStep = FadeStep::NONE;
+		}
 		break;
 	}
 	return true;
@@ -216,17 +157,10 @@ bool SceneManager::Update(float dt)
 bool SceneManager::PostUpdate()
 {
 	if (scene) scene->PostUpdate();
-    if (transId == 0)
-    {
+
 	SDL_SetRenderDrawColor(app->render->renderer, 0, 0, 0, alpha);
 	SDL_Rect screen{ 0,0,SCREEN_WIDTH,SCREEN_HEIGHT };
 	SDL_RenderFillRect(app->render->renderer, &screen);
-    }
-    else if(transId == 1)
-    {
-        app->render->DrawTexture(trans, position, 0);
-    }
-
     if (settingsEnabled)
     {
         app->render->DrawTexture(settingsPost, -app->render->camera.x + 875, -app->render->camera.y + 100, NULL);
@@ -255,7 +189,7 @@ bool SceneManager::PostUpdate()
 	return true;
 }
 
-void SceneManager::ChangeScene(SceneType type, int Id, float new_speed)
+void SceneManager::ChangeScene(SceneType type, float new_speed)
 {
 	if (fadeStep == FadeStep::WAIT1) return;
 
@@ -263,7 +197,6 @@ void SceneManager::ChangeScene(SceneType type, int Id, float new_speed)
 	speed = new_speed;
 	alpha = 0;
 	id = type;
-    transId = Id;
 	switch (id)
 	{
 	case LOGO: next_scene = new Logo; break;
@@ -275,7 +208,10 @@ void SceneManager::ChangeScene(SceneType type, int Id, float new_speed)
 	case GYM: next_scene = new SceneGym; break;
 	case BATTLE: next_scene = new BattleScene; break;
 	}
-	/**/
+	/*next_scene->active = true;
+	//next_scene->Awake();
+	next_scene->Init();
+	next_scene->Start();*/
 }
 
 bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
@@ -317,7 +253,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         }*/
         if (control->id == 103)
         {
-            app->sceneManager->ChangeScene(SCENE1,0);
+            app->sceneManager->ChangeScene(SCENE1);
         }
         if (control->id == 13)
         {
@@ -344,7 +280,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
             pugi::xml_node map = generalNode.child("map");
             app->map->LoadState(map);
 
-            if (app->currentLevel == 1) ChangeScene(SCENE1,0);
+            if (app->currentLevel == 1) ChangeScene(SCENE1);
         }
         else if (control->id == 2)
         {
@@ -357,7 +293,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
             pauseCondition = false;
 
             //Back to title
-            ChangeScene(TITLE,0);
+            ChangeScene(TITLE);
         }
         else if (control->id == 4)
         {
@@ -375,7 +311,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         }
         else if (control->id == 12)
         {
-            ChangeScene(INTRO,0);
+            ChangeScene(INTRO);
         }
         else if (control->id == 13)
         {

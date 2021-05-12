@@ -83,7 +83,7 @@ bool Scene12::Update(float dt)
 
 	if (passingToLvl1 == true && lpl == false)
 	{
-		app->sceneManager->ChangeScene(SCENE1,0);
+		app->sceneManager->ChangeScene(SCENE1);
 		lpl = true;
 	}
 

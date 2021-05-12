@@ -66,7 +66,7 @@ bool WinScreen::PostUpdate()
     finalTimer = count - timer.ReadSec();
     if (finalTimer == 0)
     {
-        app->sceneManager->ChangeScene(TITLE,0);
+        app->sceneManager->ChangeScene(TITLE);
         //finalTimer = 10;
     }
     bool ret = true;

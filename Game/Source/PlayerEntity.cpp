@@ -300,12 +300,12 @@ void PlayerEntity::Collision(Collider* coll)
 	if ((coll->type == Collider::Type::TP1TO2 && godMode == false))
 	{
 		Tp(coll);
-		app->sceneManager->ChangeScene(SCENE12,0);
+		app->sceneManager->ChangeScene(SCENE12);
 	}
 	if ((coll->type == Collider::Type::TP2TO1 && godMode == false))
 	{
 		Tp(coll);
-		app->sceneManager->ChangeScene(SCENE1,0);
+		app->sceneManager->ChangeScene(SCENE1);
 	}
 	if ((coll->type == Collider::Type::ENEMYLANTERN && godMode == false))
 	{

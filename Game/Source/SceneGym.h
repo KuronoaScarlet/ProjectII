@@ -47,13 +47,15 @@ public:
 	bool firstEntry = true;
 	bool on;
 
-	Collider* tp1to21 = nullptr;
-	Collider* tp1to22 = nullptr;
-	Collider* tp1to23 = nullptr;
+	Collider* godown1 = nullptr;
+	Collider* goup = nullptr;
+	Collider* goright = nullptr;
+	Collider* goleft = nullptr;
 
-	Collider* tp1to24 = nullptr;
-	Collider* tp1to25 = nullptr;
-	Collider* tp1to26 = nullptr;
+	Collider* godown2 = nullptr;
+	Collider* goup2 = nullptr;
+	Collider* goright2 = nullptr;
+	Collider* goleft2 = nullptr;
 
 	bool passingToLvl2 = false;
 	bool lpl = false;

@@ -228,7 +228,7 @@ bool SceneManager::PostUpdate()
     }
     else if (transId == 1)
     {
-        app->render->DrawTexture(trans, positionX, 0, NULL);
+        app->render->DrawTexture(trans, -app->render->camera.x + positionX, -app->render->camera.y, NULL);
     }
     if (settingsEnabled)
     {

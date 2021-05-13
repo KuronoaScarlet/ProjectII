@@ -324,7 +324,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
     }
     case GuiControlType::SLIDER:
     {
-        if (control->id == 1)
+        if (control->id == 100)
         {
             //MusicVolume
             
@@ -334,7 +334,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
             }
            
         }
-        else if (control->id == 2)
+        else if (control->id == 101)
         {
          if (app->sceneManager->fxSliderBack.w > 0)
             app->audio->ChangeFxVolume(100 * (control->bounds.x - app->sceneManager->fxSliderBack.x) / app->sceneManager->fxSliderBack.w);

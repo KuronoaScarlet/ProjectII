@@ -79,6 +79,8 @@ public:
     GuiButton* exit;
     GuiButton* backButton;
     GuiCheckBox* fullScreen;
+    GuiSlider* musicVolume;
+    GuiSlider* fxVolume;
     
     bool pauseBool;
 

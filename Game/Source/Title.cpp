@@ -100,9 +100,18 @@ bool Title::Start()
     credits->SetObserver(this);
     credits->SetTexture(app->tex->Load("Assets/Textures/credits.png"), app->tex->Load("Assets/Textures/credits_selected.png"), app->tex->Load("Assets/Textures/credits_pressed.png"));
 
-    fullScreen = new GuiCheckBox(7, { 900,200, 300, 60 }, "FULLSCREEN");
+    fullScreen = new GuiCheckBox(7, { 900,150, 300, 60 }, "FULLSCREEN");
     fullScreen->SetObserver(this);
     fullScreen->SetTexture(app->tex->Load("Assets/Textures/fs1.png"), app->tex->Load("Assets/Textures/fs2.png"), app->tex->Load("Assets/Textures/fs2.png"));
+
+    musicVolume = new GuiSlider(100, { 900,300, 60, 60 }, "FxVolume");
+    musicVolume->SetObserver(this);
+    musicVolume->SetTexture(app->tex->Load("Assets/Textures/bag.png"), app->tex->Load("Assets/Textures/bag.png"), app->tex->Load("Assets/Textures/bag.png"));
+    
+    fxVolume = new GuiSlider(101, { 900,350, 60, 60 }, "FxVolume");
+    fxVolume->SetObserver(this);
+    fxVolume->SetTexture(app->tex->Load("Assets/Textures/bag.png"), app->tex->Load("Assets/Textures/bag.png"), app->tex->Load("Assets/Textures/bag.png"));
+
 
     exit = new GuiButton(4, { 580, 569, 117, 55 }, "EXIT");
     exit->SetObserver(this);
@@ -144,6 +153,8 @@ bool Title::Update(float dt)
     if (app->sceneManager->configOn)
     {
         fullScreen->Update(app->input, dt);
+        musicVolume->Update(app->input, dt);
+        fxVolume->Update(app->input, dt);
     }
     if (app->sceneManager->creditsOnScreen)
     {
@@ -235,6 +246,8 @@ bool Title::PostUpdate()
             {
                 app->render->DrawTexture(settingsPost2, 875, 100, NULL);
                 fullScreen->Draw(app->render);
+                musicVolume->Draw(app->render);
+                fxVolume->Draw(app->render);
             }
         }
     }

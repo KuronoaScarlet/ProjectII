@@ -1,5 +1,5 @@
-#ifndef _FIRSTAIDKIT_H_
-#define _FIRSTAIDKIT_H_
+#ifndef _Crate_H_
+#define _Crate_H_
 
 #include "Point.h"
 #include "Entity.h"
@@ -11,10 +11,10 @@
 struct SDL_Texture;
 struct Collider;
 
-class FirstAidKit : Entity
+class Crate : Entity
 {
 public:
-	FirstAidKit(Module* listener, fPoint position, SDL_Texture* texture, Type type);
+	Crate(Module* listener, fPoint position, SDL_Texture* texture, Type type);
 
 	bool Start();
 
@@ -31,13 +31,15 @@ public:
 private:
 
 	Animation idleAnimation;
-	
+	Animation moodAnimation;
+
 	Animation* currentAnimation;
+	Animation* currentMoodAnimation;
+
+	SDL_Texture* mood;
 
 	bool interaction = false;
 
-	bool picked = false;
-
 };
 
-#endif // _NPC1_H_
+#endif // _Crate_H_

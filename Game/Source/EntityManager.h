@@ -111,6 +111,7 @@ private:
 	Entity* entityNPC1;
 	Entity* entityNPC2;
 	Entity* entityNPC3;
+	Entity* entityCrate;
 
 	Entity* entityGhostEnemy;
 	Entity* entityTankEnemy;

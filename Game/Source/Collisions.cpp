@@ -19,6 +19,7 @@ Collisions::Collisions(bool startEnabled) : Module()
 	matrix[Collider::Type::PLAYER][Collider::Type::TP1TO2] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::TP2TO1] = true;
 
+
 	matrix[Collider::Type::ENEMYLANTERN][Collider::Type::PLAYER] = true;
 	matrix[Collider::Type::ENEMYLANTERN2][Collider::Type::PLAYER] = true;
 	matrix[Collider::Type::ENEMYLANTERN2][Collider::Type::GOLEFT] = true;
@@ -48,6 +49,9 @@ Collisions::Collisions(bool startEnabled) : Module()
 
 	matrix[Collider::Type::FRONTPLAYER][Collider::Type::PENCIL] = true;
 	matrix[Collider::Type::FRONTPLAYER][Collider::Type::FRONTPLAYER] = false;
+	matrix[Collider::Type::FRONTPLAYER][Collider::Type::CRATE] = true;
+
+	matrix[Collider::Type::CRATE][Collider::Type::FRONTPLAYER] = true;
 
 	matrix[Collider::Type::PENCIL][Collider::Type::FRONTPLAYER] = true;
 	matrix[Collider::Type::PENCIL][Collider::Type::PENCIL] = false;
@@ -230,6 +234,9 @@ void Collisions::DebugDraw()
 			app->render->DrawRectangle(colliders[i]->rect, 255, 255, 0, alpha);
 			break;
 		case Collider::Type::GODOWN:
+			app->render->DrawRectangle(colliders[i]->rect, 255, 255, 0, alpha);
+			break;
+		case Collider::Type::CRATE:
 			app->render->DrawRectangle(colliders[i]->rect, 255, 255, 0, alpha);
 			break;
 		}

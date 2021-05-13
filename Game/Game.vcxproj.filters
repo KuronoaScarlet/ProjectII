@@ -180,6 +180,9 @@
     <ClCompile Include="Source\EnemyLantern3.cpp">
       <Filter>Entities\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Crate.cpp">
+      <Filter>Entities\NoPlayable</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -395,6 +398,9 @@
     </ClInclude>
     <ClInclude Include="Source\EnemyLantern3.h">
       <Filter>Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Crate.h">
+      <Filter>Entities\NoPlayable</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

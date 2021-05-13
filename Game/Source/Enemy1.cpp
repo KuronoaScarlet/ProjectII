@@ -52,6 +52,7 @@ bool Enemy1::Draw()
 
 bool Enemy1::Interaction()
 {
+
 	return true;
 }
 

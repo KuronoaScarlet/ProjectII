@@ -26,6 +26,7 @@ struct Collider
 		GORIGHT,
 		GOUP,
 		GODOWN,
+		CRATE,
 
 		MAX
 	};

@@ -22,6 +22,7 @@
 #include "EnemyLantern1.h"
 #include "EnemyLantern2.h"
 #include "EnemyLantern3.h"
+#include "Crate.h"
 
 
 EntityManager::EntityManager() : Module()
@@ -185,6 +186,10 @@ void EntityManager::AddEntity(fPoint position, Entity::Type type)
 	case Entity::Type::NPC3:
 		entityNPC3 = (Entity*)(new NPC3((Module*)this, position, texNPC3, type));
 		entityList.Add(entityNPC3);
+		break;
+	case Entity::Type::CRATE:
+		entityCrate = (Entity*)(new Crate((Module*)this, position, texPlayer, type));
+		entityList.Add(entityCrate);
 		break;
 	///////////
 

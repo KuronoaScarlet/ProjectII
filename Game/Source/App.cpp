@@ -133,7 +133,7 @@ bool App::Start()
 	PERF_PEEK(perfTimer);
 	caped = false;
 
-	sceneManager->Start(LOGO);
+	sceneManager->Start(GYM);
 
 	return ret;
 }

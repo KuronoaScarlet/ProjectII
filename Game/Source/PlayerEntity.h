@@ -30,12 +30,15 @@ public:
 
 private:
 	bool godMode = false;
+	bool crate = false;
 
 	Animation idleAnimation;
 	Animation walkAnimationRight;
 	Animation walkAnimationLeft;
 	Animation walkAnimationUp;
 	Animation walkAnimationDown;
+
+	Animation crateAnimation;
 
 	Animation battleIdle;
 

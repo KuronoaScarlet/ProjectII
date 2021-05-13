@@ -38,7 +38,8 @@ public:
 		SNACK,
 		ENEMYLANTERN1,
 		ENEMYLANTERN2,
-		ENEMYLANTERN3
+		ENEMYLANTERN3,
+		CRATE
 	};
 
 	Entity(Module* listener, fPoint position, SDL_Texture* texture, Type type) : listener(listener), position(position), texture(texture), type(type)

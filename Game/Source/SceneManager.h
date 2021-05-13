@@ -89,7 +89,9 @@ public:
     bool fullSc;
     bool vsync;
     bool exi;
-
+    bool scenegym = false;
+    bool NPC1 = false;
+    bool crate = false;
     int volumMusic;
    
     Easing* easing;

@@ -74,6 +74,10 @@ PlayerEntity::PlayerEntity(Module* listener, fPoint position, SDL_Texture* textu
 	battleIdle.PushBack({ 128, 80, 29, 47 });
 	battleIdle.PushBack({ 160, 80, 29, 47 });
 
+	crateAnimation.loop = true;
+	crateAnimation.speed = 0.2f;
+	crateAnimation.PushBack({ 797,150, 28, 39 });
+
 	currentAnimation = &idleAnimation;
 	if (app->sceneManager->id == SceneType::BATTLE)
 	{
@@ -166,6 +170,17 @@ bool PlayerEntity::Update(float dt)
 				break;
 			}
 		}
+		else if (tmp->data->type == Type::CRATE)
+		{
+			if (position.DistanceTo(tmp->data->position) < 50)
+			{
+				if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN && app->entityManager->playerData.onDialog == false)
+				{
+					tmp->data->Interaction();
+					break;
+				}
+			}
+		}
 
 		tmp = tmp->next;
 	}
@@ -188,9 +203,17 @@ bool PlayerEntity::Update(float dt)
 			{
 				if (currentAnimation != &idleAnimation)
 				{
-					//frontCollider->SetPos(position.x + 8, position.y + 20 + 32);
-					idleAnimation.Reset();
-					currentAnimation = &idleAnimation;
+					if (app->sceneManager->crate == false)
+					{
+						//frontCollider->SetPos(position.x + 8, position.y + 20 + 32);
+						idleAnimation.Reset();
+						currentAnimation = &idleAnimation;
+					}
+					else
+					{
+						crateAnimation.Reset();
+						currentAnimation = &crateAnimation;
+					}
 				}
 			}
 
@@ -199,40 +222,77 @@ bool PlayerEntity::Update(float dt)
 			{
 				frontCollider->SetPos(position.x - 20,position.y + 20);
 				position.x -= speed * dt;
+				collider->SetPos(position.x + 6, position.y + 34);
 				if (currentAnimation != &walkAnimationLeft && app->input->GetKey(SDL_SCANCODE_W) != KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_S) != KEY_REPEAT)
-				{
-					walkAnimationLeft.Reset();
-					currentAnimation = &walkAnimationLeft;
-				}
+					if (app->sceneManager->crate == false)
+					{
+						{
+							walkAnimationLeft.Reset();
+							currentAnimation = &walkAnimationLeft;
+						}
+					}
+					else
+					{
+						crateAnimation.Reset();
+						currentAnimation = &crateAnimation;
+					}
 			}
 			if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT || pad.l_x > 0.0f)
 			{
 				frontCollider->SetPos(position.x + 38, position.y + 20);
 				position.x += speed * dt;
+				collider->SetPos(position.x + 6, position.y + 34);
 				if (currentAnimation != &walkAnimationRight && app->input->GetKey(SDL_SCANCODE_W) != KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_S) != KEY_REPEAT)
+					if (app->sceneManager->crate == false)
+					{
+						{
+							walkAnimationRight.Reset();
+							currentAnimation = &walkAnimationRight;
+						}
+					}
+				else
 				{
-					walkAnimationRight.Reset();
-					currentAnimation = &walkAnimationRight;
+					crateAnimation.Reset();
+					currentAnimation = &crateAnimation;
 				}
 			}
 			if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT || pad.l_y < 0.0f)
 			{
 				frontCollider->SetPos(position.x + 8, position.y - 20);
 				position.y -= speed * dt;
-				if (currentAnimation != &walkAnimationUp)
+				collider->SetPos(position.x + 6, position.y + 34);
+				
+				if (app->sceneManager->crate == false)
 				{
-					walkAnimationUp.Reset();
-					currentAnimation = &walkAnimationUp;
+					if (currentAnimation != &walkAnimationUp)
+					{
+						walkAnimationUp.Reset();
+						currentAnimation = &walkAnimationUp;
+					}
+				}
+				else
+				{
+					crateAnimation.Reset();
+					currentAnimation = &crateAnimation;
 				}
 			}
 			if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT || pad.l_y > 0.0f)
 			{
 				frontCollider->SetPos(position.x + 8, position.y + 20 + 32);
 				position.y += speed * dt;
+				collider->SetPos(position.x + 6, position.y + 34);
 				if (currentAnimation != &walkAnimationDown)
+					if (app->sceneManager->crate == false)
+					{
+						{
+							walkAnimationDown.Reset();
+							currentAnimation = &walkAnimationDown;
+						}
+					}
+				else
 				{
-					walkAnimationDown.Reset();
-					currentAnimation = &walkAnimationDown;
+					crateAnimation.Reset();
+					currentAnimation = &crateAnimation;
 				}
 			}
 
@@ -277,8 +337,15 @@ bool PlayerEntity::Update(float dt)
 	if (app->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN) app->LoadGameRequest();
 
 	currentAnimation->Update();
-	collider->SetPos(position.x + 6,position.y + 34);
+	if (app->sceneManager->scenegym == false) 
+	{
+		collider->SetPos(position.x + 6, position.y + 34);
+	}
 	
+	if(position == tempPlayerPosition && app->sceneManager->scenegym == true)
+	{
+		collider->SetPos(-1000, -1000);
+	}
 	return true;
 }
 
@@ -302,6 +369,7 @@ void PlayerEntity::Collision(Collider* coll)
 		Tp(coll);
 		app->sceneManager->ChangeScene(SCENE12,0);
 	}
+
 	if ((coll->type == Collider::Type::TP2TO1 && godMode == false))
 	{
 		Tp(coll);

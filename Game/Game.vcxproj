@@ -106,6 +106,7 @@
     <ClCompile Include="Source\Enemy3.cpp" />
     <ClCompile Include="Source\EnemyLantern1.cpp" />
     <ClCompile Include="Source\EnemyLantern2.cpp" />
+    <ClCompile Include="Source\EnemyLantern3.cpp" />
     <ClCompile Include="Source\EntityManager.cpp" />
     <ClCompile Include="Source\FadeToBlack.cpp" />
     <ClCompile Include="Source\FirstAidKit.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="Source\Enemy3.h" />
     <ClInclude Include="Source\EnemyLantern1.h" />
     <ClInclude Include="Source\EnemyLantern2.h" />
+    <ClInclude Include="Source\EnemyLantern3.h" />
     <ClInclude Include="Source\Entity.h" />
     <ClInclude Include="Source\EntityManager.h" />
     <ClInclude Include="Source\FadeToBlack.h" />

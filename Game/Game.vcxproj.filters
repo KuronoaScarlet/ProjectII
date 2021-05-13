@@ -177,6 +177,9 @@
     <ClCompile Include="Source\QuestManager.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
+    <ClCompile Include="Source\EnemyLantern3.cpp">
+      <Filter>Entities\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -389,6 +392,9 @@
     </ClInclude>
     <ClInclude Include="Source\QuestManager.h">
       <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EnemyLantern3.h">
+      <Filter>Entities\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

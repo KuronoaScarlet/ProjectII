@@ -117,6 +117,7 @@ private:
 	Entity* entityCanonEnemy;
 	Entity* entityEnemyLantern1;
 	Entity* entityEnemyLantern2;
+	Entity* entityEnemyLantern3;
 
 	Entity* entityPencil;
 	Entity* entityBall;

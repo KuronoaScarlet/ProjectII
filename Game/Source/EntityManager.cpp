@@ -21,6 +21,7 @@
 #include "Ball.h"
 #include "EnemyLantern1.h"
 #include "EnemyLantern2.h"
+#include "EnemyLantern3.h"
 
 
 EntityManager::EntityManager() : Module()
@@ -210,6 +211,10 @@ void EntityManager::AddEntity(fPoint position, Entity::Type type)
 	case Entity::Type::ENEMYLANTERN2:
 		entityEnemyLantern2 = (Entity*)(new EnemyLantern2((Module*)this, position, texEnemyLantern1, type));
 		entityList.Add(entityEnemyLantern2);
+		break;
+	case Entity::Type::ENEMYLANTERN3:
+		entityEnemyLantern3 = (Entity*)(new EnemyLantern3((Module*)this, position, texEnemyLantern1, type));
+		entityList.Add(entityEnemyLantern3);
 		break;
 	//////////
 	///ITEMS/////

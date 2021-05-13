@@ -75,12 +75,13 @@ public:
 
 	}
 
-	virtual bool SpeedCounter()
+	virtual bool TurnBarUpdate()
 	{
-		if (combatTimer.ReadCombat() > turnTime)
+		turnBar.h -= turnTime;
+
+		if (turnBar.h < (turnBarMax.h + 2))
 		{
-			combatTimer.counter = 0;
-			combatTimer.Start();
+			turnBar.h = (turnBarMax.h + 2);
 			return true;
 		}
 
@@ -94,20 +95,17 @@ public:
 	SDL_Texture* texture;
 
 	Collider* collider = nullptr;
-	
+
+	SDL_Rect turnBarMax = { 0,0,0,0 };
+	SDL_Rect turnBar = { 0,0,0,0 };
 
 	bool pendingToDelete = false;
-
 	int hp, hpPerLvl;
 	int atk, atkPerLvl;
 	int def, defPerLvl;
 	float turnTime;
 	int currentHp;
 	bool defending = false;
-	bool dead = false;
-
-	Timer combatTimer;
-
 };
 
 #endif // __ENTITY_H__

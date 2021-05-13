@@ -300,29 +300,14 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         {
             app->hud->bagEnabled = false;
         }
-        /*if (control->id == 101)
+        if (control->id == 101)
         {
-            if (app->battleScene->playerTurn == true)
-            {
-                if (control->id == 101)
-                {
-                    app->battleScene->playerTurn = false;
-                    app->battleScene->attackMenu = true;
-                }
-            }
+            atkMenu = true;
         }
         if (control->id == 102)
         {
-            if (app->battleScene->playerTurn == true)
-            {
-                if (control->id == 102)
-                {
-                    app->battleScene->playerTurn = false;
-                    app->battleScene->defenseMenu = true;
-                    app->battleScene->endTurn = false;
-                }
-            }
-        }*/
+            defMenu = true;
+        }
         if (control->id == 103)
         {
             app->sceneManager->ChangeScene(SCENE1,0);

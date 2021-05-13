@@ -88,6 +88,8 @@ PlayerEntity::PlayerEntity(Module* listener, fPoint position, SDL_Texture* textu
 
 	frontCollider = app->collisions->AddCollider(SDL_Rect({ (int)position.x + 6, (int)position.y + 34, 12, 12 }), Collider::Type::FRONTPLAYER, listener);
 
+	turnBarMax = { (int)position.x - 16, (int)position.y + 60, 11, -70 };
+	turnBar = { (int)position.x - 15, (int)position.y + 59, 9, -20 };
 
 	lerpCamera.x = position.x;
 	lerpCamera.y = position.y;
@@ -354,6 +356,11 @@ bool PlayerEntity::Draw()
 	SDL_Rect playerRect = currentAnimation->GetCurrentFrame();
 	app->render->DrawTexture(texture, position.x, position.y, &playerRect);
 
+	if (app->sceneManager->id == BATTLE)
+	{
+		app->render->DrawRectangle(turnBarMax, 0, 0, 0, 255);
+		app->render->DrawRectangle(turnBar, 255, 185, 0, 255);
+	}
 
 	return true;
 }

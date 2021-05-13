@@ -98,7 +98,7 @@ bool EntityManager::PostUpdate()
 
 bool EntityManager::CleanUp()
 {
-	for (int i = 0; i < entityList.Count(); i++)
+	for (int i = 0; i < entityList.Count(); ++i)
 	{
 		ListItem<Entity*>* entity = entityList.At(i);
 		entity->data->pendingToDelete = true;

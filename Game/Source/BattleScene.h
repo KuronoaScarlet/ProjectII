@@ -42,9 +42,34 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-	void ResumeCombat();
+	enum TurnSort
+	{
+		PLAYER_TURN,
+		ENEMY_TURN,
 
-	void DealDamage(Entity* attacker, Entity* deffender, bool defendOn);
+		UNKOWN
+	};
+
+	enum CombatState
+	{
+		SELECT_ACTION,
+		PERFORM_ACTION,
+		FINISH_TURN,
+
+		WAITING
+	};
+
+	void PerformCombat(float dt);
+
+	void ShowMenu(float dt);
+
+	int SelectEnemy(int enemyNum);
+
+	int SelectAlly(int allyNum);
+
+	void DealDamage(Entity* attacker, Entity* deffender);
+
+	void ResumeCombat();
 
 	void PrintText();
 
@@ -54,44 +79,39 @@ public:
 		return true;
 	}
 
+
+
+
+public:
+
 	SDL_Texture* screen = nullptr;
 	SDL_Texture* combatBox = nullptr;
 	SDL_Texture* winScreen = nullptr;
 
-	//int scoreFont = -1
-
 	bool onTurn = false;
-	bool playerTurn = false;
-	bool allyTurn = false;
-	bool attackMenu = false;
-	bool defenseMenu = false;
-	bool endTurn = false;
-	bool attacked = false;
-	bool defendOn = false;
-	bool win = false;
-	bool winScreenOnSceen = false;
-	bool loose = false;
+	Entity* turnEntity;
+	ListItem<Entity*>* tmp;
+	int enemySelection = 0;
+	int allySelection = 0;
 
-	
+	TurnSort turn = UNKOWN;
+	CombatState state = WAITING;
+
 	GuiButton* attack;
 	GuiButton* defend;
 	GuiButton* run;
 	GuiButton* combine;
 
-	Entity* pointer;
-	Timer timerr;
-	int time = 0;
-
-
 	int rngEnemyNum;
 	int rngTypeEnemy;
 	int remainingAllies, remainingEnemies;
-	int counter = 0;
-	
+
 	char hp[64] = { 0 };
 	char num[64] = { 0 };
 	char battleText[64] = { 0 };
-private:
+
+	SDL_Rect skipBarMax = { 0,0,0,0 };
+	SDL_Rect skipBar = { 0,0,0,0 };
 };
 
 

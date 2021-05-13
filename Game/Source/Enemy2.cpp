@@ -27,6 +27,9 @@ Enemy2::Enemy2(Module* listener, fPoint position, SDL_Texture* texture, Type typ
 
 	currentAnimation = &idleAnimation;
 
+	turnBarMax = { (int)position.x + 35, (int)position.y + 60, 11, -70 };
+	turnBar = { (int)position.x + 36, (int)position.y + 59, 9, -3 };
+
 	collider = app->collisions->AddCollider(SDL_Rect({ (int)position.x, (int)position.y, 30, 46 }), Collider::Type::ENEMY, listener);
 }
 
@@ -46,6 +49,12 @@ bool Enemy2::Draw()
 {
 	SDL_Rect rect = currentAnimation->GetCurrentFrame();
 	app->render->DrawTexture(texture, position.x, position.y, &rect);
+
+	if (app->sceneManager->id == BATTLE)
+	{
+		app->render->DrawRectangle(turnBarMax, 0, 0, 0, 255);
+		app->render->DrawRectangle(turnBar, 255, 185, 0, 255);
+	}
 
 	return true;
 }

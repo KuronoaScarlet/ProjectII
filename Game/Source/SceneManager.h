@@ -101,9 +101,9 @@ public:
     float totalIterations;
 
 
-    //HUD.........................................................
-
-
+    //BattleScene Bools.........................................................
+    bool atkMenu = false;
+    bool defMenu = false;
 };
 
 #endif // __SCENEMANAGER_H__

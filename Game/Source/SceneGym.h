@@ -57,6 +57,11 @@ public:
 	Collider* goright2 = nullptr;
 	Collider* goleft2 = nullptr;
 
+	Collider* godown3 = nullptr;
+	Collider* goup3 = nullptr;
+	Collider* goright3 = nullptr;
+	Collider* goleft3 = nullptr;
+
 	bool passingToLvl2 = false;
 	bool lpl = false;
 

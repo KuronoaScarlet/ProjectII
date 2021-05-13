@@ -193,7 +193,7 @@ bool Title::PostUpdate()
    // Draw everything --------------------------------------
     if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
     {
-        app->sceneManager->ChangeScene(SCENE1);
+        app->sceneManager->ChangeScene(SCENE1,1);
 
     }
    // if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)

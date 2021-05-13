@@ -6,6 +6,7 @@
 #include "GuiButton.h"
 #include "GuiCheckBox.h"
 #include "GuiSlider.h"
+#include "Easings.h"
 
 enum SceneType
 {
@@ -42,6 +43,8 @@ public:
 
     SceneType id = LOGO;
 
+    int transId = 0;
+
 	SceneManager();
 	~SceneManager();
 
@@ -51,7 +54,7 @@ public:
 
 	bool PostUpdate();
 
-	void ChangeScene(SceneType type, float new_speed = 1000);
+	void ChangeScene(SceneType type, int transId,float new_speed = 1000);
 
     bool OnGuiMouseClickEvent(GuiControl* control);
 
@@ -76,6 +79,7 @@ public:
 
     SDL_Texture* settingsPost;
     SDL_Texture* pauseMenu = nullptr;
+    SDL_Texture* trans = nullptr;
 
     bool pauseCondition = false;
     bool settingsEnabled = false;
@@ -88,6 +92,13 @@ public:
 
     int volumMusic;
    
+    Easing* easing;
+    int positionX = -1500;
+
+    float currentIteration;
+    float totalIterations;
+
+
     //HUD.........................................................
 
 

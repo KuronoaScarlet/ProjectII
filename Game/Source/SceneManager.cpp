@@ -28,10 +28,12 @@ bool SceneManager::Start(SceneType type)
 {
     //SDL_SetRenderDrawBlendMode(app->render->renderer, SDL_BLENDMODE_BLEND);
 
-    ChangeScene(type);
+    ChangeScene(type, 0);
 
     //PAUSE.................................................................
     pauseMenu = app->tex->Load("Assets/Textures/Screens/pause_screen.png");
+    trans = app->tex->Load("Assets/Textures/Screens/title_screen.png");;
+
     settingsPost = app->tex->Load("Assets/Textures/postit.png");
 
     music_s = app->tex->Load("Assets/Textures/fx_s.png");
@@ -66,6 +68,11 @@ bool SceneManager::Start(SceneType type)
 
     musicSliderBack = { 900,300,300,40 };
     fxSliderBack = { 900,350,300,40 };
+
+
+    currentIteration = 0;
+    totalIterations = 120;
+
 
     return false;
 }
@@ -130,34 +137,80 @@ bool SceneManager::Update(float dt)
         fadeStep = FadeStep::TO_BLACK;
         break;
 	case FadeStep::TO_BLACK:
-		alpha += speed * dt;
-		if (alpha > 255)
-		{
-			alpha = 255;
-			fadeStep = FadeStep::WAIT2;
+        if (transId == 0)
+        {
+            alpha += speed * dt;
+            if (alpha > 255)
+            {
+                alpha = 255;
+                fadeStep = FadeStep::WAIT2;
 
-			if(scene) scene->CleanUp();
+                if (scene) scene->CleanUp();
 
-			delete scene;
-			scene = next_scene;
-			next_scene = nullptr;
+                delete scene;
+                scene = next_scene;
+                next_scene = nullptr;
 
-			scene->active = true;
-			//scene->Awake();
-			scene->Init();
-			scene->Start();
-		}
+                scene->active = true;
+                //scene->Awake();
+                scene->Init();
+                scene->Start();
+            }
+        }
+        else if (transId == 1)
+        {
+            positionX = easing->backEaseInOut(currentIteration, -1500, 1500, totalIterations);
+
+            if (currentIteration < totalIterations)
+            {
+                ++currentIteration;
+            }
+            else
+            {
+                fadeStep = FadeStep::WAIT2;
+
+                if (scene) scene->CleanUp();
+
+                delete scene;
+                scene = next_scene;
+                next_scene = nullptr;
+
+                scene->active = true;
+                //scene->Awake();
+                scene->Init();
+                scene->Start();
+            }
+        }
 		break;
 	case FadeStep::WAIT2:
 		fadeStep = FadeStep::FROM_BLACK;
+        currentIteration = 0;
 		break;
 	case FadeStep::FROM_BLACK:
-		alpha -= speed * dt;
-		if (alpha < 0)
-		{
-			alpha = 0;
-			fadeStep = FadeStep::NONE;
-		}
+        if (transId == 0)
+        {
+            alpha -= speed * dt;
+            if (alpha < 0)
+            {
+                alpha = 0;
+                fadeStep = FadeStep::NONE;
+            }
+        }
+        else if (transId == 1)
+        {
+            positionX = easing->backEaseInOut(currentIteration, 0, 1500, totalIterations);
+
+            if (currentIteration < totalIterations)
+            {
+                ++currentIteration;
+            }
+            else
+            {
+                fadeStep = FadeStep::NONE;
+                currentIteration = 0;
+
+            }
+        }
 		break;
 	}
 	return true;
@@ -167,9 +220,16 @@ bool SceneManager::PostUpdate()
 {
 	if (scene) scene->PostUpdate();
 
-	SDL_SetRenderDrawColor(app->render->renderer, 0, 0, 0, alpha);
-	SDL_Rect screen{ 0,0,SCREEN_WIDTH,SCREEN_HEIGHT };
-	SDL_RenderFillRect(app->render->renderer, &screen);
+    if (transId == 0)
+    {
+        SDL_SetRenderDrawColor(app->render->renderer, 0, 0, 0, alpha);
+        SDL_Rect screen{ 0,0,SCREEN_WIDTH,SCREEN_HEIGHT };
+        SDL_RenderFillRect(app->render->renderer, &screen);
+    }
+    else if (transId == 1)
+    {
+        app->render->DrawTexture(trans, positionX, 0, NULL);
+    }
     if (settingsEnabled)
     {
         app->render->DrawTexture(settingsPost, -app->render->camera.x + 875, -app->render->camera.y + 100, NULL);
@@ -200,13 +260,14 @@ bool SceneManager::PostUpdate()
 	return true;
 }
 
-void SceneManager::ChangeScene(SceneType type, float new_speed)
+void SceneManager::ChangeScene(SceneType type, int Id, float new_speed)
 {
 	if (fadeStep == FadeStep::WAIT1) return;
 
 	fadeStep = FadeStep::WAIT1;
 	speed = new_speed;
 	alpha = 0;
+    transId = Id;
 	id = type;
 	switch (id)
 	{
@@ -264,7 +325,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         }*/
         if (control->id == 103)
         {
-            app->sceneManager->ChangeScene(SCENE1);
+            app->sceneManager->ChangeScene(SCENE1,0);
         }
         if (control->id == 13)
         {
@@ -296,7 +357,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
             pugi::xml_node map = generalNode.child("map");
             app->map->LoadState(map);
 
-            if (app->currentLevel == 1) ChangeScene(SCENE1);
+            if (app->currentLevel == 1) ChangeScene(SCENE1,0);
         }
         else if (control->id == 504)
         {
@@ -307,7 +368,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
             pauseCondition = false;
 
             //Back to title
-            ChangeScene(TITLE);
+            ChangeScene(TITLE,0);
         }
         else if (control->id == 509)
         {
@@ -324,7 +385,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         }
         else if (control->id == 502)
         {
-            ChangeScene(INTRO);
+            ChangeScene(INTRO,0);
         }
         else if (control->id == 505)
         {

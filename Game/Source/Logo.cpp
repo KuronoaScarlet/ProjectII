@@ -82,7 +82,7 @@ bool Logo::PostUpdate()
     {
         //SDL_Delay(200);
         trans = false;
-        app->sceneManager->ChangeScene(TITLE);
+        app->sceneManager->ChangeScene(TITLE,1);
         /*CleanUp();
         app->title->Init();
         app->title->Start();*/

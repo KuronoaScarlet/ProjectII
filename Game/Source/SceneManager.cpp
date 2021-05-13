@@ -46,11 +46,11 @@ bool SceneManager::Start(SceneType type)
     fullScreen->SetObserver(this);
     fullScreen->SetTexture(app->tex->Load("Assets/Textures/fs1.png"), app->tex->Load("Assets/Textures/fs2.png"), app->tex->Load("Assets/Textures/fs2.png"));
 
-    musicSlider = new GuiSlider(1, { 620,400, 40, 40 }, "FULLSCREEN");
+    musicSlider = new GuiSlider(100, { 900,300, 60, 60 }, "FULLSCREEN");
     musicSlider->SetObserver(this);
     musicSlider->SetTexture(app->tex->Load("Assets/Textures/fx.png"), app->tex->Load("Assets/Textures/fx_selected.png"), app->tex->Load("Assets/Textures/fx_focused.png"));
 
-    fxSlider = new GuiSlider(2, { 620,400, 40, 40 }, "FULLSCREEN");
+    fxSlider = new GuiSlider(100, { 900,350, 60, 60 }, "FULLSCREEN");
     fxSlider->SetObserver(this);
     fxSlider->SetTexture(app->tex->Load("Assets/Textures/fx.png"), app->tex->Load("Assets/Textures/fx_selected.png"), app->tex->Load("Assets/Textures/fx_focused.png"));
 
@@ -78,8 +78,11 @@ bool SceneManager::Update(float dt)
         settingsButton->Update(app->input, dt);
         exitButton->Update(app->input, dt);
         fullScreen->Update(app->input, dt);
-        musicSlider->Update(app->input, dt);
-        fxSlider->Update(app->input, dt);
+        if (settingsEnabled)
+        {
+            musicSlider->Update(app->input, dt);
+            fxSlider->Update(app->input, dt);
+        }
       //  app->audio->Volume(20, '0');
 
     }
@@ -99,10 +102,10 @@ bool SceneManager::Update(float dt)
     fullScreen->bounds.x = -app->render->camera.x + 900;
     fullScreen->bounds.y = -app->render->camera.y + 200;
 
-    musicSlider->bounds.x = -app->render->camera.x + 900;
+   // musicSlider->bounds.x = -app->render->camera.x + 900;
     musicSlider->bounds.y = -app->render->camera.y + 300;
 
-    fxSlider->bounds.x = -app->render->camera.x + 900;
+    //fxSlider->bounds.x = -app->render->camera.x + 900;
     fxSlider->bounds.y = -app->render->camera.y + 350;
 
     //RECT OF THE BACKGORUND ONLY UPDATE IF UPDATE THE SLIDERS.

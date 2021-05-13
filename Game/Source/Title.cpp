@@ -141,7 +141,6 @@ bool Title::PreUpdate()
 
 bool Title::Update(float dt)
 {
-
     if (app->sceneManager->creditSceneFlag == false && positionTitleCaronte == 430)
     {
         play->Update(app->input, dt);
@@ -182,8 +181,6 @@ bool Title::Update(float dt)
     {
         ++currentIterationMandate;
     }
-
-    //if (positionTitleBack == 0)
 
     return true;
 }

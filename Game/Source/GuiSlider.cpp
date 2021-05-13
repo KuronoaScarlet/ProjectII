@@ -1,10 +1,15 @@
 #include "GuiSlider.h"
 #include "SceneManager.h"
-
+#include "Audio.h"
 GuiSlider::GuiSlider(uint32 id, SDL_Rect bounds, const char* text) : GuiControl(GuiControlType::SLIDER, id)
 {
     this->bounds = bounds;
     this->text = text;
+    sampleFx = app->audio->LoadFx("Assets/Audio/Fx/sample.wav");
+    selectFx = app->audio->LoadFx("Assets/Audio/FX/menu_scroll.wav");
+    selectedFx = app->audio->LoadFx("Assets/Audio/FX/menu_selected.wav");
+    releaseFx = app->audio->LoadFx("Assets/Audio/FX/menu_release.wav");
+    pencilFx = app->audio->LoadFx("Assets/Audio/FX/pencil_circle.wav");
 }
 
 GuiSlider::~GuiSlider()
@@ -61,13 +66,35 @@ bool GuiSlider::Draw(Render* render)
         {
         case GuiControlState::DISABLED: render->DrawRectangle(bounds, 100, 100, 100, 255);
             break;
-        case GuiControlState::NORMAL: render->DrawTexture(textureIdle, bounds.x, bounds.y, NULL);
+        case GuiControlState::NORMAL:
+            render->DrawTexture(textureIdle, bounds.x, bounds.y, NULL);
+            audio = false;
+            audioB = false;
             break;
-        case GuiControlState::FOCUSED: render->DrawTexture(textureFocused, bounds.x, bounds.y, NULL);;
+        case GuiControlState::FOCUSED:
+            render->DrawTexture(textureFocused, bounds.x, bounds.y, NULL);
+            if (audio == false)
+            {
+                audio = true;
+                app->audio->PlayFx(channel, pencilFx);
+            }
             break;
-        case GuiControlState::PRESSED: render->DrawTexture(texturePressed, bounds.x, bounds.y, NULL);
+        case GuiControlState::PRESSED:
+        {
+            render->DrawTexture(texturePressed, bounds.x, bounds.y, NULL);
+            app->audio->PlayFx(channel, sampleFx);
+        }
             break;
-        case GuiControlState::SELECTED: render->DrawRectangle(bounds, 0, 255, 0, 255);
+        case GuiControlState::SELECTED:
+        {
+            render->DrawRectangle(bounds, 0, 255, 0, 255);
+            if (audio == false)
+            {
+                audio = true;
+                app->audio->PlayFx(channel, selectedFx);
+            }
+            
+        }
             break;
         default:
             break;
@@ -81,11 +108,25 @@ bool GuiSlider::Draw(Render* render)
             break;
         case GuiControlState::NORMAL: render->DrawRectangle(bounds, 0, 255, 0, 255);
             break;
-        case GuiControlState::FOCUSED: render->DrawRectangle(bounds, 255, 255, 0, 255);
+        case GuiControlState::FOCUSED:
+            render->DrawRectangle(bounds, 255, 255, 0, 255);
+            if (audio == false)
+            {
+                audio = true;
+                app->audio->PlayFx(channel, selectedFx);
+            }
             break;
-        case GuiControlState::PRESSED: render->DrawRectangle(bounds, 0, 255, 255, 255);
+        case GuiControlState::PRESSED:
+        {
+            render->DrawRectangle(bounds, 0, 255, 255, 255);
+            app->audio->PlayFx(channel, sampleFx);
+        }
             break;
-        case GuiControlState::SELECTED: render->DrawRectangle(bounds, 0, 255, 0, 255);
+        case GuiControlState::SELECTED:
+        {
+            render->DrawRectangle(bounds, 0, 255, 0, 255);
+           
+        }
             break;
         default:
             break;

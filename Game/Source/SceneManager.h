@@ -66,6 +66,10 @@ public:
     GuiSlider* fxSlider;
 
     GuiCheckBox* fullScreen;
+    GuiCheckBox* vSync;
+
+    SDL_Texture* fx_s = nullptr;
+    SDL_Texture* music_s = nullptr;
 
     SDL_Rect musicSliderBack;
     SDL_Rect fxSliderBack;

@@ -5,6 +5,11 @@ GuiCheckBox::GuiCheckBox(uint32 id, SDL_Rect bounds, const char* text) : GuiCont
 {
     this->bounds = bounds;
     this->text = text;
+
+    selectFx = app->audio->LoadFx("Assets/Audio/FX/menu_scroll.wav");
+    selectedFx = app->audio->LoadFx("Assets/Audio/FX/menu_selected.wav");
+    releaseFx = app->audio->LoadFx("Assets/Audio/FX/menu_release.wav");
+    pencilFx = app->audio->LoadFx("Assets/Audio/FX/pencil_circle.wav");
 }
 
 GuiCheckBox::~GuiCheckBox()
@@ -58,7 +63,12 @@ bool GuiCheckBox::Draw(Render* render)
             } break;
             case GuiControlState::NORMAL:
             {
-                if (checked) render->DrawTexture(texturePressed, bounds.x, bounds.y, NULL);
+                audio = false;
+                audioB = false;
+                if (checked)
+                {
+                    render->DrawTexture(texturePressed, bounds.x, bounds.y, NULL);
+                }
                 else render->DrawTexture(textureIdle, bounds.x, bounds.y, NULL);
             } break;
             case GuiControlState::FOCUSED:
@@ -106,7 +116,13 @@ bool GuiCheckBox::Draw(Render* render)
             if (checked) render->DrawRectangle(bounds, 0, 255, 0, 255);
             else render->DrawRectangle(bounds, 100, 100, 100, 255);
         } break;
-        case GuiControlState::FOCUSED: render->DrawRectangle(bounds, 100, 0, 100, 255);
+        case GuiControlState::FOCUSED:
+            render->DrawRectangle(bounds, 100, 0, 100, 255);
+            if (audio == false)
+            {
+                audio = true;
+                app->audio->PlayFx(channel, selectedFx);
+            }
             break;
         case GuiControlState::PRESSED:  render->DrawRectangle(bounds, 100, 100, 0, 255);
             break;

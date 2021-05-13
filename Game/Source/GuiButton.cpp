@@ -13,6 +13,7 @@ GuiButton::GuiButton(uint32 id, SDL_Rect bounds, const char* text) : GuiControl(
     selectedFx = app->audio->LoadFx("Assets/Audio/FX/menu_selected.wav");
     releaseFx = app->audio->LoadFx("Assets/Audio/FX/menu_release.wav");
     pencilFx = app->audio->LoadFx("Assets/Audio/FX/pencil_circle.wav");
+
 }
 
 GuiButton::~GuiButton()

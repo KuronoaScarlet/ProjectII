@@ -34,6 +34,9 @@ bool SceneManager::Start(SceneType type)
     pauseMenu = app->tex->Load("Assets/Textures/Screens/pause_screen.png");
     settingsPost = app->tex->Load("Assets/Textures/postit.png");
 
+    music_s = app->tex->Load("Assets/Textures/fx_s.png");
+    fx_s = app->tex->Load("Assets/Textures/music_s.png");
+
     resumeButton = new GuiButton(32, { 517,304, 240, 60 }, "CONTINUE");
     resumeButton->SetObserver(this);
     resumeButton->SetTexture(app->tex->Load("Assets/Textures/resume.png"), app->tex->Load("Assets/Textures/resume_selected.png"), app->tex->Load("Assets/Textures/resume_pressed.png"));
@@ -45,12 +48,15 @@ bool SceneManager::Start(SceneType type)
     fullScreen = new GuiCheckBox(7, { 620,400, 300, 60 }, "FULLSCREEN");
     fullScreen->SetObserver(this);
     fullScreen->SetTexture(app->tex->Load("Assets/Textures/fs1.png"), app->tex->Load("Assets/Textures/fs2.png"), app->tex->Load("Assets/Textures/fs2.png"));
+    vSync = new GuiCheckBox(400, { 620,400, 300, 60 }, "FULLSCREEN");
+    vSync->SetObserver(this);
+    vSync->SetTexture(app->tex->Load("Assets/Textures/vs1.png"), app->tex->Load("Assets/Textures/vs2.png"), app->tex->Load("Assets/Textures/vs2.png"));
 
-    musicSlider = new GuiSlider(100, { 900,300, 60, 60 }, "FULLSCREEN");
+    musicSlider = new GuiSlider(200, { 900,300, 60, 60 }, "FULLSCREEN");
     musicSlider->SetObserver(this);
     musicSlider->SetTexture(app->tex->Load("Assets/Textures/fx.png"), app->tex->Load("Assets/Textures/fx_selected.png"), app->tex->Load("Assets/Textures/fx_focused.png"));
 
-    fxSlider = new GuiSlider(100, { 900,350, 60, 60 }, "FULLSCREEN");
+    fxSlider = new GuiSlider(201, { 900,350, 60, 60 }, "FULLSCREEN");
     fxSlider->SetObserver(this);
     fxSlider->SetTexture(app->tex->Load("Assets/Textures/fx.png"), app->tex->Load("Assets/Textures/fx_selected.png"), app->tex->Load("Assets/Textures/fx_focused.png"));
 
@@ -68,23 +74,19 @@ bool SceneManager::Update(float dt)
 {
 	if (scene) scene->Update(dt);
 
-    if (pauseCondition == false)
-    {
-        settingsEnabled = false;
-    }
+
     if (pauseCondition)
     {
         resumeButton->Update(app->input, dt);
         settingsButton->Update(app->input, dt);
         exitButton->Update(app->input, dt);
+    }
+    if (settingsEnabled)
+    {
+        musicSlider->Update(app->input, dt);
+        fxSlider->Update(app->input, dt);
         fullScreen->Update(app->input, dt);
-        if (settingsEnabled)
-        {
-            musicSlider->Update(app->input, dt);
-            fxSlider->Update(app->input, dt);
-        }
-      //  app->audio->Volume(20, '0');
-
+        vSync->Update(app->input, dt);
     }
     if (!pauseCondition)
     {
@@ -98,22 +100,26 @@ bool SceneManager::Update(float dt)
     settingsButton->bounds.y = -app->render->camera.y + 260;
     exitButton->bounds.x = -app->render->camera.x + 557;
     exitButton->bounds.y = -app->render->camera.y + 360;
+    
 
     fullScreen->bounds.x = -app->render->camera.x + 900;
-    fullScreen->bounds.y = -app->render->camera.y + 200;
+    fullScreen->bounds.y = -app->render->camera.y + 100;
+
+    vSync->bounds.x = -app->render->camera.x + 900;
+    vSync->bounds.y = -app->render->camera.y + 350;
 
    // musicSlider->bounds.x = -app->render->camera.x + 900;
-    musicSlider->bounds.y = -app->render->camera.y + 300;
+    musicSlider->bounds.y = -app->render->camera.y + 220;
 
     //fxSlider->bounds.x = -app->render->camera.x + 900;
-    fxSlider->bounds.y = -app->render->camera.y + 350;
+    fxSlider->bounds.y = -app->render->camera.y + 300;
 
     //RECT OF THE BACKGORUND ONLY UPDATE IF UPDATE THE SLIDERS.
-    musicSliderBack.x = -app->render->camera.x + 900;
-    musicSliderBack.y = -app->render->camera.y + 300;
+    musicSliderBack.x = -app->render->camera.x + 935;
+    musicSliderBack.y = -app->render->camera.y + 220;
 
-    fxSliderBack.x = -app->render->camera.x + 900;
-    fxSliderBack.y = -app->render->camera.y + 350;
+    fxSliderBack.x = -app->render->camera.x + 935;
+    fxSliderBack.y = -app->render->camera.y + 300;
 
 	switch (fadeStep)
 	{
@@ -168,10 +174,13 @@ bool SceneManager::PostUpdate()
     {
         app->render->DrawTexture(settingsPost, -app->render->camera.x + 875, -app->render->camera.y + 100, NULL);
         fullScreen->Draw(app->render);
-        app->render->DrawRectangle(musicSliderBack, 255, 0, 255, 255);
-        app->render->DrawRectangle(fxSliderBack, 255, 0, 255, 255);
+        vSync->Draw(app->render);
+        app->render->DrawRectangle(musicSliderBack, 192, 192, 192, 255);
+        app->render->DrawRectangle(fxSliderBack, 192, 192, 192, 255);
         musicSlider->Draw(app->render);
         fxSlider->Draw(app->render);
+        app->render->DrawTexture(fx_s, -app->render->camera.x + 895, -app->render->camera.y + 222, NULL);
+        app->render->DrawTexture(music_s, -app->render->camera.x + 895, -app->render->camera.y + 302, NULL);
     }
     if (pauseCondition)
     {
@@ -179,7 +188,6 @@ bool SceneManager::PostUpdate()
         resumeButton->Draw(app->render);
         settingsButton->Draw(app->render);
         exitButton->Draw(app->render);
-       
     }
 
     if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN) pauseCondition = !pauseCondition;
@@ -270,7 +278,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         if (control->id == 17)
         {
             //Play
-            app->sceneManager->settingsEnabled = !app->sceneManager->settingsEnabled;
+           settingsEnabled = !settingsEnabled;
         }
         if (control->id == 1)
         {
@@ -287,9 +295,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         }
         else if (control->id == 2)
         {
-            //Settings
-
-            configOn = !configOn;
+            settingsEnabled = !settingsEnabled;
         }
         else if (control->id == 11)
         {
@@ -327,7 +333,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
     }
     case GuiControlType::SLIDER:
     {
-        if (control->id == 100)
+        if (control->id == 200)
         {
             //MusicVolume
             
@@ -337,7 +343,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
             }
            
         }
-        else if (control->id == 101)
+        else if (control->id == 201)
         {
          if (app->sceneManager->fxSliderBack.w > 0)
             app->audio->ChangeFxVolume(100 * (control->bounds.x - app->sceneManager->fxSliderBack.x) / app->sceneManager->fxSliderBack.w);

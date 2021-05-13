@@ -37,30 +37,30 @@ bool SceneManager::Start(SceneType type)
     music_s = app->tex->Load("Assets/Textures/fx_s.png");
     fx_s = app->tex->Load("Assets/Textures/music_s.png");
 
-    resumeButton = new GuiButton(32, { 517,304, 240, 60 }, "CONTINUE");
+    resumeButton = new GuiButton(300, { 517,304, 240, 60 }, "CONTINUE");
     resumeButton->SetObserver(this);
     resumeButton->SetTexture(app->tex->Load("Assets/Textures/resume.png"), app->tex->Load("Assets/Textures/resume_selected.png"), app->tex->Load("Assets/Textures/resume_pressed.png"));
 
-    settingsButton = new GuiButton(17, { 517, 409, 234, 55 }, "SETTINGS");
+    settingsButton = new GuiButton(301, { 517, 409, 234, 55 }, "SETTINGS");
     settingsButton->SetObserver(this);
     settingsButton->SetTexture(app->tex->Load("Assets/Textures/settings.png"), app->tex->Load("Assets/Textures/settings_selected.png"), app->tex->Load("Assets/Textures/settings_pressed.png"));
 
-    fullScreen = new GuiCheckBox(7, { 620,400, 300, 60 }, "FULLSCREEN");
+    fullScreen = new GuiCheckBox(302, { 620,400, 300, 60 }, "FULLSCREEN");
     fullScreen->SetObserver(this);
     fullScreen->SetTexture(app->tex->Load("Assets/Textures/fs1.png"), app->tex->Load("Assets/Textures/fs2.png"), app->tex->Load("Assets/Textures/fs2.png"));
-    vSync = new GuiCheckBox(400, { 620,400, 300, 60 }, "FULLSCREEN");
+    vSync = new GuiCheckBox(303, { 620,400, 300, 60 }, "VSYNC");
     vSync->SetObserver(this);
     vSync->SetTexture(app->tex->Load("Assets/Textures/vs1.png"), app->tex->Load("Assets/Textures/vs2.png"), app->tex->Load("Assets/Textures/vs2.png"));
 
-    musicSlider = new GuiSlider(200, { 900,300, 60, 60 }, "FULLSCREEN");
+    musicSlider = new GuiSlider(304, { 900,300, 60, 60 }, "FULLSCREEN");
     musicSlider->SetObserver(this);
     musicSlider->SetTexture(app->tex->Load("Assets/Textures/fx.png"), app->tex->Load("Assets/Textures/fx_selected.png"), app->tex->Load("Assets/Textures/fx_focused.png"));
 
-    fxSlider = new GuiSlider(201, { 900,350, 60, 60 }, "FULLSCREEN");
+    fxSlider = new GuiSlider(305, { 900,350, 60, 60 }, "FULLSCREEN");
     fxSlider->SetObserver(this);
     fxSlider->SetTexture(app->tex->Load("Assets/Textures/fx.png"), app->tex->Load("Assets/Textures/fx_selected.png"), app->tex->Load("Assets/Textures/fx_focused.png"));
 
-    exitButton = new GuiButton(11, { 551, 360, 172, 55 }, "CREDITS");
+    exitButton = new GuiButton(306, { 551, 360, 172, 55 }, "CREDITS");
     exitButton->SetObserver(this);
     exitButton->SetTexture(app->tex->Load("Assets/Textures/exit.png"), app->tex->Load("Assets/Textures/exit_selected.png"), app->tex->Load("Assets/Textures/exit_pressed.png"));
 
@@ -270,17 +270,22 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         {
             creditsOnScreen = true;
         }
-        if (control->id == 18)
+        if (control->id == 503)
         {
             creditsOnScreen = false;
             creditSceneFlag = false;
         }
-        if (control->id == 17)
+        if (control->id == 510)
+        {
+            creditsOnScreen = false;
+            creditSceneFlag = false;
+        }
+        if (control->id == 301)
         {
             //Play
            settingsEnabled = !settingsEnabled;
         }
-        if (control->id == 1)
+        if (control->id == 501)
         {
             //LoadGame
             app->loadingGame = true;
@@ -293,18 +298,18 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
 
             if (app->currentLevel == 1) ChangeScene(SCENE1);
         }
-        else if (control->id == 2)
+        else if (control->id == 504)
         {
             settingsEnabled = !settingsEnabled;
         }
-        else if (control->id == 11)
+        else if (control->id == 306)
         {
             pauseCondition = false;
 
             //Back to title
             ChangeScene(TITLE);
         }
-        else if (control->id == 4)
+        else if (control->id == 509)
         {
             //Exit
             exi = true;
@@ -314,26 +319,29 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
             //Vsync
             if (vsync == true)
             {
-
                 vsync = false;
             }
         }
-        else if (control->id == 12)
+        else if (control->id == 502)
         {
             ChangeScene(INTRO);
         }
-        else if (control->id == 13)
+        else if (control->id == 505)
         {
             creditSceneFlag = true;
         }
-        else if (control->id == 32)
+        else if (control->id == 300)
         {
             pauseCondition = false;
+        }
+        else if (control->id == 303)
+        {
+
         }
     }
     case GuiControlType::SLIDER:
     {
-        if (control->id == 200)
+        if (control->id == 304)
         {
             //MusicVolume
             
@@ -341,17 +349,41 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
             {
              app->audio->ChangeMusicVolume(100 * (control->bounds.x - app->sceneManager->musicSliderBack.x) / app->sceneManager->musicSliderBack.w);
             }
-           
         }
-        else if (control->id == 201)
+        else if (control->id == 305)
         {
          if (app->sceneManager->fxSliderBack.w > 0)
             app->audio->ChangeFxVolume(100 * (control->bounds.x - app->sceneManager->fxSliderBack.x) / app->sceneManager->fxSliderBack.w);
         }
+        if (control->id == 507)
+        {
+            if (app->sceneManager->musicSliderBack.w > 0)
+            {
+                app->audio->ChangeMusicVolume(100 * (control->bounds.x - app->sceneManager->musicSliderBack.x) / app->sceneManager->musicSliderBack.w);
+            }
+        }
+        else if (control->id == 508)
+        {
+            if (app->sceneManager->fxSliderBack.w > 0)
+                app->audio->ChangeFxVolume(100 * (control->bounds.x - app->sceneManager->fxSliderBack.x) / app->sceneManager->fxSliderBack.w);
+        }
     }
     case GuiControlType::CHECKBOX:
     {
-        if (control->id == 7)
+        if (control->id == 302)
+        {
+            //FullScreen
+            if (fullSc == false)
+            {
+                SDL_SetWindowFullscreen(app->win->window, SDL_WINDOW_FULLSCREEN);
+                fullSc = true;
+            }
+            else
+            {
+                SDL_SetWindowFullscreen(app->win->window, SDL_WINDOW_RESIZABLE);
+            }
+        }
+        if (control->id == 506)
         {
             //FullScreen
             if (fullSc == false)

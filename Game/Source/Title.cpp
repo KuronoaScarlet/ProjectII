@@ -73,7 +73,7 @@ bool Title::Start()
 
     settingsPost2 = app->tex->Load("Assets/Textures/postit.png");
 
-    play = new GuiButton(1, { 517, 304, 240, 60 }, "CONTINUE");
+    play = new GuiButton(501, { 517, 304, 240, 60 }, "CONTINUE");
     play->SetObserver(this);
     play->SetTexture(app->tex->Load("Assets/Textures/continue.png"), app->tex->Load("Assets/Textures/continue_selected.png"), app->tex->Load("Assets/Textures/continue_pressed.png"));
     play->SetDisableTexture(app->tex->Load("Assets/Textures/continue_disabled.png"));
@@ -82,42 +82,42 @@ bool Title::Start()
        play->state = GuiControlState::DISABLED;
     }
     
-    newGame = new GuiButton(12, { 517, 370, 234, 55 }, "START");
+    newGame = new GuiButton(502, { 517, 370, 234, 55 }, "START");
     newGame->SetObserver(this);
     newGame->SetDisableTexture(app->tex->Load("Assets/Textures/Buttons/states/no.png"));
     newGame->SetTexture(app->tex->Load("Assets/Textures/newgame.png"), app->tex->Load("Assets/Textures/newgame_selected.png"), app->tex->Load("Assets/Textures/newgame_pressed.png"));
 
-    escCredits = new GuiButton(18, { 40, 20, 200, 100 }, "ESC");
+    escCredits = new GuiButton(503, { 40, 20, 200, 100 }, "ESC");
     escCredits->SetObserver(this);
     escCredits->SetDisableTexture(app->tex->Load("Assets/Textures/esc.png"));
     escCredits->SetTexture(app->tex->Load("Assets/Textures/esc.png"), app->tex->Load("Assets/Textures/esc2.png"), app->tex->Load("Assets/Textures/esc3.png"));
 
-    options = new GuiButton(2, { 543, 438, 197, 55 }, "OPTIONS");
+    options = new GuiButton(504, { 543, 438, 197, 55 }, "OPTIONS");
     options->SetObserver(this);
     options->SetTexture(app->tex->Load("Assets/Textures/settings.png"), app->tex->Load("Assets/Textures/settings_selected.png"), app->tex->Load("Assets/Textures/settings_pressed.png"));
 
-    credits = new GuiButton(13, { 551, 514, 172, 55 }, "CREDITS");
+    credits = new GuiButton(505, { 551, 514, 172, 55 }, "CREDITS");
     credits->SetObserver(this);
     credits->SetTexture(app->tex->Load("Assets/Textures/credits.png"), app->tex->Load("Assets/Textures/credits_selected.png"), app->tex->Load("Assets/Textures/credits_pressed.png"));
 
-    fullScreen = new GuiCheckBox(7, { 900,150, 300, 60 }, "FULLSCREEN");
+    fullScreen = new GuiCheckBox(506, { 900,150, 300, 60 }, "FULLSCREEN");
     fullScreen->SetObserver(this);
     fullScreen->SetTexture(app->tex->Load("Assets/Textures/fs1.png"), app->tex->Load("Assets/Textures/fs2.png"), app->tex->Load("Assets/Textures/fs2.png"));
 
-    musicVolume = new GuiSlider(100, { 900,300, 60, 60 }, "FxVolume");
+    musicVolume = new GuiSlider(507, { 900,300, 60, 60 }, "FxVolume");
     musicVolume->SetObserver(this);
     musicVolume->SetTexture(app->tex->Load("Assets/Textures/bag.png"), app->tex->Load("Assets/Textures/bag.png"), app->tex->Load("Assets/Textures/bag.png"));
     
-    fxVolume = new GuiSlider(101, { 900,350, 60, 60 }, "FxVolume");
+    fxVolume = new GuiSlider(508, { 900,350, 60, 60 }, "FxVolume");
     fxVolume->SetObserver(this);
     fxVolume->SetTexture(app->tex->Load("Assets/Textures/bag.png"), app->tex->Load("Assets/Textures/bag.png"), app->tex->Load("Assets/Textures/bag.png"));
 
 
-    exit = new GuiButton(4, { 580, 569, 117, 55 }, "EXIT");
+    exit = new GuiButton(509, { 580, 569, 117, 55 }, "EXIT");
     exit->SetObserver(this);
     exit->SetTexture(app->tex->Load("Assets/Textures/exit.png"), app->tex->Load("Assets/Textures/exit_selected.png"), app->tex->Load("Assets/Textures/exit_pressed.png"));
 
-    backButton = new GuiButton(3, { 220, 375, 100, 55 }, "BACK");
+    backButton = new GuiButton(510, { 220, 375, 100, 55 }, "BACK");
     backButton->SetObserver(this);
     backButton->SetTexture(app->tex->Load("Assets/Textures/Buttons/states/play.png"), app->tex->Load("Assets/Textures/Buttons/states/focused.png"), app->tex->Load("Assets/Textures/Buttons/states/pressed.png"));
 

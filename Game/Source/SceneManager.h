@@ -126,10 +126,11 @@ public:
     List<Quest*> quests;
 
     void CreateQuest(int _id, const char* _text);
-    void UpdateQuests();
+    void CompleteQuest(int _id);
     void DisplayQuests();
 
-    bool winn = false;
+    int newQuestAdded = 0;
+    int currentIterationQuest = 0;
 
     SDL_Texture* back_quests;
     SDL_Texture* done_quests;

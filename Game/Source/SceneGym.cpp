@@ -99,6 +99,8 @@ bool SceneGym::Start()
 
 	app->map->Load("GymDungeon.tmx");
 
+	app->sceneManager->CreateQuest(3, "pass dungeon");
+
 	return true;
 }
 
@@ -114,7 +116,7 @@ bool SceneGym::Update(float dt)
 	app->map->Draw();
 	app->map->LoadColliders();
 
-
+	if (app->entityManager->playerData.position.x > 1760) app->sceneManager->CompleteQuest(3);
 
 	return true;
 }

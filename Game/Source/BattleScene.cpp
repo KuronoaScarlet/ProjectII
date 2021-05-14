@@ -122,7 +122,7 @@ bool BattleScene::Start()
 	SDL_Texture* texas = app->tex->Load("Assets/Fonts/kurale.png");
 	winScreen = app->tex->Load("Assets/Textures/battle_scene.png");
 
-	app->sceneManager->CreateQuest(3, "win a combat");
+	app->sceneManager->CreateQuest(2, "win a combat");
 
 	return true;
 }
@@ -314,8 +314,8 @@ void BattleScene::PerformCombat(float dt)
 			//Si no, función para enviar a Victory o Loose State
 			if (remainingAllies == 0 || remainingEnemies == 0)
 			{
-				app->sceneManager->winn = true;
 				app->sceneManager->ChangeScene(SCENE1, 0);
+				app->sceneManager->CompleteQuest(2);
 			}
 		}
 		break;

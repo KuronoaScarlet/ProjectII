@@ -76,7 +76,7 @@ bool Scene1::Start()
 
 	app->map->Load("mapLvl21.tmx");
 
-	app->sceneManager->CreateQuest(1, "2 + 2 = 4");
+	app->sceneManager->CreateQuest(1, "1 + 1 = 2");
 
 	return true;
 }

@@ -291,10 +291,27 @@ bool SceneManager::PostUpdate()
 {
 	if (scene) scene->PostUpdate();
 
-    UpdateQuests();
     if (app->input->GetKey(SDL_SCANCODE_Q) == KEY_REPEAT)
     {
         DisplayQuests();
+    }
+
+    if (newQuestAdded != 0)
+    {
+        ListItem<Quest*>* quest = quests.start;
+        while (quest)
+        {
+            if (quest->data->id == newQuestAdded)
+            {
+                if (currentIterationQuest < 360) ++currentIterationQuest;
+                else { currentIterationQuest = 0; newQuestAdded = 0; }
+                int posX = easing->bounceEaseOut(currentIterationQuest, -200, 400, 360);
+                app->render->DrawText(app->render->font, quest->data->text, posX, 200, 75, 0, { 255, 255, 0, 255 });
+                app->render->DrawTexture(done_quests, 150 - app->render->camera.x, 200 - app->render->camera.y);
+                break;
+            }
+            quest = quest->next;
+        }
     }
 
     if (transId == 0)
@@ -476,7 +493,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
                 app->entityManager->playerData.pencilSharpened++;
                 app->entityManager->playerData.Pencil--;
                 app->entityManager->playerData.Sharper--;
-
+                CompleteQuest(1);
             }
         }
         else if (control->id == 141)
@@ -486,7 +503,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
                 app->entityManager->playerData.wonster++;
                 app->entityManager->playerData.coffee--;
                 app->entityManager->playerData.cola--;
-
+                CompleteQuest(1);
             }
         }
     }
@@ -707,32 +724,18 @@ void SceneManager::CreateQuest(int _id, const char* _text)
     newQuest->text = _text;
     newQuest->completed = false;
     quests.Add(newQuest);
+    newQuestAdded = newQuest->id;
 }
 
-void SceneManager::UpdateQuests()
+void SceneManager::CompleteQuest(int _id)
 {
     ListItem<Quest*>* quest = quests.start;
     while (quest)
     {
-        switch (quest->data->id)
+        if (quest->data->id == _id)
         {
-        case 1:
-            if (app->entityManager->playerData.pencilSharpened > 0
-                || app->entityManager->playerData.wonster > 0)
-            {
-                quest->data->completed = true;
-            }
-            break;
-        case 2:
-            if (id == GYM
-                && app->entityManager->playerData.position.x > 1760)
-            {
-                quest->data->completed = true;
-            }
-            break;
-        case 3:
-            quest->data->completed = winn;
-            break;
+            quest->data->completed = true;
+            return;
         }
         quest = quest->next;
     }

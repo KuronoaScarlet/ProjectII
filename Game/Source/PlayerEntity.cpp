@@ -401,12 +401,12 @@ void PlayerEntity::CleanUp()
 bool PlayerEntity::Tp(Collider* collider)
 {
 	//SCENE 1 TO SCENE 2
-	if ((collider->rect.y == 448 && collider->rect.x == 1024))
+	if ((collider->rect.y == 416 && collider->rect.x == 1024))
 	{
 		app->playerPosition = { 64.0f, 416.0f };
 		return true;
 	}
-	if (collider->rect.x == 992 && collider->rect.y == 1056 )
+	if (collider->rect.x == 1024 && collider->rect.y == 1120 )
 	{
 		app->playerPosition = { 64.0f, 1024.0f };
 		return false;

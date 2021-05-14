@@ -103,7 +103,7 @@ bool Hud::Start()
 	
 	sharpenedPencil = new GuiButton(140, { 629,423, 46, 80 }, "sharpenedPencil");// 1155,20
 	sharpenedPencil->SetObserver(this);
-	sharpenedPencil->SetTexture(app->tex->Load("Assets/Textures/Items/pencil_sharpened.png"), app->tex->Load("Assets/Textures/Items/pencil_sharpened.png"), app->tex->Load("Assets/Textures/Items/pencil_sharpened.png"));
+	sharpenedPencil->SetTexture(app->tex->Load("Assets/Textures/Items/pencil_sharpened.png"), app->tex->Load("Assets/Textures/Items/pencil_sharpened_1.png"), app->tex->Load("Assets/Textures/Items/pencil_sharpened_2.png"));
 	
 	Wonster = new GuiButton(141, { 629,423, 46, 80 }, "Monster sin copyright");// 1155,20
 	Wonster->SetObserver(this);

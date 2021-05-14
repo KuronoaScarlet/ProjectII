@@ -22,6 +22,13 @@ enum SceneType
     BATTLE,
 };
 
+struct Quest
+{
+    int id;
+    const char* text;
+    bool completed = false;
+};
+
 class SceneManager : public Module
 {
 public:
@@ -114,6 +121,19 @@ public:
     //BattleScene Bools.........................................................
     bool atkMenu = false;
     bool defMenu = false;
+
+    //quest manager..................................................
+    List<Quest*> quests;
+
+    void CreateQuest(int _id, const char* _text);
+    void UpdateQuests();
+    void DisplayQuests();
+
+    bool winn = false;
+
+    SDL_Texture* back_quests;
+    SDL_Texture* done_quests;
+    SDL_Texture* todo_quests;
 };
 
 #endif // __SCENEMANAGER_H__

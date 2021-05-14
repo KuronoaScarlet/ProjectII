@@ -75,6 +75,9 @@ bool SceneManager::Start(SceneType type)
     currentIteration = 0;
     totalIterations = 120;
 
+    back_quests = app->tex->Load("Assets/Textures/Screens/inventory.png");
+    done_quests = app->tex->Load("Assets/Textures/music_s.png");
+    todo_quests = app->tex->Load("Assets/Textures/music_n.png");
 
     return false;
 }
@@ -287,6 +290,12 @@ bool SceneManager::Update(float dt)
 bool SceneManager::PostUpdate()
 {
 	if (scene) scene->PostUpdate();
+
+    UpdateQuests();
+    if (app->input->GetKey(SDL_SCANCODE_Q) == KEY_REPEAT)
+    {
+        DisplayQuests();
+    }
 
     if (transId == 0)
     {
@@ -682,5 +691,66 @@ void SceneManager::OnMouseAboveButton(GuiControlState state, uint32 id)
         sprintf_s(wonsterEnabled2, 200, "Aumenta considerablemente el ataque y la velocidad de la barra ATB durante 3 turnos.");
         app->render->DrawText(app->render->font, wonsterEnabled2, 209, 630, 40, 0, { 255, 0, 0, 255 });
    }
+    }
+}
+
+void SceneManager::CreateQuest(int _id, const char* _text)
+{
+    ListItem<Quest*>* quest = quests.start;
+    while (quest)
+    {
+        if (quest->data->id == _id) return;
+        quest = quest->next;
+    }
+    Quest* newQuest = new Quest;
+    newQuest->id = _id;
+    newQuest->text = _text;
+    newQuest->completed = false;
+    quests.Add(newQuest);
+}
+
+void SceneManager::UpdateQuests()
+{
+    ListItem<Quest*>* quest = quests.start;
+    while (quest)
+    {
+        switch (quest->data->id)
+        {
+        case 1:
+            if (app->entityManager->playerData.pencilSharpened > 0
+                || app->entityManager->playerData.wonster > 0)
+            {
+                quest->data->completed = true;
+            }
+            break;
+        case 2:
+            if (id == GYM
+                && app->entityManager->playerData.position.x > 1760)
+            {
+                quest->data->completed = true;
+            }
+            break;
+        case 3:
+            quest->data->completed = winn;
+            break;
+        }
+        quest = quest->next;
+    }
+}
+
+void SceneManager::DisplayQuests()
+{
+    app->render->DrawTexture(back_quests, 50 - app->render->camera.x, 50 - app->render->camera.y);
+    int posY = 100;
+    ListItem<Quest*>* quest = quests.start;
+    while (quest)
+    {
+        app->render->DrawText(app->render->font, quest->data->text, 200, posY, 50, 0, { 255, 0, 255, 255 });
+        if (quest->data->completed)
+            app->render->DrawTexture(done_quests, 150 - app->render->camera.x, posY - app->render->camera.y);
+        else
+            app->render->DrawTexture(todo_quests, 150 - app->render->camera.x, posY - app->render->camera.y);
+        posY += 100;
+        quest = quest->next;
     }
 }

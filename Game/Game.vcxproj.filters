@@ -174,9 +174,6 @@
     <ClCompile Include="Source\SceneManager.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="Source\QuestManager.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
     <ClCompile Include="Source\EnemyLantern3.cpp">
       <Filter>Entities\Enemies</Filter>
     </ClCompile>
@@ -391,9 +388,6 @@
       <Filter>Entities\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="Source\SceneManager.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\QuestManager.h">
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="Source\EnemyLantern3.h">

@@ -21,7 +21,6 @@ class Collisions;
 class DialogueSystem;
 class Hud;
 class SceneManager;
-class Quest_Manager;
 
 //Scenes
 class Title;
@@ -100,7 +99,6 @@ public:
 	Hud* hud;
 	Title* title;
 	SceneManager* sceneManager;
-	Quest_Manager* questManager;
 
 	uint activeFonts = 0;
 	uint totalFonts = 0;

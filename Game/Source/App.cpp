@@ -23,7 +23,6 @@
 #include "DialogSystem.h"
 #include "HUD.h"
 #include "SceneManager.h"
-#include "QuestManager.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -51,7 +50,6 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	hud = new Hud();
 	dialogueSystem = new DialogueSystem(input, render, tex);
 	sceneManager = new SceneManager();
-	questManager = new Quest_Manager();
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
 
@@ -64,7 +62,6 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(entityManager);
 	AddModule(dialogueSystem);
 	AddModule(hud);
-	AddModule(questManager);
 //  Render last to swap buffer
 
 	AddModule(collisions);

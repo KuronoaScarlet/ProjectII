@@ -43,6 +43,8 @@ bool BattleScene::Start()
 {
 	active = true;
 	onTurn = false;
+	turn = UNKNOWN;
+	state = WAITING;
 
 	skipBarMax = { 0, 720, 100, 16 };
 	skipBar = { 0, 721, 0, 14 };
@@ -74,7 +76,7 @@ bool BattleScene::Start()
 
 
 	//Paso 2: Añadir entidades enemigas. Random (2 o 3).
-	rngEnemyNum = 0;
+	rngEnemyNum = rand() % 4;
 	rngTypeEnemy = rand() % 2;
 
 	switch (rngEnemyNum)
@@ -161,11 +163,6 @@ bool BattleScene::Update(float dt)
 		}
 	}
 
-
-	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-	{
-		ResumeCombat();
-	}
 
 	return true;
 }
@@ -405,7 +402,7 @@ void BattleScene::ResumeCombat()
 	app->sceneManager->defMenu = false;
 	tmp = app->entityManager->entityList.start;
 	state = WAITING;
-	turn = UNKOWN;
+	turn = UNKNOWN;
 	turnEntity->turnBar.h = 0;
 }
 

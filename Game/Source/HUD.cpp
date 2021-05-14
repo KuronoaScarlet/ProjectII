@@ -40,7 +40,7 @@ bool Hud::Awake()
 bool Hud::Start()
 {
 	currentIteration = 0;
-	totalIterations = 120;
+	totalIterations = 60;
 	initialPosition = 700;
 	deltaPosition = -148;
 	active = true;
@@ -60,6 +60,10 @@ bool Hud::Start()
 	pencil = new GuiButton(130, { 204,73, 69, 72 }, "PENCIL");// 1155,20
 	pencil->SetObserver(this);
 	pencil->SetTexture(app->tex->Load("Assets/Textures/Items/Pencil.png"), app->tex->Load("Assets/Textures/Items/Pencil_1.png"), app->tex->Load("Assets/Textures/Items/Pencil_2.png"));
+	
+	sharpened = new GuiButton(130, { 204,73, 69, 72 }, "PENCIL");// 1155,20
+	sharpened->SetObserver(this);
+	sharpened->SetTexture(app->tex->Load("Assets/Textures/Items/sharpened.png"), app->tex->Load("Assets/Textures/Items/sharpened_1.png"), app->tex->Load("Assets/Textures/Items/sharpened_2.png"));
 
 	ball = new GuiButton(131, { 617,76, 70, 70 }, "PENCIL");// 1155,20
 	ball->SetObserver(this);
@@ -93,9 +97,17 @@ bool Hud::Start()
 	snack->SetObserver(this);
 	snack->SetTexture(app->tex->Load("Assets/Textures/Items/snack.png"), app->tex->Load("Assets/Textures/Items/snack_1.png"), app->tex->Load("Assets/Textures/Items/snack_2.png"));
 
-	tipex = new GuiButton(139, { 629,193, 46, 80 }, "PENCIL");// 1155,20
+	tipex = new GuiButton(139, { 629,193, 46, 80 }, "tipex");// 1155,20
 	tipex->SetObserver(this);
 	tipex->SetTexture(app->tex->Load("Assets/Textures/Items/tipex.png"), app->tex->Load("Assets/Textures/Items/tipex_1.png"), app->tex->Load("Assets/Textures/Items/tipex_2.png"));
+	
+	sharpenedPencil = new GuiButton(140, { 629,423, 46, 80 }, "sharpenedPencil");// 1155,20
+	sharpenedPencil->SetObserver(this);
+	sharpenedPencil->SetTexture(app->tex->Load("Assets/Textures/Items/pencil_sharpened.png"), app->tex->Load("Assets/Textures/Items/pencil_sharpened.png"), app->tex->Load("Assets/Textures/Items/pencil_sharpened.png"));
+	
+	Wonster = new GuiButton(141, { 629,423, 46, 80 }, "Monster sin copyright");// 1155,20
+	Wonster->SetObserver(this);
+	Wonster->SetTexture(app->tex->Load("Assets/Textures/Items/wonster.png"), app->tex->Load("Assets/Textures/Items/wonster_1.png"), app->tex->Load("Assets/Textures/Items/wonster_2.png"));
 
 
 	inventoryTab = app->tex->Load("Assets/Textures/inventory_tab.png");
@@ -128,6 +140,7 @@ bool Hud::Update(float dt)
 	if (!app->sceneManager->settingsEnabled && bagEnabled)
 	{
 		pencil->Update(app->input, dt);
+		sharpened->Update(app->input, dt);
 		ball->Update(app->input, dt);
 		calculator->Update(app->input, dt);
 		book->Update(app->input, dt);
@@ -137,6 +150,8 @@ bool Hud::Update(float dt)
 		rule->Update(app->input, dt);
 		snack->Update(app->input, dt);
 		tipex->Update(app->input, dt);
+		sharpenedPencil->Update(app->input, dt);
+		Wonster->Update(app->input, dt);
 		quitStatsAndInvetory->Update(app->input, dt);
 	}
 
@@ -149,7 +164,7 @@ bool Hud::PostUpdate()
 {
 
 	bag->bounds.x = -app->render->camera.x + 275;
-	bag->bounds.y = easing->backEaseInOut(currentIteration, -app->render->camera.y + 700, deltaPosition, totalIterations);
+	bag->bounds.y = easing->linearEaseInOut(currentIteration, -app->render->camera.y + 700, deltaPosition, totalIterations);
 	
 	if (currentIteration < totalIterations)
 	{
@@ -196,7 +211,15 @@ bool Hud::PostUpdate()
 
 	tipex->bounds.x = -app->render->camera.x + 629;
 	tipex->bounds.y = -app->render->camera.y + 193;
+	
+	sharpened->bounds.x = -app->render->camera.x + 620;
+	sharpened->bounds.y = -app->render->camera.y + 310;
 
+	sharpenedPencil->bounds.x = -app->render->camera.x + 629;
+	sharpenedPencil->bounds.y = -app->render->camera.y + 400;
+
+	Wonster->bounds.x = -app->render->camera.x + 810;
+	Wonster->bounds.y = -app->render->camera.y + 73;
 
 	bool ret = true;
 
@@ -217,6 +240,9 @@ bool Hud::PostUpdate()
 		rule->Draw(app->render);
 		snack->Draw(app->render);
 		tipex->Draw(app->render);
+		sharpenedPencil->Draw(app->render);
+		sharpened->Draw(app->render);
+		Wonster->Draw(app->render);
 		quitStatsAndInvetory->Draw(app->render);
 
 		char pencilCount[80] = { 0 };
@@ -270,6 +296,18 @@ bool Hud::PostUpdate()
 		char snackCount[80] = { 0 };
 		sprintf_s(snackCount, 80, "x%d", app->entityManager->playerData.snack);
 		app->render->DrawText(app->render->font, snackCount, 300, 200, 60, 0, { 0, 0, 0, 255 });
+		
+		char sharpenerCount[80] = { 0 };
+		sprintf_s(sharpenerCount, 80, "x%d", app->entityManager->playerData.Sharper);
+		app->render->DrawText(app->render->font, sharpenerCount, 700, 310, 60, 0, { 0, 0, 0, 255 });
+
+		char pencilShapedCount[80] = { 0 };
+		sprintf_s(pencilShapedCount, 80, "x%d", app->entityManager->playerData.pencilSharpened);
+		app->render->DrawText(app->render->font, pencilShapedCount, 700, 418, 60, 0, { 0, 0, 0, 255 });
+		
+		char wonsterCount[80] = { 0 };
+		sprintf_s(wonsterCount, 80, "x%d", app->entityManager->playerData.wonster);
+		app->render->DrawText(app->render->font, wonsterCount, 880, 73, 60, 0, { 0, 0, 0, 255 });
 	}
 
 	return ret;
@@ -283,6 +321,7 @@ bool Hud::CleanUp()
 	bag->CleanUp();
 
 	pencil->CleanUp();
+	sharpened->CleanUp();
 	ball->CleanUp();
 	book->CleanUp();
 	calculator->CleanUp();

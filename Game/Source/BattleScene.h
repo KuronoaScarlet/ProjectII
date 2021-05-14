@@ -47,7 +47,7 @@ public:
 		PLAYER_TURN,
 		ENEMY_TURN,
 
-		UNKOWN
+		UNKNOWN
 	};
 
 	enum CombatState
@@ -94,7 +94,7 @@ public:
 	int enemySelection = 0;
 	int allySelection = 0;
 
-	TurnSort turn = UNKOWN;
+	TurnSort turn = UNKNOWN;
 	CombatState state = WAITING;
 
 	GuiButton* attack;

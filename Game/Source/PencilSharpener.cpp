@@ -56,9 +56,9 @@ bool PencilSharpener::Interaction()
 {
 	if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN) && picked == false)
 	{
-		app->entityManager->playerData.PencilSharp++;
+		app->entityManager->playerData.pencilSharpened++;
 		CleanUp();
-		printf("%d", app->entityManager->playerData.PencilSharp);
+		printf("%d", app->entityManager->playerData.pencilSharpened);
 		picked = true;
 
 	}

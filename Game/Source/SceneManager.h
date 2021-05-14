@@ -79,7 +79,6 @@ public:
 
     SDL_Texture* settingsPost;
     SDL_Texture* pauseMenu = nullptr;
-    SDL_Texture* trans = nullptr;
 
     bool pauseCondition = false;
     bool settingsEnabled = false;
@@ -94,8 +93,16 @@ public:
     bool crate = false;
     int volumMusic;
    
+    // 1st transition
     Easing* easing;
+    SDL_Texture* trans1 = nullptr;
     int positionX = -1500;
+
+    // 2n trasnition
+    SDL_Texture* trans2 = nullptr;
+    SDL_Texture* trans3 = nullptr;
+    int positionX2 = -1040;
+    int positionX3 = 1680;
 
     float currentIteration;
     float totalIterations;

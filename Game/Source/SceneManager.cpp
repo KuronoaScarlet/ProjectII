@@ -13,6 +13,7 @@
 #include "SceneBath.h"
 #include "SceneGym.h"
 #include "BattleScene.h"
+#include "EntityManager.h"
 
 SceneManager::SceneManager()
 {
@@ -32,7 +33,8 @@ bool SceneManager::Start(SceneType type)
 
     //PAUSE.................................................................
     pauseMenu = app->tex->Load("Assets/Textures/Screens/pause_screen.png");
-    trans = app->tex->Load("Assets/Textures/Screens/title_screen.png");;
+    trans1 = app->tex->Load("Assets/Textures/Screens/title_screen.png");;
+    trans2 = app->tex->Load("Assets/Textures/Screens/title_screen.png");;
 
     settingsPost = app->tex->Load("Assets/Textures/postit.png");
 
@@ -181,6 +183,31 @@ bool SceneManager::Update(float dt)
                 scene->Start();
             }
         }
+        else if (transId == 2)
+        {
+            positionX2 = easing->sineEaseIn(currentIteration, -1040, 1040, totalIterations);
+            positionX3 = easing->sineEaseIn(currentIteration, 1680, -1040, totalIterations);
+
+            if (currentIteration < totalIterations)
+            {
+                ++currentIteration;
+            }
+            else
+            {
+                fadeStep = FadeStep::WAIT2;
+
+                if (scene) scene->CleanUp();
+
+                delete scene;
+                scene = next_scene;
+                next_scene = nullptr;
+
+                scene->active = true;
+                //scene->Awake();
+                scene->Init();
+                scene->Start();
+            }
+        }
 		break;
 	case FadeStep::WAIT2:
 		fadeStep = FadeStep::FROM_BLACK;
@@ -198,7 +225,23 @@ bool SceneManager::Update(float dt)
         }
         else if (transId == 1)
         {
-            positionX = easing->backEaseInOut(currentIteration, 0, 1500, totalIterations);
+            positionX = easing->sineEaseIn(currentIteration, 0, 1500, totalIterations);
+
+            if (currentIteration < totalIterations)
+            {
+                ++currentIteration;
+            }
+            else
+            {
+                fadeStep = FadeStep::NONE;
+                currentIteration = 0;
+
+            }
+        }
+        else if (transId == 2)
+        {
+            positionX2 = easing->sineEaseIn(currentIteration, 0, -1040, totalIterations);
+            positionX3 = easing->sineEaseIn(currentIteration, 640, 1040, totalIterations);
 
             if (currentIteration < totalIterations)
             {
@@ -228,7 +271,12 @@ bool SceneManager::PostUpdate()
     }
     else if (transId == 1)
     {
-        app->render->DrawTexture(trans, -app->render->camera.x + positionX, -app->render->camera.y, NULL);
+        app->render->DrawTexture(trans1, -app->render->camera.x + positionX, -app->render->camera.y, NULL);
+    }
+    else if (transId == 2)
+    {
+        app->render->DrawTexture(trans1, -app->render->camera.x + positionX2, -app->render->camera.y, NULL);
+        app->render->DrawTexture(trans1, -app->render->camera.x + positionX3, -app->render->camera.y, NULL);
     }
     if (settingsEnabled)
     {
@@ -380,9 +428,15 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         {
             pauseCondition = false;
         }
-        else if (control->id == 303)
+        else if (control->id == 140)
         {
+            if (app->entityManager->playerData.Pencil > 0 && app->entityManager->playerData.Sharper > 0)
+            {
+                app->entityManager->playerData.pencilSharpened++;
+                app->entityManager->playerData.Pencil--;
+                app->entityManager->playerData.Sharper--;
 
+            }
         }
     }
     case GuiControlType::SLIDER:
@@ -548,23 +602,33 @@ void SceneManager::OnMouseAboveButton(GuiControlState state, uint32 id)
     }
    else if (id == 138)
     {
-    char snackText[200] = { 0 };
-    sprintf_s(snackText, 200, "9 de cada 10 nutricionistas no recomiendan comer entre horas, el otro no quiere sentirse mal con si mismo.");
-    app->render->DrawText(app->render->font, snackText, 209, 588, 30, 0, { 0, 0, 0, 255 });
+         char snackText[200] = { 0 };
+      sprintf_s(snackText, 200, "9 de cada 10 nutricionistas no recomiendan comer entre horas, el otro no quiere sentirse mal con si mismo.");
+        app->render->DrawText(app->render->font, snackText, 209, 588, 30, 0, { 0, 0, 0, 255 });
 
-    char snackText2[80] = { 0 };
-    sprintf_s(snackText2, 80, "Aumenta el dano del jugador durante 2 turnos.");
-    app->render->DrawText(app->render->font, snackText2, 209, 630, 40, 0, { 255, 0, 0, 255 });
+        char snackText2[80] = { 0 };
+        sprintf_s(snackText2, 80, "Aumenta el dano del jugador durante 2 turnos.");
+        app->render->DrawText(app->render->font, snackText2, 209, 630, 40, 0, { 255, 0, 0, 255 });
     }
    else if (id == 139)
    {
-    char tipexEnabled[80] = { 0 };
-    sprintf_s(tipexEnabled, 80, "Todos sabemos que su nombre es Tipex por mas que intentemos negarlo.");
-    app->render->DrawText(app->render->font, tipexEnabled, 209, 588, 40, 0, { 0, 0, 0, 255 });
+        char tipexEnabled[80] = { 0 };
+        sprintf_s(tipexEnabled, 80, "Todos sabemos que su nombre es Tipex por mas que intentemos negarlo.");
+        app->render->DrawText(app->render->font, tipexEnabled, 209, 588, 40, 0, { 0, 0, 0, 255 });
 
-    char tipexEnabled2[80] = { 0 };
-    sprintf_s(tipexEnabled2, 80, "El siguiente ataque del adversario fallara.");
-    app->render->DrawText(app->render->font, tipexEnabled2, 209, 630, 40, 0, { 255, 0, 0, 255 });
+        char tipexEnabled2[80] = { 0 };
+        sprintf_s(tipexEnabled2, 80, "El siguiente ataque del adversario fallara.");
+        app->render->DrawText(app->render->font, tipexEnabled2, 209, 630, 40, 0, { 255, 0, 0, 255 });
+   }
+   else if (id == 140)
+   {
+        char tipexEnabled[80] = { 0 };
+        sprintf_s(tipexEnabled, 80, "Tu puta madre en bolas: un lapiz y una maquinilla");
+        app->render->DrawText(app->render->font, tipexEnabled, 209, 588, 40, 0, { 0, 0, 0, 255 });
+
+        char tipexEnabled2[80] = { 0 };
+        sprintf_s(tipexEnabled2, 80, "Inflige daño moderado a un adversario y reduce su defensa durante 2 turnos.");
+        app->render->DrawText(app->render->font, tipexEnabled2, 209, 630, 40, 0, { 255, 0, 0, 255 });
    }
     }
 }

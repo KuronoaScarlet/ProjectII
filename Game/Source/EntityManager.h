@@ -67,6 +67,7 @@ public:
 
 		//Items
 		int Pencil = 0;
+		int Sharper = 0;
 		int ball = 0;
 		int book = 0;
 		int calculator = 0;
@@ -78,7 +79,8 @@ public:
 		int rule = 0;
 		int celo = 0;
 		int snack = 0;
-		int PencilSharp = 0;
+		int pencilSharpened = 0;
+		int wonster = 0;
 	};
 
 	int winCount = 0;

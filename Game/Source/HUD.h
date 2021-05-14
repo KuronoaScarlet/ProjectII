@@ -71,6 +71,7 @@ public:
 	GuiButton* quitStatsAndInvetory;
 
 	GuiButton* pencil;
+	GuiButton* sharpened;
 	GuiButton* ball;
 	GuiButton* book;
 	GuiButton* calculator;
@@ -80,6 +81,8 @@ public:
 	GuiButton* rule;
 	GuiButton* tipex;
 	GuiButton* snack;
+	GuiButton* sharpenedPencil;
+	GuiButton* Wonster;
 private:
 	//GuiButton* play;
 

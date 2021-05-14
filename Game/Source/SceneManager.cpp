@@ -33,8 +33,8 @@ bool SceneManager::Start(SceneType type)
 
     //PAUSE.................................................................
     pauseMenu = app->tex->Load("Assets/Textures/Screens/pause_screen.png");
-    trans1 = app->tex->Load("Assets/Textures/Screens/title_screen.png");;
-    trans2 = app->tex->Load("Assets/Textures/Screens/title_screen.png");;
+    trans1 = app->tex->Load("Assets/Textures/Screens/loading_screen.png");;
+    trans2 = app->tex->Load("Assets/Textures/Screens/loading_screen.png");;
 
     settingsPost = app->tex->Load("Assets/Textures/postit.png");
 
@@ -56,11 +56,11 @@ bool SceneManager::Start(SceneType type)
     vSync->SetObserver(this);
     vSync->SetTexture(app->tex->Load("Assets/Textures/vs1.png"), app->tex->Load("Assets/Textures/vs2.png"), app->tex->Load("Assets/Textures/vs2.png"));
 
-    musicSlider = new GuiSlider(304, { 900,300, 60, 60 }, "FULLSCREEN");
+    musicSlider = new GuiSlider(304, { 1020,300, 60, 60 }, "FULLSCREEN");
     musicSlider->SetObserver(this);
     musicSlider->SetTexture(app->tex->Load("Assets/Textures/fx.png"), app->tex->Load("Assets/Textures/fx_selected.png"), app->tex->Load("Assets/Textures/fx_focused.png"));
 
-    fxSlider = new GuiSlider(305, { 900,350, 60, 60 }, "FULLSCREEN");
+    fxSlider = new GuiSlider(305, { 1020,350, 60, 60 }, "FULLSCREEN");
     fxSlider->SetObserver(this);
     fxSlider->SetTexture(app->tex->Load("Assets/Textures/fx.png"), app->tex->Load("Assets/Textures/fx_selected.png"), app->tex->Load("Assets/Textures/fx_focused.png"));
 

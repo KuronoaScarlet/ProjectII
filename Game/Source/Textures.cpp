@@ -56,7 +56,7 @@ bool Textures::CleanUp()
 	}
 
 	textures.Clear();
-	//IMG_Quit();
+	IMG_Quit();
 	
 	return true;
 }

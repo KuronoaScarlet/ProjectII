@@ -1,6 +1,6 @@
 <!-- Quest Data -->
 <quests>
-  <quest DNI ="1111" Reward="15">
+  <quest DNI ="1" Reward="15">
     <ActivationEvent Type ="1">
       <Object x="134" y ="255" w ="100" h ="100"/>
     </ActivationEvent>
@@ -15,7 +15,7 @@
     </SubEvent>
   </quest>
 
-	<quest DNI ="2222" Reward="20">
+	<quest DNI ="2" Reward="20">
     <ActivationEvent Type ="1">
       <Object x="460" y ="415" w ="100" h ="100"/>
     </ActivationEvent>
@@ -24,7 +24,7 @@
     </SubEvent> 
   </quest>
 
-	<quest DNI ="3333" Reward="20">
+	<quest DNI ="3" Reward="20">
     <ActivationEvent Type ="1">
       <Object x="787" y ="255" w ="100" h ="100"/>
     </ActivationEvent>

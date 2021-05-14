@@ -185,12 +185,24 @@ bool SceneManager::Update(float dt)
         }
         else if (transId == 2)
         {
-            positionX2 = easing->sineEaseIn(currentIteration, -1040, 1040, totalIterations);
-            positionX3 = easing->sineEaseIn(currentIteration, 1680, -1040, totalIterations);
-
+            totalIterations = 60;
+            ++currentIteration;
+            
             if (currentIteration < totalIterations)
             {
-                ++currentIteration;
+                positionY = easing->linearEaseNone(currentIteration, -750, 750, totalIterations);
+            }
+            if (currentIteration < totalIterations*2)
+            {
+                positionY2 = easing->linearEaseNone(currentIteration, 750*2, -750*2, totalIterations*2);
+            }
+            if (currentIteration < totalIterations*3)
+            {
+                positionY3 = easing->linearEaseNone(currentIteration, -750*3, 750*3, totalIterations*3);
+            }
+            if (currentIteration < totalIterations*4)
+            {
+                positionY4 = easing->linearEaseNone(currentIteration, 750*4, -750*4, totalIterations*4);
             }
             else
             {
@@ -240,13 +252,25 @@ bool SceneManager::Update(float dt)
         }
         else if (transId == 2)
         {
-            positionX2 = easing->sineEaseIn(currentIteration, 0, -1040, totalIterations);
-            positionX3 = easing->sineEaseIn(currentIteration, 640, 1040, totalIterations);
+            ++currentIteration;
 
             if (currentIteration < totalIterations)
             {
-                ++currentIteration;
+                positionY = easing->linearEaseNone(currentIteration, 0, 750, totalIterations);
             }
+            if (currentIteration < totalIterations * 2)
+            {
+                positionY2 = easing->linearEaseNone(currentIteration, 0, -750 * 2, totalIterations);
+            }
+            if (currentIteration < totalIterations * 3)
+            {
+                positionY3 = easing->linearEaseNone(currentIteration, 0, 750 * 3, totalIterations);
+            }
+            if (currentIteration < totalIterations * 4)
+            {
+                positionY4 = easing->linearEaseNone(currentIteration, 0, -750 * 4, totalIterations);
+            }
+                       
             else
             {
                 fadeStep = FadeStep::NONE;
@@ -256,6 +280,7 @@ bool SceneManager::Update(float dt)
         }
 		break;
 	}
+    
 	return true;
 }
 
@@ -275,8 +300,15 @@ bool SceneManager::PostUpdate()
     }
     else if (transId == 2)
     {
-        app->render->DrawTexture(trans1, -app->render->camera.x + positionX2, -app->render->camera.y, NULL);
-        app->render->DrawTexture(trans1, -app->render->camera.x + positionX3, -app->render->camera.y, NULL);
+        SDL_Rect pos1{ 0,0,320,720 };
+        SDL_Rect pos2{ 320,0,320,720 };
+        SDL_Rect pos3{ 640,0,320,720 };
+        SDL_Rect pos4{ 960,0,320,720 };
+
+        app->render->DrawTexture(trans1, -app->render->camera.x + 0, -app->render->camera.y + positionY + 12, &pos1);
+        app->render->DrawTexture(trans1, -app->render->camera.x + 320, -app->render->camera.y + positionY2-12, &pos2);
+        app->render->DrawTexture(trans1, -app->render->camera.x + 640, -app->render->camera.y + positionY3+12, &pos3);
+        app->render->DrawTexture(trans1, -app->render->camera.x + 960, -app->render->camera.y + positionY4-12, &pos4);
     }
     if (settingsEnabled)
     {
@@ -390,7 +422,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
             pugi::xml_node map = generalNode.child("map");
             app->map->LoadState(map);
 
-            if (app->currentLevel == 1) ChangeScene(SCENE1,0);
+            if (app->currentLevel == 1) ChangeScene(SCENE1,2);
         }
         else if (control->id == 504)
         {
@@ -435,6 +467,16 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
                 app->entityManager->playerData.pencilSharpened++;
                 app->entityManager->playerData.Pencil--;
                 app->entityManager->playerData.Sharper--;
+
+            }
+        }
+        else if (control->id == 141)
+        {
+            if (app->entityManager->playerData.coffee > 0 && app->entityManager->playerData.cola > 0)
+            {
+                app->entityManager->playerData.wonster++;
+                app->entityManager->playerData.coffee--;
+                app->entityManager->playerData.cola--;
 
             }
         }
@@ -620,15 +662,25 @@ void SceneManager::OnMouseAboveButton(GuiControlState state, uint32 id)
         sprintf_s(tipexEnabled2, 80, "El siguiente ataque del adversario fallara.");
         app->render->DrawText(app->render->font, tipexEnabled2, 209, 630, 40, 0, { 255, 0, 0, 255 });
    }
-   else if (id == 140)
+  else if (id == 140)
    {
-        char tipexEnabled[80] = { 0 };
-        sprintf_s(tipexEnabled, 80, "Tu puta madre en bolas: un lapiz y una maquinilla");
-        app->render->DrawText(app->render->font, tipexEnabled, 209, 588, 40, 0, { 0, 0, 0, 255 });
+        char sharpedPencilEnabled[80] = { 0 };
+        sprintf_s(sharpedPencilEnabled, 80, "Ni Jack el destripador tenía un arma tan afilada como esta. Lapiz + Sacapuntas");
+        app->render->DrawText(app->render->font, sharpedPencilEnabled, 209, 588, 40, 0, { 0, 0, 0, 255 });
 
-        char tipexEnabled2[80] = { 0 };
-        sprintf_s(tipexEnabled2, 80, "Inflige daño moderado a un adversario y reduce su defensa durante 2 turnos.");
-        app->render->DrawText(app->render->font, tipexEnabled2, 209, 630, 40, 0, { 255, 0, 0, 255 });
+        char sharpedPencilEnabled2[80] = { 0 };
+        sprintf_s(sharpedPencilEnabled2, 80, "Inflige daño moderado a un adversario y reduce su defensa durante 2 turnos.");
+        app->render->DrawText(app->render->font, sharpedPencilEnabled2, 209, 630, 40, 0, { 255, 0, 0, 255 });
+   }
+   else if (id == 141)
+   {
+        char wonsterEnabled[200] = { 0 };
+        sprintf_s(wonsterEnabled, 200, "Las leyes del copyright no tienen efecto contra ti. Cafe + Refresco");
+        app->render->DrawText(app->render->font, wonsterEnabled, 209, 588, 40, 0, { 0, 0, 0, 255 });
+
+        char wonsterEnabled2[200] = { 0 };
+        sprintf_s(wonsterEnabled2, 200, "Aumenta considerablemente el ataque y la velocidad de la barra ATB durante 3 turnos.");
+        app->render->DrawText(app->render->font, wonsterEnabled2, 209, 630, 40, 0, { 255, 0, 0, 255 });
    }
     }
 }

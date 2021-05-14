@@ -101,8 +101,11 @@ public:
     // 2n trasnition
     SDL_Texture* trans2 = nullptr;
     SDL_Texture* trans3 = nullptr;
-    int positionX2 = -1040;
-    int positionX3 = 1680;
+    float positionY = -1040;
+    float positionY2 = 1680;
+    float positionY3 = 1680;
+    float positionY4 = 1680;
+
 
     float currentIteration;
     float totalIterations;

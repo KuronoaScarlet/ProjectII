@@ -40,7 +40,7 @@ bool Hud::Awake()
 bool Hud::Start()
 {
 	currentIteration = 0;
-	totalIterations = 60;
+	totalIterations = 20;
 	initialPosition = 700;
 	deltaPosition = -148;
 	active = true;
@@ -111,6 +111,7 @@ bool Hud::Start()
 
 
 	inventoryTab = app->tex->Load("Assets/Textures/inventory_tab.png");
+	inventory = app->tex->Load("Assets/Textures/Screens/inventory.png");
 
 	return true;
 }
@@ -165,14 +166,15 @@ bool Hud::PostUpdate()
 
 	bag->bounds.x = -app->render->camera.x + 275;
 	bag->bounds.y = easing->linearEaseInOut(currentIteration, -app->render->camera.y + 700, deltaPosition, totalIterations);
+	bckposY = easing->linearEaseInOut(currentIteration, -app->render->camera.y + 700, deltaPosition, totalIterations);
 	
+	stats->bounds.x = -app->render->camera.x + 947;
+	stats->bounds.y = easing->linearEaseInOut(currentIteration, -app->render->camera.y + 700, deltaPosition, totalIterations);;
+
 	if (currentIteration < totalIterations)
 	{
 		++currentIteration;
 	}
-
-	stats->bounds.x = -app->render->camera.x + 947;
-	stats->bounds.y = -app->render->camera.y + 556;
 
 	quitStatsAndInvetory->bounds.x = -app->render->camera.x + 70;
 	quitStatsAndInvetory->bounds.y = -app->render->camera.y + 39;
@@ -340,8 +342,9 @@ bool Hud::CleanUp()
 void Hud::InventoryAndStatsRequest()
 {
 
-		app->hud->bag->Draw(app->render);
-		app->hud->stats->Draw(app->render);
-		app->hud->inventoryAndStatsRequest = true;
+		app->render->DrawTexture(inventory,-app->render->camera.x, bckposY);
+		bag->Draw(app->render);
+		stats->Draw(app->render);
+		inventoryAndStatsRequest = true;
 	
 }

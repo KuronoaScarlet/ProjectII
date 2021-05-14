@@ -50,6 +50,7 @@ public:
 	bool on;
 
 	SDL_Texture* inventoryTab = nullptr;
+	SDL_Texture* inventory = nullptr;
 
 	bool bagEnabled = false;
 	bool pencilEnabled = false;
@@ -67,6 +68,7 @@ public:
 	bool cantMoveInInvetory = false;
 
 	GuiButton* bag;
+	int bckposY = 0;
 	GuiButton* stats;
 	GuiButton* quitStatsAndInvetory;
 

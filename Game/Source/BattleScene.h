@@ -73,6 +73,8 @@ public:
 
 	void PrintText();
 
+	void PrintFace();
+
 	bool OnGuiMouseClickEvent(GuiControl* control)
 	{
 		app->sceneManager->OnGuiMouseClickEvent(control);
@@ -87,6 +89,12 @@ public:
 	SDL_Texture* screen = nullptr;
 	SDL_Texture* combatBox = nullptr;
 	SDL_Texture* winScreen = nullptr;
+
+	SDL_Texture* playerFace = nullptr;
+	SDL_Texture* allyFace = nullptr;
+	SDL_Texture* dmgEnemyFace = nullptr;
+	SDL_Texture* tankEnemyFace = nullptr;
+	SDL_Texture* blncEnemyFace = nullptr;
 
 	bool onTurn = false;
 	Entity* turnEntity;
@@ -109,6 +117,7 @@ public:
 	char hp[64] = { 0 };
 	char num[64] = { 0 };
 	char battleText[64] = { 0 };
+	char turnText[64] = { 0 };
 
 	SDL_Rect skipBarMax = { 0,0,0,0 };
 	SDL_Rect skipBar = { 0,0,0,0 };

@@ -54,6 +54,14 @@ bool BattleScene::Start()
 	screen = app->tex->Load("Assets/Textures/Screens/battle_scene.png");
 	combatBox = app->tex->Load("Assets/Textures/combat_box.png");
 
+		//Caritas
+	playerFace = app->tex->Load("Assets/Textures/player_face.png");
+	allyFace = app->tex->Load("Assets/Textures/ally_face.png");
+	dmgEnemyFace = app->tex->Load("Assets/Textures/damage_enemy_face.png");
+	tankEnemyFace = app->tex->Load("Assets/Textures/tank_enemy_face.png");
+	blncEnemyFace = app->tex->Load("Assets/Textures/balanced_enemy_face.png");
+
+
 	//BUTTONS---------------------------------------------------------
 	attack = new GuiButton(101, { 280, 590, 216, 43 }, "attack");
 	attack->SetObserver(this);
@@ -179,6 +187,10 @@ bool BattleScene::PostUpdate()
 	app->render->DrawTexture(combatBox, -app->render->camera.x, -app->render->camera.y + 530);
 	PrintText();
 	app->render->DrawText(app->render->font, battleText, 240, 530, 50, 3, { 255, 255, 255, 255 });
+	app->render->DrawRectangle({ 188, 534, 1, 194 }, 200, 200, 255, 200);
+	PrintFace();
+	sprintf_s(turnText, 80, "Turn");
+	app->render->DrawText(app->render->font, turnText, 60, 530, 40, 2, { 255, 255, 255, 255 });
 
 	if (turn == PLAYER_TURN && state == SELECT_ACTION && app->sceneManager->atkMenu == false && app->sceneManager->defMenu == false)
 	{
@@ -455,4 +467,31 @@ void BattleScene::PrintText()
 		tmp = tmp->next;
 	}
 
+}
+
+void BattleScene::PrintFace()
+{
+	if (turn != UNKNOWN)
+	{
+		switch (turnEntity->type)
+		{
+		case Entity::Type::PLAYER:
+			app->render->DrawTexture(playerFace, 30, 575, NULL);
+			break;
+		case Entity::Type::ALLY1:
+			app->render->DrawTexture(allyFace, 30, 575, NULL);
+			break;
+		case Entity::Type::EQUILIBRATED_ENEMY:
+			app->render->DrawTexture(blncEnemyFace, 30, 575, NULL);
+			break;
+		case Entity::Type::TANK_ENEMY:
+			app->render->DrawTexture(tankEnemyFace, 30, 575, NULL);
+			break;
+		case Entity::Type::DAMAGE_ENEMY:
+			app->render->DrawTexture(dmgEnemyFace, 30, 575, NULL);
+			break;
+		default:
+			break;
+		}
+	}
 }

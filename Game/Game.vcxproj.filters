@@ -396,6 +396,9 @@
     <ClInclude Include="Source\Crate.h">
       <Filter>Entities\NoPlayable</Filter>
     </ClInclude>
+    <ClInclude Include="Source\ParticlesEngine.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">

@@ -14,6 +14,7 @@
 #include "SceneGym.h"
 #include "BattleScene.h"
 #include "EntityManager.h"
+#include "ParticlesEngine.h"
 
 SceneManager::SceneManager()
 {
@@ -304,7 +305,12 @@ bool SceneManager::PostUpdate()
             if (quest->data->id == newQuestAdded)
             {
                 if (currentIterationQuest < 360) ++currentIterationQuest;
-                else { currentIterationQuest = 0; newQuestAdded = 0; }
+                else
+                {
+                    currentIterationQuest = 0;
+                    newQuestAdded = 0;
+                    app->particleSystem->emitters->Clear();
+                }
                 int posX = easing->bounceEaseOut(currentIterationQuest, -200, 400, 360);
                 app->render->DrawText(app->render->font, quest->data->text, posX, 200, 75, 0, { 255, 255, 0, 255 });
                 app->render->DrawTexture(done_quests, 150 - app->render->camera.x, 200 - app->render->camera.y);
@@ -731,6 +737,9 @@ void SceneManager::CreateQuest(int _id, const char* _text)
     newQuest->completed = false;
     quests.Add(newQuest);
     newQuestAdded = newQuest->id;
+
+    app->particleSystem->AddEmitter(EmitterType::FIRE, app->entityManager->playerData.position.x-app->render->camera.x, app->entityManager->playerData.position.x - app->render->camera.y);
+    //app->particleSystem->AddEmitter(EmitterType::FIRE, 200, 200);
 }
 
 void SceneManager::CompleteQuest(int _id)

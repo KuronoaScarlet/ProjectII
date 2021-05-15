@@ -118,6 +118,7 @@ bool PlayerEntity::Update(float dt)
 					app->dialogueSystem->currentNode = app->dialogueSystem->dialogueTrees[0]->dialogueNodes[0];
 					app->dialogueSystem->PerformDialogue(0, 7);
 					app->dialogueSystem->Id = 0;
+					app->sceneManager->CreateQuest(1, "1 + 1 = 2");
 				}
 				tmp->data->Interaction();
 			}

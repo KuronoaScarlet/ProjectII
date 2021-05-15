@@ -23,6 +23,7 @@
 #include "DialogSystem.h"
 #include "HUD.h"
 #include "SceneManager.h"
+#include "ParticlesEngine.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -50,6 +51,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	hud = new Hud();
 	dialogueSystem = new DialogueSystem(input, render, tex);
 	sceneManager = new SceneManager();
+	particleSystem = new ParticleSystem();
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
 
@@ -61,6 +63,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(sceneManager);
 	AddModule(entityManager);
 	AddModule(dialogueSystem);
+	AddModule(particleSystem);
 	AddModule(hud);
 //  Render last to swap buffer
 

@@ -2,15 +2,16 @@
 #define _PARTICLESENGINE_H_
 
 #include <time.h>
-#include "SDL/include/SDL.h"
-#include "SDL_image/include/SDL_image.h"
-#include "SDL_ttf/include/SDL_ttf.h"
+//#include "SDL/include/SDL.h"
+//#include "SDL_image/include/SDL_image.h"
+//#include "SDL_ttf/include/SDL_ttf.h"
 #include "PugiXML/src/pugixml.hpp"
 #include "List.h"
 #include "Module.h"
 #include "App.h"
 #include "Input.h"
-#include "App.h"
+#include "Render.h"
+#include "Textures.h"
 
 #define RELEASE(x) { delete x; x = nullptr; }
 #define RELEASE_ARRAY(x) { delete[] x; x = nullptr; }
@@ -63,7 +64,7 @@ public:
 		RELEASE_ARRAY(particles);
 	}
 
-	void Init(EmitterType _type, int _x, int _y, pugi::xml_node config, SDL_Renderer* renderer)
+	void Init(EmitterType _type, int _x, int _y, pugi::xml_node config)
 	{
 		active = true;
 
@@ -101,7 +102,7 @@ public:
 		properties.min_h = config.child("draw").attribute("min_h").as_float();
 		properties.max_h = config.child("draw").attribute("max_h").as_float();
 		const char* texture_path = config.child("draw").attribute("texture").as_string();
-		properties.texture = IMG_LoadTexture(renderer, texture_path);
+		properties.texture = app->tex->Load(texture_path);
 
 		particles = new Particle[properties.amount];
 		for (int i = 0; i < properties.amount; ++i)
@@ -148,36 +149,21 @@ public:
 		for (int i = 0; i < properties.amount; ++i)
 		{
 			unsigned int alpha = 255 * (1 - (particles[i].lifetime / particles[i].lifespan));
-			SDL_Rect particleRect{ -app->render->camera.x + particles[i].x - particles[i].w / 2, -app->render->camera.y + particles[i].y - particles[i].h / 2, particles[i].w, particles[i].h };
-			if (properties.texture)
-			{
-				SDL_SetTextureBlendMode(properties.texture, SDL_BLENDMODE_BLEND);
-				SDL_SetTextureAlphaMod(properties.texture, alpha);
-				SDL_RenderCopy(renderer, properties.texture, 0, &particleRect);
-			}
-			else
-			{
-				SDL_SetRenderDrawColor(renderer, 255, 255, 255, alpha);
-				SDL_RenderDrawPoint(renderer, camerax + particles[i].x, cameray + particles[i].y);
-				SDL_RenderDrawRect(renderer, &particleRect);
-				SDL_RenderFillRect(renderer, &particleRect);
-			}
+			SDL_Rect particleRect{ particles[i].x - particles[i].w / 2, particles[i].y - particles[i].h / 2, particles[i].w, particles[i].h };
+			
+			SDL_SetTextureBlendMode(properties.texture, SDL_BLENDMODE_BLEND);
+			SDL_SetTextureAlphaMod(properties.texture, alpha);
+			app->render->DrawTexture(properties.texture, particleRect.x, particleRect.y);
 
-			if (debugDraw)
-			{
-				SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
-				SDL_RenderDrawLine(renderer, camerax + particles[i].x, cameray + particles[i].y, camerax + particles[i].x + particles[i].vx * 10, cameray + particles[i].y + particles[i].vy * 10);
-				SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
-			}
 		}
 		if (debugDraw)
 		{
-			SDL_SetRenderDrawColor(renderer, 0, 255, 255, 255);
-			SDL_RenderDrawLine(renderer, camerax + center_x - 20, cameray + center_y, camerax + center_x + 20, cameray + center_y);
-			SDL_RenderDrawLine(renderer, camerax + center_x, cameray + center_y - 20, camerax + center_x, cameray + center_y + 20);
-			SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
-			SDL_RenderDrawLine(renderer, camerax + properties.gravity_center_x - 10, cameray + properties.gravity_center_y, camerax + properties.gravity_center_x + 10, cameray + properties.gravity_center_y);
-			SDL_RenderDrawLine(renderer, camerax + properties.gravity_center_x, cameray + properties.gravity_center_y - 10, camerax + properties.gravity_center_x, cameray + properties.gravity_center_y + 10);
+			SDL_SetRenderDrawColor(app->render->renderer, 0, 255, 255, 255);
+			SDL_RenderDrawLine(app->render->renderer, -app->render->camera.x + center_x - 20, -app->render->camera.y + center_y, -app->render->camera.x + center_x + 20, -app->render->camera.y + center_y);
+			SDL_RenderDrawLine(app->render->renderer, -app->render->camera.x + center_x, -app->render->camera.y + center_y - 20, -app->render->camera.x + center_x, -app->render->camera.y + center_y + 20);
+			SDL_SetRenderDrawColor(app->render->renderer, 255, 0, 255, 255);
+			SDL_RenderDrawLine(app->render->renderer, -app->render->camera.x + properties.gravity_center_x - 10, -app->render->camera.y + properties.gravity_center_y, -app->render->camera.x + properties.gravity_center_x + 10, -app->render->camera.y + properties.gravity_center_y);
+			SDL_RenderDrawLine(app->render->renderer, -app->render->camera.x + properties.gravity_center_x, -app->render->camera.y + properties.gravity_center_y - 10, -app->render->camera.x + properties.gravity_center_x, -app->render->camera.y + properties.gravity_center_y + 10);
 		}
 	}
 
@@ -189,9 +175,7 @@ public:
 
 	List<Emitter*>* emitters = new List<Emitter*>;
 
-	bool pause = false;
 	bool debugDraw = false;
-	SDL_Renderer* renderer;
 
 	pugi::xml_document particles_config;
 	pugi::xml_node type_config;
@@ -199,14 +183,19 @@ public:
 	unsigned int emitters_count = 0;
 	unsigned int particles_count = 0;
 
-	ParticleSystem(SDL_Renderer* _renderer)
+	ParticleSystem()
+	{
+		
+	}
+
+	bool Start()
 	{
 		srand(time(0));
 		pugi::xml_parse_result result = particles_config.load_file("particles_config.xml");
 		if (!result) printf("ERROR while loading particles_config.xml file: %s", result.description());
 		type_config = particles_config.child("ParticleProperties");
-		renderer = _renderer;
-		SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+		SDL_SetRenderDrawBlendMode(app->render->renderer, SDL_BLENDMODE_BLEND);
+		return true;
 	}
 
 	~ParticleSystem()
@@ -217,7 +206,7 @@ public:
 	void AddEmitter(EmitterType type, int x, int y)
 	{
 		Emitter* emitter = new Emitter;
-		emitter->Init(type, x, y, type_config, renderer);
+		emitter->Init(type, x, y, type_config);
 		emitters->Add(emitter);
 		++emitters_count;
 		particles_count += emitter->properties.amount;
@@ -225,20 +214,21 @@ public:
 
 	bool Update(float dt)
 	{
-		//AddEmitter(EmitterType::SPARKLES, mouse[0] / scale, mouse[1] / scale);
-		
-		if (app->input.GetKey(SDL_SCANCODE_P) == KEY_DOWN) debugDraw = !debugDraw;
+		if (app->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN) debugDraw = !debugDraw;
 
-		if (emitters->start && !pause)
+		if (emitters->start)
 			for (ListItem<Emitter*>* emitter = emitters->start; emitter; emitter = emitter->next)
 				emitter->data->Update(dt);
+
+		return true;
 	}
 
-	void Draw()
+	bool PostUpdate()
 	{
 		if (emitters->start)
 			for (ListItem<Emitter*>* emitter = emitters->start; emitter; emitter = emitter->next)
 				emitter->data->Draw(debugDraw);
+		return true;
 	}
 
 };

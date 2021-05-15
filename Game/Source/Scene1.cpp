@@ -15,6 +15,7 @@
 #include "HUD.h"
 #include "Scene12.h"
 #include "SceneManager.h"
+#include "ParticlesEngine.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -77,8 +78,6 @@ bool Scene1::Start()
 	}
 
 	app->map->Load("mapLvl21.tmx");
-
-	app->sceneManager->CreateQuest(1, "1 + 1 = 2");
 
 	return true;
 }

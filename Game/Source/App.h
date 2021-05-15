@@ -21,6 +21,7 @@ class Collisions;
 class DialogueSystem;
 class Hud;
 class SceneManager;
+class ParticleSystem;
 
 //Scenes
 class Title;
@@ -99,6 +100,7 @@ public:
 	Hud* hud;
 	Title* title;
 	SceneManager* sceneManager;
+	ParticleSystem* particleSystem;
 
 	uint activeFonts = 0;
 	uint totalFonts = 0;

@@ -118,7 +118,6 @@ bool PlayerEntity::Update(float dt)
 					app->dialogueSystem->currentNode = app->dialogueSystem->dialogueTrees[0]->dialogueNodes[0];
 					app->dialogueSystem->PerformDialogue(0, 7);
 					app->dialogueSystem->Id = 0;
-					app->sceneManager->CreateQuest(1, "1 + 1 = 2");
 				}
 				tmp->data->Interaction();
 			}
@@ -188,6 +187,21 @@ bool PlayerEntity::Update(float dt)
 				tmp->data->Interaction();
 			}
 
+		}
+		else if (tmp->data->type == Type::NPCQ3)
+		{
+			if (position.DistanceTo(tmp->data->position) < 50)
+			{
+				if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN && app->entityManager->playerData.onDialog == false)
+				{
+					app->entityManager->playerData.onDialog = true;
+					app->dialogueSystem->actionChecks = 0;
+					app->dialogueSystem->currentNode = app->dialogueSystem->dialogueTrees[6]->dialogueNodes[0];
+					app->dialogueSystem->PerformDialogue(6, 7);
+					app->dialogueSystem->Id = 6;
+				}
+				tmp->data->Interaction();
+			}
 		}
 		else if (tmp->data->type == Type::PENCIL)
 		{

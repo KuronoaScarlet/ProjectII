@@ -127,4 +127,15 @@
       <dialogue option=" " returnCode="0" nextNode="3"/>
     </node>
   </dialogueExample>
+  <dialogueExample Id="6">
+    <node text="Por todo el insituto hay gente que se deja material escolar."  id="0">
+      <dialogue option=" " returnCode="0" nextNode="1"/>
+    </node>
+    <node text="Los puedes combinar para conseguir objetos mas fuertes!"  id="1">
+      <dialogue option="Recuerda que abres tu inventario con la I" returnCode="0" nextNode="2"/>
+    </node>
+    <node text="Mucha suerte!"  id="2">
+      <dialogue option=" " returnCode="0" nextNode="3"/>
+    </node>
+  </dialogueExample>
 </dialogueTree>

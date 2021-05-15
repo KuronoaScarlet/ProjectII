@@ -171,6 +171,21 @@ bool DialogueSystem::Update(float dt)
 				app->sceneManager->CreateQuest(2, "Win a combat");
 			}
 		}
+		if (Id == 6)
+		{
+			if (input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN || input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+			{
+				playerInput = 0;
+				Id = 6;
+				PerformDialogue(Id, playerInput);
+				actionChecks++;
+			}
+			if (actionChecks == dialogueTrees[6]->dialogueNodes.size())
+			{
+				app->entityManager->playerData.onDialog = false;
+				app->sceneManager->CreateQuest(1, "1 + 1 = 2");
+			}
+		}
 	}
 
 	return true;

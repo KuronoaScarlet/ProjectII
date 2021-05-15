@@ -77,7 +77,7 @@ bool SceneManager::Start(SceneType type)
     totalIterations = 120;
 
     back_quests = app->tex->Load("Assets/Textures/Screens/inventory.png");
-    done_quests = app->tex->Load("Assets/Textures/music_s.png");
+    done_quests = app->tex->Load("Assets/Textures/ompleated.png");
     todo_quests = app->tex->Load("Assets/Textures/kuest.png");
 
     return false;

@@ -14,6 +14,7 @@
 #include "DialogSystem.h"
 #include "EntityManager.h"
 #include "PlayerEntity.h"
+#include "ParticlesEngine.h"
 
 
 Book::Book(Module* listener, fPoint position, SDL_Texture* texture, Type type) : Entity(listener, position, texture, type)
@@ -60,7 +61,7 @@ bool Book::Interaction()
 		CleanUp();
 		printf("%d", app->entityManager->playerData.book);
 		picked = true;
-
+		app->particleSystem->AddEmitter(EmitterType::BOOK, position.x, position.y, 120);
 	}
 	
 	return true;
@@ -68,7 +69,14 @@ bool Book::Interaction()
 
 void Book::Collision(Collider* coll)
 {
-	
+	if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN) && picked == false)
+	{
+		app->entityManager->playerData.book++;
+		CleanUp();
+		printf("%d", app->entityManager->playerData.book);
+		picked = true;
+		app->particleSystem->AddEmitter(EmitterType::BOOK, position.x, position.y, 120);
+	}
 }
 
 void Book::CleanUp()

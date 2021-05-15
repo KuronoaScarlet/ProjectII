@@ -661,6 +661,7 @@ void SceneManager::OnMouseAboveButton(GuiControlState state, uint32 id)
         app->hud->ruleEnabled = false;
         app->hud->snackEnabled = false;
         app->hud->tipexEnabled = false;
+        app->hud->sharpenedEnabled = false;
     }
     else if (state == GuiControlState::FOCUSED)
     {
@@ -676,6 +677,16 @@ void SceneManager::OnMouseAboveButton(GuiControlState state, uint32 id)
     }
     else if (id == 131)
     {
+        char sharpText[100] = { 0 };
+        sprintf_s(sharpText, 100, "Esta un poco desgastado, pero por si acaso no metas otra cosa que no sea un lapiz dentro.");
+        app->render->DrawText(app->render->font, sharpText, 209, 588, 35, 0, { 0, 0, 0, 255 });
+
+        char sharpText2[80] = { 0 };
+        sprintf_s(sharpText2, 80, "Baja la defensa de un adversario.");
+        app->render->DrawText(app->render->font, sharpText2, 209, 630, 40, 0, { 255, 0, 0, 255 });
+    }
+    else if (id == 132)
+    {
         char ballText[80] = { 0 };
         sprintf_s(ballText, 80, "Parece que esta triste... y realmente lo esta.");
         app->render->DrawText(app->render->font, ballText, 209, 588, 40, 0, { 0, 0, 0, 255 });
@@ -684,7 +695,7 @@ void SceneManager::OnMouseAboveButton(GuiControlState state, uint32 id)
         sprintf_s(ballText2, 80, "Inflige dano moderado a un enemigo y lo paraliza durante 3 turnos.");
         app->render->DrawText(app->render->font, ballText2, 209, 630, 40, 0, { 255, 0, 0, 255 });
     }
-    else if (id == 132)
+    else if (id == 133)
     {
         char bookText[100] = { 0 };
         sprintf_s(bookText, 100, "Esta un poco roto pero se puede leer que 'Ya esta disponible en todas las librerias de...'");
@@ -694,7 +705,7 @@ void SceneManager::OnMouseAboveButton(GuiControlState state, uint32 id)
         sprintf_s(bookText2, 80, "Solo se puede usar para combinar.");
         app->render->DrawText(app->render->font, bookText2, 209, 630, 35, 0, { 255, 0, 0, 255 });
     }
-    else if (id == 133)
+    else if (id == 134)
     {
         char calculatorText[80] = { 0 };
         sprintf_s(calculatorText, 80, "A dia de hoy la sigues usando para hacer operaciones de menos de dos digitos.");
@@ -704,7 +715,7 @@ void SceneManager::OnMouseAboveButton(GuiControlState state, uint32 id)
         sprintf_s(calculatorText2, 80, "Causa paralisis durante 2 turnos a un adversario.");
         app->render->DrawText(app->render->font, calculatorText2, 209, 630, 40, 0, { 255, 0, 0, 255 });
     }
-    else if (id == 134)
+    else if (id == 135)
     {
         char coffeText[80] = { 0 };
         sprintf_s(coffeText, 80, "Sin cafeina, no queremos a ninos rebeldes.");
@@ -714,7 +725,7 @@ void SceneManager::OnMouseAboveButton(GuiControlState state, uint32 id)
         sprintf_s(coffeText2, 80, "Aumenta la velocidad de la barra de ATB.");
         app->render->DrawText(app->render->font, coffeText2, 209, 630, 40, 0, { 255, 0, 0, 255 });
     }
-    else if (id == 135)
+    else if (id == 136)
     {
         char colaText[80] = { 0 };
         sprintf_s(colaText, 80, "Siempre limpia la parte superior antes de beber de ella, no queremos mas bajas.");
@@ -724,7 +735,7 @@ void SceneManager::OnMouseAboveButton(GuiControlState state, uint32 id)
         sprintf_s(colaText2, 80, "Solo se puede usar para combinar.");
         app->render->DrawText(app->render->font, colaText2, 209, 630, 40, 0, { 255, 0, 0, 255 });
     }
-    else if (id == 136)
+    else if (id == 137)
     {
         char eraserText[90] = { 0 };
         sprintf_s(eraserText, 90, "Aun hay marcas de alguien que ha intentado borrar un dibujo hecho con boligrafo.");
@@ -734,7 +745,7 @@ void SceneManager::OnMouseAboveButton(GuiControlState state, uint32 id)
         sprintf_s(eraserText2, 80, "Baja el ataque de un adversario.");
         app->render->DrawText(app->render->font, eraserText2, 209, 630, 35, 0, { 255, 0, 0, 255 });
     }
-    else if (id == 137)
+    else if (id == 138)
     {
         char ruleText[80] = { 0 };
         sprintf_s(ruleText, 80, "Con 20 centimetros son mas que suficientes.");
@@ -744,7 +755,7 @@ void SceneManager::OnMouseAboveButton(GuiControlState state, uint32 id)
         sprintf_s(ruleText2, 80, "Inflige dano moderado a un adversario.");
         app->render->DrawText(app->render->font, ruleText2, 209, 630, 40, 0, { 255, 0, 0, 255 });
     }
-   else if (id == 138)
+   else if (id == 139)
     {
          char snackText[200] = { 0 };
       sprintf_s(snackText, 200, "9 de cada 10 nutricionistas no recomiendan comer entre horas, el otro no quiere sentirse mal con si mismo.");
@@ -754,7 +765,7 @@ void SceneManager::OnMouseAboveButton(GuiControlState state, uint32 id)
         sprintf_s(snackText2, 80, "Aumenta el dano del jugador durante 2 turnos.");
         app->render->DrawText(app->render->font, snackText2, 209, 630, 40, 0, { 255, 0, 0, 255 });
     }
-   else if (id == 139)
+   else if (id == 140)
    {
         char tipexEnabled[80] = { 0 };
         sprintf_s(tipexEnabled, 80, "Todos sabemos que su nombre es Tipex por mas que intentemos negarlo.");
@@ -764,7 +775,7 @@ void SceneManager::OnMouseAboveButton(GuiControlState state, uint32 id)
         sprintf_s(tipexEnabled2, 80, "El siguiente ataque del adversario fallara.");
         app->render->DrawText(app->render->font, tipexEnabled2, 209, 630, 40, 0, { 255, 0, 0, 255 });
    }
-  else if (id == 140)
+  else if (id == 141)
    {
         char sharpedPencilEnabled[80] = { 0 };
         sprintf_s(sharpedPencilEnabled, 80, "Ni Jack el destripador tenía un arma tan afilada como esta. Lapiz + Sacapuntas");
@@ -774,11 +785,11 @@ void SceneManager::OnMouseAboveButton(GuiControlState state, uint32 id)
         sprintf_s(sharpedPencilEnabled2, 80, "Inflige dano moderado a un adversario.");
         app->render->DrawText(app->render->font, sharpedPencilEnabled2, 209, 630, 40, 0, { 255, 0, 0, 255 });
    }
-   else if (id == 141)
+   else if (id == 142)
    {
         char wonsterEnabled[200] = { 0 };
         sprintf_s(wonsterEnabled, 200, "Las leyes del copyright no tienen efecto contra ti. Cafe + Refresco");
-        app->render->DrawText(app->render->font, wonsterEnabled, 209, 588, 40, 0, { 0, 0, 0, 255 });
+        app->render->DrawText(app->render->font, wonsterEnabled, 209, 588, 35, 0, { 0, 0, 0, 255 });
 
         char wonsterEnabled2[200] = { 0 };
         sprintf_s(wonsterEnabled2, 200, "Aumenta considerablemente el ataque y la velocidad de la barra ATB durante 3 turnos.");

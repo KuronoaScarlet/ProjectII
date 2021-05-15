@@ -14,7 +14,7 @@
 #include "DialogSystem.h"
 #include "EntityManager.h"
 #include "PlayerEntity.h"
-
+#include "ParticlesEngine.h"
 
 Calculator::Calculator(Module* listener, fPoint position, SDL_Texture* texture, Type type) : Entity(listener, position, texture, type)
 {
@@ -68,7 +68,14 @@ bool Calculator::Interaction()
 
 void Calculator::Collision(Collider* coll)
 {
-	
+	if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN) && picked == false)
+	{
+		app->entityManager->playerData.calculator++;
+		CleanUp();
+		printf("%d", app->entityManager->playerData.calculator);
+		picked = true;
+		app->particleSystem->AddEmitter(EmitterType::CALCULATOR, position.x, position.y, 120);
+	}
 }
 
 void Calculator::CleanUp()

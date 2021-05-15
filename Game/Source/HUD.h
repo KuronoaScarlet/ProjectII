@@ -73,6 +73,7 @@ public:
 	bool ruleEnabled = false;
 	bool tipexEnabled = false;
 	bool snackEnabled = false;
+	bool sharpenedEnabled = false;
 
 	bool statsEnabled = false;
 

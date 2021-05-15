@@ -59,7 +59,9 @@ bool Scene1::Start()
 	app->entityManager->AddEntity({ 192.0f, 416.0f}, Entity::Type::PENCIL);
 	app->entityManager->AddEntity({ 220.0f, 1400.0f}, Entity::Type::COFFEE);
 	app->entityManager->AddEntity({ 90.0f, 1445.0f}, Entity::Type::CAN);
-	
+	app->entityManager->AddEntity({ 96.0f, 128.0f }, Entity::Type::CAN);
+	app->entityManager->AddEntity({ 320.0f,128.0f}, Entity::Type::BALL);
+	app->entityManager->AddEntity({ 736.0f, 128.0f}, Entity::Type::CALCULATOR);	
 
 	app->render->camera.y = 0;
 	app->render->camera.x = 0;

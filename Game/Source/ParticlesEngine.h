@@ -41,6 +41,8 @@ enum class EmitterType
 	SNOW,
 	CAN,
 	COFFE,
+	CALCULATOR,
+	BOOK,
 	FIRE,
 	SMOKE,
 	FIREWORKS,
@@ -85,6 +87,8 @@ public:
 		case EmitterType::SNOW: config = config.child("Snow"); break;
 		case EmitterType::CAN: config = config.child("Can"); break;
 		case EmitterType::COFFE: config = config.child("Coffe"); break;
+		case EmitterType::CALCULATOR: config = config.child("Calculator"); break;
+		case EmitterType::BOOK: config = config.child("Book"); break;
 		case EmitterType::FIRE: config = config.child("Fire"); break;
 		case EmitterType::SMOKE: config = config.child("Smoke"); break;
 		case EmitterType::FIREWORKS: config = config.child("Fireworks"); break;

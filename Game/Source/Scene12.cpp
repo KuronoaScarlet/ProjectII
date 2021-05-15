@@ -49,6 +49,10 @@ bool Scene12::Start()
 	app->entityManager->AddEntity({ app->playerPosition.x,app->playerPosition.y }, Entity::Type::PLAYER);
 	app->entityManager->AddEntity({ 744,96 }, Entity::Type::NPCQ1);
 
+	app->entityManager->AddEntity({ 160.0f, 128.0f }, Entity::Type::PENCIL);
+	app->entityManager->AddEntity({ 768.0f, 352.0f }, Entity::Type::COFFEE);
+	app->entityManager->AddEntity({ 672.0f,1664.0f }, Entity::Type::BOOK);
+	
 	app->render->camera.y = 0;
 	app->render->camera.x = 0;
 

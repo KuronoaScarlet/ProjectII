@@ -412,3 +412,8 @@ void Hud::DrawVictoryScreen()
 	app->render->DrawTexture(playerFace, 470, 200, NULL);
 	app->render->DrawTexture(allyFace, 670, 200, NULL);
 }
+
+void Hud::DrawLooseScreen()
+{
+
+}

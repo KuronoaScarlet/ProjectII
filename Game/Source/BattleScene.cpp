@@ -201,6 +201,16 @@ bool BattleScene::PostUpdate()
 		combine->Draw(app->render);
 	}
 
+	if (loose == true)
+	{
+		app->hud->DrawLooseScreen();
+	}
+	else if (victory == true )
+	{
+		app->audio->PlayMusic("Assets/Audio/Music/win_scene_music.ogg");
+		app->hud->DrawVictoryScreen();
+	}
+
 	app->render->DrawRectangle(skipBarMax, 0, 0, 0, 255);
 	app->render->DrawRectangle(skipBar, 0, 0, 255, 255);
 
@@ -303,7 +313,7 @@ void BattleScene::PerformCombat(float dt)
 				else
 				{
 					if (app->sceneManager->itemSelection == 3) sprintf_s(battleText, 64, "Tomando cafe! Soy mas rapido!"); if(boosted == false) Boost(turnEntity);
-					if (app->sceneManager->itemSelection == 4) sprintf_s(battleText, 64, "Un Wonster! Mas fuerte y mas rapido!"); if (boosted == false) Boost(turnEntity);
+					if (app->sceneManager->itemSelection == 4) sprintf_s(battleText, 64, "Un Wunster! Mas fuerte y rapido!"); if (boosted == false) Boost(turnEntity);
 				}
 			}
 		}
@@ -354,7 +364,7 @@ void BattleScene::PerformCombat(float dt)
 					loose = true;
 					if (loose == true)
 					{
-						app->hud->DrawLooseScreen();
+						
 						if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 						{
 							if (app->entityManager->playerData.scene == 1) app->sceneManager->ChangeScene(SCENE1, 0);
@@ -368,7 +378,7 @@ void BattleScene::PerformCombat(float dt)
 					victory = true;
 					if (victory == true)
 					{
-						app->hud->DrawLooseScreen();
+						
 						if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 						{
 							if (app->entityManager->playerData.scene == 1) app->sceneManager->ChangeScene(SCENE1, 0);
@@ -604,3 +614,5 @@ void BattleScene::PrintFace()
 		}
 	}
 }
+
+

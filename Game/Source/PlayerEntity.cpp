@@ -183,6 +183,29 @@ bool PlayerEntity::Update(float dt)
 				}
 			}
 		}
+		else if (tmp->data->type == Type::CAN)
+		{
+			if (position.DistanceTo(tmp->data->position) < 50)
+			{
+				if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN && app->entityManager->playerData.onDialog == false)
+				{
+					tmp->data->Interaction();
+					break;
+				}
+			}
+		}
+
+		else if (tmp->data->type == Type::COFFEE)
+		{
+			if (position.DistanceTo(tmp->data->position) < 50)
+			{
+				if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN && app->entityManager->playerData.onDialog == false)
+				{
+					tmp->data->Interaction();
+					break;
+				}
+			}
+		}
 
 		tmp = tmp->next;
 	}

@@ -58,8 +58,7 @@ bool Pencil::Interaction()
 	{
 		app->entityManager->playerData.Pencil++;
 		app->entityManager->playerData.Sharper++;
-		app->entityManager->playerData.coffee++;
-		app->entityManager->playerData.cola++;
+
 		CleanUp();
 		printf("%d", app->entityManager->playerData.Pencil);
 		printf("%d", app->entityManager->playerData.Sharper);

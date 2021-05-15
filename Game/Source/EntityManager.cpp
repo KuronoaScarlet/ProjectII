@@ -19,6 +19,18 @@
 #include "Enemy3.h"
 #include "Pencil.h"
 #include "Ball.h"
+#include "Can.h"
+#include "LiquidPaper.h"
+#include "Calculator.h"
+#include "FirstAidKit.h"
+#include "Coffee.h"
+#include "PencilSharpener.h"
+#include "Rubber.h"
+#include "Rule.h"
+#include "ScotchTape.h"
+#include "Snack.h"
+#include "Book.h"
+
 #include "EnemyLantern1.h"
 #include "EnemyLantern2.h"
 #include "EnemyLantern3.h"
@@ -232,47 +244,47 @@ void EntityManager::AddEntity(fPoint position, Entity::Type type)
 		entityList.Add(entityBall);
 		break;
 	case Entity::Type::BOOK:
-		entityBook = (Entity*)(new Ball((Module*)this, position, texItem, type));
+		entityBook = (Entity*)(new Book((Module*)this, position, texItem, type));
 		entityList.Add(entityBook);
 		break;
 	case Entity::Type::CALCULATOR:
-		entityCalculator = (Entity*)(new Ball((Module*)this, position, texItem, type));
+		entityCalculator = (Entity*)(new Calculator((Module*)this, position, texItem, type));
 		entityList.Add(entityCalculator);
 		break;
 	case Entity::Type::CAN:
-		entityCan = (Entity*)(new Ball((Module*)this, position, texItem, type));
+		entityCan = (Entity*)(new Can((Module*)this, position, texItem, type));
 		entityList.Add(entityCan);
 		break;
 	case Entity::Type::COFFEE:
-		entityCoffee = (Entity*)(new Ball((Module*)this, position, texItem, type));
+		entityCoffee = (Entity*)(new Coffee((Module*)this, position, texItem, type));
 		entityList.Add(entityCoffee);
 		break;
 	case Entity::Type::FAK:
-		entityFistAidKit = (Entity*)(new Ball((Module*)this, position, texItem, type));
+		entityFistAidKit = (Entity*)(new FirstAidKit((Module*)this, position, texItem, type));
 		entityList.Add(entityFistAidKit);
 		break;
 	case Entity::Type::LIQUIDPAPER:
-		entityLiquidPaper = (Entity*)(new Ball((Module*)this, position, texItem, type));
+		entityLiquidPaper = (Entity*)(new LiquidPaper((Module*)this, position, texItem, type));
 		entityList.Add(entityLiquidPaper);
 		break;
 	case Entity::Type::PENCILSHARPENER:
-		entityPencilSharpener = (Entity*)(new Ball((Module*)this, position, texItem, type));
+		entityPencilSharpener = (Entity*)(new PencilSharpener((Module*)this, position, texItem, type));
 		entityList.Add(entityPencilSharpener);
 		break;
 	case Entity::Type::RUBBER:
-		entityRubber = (Entity*)(new Ball((Module*)this, position, texItem, type));
+		entityRubber = (Entity*)(new Rubber((Module*)this, position, texItem, type));
 		entityList.Add(entityRubber);
 		break;
 	case Entity::Type::RULE:
-		entityRule = (Entity*)(new Ball((Module*)this, position, texItem, type));
+		entityRule = (Entity*)(new Rule((Module*)this, position, texItem, type));
 		entityList.Add(entityRule);
 		break;
 	case Entity::Type::SCOTCHTAPE:
-		entityScotchTape = (Entity*)(new Ball((Module*)this, position, texItem, type));
+		entityScotchTape = (Entity*)(new ScotchTape((Module*)this, position, texItem, type));
 		entityList.Add(entityScotchTape);
 		break;
 	case Entity::Type::SNACK:
-		entitySnack = (Entity*)(new Ball((Module*)this, position, texItem, type));
+		entitySnack = (Entity*)(new Snack((Module*)this, position, texItem, type));
 		entityList.Add(entitySnack);
 		break;
 	////////

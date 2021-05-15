@@ -44,6 +44,8 @@ bool BattleScene::Start()
 {
 	active = true;
 	onTurn = false;
+	victory = false;
+	loose = false;
 	turn = UNKNOWN;
 	state = WAITING;
 
@@ -347,9 +349,34 @@ void BattleScene::PerformCombat(float dt)
 			//Si no, función para enviar a Victory o Loose State
 			if (remainingAllies == 0 || remainingEnemies == 0)
 			{
-				if (app->entityManager->playerData.scene == 1) app->sceneManager->ChangeScene(SCENE1, 0);
-				if (app->entityManager->playerData.scene == 2) app->sceneManager->ChangeScene(SCENE12, 0);
-				app->sceneManager->CompleteQuest(2);
+				if (remainingAllies == 0)
+				{
+					loose = true;
+					if (loose == true)
+					{
+						app->hud->DrawLooseScreen();
+						if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+						{
+							if (app->entityManager->playerData.scene == 1) app->sceneManager->ChangeScene(SCENE1, 0);
+							if (app->entityManager->playerData.scene == 2) app->sceneManager->ChangeScene(SCENE12, 0);
+						}
+					}
+					
+				}
+				if (remainingEnemies == 0)
+				{
+					victory = true;
+					if (victory == true)
+					{
+						app->hud->DrawLooseScreen();
+						if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+						{
+							if (app->entityManager->playerData.scene == 1) app->sceneManager->ChangeScene(SCENE1, 0);
+							if (app->entityManager->playerData.scene == 2) app->sceneManager->ChangeScene(SCENE12, 0);
+							app->sceneManager->CompleteQuest(2);
+						}
+					}
+				}
 			}
 		}
 		break;

@@ -104,6 +104,8 @@ public:
 	int allySelection = 0;
 	bool itemSelected = false;
 	bool boosted = false;
+	bool victory = false;
+	bool loose = false;
 
 	TurnSort turn = UNKNOWN;
 	CombatState state = WAITING;

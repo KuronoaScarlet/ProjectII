@@ -49,6 +49,8 @@ public:
 	void InventoryAndStatsRequest();
 
 	void DrawStatsText(Entity* e);
+	void DrawVictoryScreen();
+	void DrawLooseScreen();
 
 	bool firstEntry = true;
 	bool on;
@@ -61,6 +63,7 @@ public:
 	SDL_Texture* allyFace = nullptr;
 
 	char statsText[64] = { 0 };
+	char text[64] = { 0 };
 
 	bool bagEnabled = false;
 	bool pencilEnabled = false;

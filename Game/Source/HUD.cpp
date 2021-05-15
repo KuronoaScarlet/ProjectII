@@ -399,3 +399,16 @@ void Hud::DrawStatsText(Entity* e)
 	app->render->DrawRectangle({ posRect+19, -app->render->camera.y + 509, ((e->def)*3)+2, 20 }, 0, 0, 0, 255);
 	app->render->DrawRectangle({ posRect+20, -app->render->camera.y + 510, (e->def)*3, 18 }, 0, 0, 255, 255);
 }
+
+void Hud::DrawVictoryScreen()
+{
+	app->render->DrawRectangle({ 90, 40, 1100, 680 }, 0, 0, 0, 255);
+	app->render->DrawRectangle({ 91, 41, 1098, 678 }, 255, 128, 128, 255);
+	sprintf_s(text, 64, "Has ganado!");
+	app->render->DrawText(app->render->font, text, 360, 110, 50, 5, { 0, 0, 0, 255 });
+	sprintf_s(text, 64, "Buen trabajo! Sigue haciendolo asi!");
+	app->render->DrawText(app->render->font, text, 280, 300, 40, 5, { 0, 0, 0, 255 });
+
+	app->render->DrawTexture(playerFace, 470, 200, NULL);
+	app->render->DrawTexture(allyFace, 670, 200, NULL);
+}

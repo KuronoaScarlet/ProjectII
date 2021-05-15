@@ -12,13 +12,13 @@
   
   <enemies>
     <tank>
-      <stats hp="150" lvlhp="15" atk="30" lvltk="3" def="60" lvldef="6" turntime="1"/>
+      <stats hp="150" lvlhp="15" atk="20" lvltk="3" def="60" lvldef="6" turntime="1"/>
     </tank>
     <damage>
-      <stats hp="60" lvlhp="7" atk="70" lvltk="7" def="40" lvldef="4" turntime="1"/>
+      <stats hp="60" lvlhp="7" atk="50" lvltk="7" def="40" lvldef="4" turntime="1"/>
     </damage>
     <balanced>
-      <stats hp="80" lvlhp="8" atk="50" lvltk="5" def="45" lvldef="5" turntime="2"/>
+      <stats hp="80" lvlhp="8" atk="40" lvltk="5" def="45" lvldef="5" turntime="2"/>
     </balanced>
   </enemies>
   

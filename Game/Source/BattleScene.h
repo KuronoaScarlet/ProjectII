@@ -67,7 +67,11 @@ public:
 
 	int SelectAlly(int allyNum);
 
+	void SelectItem();
+
 	void DealDamage(Entity* attacker, Entity* deffender);
+
+	void Boost(Entity* attacker);
 
 	void ResumeCombat();
 
@@ -80,9 +84,6 @@ public:
 		app->sceneManager->OnGuiMouseClickEvent(control);
 		return true;
 	}
-
-
-
 
 public:
 
@@ -101,6 +102,8 @@ public:
 	ListItem<Entity*>* tmp;
 	int enemySelection = 0;
 	int allySelection = 0;
+	bool itemSelected = false;
+	bool boosted = false;
 
 	TurnSort turn = UNKNOWN;
 	CombatState state = WAITING;

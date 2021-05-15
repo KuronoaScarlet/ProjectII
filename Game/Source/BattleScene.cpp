@@ -13,6 +13,7 @@
 #include "DialogSystem.h"
 #include "WinScreen.h"
 #include "SceneManager.h"
+#include "HUD.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -187,10 +188,10 @@ bool BattleScene::PostUpdate()
 	app->render->DrawText(app->render->font, battleText, 240, 530, 50, 3, { 255, 255, 255, 255 });
 	app->render->DrawRectangle({ 188, 534, 1, 194 }, 200, 200, 255, 200);
 	PrintFace();
-	sprintf_s(turnText, 80, "Turn");
+	sprintf_s(turnText, 64, "Turn");
 	app->render->DrawText(app->render->font, turnText, 60, 530, 40, 2, { 255, 255, 255, 255 });
 
-	if (turn == PLAYER_TURN && state == SELECT_ACTION && app->sceneManager->atkMenu == false && app->sceneManager->defMenu == false)
+	if (turn == PLAYER_TURN && state == SELECT_ACTION && app->sceneManager->atkMenu == false && app->sceneManager->defMenu == false && app->sceneManager->combMenu == false)
 	{
 		attack->Draw(app->render);
 		run->Draw(app->render);
@@ -238,10 +239,10 @@ void BattleScene::PerformCombat(float dt)
 	case SELECT_ACTION:
 		if (turn == PLAYER_TURN)
 		{
-			if (app->sceneManager->atkMenu == false && app->sceneManager->defMenu == false) ShowMenu(dt);
+			if (app->sceneManager->atkMenu == false && app->sceneManager->defMenu == false && app->sceneManager->combMenu == false) ShowMenu(dt);
 
 			// ATAQUE
-			else if (app->sceneManager->atkMenu == true && app->sceneManager->defMenu == false)
+			else if (app->sceneManager->atkMenu == true && app->sceneManager->defMenu == false && app->sceneManager->combMenu == false)
 			{
 				enemySelection = SelectEnemy(remainingEnemies);
 				skipBar.w = 0;
@@ -249,13 +250,34 @@ void BattleScene::PerformCombat(float dt)
 			////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 			// DEFENSA
-			else if (app->sceneManager->atkMenu == false && app->sceneManager->defMenu == true)
+			else if (app->sceneManager->atkMenu == false && app->sceneManager->defMenu == true && app->sceneManager->combMenu == false)
 			{
 				turnEntity->defending = true;
 				skipBar.w = 0;
 				state = PERFORM_ACTION;
 			}
 			////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+			// COMBINE
+			else if (app->sceneManager->atkMenu == false && app->sceneManager->defMenu == false && app->sceneManager->combMenu == true)
+			{
+				SelectItem();
+				if (itemSelected == true)
+				{
+					if (app->sceneManager->boost == false)
+					{
+						app->sceneManager->combMenu = false;
+						app->sceneManager->atkMenu = true;
+					}
+					else
+					{
+						state = PERFORM_ACTION;
+					}
+				}
+				skipBar.w = 0;
+			}
+			////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 		}
 		else if (turn == ENEMY_TURN)
 		{
@@ -273,7 +295,15 @@ void BattleScene::PerformCombat(float dt)
 		if (turn == PLAYER_TURN)
 		{
 			if (turnEntity->defending == true) sprintf_s(battleText, 64, "Bloqueando ataques!");
-			else if (turnEntity->defending == false) sprintf_s(battleText, 64, "Atacando! ");
+			else if (turnEntity->defending == false)
+			{
+				if (app->sceneManager->boost == false) sprintf_s(battleText, 64, "Atacando! ");
+				else
+				{
+					if (app->sceneManager->itemSelection == 3) sprintf_s(battleText, 64, "Tomando cafe! Soy mas rapido!"); if(boosted == false) Boost(turnEntity);
+					if (app->sceneManager->itemSelection == 4) sprintf_s(battleText, 64, "Un Wonster! Mas fuerte y mas rapido!"); if (boosted == false) Boost(turnEntity);
+				}
+			}
 		}
 		else if (turn == ENEMY_TURN)
 		{
@@ -283,7 +313,7 @@ void BattleScene::PerformCombat(float dt)
 		//Aquí irán las animaciones en general (Ataques, curas...)
 		if (skipBar.w == skipBarMax.w)
 		{
-			if (turn == PLAYER_TURN && turnEntity->defending == false) DealDamage(turnEntity, app->entityManager->entityList.At(enemySelection)->data);
+			if (turn == PLAYER_TURN && turnEntity->defending == false && app->sceneManager->boost == false) DealDamage(turnEntity, app->entityManager->entityList.At(enemySelection)->data);
 			else if (turn == ENEMY_TURN)
 			{
 				DealDamage(turnEntity, app->entityManager->entityList.At(remainingEnemies + allySelection)->data);
@@ -405,16 +435,60 @@ int BattleScene::SelectAlly(int allyNum)
 	}
 }
 
+void BattleScene::SelectItem()
+{
+	app->hud->bagEnabled = true;
+	if (app->sceneManager->itemSelection > 0)
+	{
+		itemSelected = true;
+		app->hud->bagEnabled = false;
+	}
+	else
+	{
+		itemSelected = false;
+	}
+}
+
 void BattleScene::DealDamage(Entity* attacker, Entity* deffender)
 {
-	if (deffender->defending == true)
+	if (itemSelected == true)
 	{
-		if ((attacker->atk - deffender->def) < 0) deffender->currentHp = deffender->currentHp;
-		else deffender->currentHp = deffender->currentHp - (attacker->atk - deffender->def);
+		switch (app->sceneManager->itemSelection)
+		{
+		// Pencil
+		case 1: 
+			deffender->currentHp = deffender->currentHp - 30;
+			break;
+		case 2:
+			deffender->currentHp = deffender->currentHp - 60;
+		}
 	}
-	else deffender->currentHp = deffender->currentHp - attacker->atk;
+	else
+	{
+		if (deffender->defending == true)
+		{
+			if ((attacker->atk - deffender->def) < 0) deffender->currentHp = deffender->currentHp;
+			else deffender->currentHp = deffender->currentHp - (attacker->atk - deffender->def);
+		}
+		else deffender->currentHp = deffender->currentHp - attacker->atk;
+	}
+	
 
 	deffender->defending = false;
+}
+
+void BattleScene::Boost(Entity* attacker)
+{
+	if (app->sceneManager->itemSelection == 3)
+	{
+		attacker->turnTime += 1;
+	}
+	if (app->sceneManager->itemSelection == 4)
+	{
+		attacker->atk += 30;
+		attacker->turnTime += 1;
+	}
+	boosted = true;
 }
 
 void BattleScene::ResumeCombat()
@@ -422,7 +496,12 @@ void BattleScene::ResumeCombat()
 	onTurn = false;
 	app->sceneManager->atkMenu = false;
 	app->sceneManager->defMenu = false;
+	app->sceneManager->combMenu = false;
+	app->sceneManager->boost = false;
+	boosted = false;
 	tmp = app->entityManager->entityList.start;
+	app->sceneManager->itemSelection = 0;
+	itemSelected = false;
 	state = WAITING;
 	turn = UNKNOWN;
 	turnEntity->turnBar.h = 0;

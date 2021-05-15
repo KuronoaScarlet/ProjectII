@@ -417,6 +417,10 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         {
             app->hud->bagEnabled = false;
             app->hud->statsEnabled = false;
+            if (app->sceneManager->id == BATTLE)
+            {
+                combMenu = false;
+            }
         }
         if (control->id == 101)
         {
@@ -428,7 +432,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         }
         if (control->id == 103)
         {
-
+            combMenu = true;
         }
         if (control->id == 104)
         {
@@ -504,7 +508,50 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         {
             pauseCondition = false;
         }
-        else if (control->id == 140)
+
+        //Items
+        else if (control->id == 130)
+        {
+            if (app->sceneManager->id == BATTLE && app->entityManager->playerData.pencil > 0)
+            {
+                itemSelection = 1;
+                app->entityManager->playerData.pencil--;
+            }
+        }
+        else if (control->id == 131)
+        {
+            if (app->sceneManager->id == BATTLE && app->entityManager->playerData.sharper > 0)
+            {
+                itemSelection = 1;
+                app->entityManager->playerData.sharper--;
+            }
+        }
+        else if (control->id == 132)
+        {
+            if (app->sceneManager->id == BATTLE && app->entityManager->playerData.ball > 0)
+            {
+                itemSelection = 2;
+                app->entityManager->playerData.ball--;
+            }
+        }
+        else if (control->id == 135)
+        {
+            if (app->sceneManager->id == BATTLE && app->entityManager->playerData.coffee > 0)
+            {
+                boost = true;
+                itemSelection = 3;
+                app->entityManager->playerData.coffee--;
+            }
+        }
+        else if (control->id == 138)
+        {
+            if (app->sceneManager->id == BATTLE && app->entityManager->playerData.rule > 0)
+            {
+                itemSelection = 2;
+                app->entityManager->playerData.rule--;
+            }
+        }
+        else if (control->id == 141)
         {
             if (app->entityManager->playerData.pencil > 0 && app->entityManager->playerData.sharper > 0)
             {
@@ -513,8 +560,13 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
                 app->entityManager->playerData.sharper--;
                 CompleteQuest(1);
             }
+            if (app->sceneManager->id == BATTLE && app->entityManager->playerData.pencilSharpened > 0)
+            {
+                itemSelection = 2;
+                app->entityManager->playerData.pencilSharpened--;
+            }
         }
-        else if (control->id == 141)
+        else if (control->id == 142)
         {
             if (app->entityManager->playerData.coffee > 0 && app->entityManager->playerData.cola > 0)
             {
@@ -522,6 +574,12 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
                 app->entityManager->playerData.coffee--;
                 app->entityManager->playerData.cola--;
                 CompleteQuest(1);
+            }
+            if (app->sceneManager->id == BATTLE && app->entityManager->playerData.wonster > 0)
+            {
+                boost = true;
+                itemSelection = 4;
+                app->entityManager->playerData.wonster--;
             }
         }
     }
@@ -713,7 +771,7 @@ void SceneManager::OnMouseAboveButton(GuiControlState state, uint32 id)
         app->render->DrawText(app->render->font, sharpedPencilEnabled, 209, 588, 40, 0, { 0, 0, 0, 255 });
 
         char sharpedPencilEnabled2[80] = { 0 };
-        sprintf_s(sharpedPencilEnabled2, 80, "Inflige daño moderado a un adversario y reduce su defensa durante 2 turnos.");
+        sprintf_s(sharpedPencilEnabled2, 80, "Inflige dano moderado a un adversario.");
         app->render->DrawText(app->render->font, sharpedPencilEnabled2, 209, 630, 40, 0, { 255, 0, 0, 255 });
    }
    else if (id == 141)

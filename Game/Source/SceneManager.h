@@ -121,6 +121,9 @@ public:
     //BattleScene Bools.........................................................
     bool atkMenu = false;
     bool defMenu = false;
+    bool combMenu = false;
+    int itemSelection = 0;
+    bool boost = false;
 
     //quest manager..................................................
     List<Quest*> quests;

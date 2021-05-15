@@ -18,7 +18,9 @@ Collisions::Collisions(bool startEnabled) : Module()
 	matrix[Collider::Type::PLAYER][Collider::Type::ENEMYLANTERN2] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::TP1TO2] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::TP2TO1] = true;
+	matrix[Collider::Type::PLAYER][Collider::Type::DUNGEONCP] = true;
 
+	matrix[Collider::Type::DUNGEONCP][Collider::Type::PLAYER] = true;
 
 	matrix[Collider::Type::ENEMYLANTERN][Collider::Type::PLAYER] = true;
 	matrix[Collider::Type::ENEMYLANTERN2][Collider::Type::PLAYER] = true;
@@ -238,6 +240,9 @@ void Collisions::DebugDraw()
 			break;
 		case Collider::Type::CRATE:
 			app->render->DrawRectangle(colliders[i]->rect, 255, 255, 0, alpha);
+			break;
+		case Collider::Type::DUNGEONCP:
+			app->render->DrawRectangle(colliders[i]->rect, 255, 255, 255, alpha);
 			break;
 		}
 	}

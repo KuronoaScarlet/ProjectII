@@ -27,6 +27,7 @@ struct Collider
 		GOUP,
 		GODOWN,
 		CRATE,
+		DUNGEONCP,
 
 		MAX
 	};

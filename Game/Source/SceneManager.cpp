@@ -357,6 +357,7 @@ bool SceneManager::PostUpdate()
     }
 
     if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN) pauseCondition = !pauseCondition;
+    
 
     if (exi == true)
     {

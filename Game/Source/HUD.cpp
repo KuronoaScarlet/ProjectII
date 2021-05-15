@@ -135,6 +135,8 @@ bool Hud::Update(float dt)
 		inventoryAndStatsRequest = !inventoryAndStatsRequest;
 		cantMoveInInvetory = !cantMoveInInvetory;
 	}
+	if(inventoryAndStatsRequest)
+		app->sceneManager->pauseCondition = false;
 
 	if (!app->sceneManager->settingsEnabled)
 	{

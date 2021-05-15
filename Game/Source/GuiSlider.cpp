@@ -46,10 +46,22 @@ bool GuiSlider::Update(Input* input, float dt)
                 int right = app->sceneManager->musicSliderBack.x + app->sceneManager->musicSliderBack.w - 1 - bounds.w;
                 if (bounds.x > right)
                     bounds.x = right;
-
                 NotifyObserver();
             }
+            onSquare = true;
         }
+        else
+        {
+            onSquare = false;
+        }
+        if (input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_UP)
+        {
+            state = GuiControlState::RELEASED;
+        }
+
+           
+        
+
         else state = GuiControlState::NORMAL;
     }
 
@@ -60,7 +72,6 @@ bool GuiSlider::Draw(Render* render)
 {
     if (!app->debugButton)
     {
-
         // Draw the right button depending on state
         switch (state)
         {
@@ -73,29 +84,27 @@ bool GuiSlider::Draw(Render* render)
             break;
         case GuiControlState::FOCUSED:
             render->DrawTexture(textureFocused, bounds.x, bounds.y, NULL);
-            if (audio == false)
-            {
-                audio = true;
-                app->audio->PlayFx(channel, pencilFx);
-            }
             break;
         case GuiControlState::PRESSED:
         {
             render->DrawTexture(texturePressed, bounds.x, bounds.y, NULL);
-            app->audio->PlayFx(channel, sampleFx);
+            //app->audio->PlayFx(channel, sampleFx);
         }
             break;
         case GuiControlState::SELECTED:
         {
             render->DrawRectangle(bounds, 0, 255, 0, 255);
-            if (audio == false)
-            {
-                audio = true;
-                app->audio->PlayFx(channel, selectedFx);
-            }
-            
         }
             break;
+        case GuiControlState::RELEASED:
+        {
+            render->DrawTexture(textureIdle, bounds.x, bounds.y, NULL);
+            if (audio == false && onSquare)
+            {
+                audio = true;
+                app->audio->PlayFx(channel, sampleFx);
+            }
+        }
         default:
             break;
         }

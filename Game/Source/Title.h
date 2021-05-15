@@ -77,7 +77,6 @@ public:
     GuiButton* options;
     GuiButton* credits;
     GuiButton* exit;
-    GuiButton* backButton;
     GuiCheckBox* fullScreen;
     GuiSlider* musicVolume;
     GuiSlider* fxVolume;

@@ -312,6 +312,9 @@ void Audio::ChangeFxVolume(int volume)
 	volumeFx = volume;
 	if (volumeFx > MIX_MAX_VOLUME) volumeFx = MIX_MAX_VOLUME;
 	if (volumeFx < 0) volumeFx = 0;
+
+	for (int i = 0; i < fx.Count(); i++)
+		Mix_Volume(-1, volumeFx);
 }
 
 // Extra functions Fx

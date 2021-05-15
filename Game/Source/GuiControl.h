@@ -30,7 +30,8 @@ enum class GuiControlState
     NORMAL,
     FOCUSED,
     PRESSED,
-    SELECTED
+    SELECTED,
+    RELEASED
 };
 
 class GuiControl
@@ -113,12 +114,12 @@ public:
     Module* observer;        // Observer module (it should probably be an array/list)
 
     //Audio
-
     uint selectFx = 0;
     uint selectedFx = 0;
     uint releaseFx = 0;
     uint pencilFx = 0;
     uint sampleFx = 0;
+    bool onSquare = false;
     bool audio;
     bool audioB;
     bool audioR;

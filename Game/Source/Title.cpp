@@ -112,14 +112,9 @@ bool Title::Start()
     fxVolume->SetObserver(this);
     fxVolume->SetTexture(app->tex->Load("Assets/Textures/bag.png"), app->tex->Load("Assets/Textures/bag.png"), app->tex->Load("Assets/Textures/bag.png"));
 
-
     exit = new GuiButton(509, { 580, 569, 117, 55 }, "EXIT");
     exit->SetObserver(this);
     exit->SetTexture(app->tex->Load("Assets/Textures/exit.png"), app->tex->Load("Assets/Textures/exit_selected.png"), app->tex->Load("Assets/Textures/exit_pressed.png"));
-
-    backButton = new GuiButton(510, { 220, 375, 100, 55 }, "BACK");
-    backButton->SetObserver(this);
-    backButton->SetTexture(app->tex->Load("Assets/Textures/Buttons/states/play.png"), app->tex->Load("Assets/Textures/Buttons/states/focused.png"), app->tex->Load("Assets/Textures/Buttons/states/pressed.png"));
 
     creditsScene = app->tex->Load("Assets/Textures/Screens/credits_screen.png");
     app->sceneManager->creditSceneFlag = false;
@@ -263,7 +258,6 @@ bool Title::CleanUp()
     options->CleanUp();
     credits->CleanUp();
     exit->CleanUp();
-    backButton->CleanUp();
     active = false;
     app->tex->UnLoad(screen);
     app->tex->UnLoad(creditsScene);

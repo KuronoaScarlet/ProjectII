@@ -210,7 +210,7 @@ bool BattleScene::PostUpdate()
 
 	if (lose == true)
 	{
-		app->audio->PlayMusic("Assets/Audio/Music/lose_scene_music.ogg");
+		app->audio->PlayMusic("Assets/Audio/Music/lose_screen_music.ogg");
 		app->hud->DrawLooseScreen();
 		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 		{

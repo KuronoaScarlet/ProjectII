@@ -14,6 +14,7 @@
 #include "DialogSystem.h"
 #include "EntityManager.h"
 #include "PlayerEntity.h"
+#include "ParticlesEngine.h"
 
 
 Can::Can(Module* listener, fPoint position, SDL_Texture* texture, Type type) : Entity(listener, position, texture, type)
@@ -60,6 +61,7 @@ bool Can::Interaction()
 		CleanUp();
 		printf("%d", app->entityManager->playerData.cola);
 		picked = true;
+		app->particleSystem->AddEmitter(EmitterType::CAN, position.x, position.y, 120);
 
 	}
 	

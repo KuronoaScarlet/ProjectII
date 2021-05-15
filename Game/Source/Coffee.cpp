@@ -14,6 +14,7 @@
 #include "DialogSystem.h"
 #include "EntityManager.h"
 #include "PlayerEntity.h"
+#include "ParticlesEngine.h"
 
 
 Coffee::Coffee(Module* listener, fPoint position, SDL_Texture* texture, Type type) : Entity(listener, position, texture, type)
@@ -60,7 +61,7 @@ bool Coffee::Interaction()
 		CleanUp();
 		printf("%d", app->entityManager->playerData.coffee);
 		picked = true;
-
+		app->particleSystem->AddEmitter(EmitterType::COFFE, position.x, position.y, 120);
 	}
 	
 	return true;

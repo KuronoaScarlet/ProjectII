@@ -403,7 +403,6 @@ bool PlayerEntity::Update(float dt)
 			lerpCamera.x += speedx;
 			lerpCamera.y += speedy;
 
-			printf("x(%.2f)//y(%.2f)\n", position.x, position.y);
 			app->render->camera.x = -int(lerpCamera.x) + 640;
 			app->render->camera.y = -int(lerpCamera.y) + 360;
 			//-------------------------------------------------------

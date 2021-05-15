@@ -39,6 +39,8 @@ enum class EmitterType
 	SPARKLES,
 	RAIN,
 	SNOW,
+	CAN,
+	COFFE,
 	FIRE,
 	SMOKE,
 	FIREWORKS,
@@ -81,6 +83,8 @@ public:
 		case EmitterType::SPARKLES: config = config.child("Sparkles"); break;
 		case EmitterType::RAIN: config = config.child("Rain"); break;
 		case EmitterType::SNOW: config = config.child("Snow"); break;
+		case EmitterType::CAN: config = config.child("Can"); break;
+		case EmitterType::COFFE: config = config.child("Coffe"); break;
 		case EmitterType::FIRE: config = config.child("Fire"); break;
 		case EmitterType::SMOKE: config = config.child("Smoke"); break;
 		case EmitterType::FIREWORKS: config = config.child("Fireworks"); break;

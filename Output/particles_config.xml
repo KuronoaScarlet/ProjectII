@@ -8,6 +8,22 @@
     <position min_x="0.0" max_x="0.0" min_y="0.0" max_y="0.0"/>
     <draw min_w="5.0" max_w="10.0" min_h="5.0" max_h="10.0" texture="Assets/Textures/Items/Pencil.png"/>
   </Sparkles>
+  <Can>
+    <emitter amount="1"/>
+    <lifespan min="120.0f" max="120.0f"/>
+    <velocity min_vx="-10.0" max_vx="10.0" min_vy="-10.0" max_vy="10.0"/>
+    <gravity center_x="0.0" center_y="500.0" ax="0.1" ay="0.2"/>
+    <position min_x="0.0" max_x="0.0" min_y="0.0" max_y="0.0"/>
+    <draw min_w="5.0" max_w="10.0" min_h="5.0" max_h="10.0" texture="Assets/Textures/Items/cola.png"/>
+  </Can>
+  <Coffe>
+    <emitter amount="1"/>
+    <lifespan min="120.0f" max="120.0f"/>
+    <velocity min_vx="-10.0" max_vx="10.0" min_vy="-10.0" max_vy="10.0"/>
+    <gravity center_x="0.0" center_y="500.0" ax="0.1" ay="0.2"/>
+    <position min_x="0.0" max_x="0.0" min_y="0.0" max_y="0.0"/>
+    <draw min_w="5.0" max_w="10.0" min_h="5.0" max_h="10.0" texture="Assets/Textures/Items/coffe.png"/>
+  </Coffe>
   <Rain>
     <emitter amount="100"/>
     <lifespan min="60.0f" max="120.0f"/>

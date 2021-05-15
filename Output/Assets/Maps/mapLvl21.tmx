@@ -1998,10 +1998,10 @@
   </data>
  </layer>
  <layer id="27" name="asd" width="34" height="57">
-   <properties>
-     <property name="drawable" type="int" value="1"/>
-     <property name="Collisions" type="int" value="0"/>
-   </properties>
+  <properties>
+    <property name="drawable" type="int" value="1"/>
+    <property name="Collisions" type="int" value="0"/>
+  </properties>
   <data>
    <tile/>
    <tile/>
@@ -3944,10 +3944,10 @@
   </data>
  </layer>
  <layer id="2" name="WallsBot" width="34" height="57">
-   <properties>
-     <property name="drawable" type="int" value="1"/>
-     <property name="Collisions" type="int" value="0"/>
-   </properties>
+  <properties>
+    <property name="drawable" type="int" value="1"/>
+    <property name="Collisions" type="int" value="0"/>
+  </properties>
   <data>
    <tile/>
    <tile/>
@@ -5890,10 +5890,10 @@
   </data>
  </layer>
  <layer id="23" name="EspecialDec" width="34" height="57">
-   <properties>
-     <property name="drawable" type="int" value="1"/>
-     <property name="Collisions" type="int" value="0"/>
-   </properties>
+  <properties>
+    <property name="drawable" type="int" value="1"/>
+    <property name="Collisions" type="int" value="0"/>
+  </properties>
   <data>
    <tile/>
    <tile/>
@@ -7836,10 +7836,10 @@
   </data>
  </layer>
  <layer id="3" name="walls" width="34" height="57">
-   <properties>
-     <property name="drawable" type="int" value="1"/>
-     <property name="Collisions" type="int" value="0"/>
-   </properties>
+  <properties>
+    <property name="drawable" type="int" value="1"/>
+    <property name="Collisions" type="int" value="0"/>
+  </properties>
   <data>
    <tile/>
    <tile/>
@@ -9782,10 +9782,10 @@
   </data>
  </layer>
  <layer id="4" name="walls3" width="34" height="57">
-   <properties>
-     <property name="drawable" type="int" value="1"/>
-     <property name="Collisions" type="int" value="0"/>
-   </properties>
+  <properties>
+    <property name="drawable" type="int" value="1"/>
+    <property name="Collisions" type="int" value="0"/>
+  </properties>
   <data>
    <tile/>
    <tile/>
@@ -11728,10 +11728,10 @@
   </data>
  </layer>
  <layer id="20" name="shadows" width="34" height="57">
-   <properties>
-     <property name="drawable" type="int" value="1"/>
-     <property name="Collisions" type="int" value="0"/>
-   </properties>
+  <properties>
+    <property name="drawable" type="int" value="1"/>
+    <property name="Collisions" type="int" value="0"/>
+  </properties>
   <data>
    <tile/>
    <tile/>
@@ -13674,10 +13674,10 @@
   </data>
  </layer>
  <layer id="24" name="Charis" width="34" height="57">
-   <properties>
-     <property name="drawable" type="int" value="1"/>
-     <property name="Collisions" type="int" value="0"/>
-   </properties>
+  <properties>
+    <property name="drawable" type="int" value="1"/>
+    <property name="Collisions" type="int" value="0"/>
+  </properties>
   <data>
    <tile/>
    <tile/>
@@ -15620,10 +15620,10 @@
   </data>
  </layer>
  <layer id="5" name="Decorations" width="34" height="57">
-   <properties>
-     <property name="drawable" type="int" value="1"/>
-     <property name="Collisions" type="int" value="0"/>
-   </properties>
+  <properties>
+    <property name="drawable" type="int" value="1"/>
+    <property name="Collisions" type="int" value="0"/>
+  </properties>
   <data>
    <tile/>
    <tile/>
@@ -17566,10 +17566,10 @@
   </data>
  </layer>
  <layer id="6" name="walls2" width="34" height="57">
-   <properties>
-     <property name="drawable" type="int" value="1"/>
-     <property name="Collisions" type="int" value="0"/>
-   </properties>
+  <properties>
+    <property name="drawable" type="int" value="1"/>
+    <property name="Collisions" type="int" value="0"/>
+  </properties>
   <data>
    <tile/>
    <tile/>
@@ -19512,10 +19512,10 @@
   </data>
  </layer>
  <layer id="7" name="Decorations2" width="34" height="57">
-   <properties>
-     <property name="drawable" type="int" value="1"/>
-     <property name="Collisions" type="int" value="0"/>
-   </properties>
+  <properties>
+    <property name="drawable" type="int" value="1"/>
+    <property name="Collisions" type="int" value="0"/>
+  </properties>
   <data>
    <tile/>
    <tile/>
@@ -21458,10 +21458,10 @@
   </data>
  </layer>
  <layer id="25" name="Dec3" width="34" height="57" visible="0">
-   <properties>
-     <property name="drawable" type="int" value="1"/>
-     <property name="Collisions" type="int" value="0"/>
-   </properties>
+  <properties>
+    <property name="drawable" type="int" value="1"/>
+    <property name="Collisions" type="int" value="0"/>
+  </properties>
   <data>
    <tile/>
    <tile/>

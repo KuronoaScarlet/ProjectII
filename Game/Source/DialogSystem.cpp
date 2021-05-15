@@ -124,6 +124,13 @@ bool DialogueSystem::Update(float dt)
 		{
 			if (input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN || input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
 			{
+				if (input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
+				{
+					playerInput = 3;
+					Id = 4;
+					PerformDialogue(Id, playerInput);
+					actionChecks = 14;
+				}
 				playerInput = 0;
 				Id = 4;
 				PerformDialogue(Id, playerInput);
@@ -132,7 +139,7 @@ bool DialogueSystem::Update(float dt)
 			if (actionChecks == dialogueTrees[4]->dialogueNodes.size())
 			{
 				app->entityManager->playerData.onDialog = false;
-				app->sceneManager->ChangeScene(GYM, 0);
+				app->sceneManager->ChangeScene(BATH, 0);
 			}
 		}
 		if (Id == 5)
@@ -147,7 +154,7 @@ bool DialogueSystem::Update(float dt)
 			if (actionChecks == dialogueTrees[5]->dialogueNodes.size())
 			{
 				app->entityManager->playerData.onDialog = false;
-				app->sceneManager->CreateQuest(2, "win a combat");
+				app->sceneManager->CreateQuest(2, "Win a combat");
 			}
 		}
 	}

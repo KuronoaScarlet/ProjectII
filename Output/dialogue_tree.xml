@@ -103,11 +103,15 @@
     <node text="Hola!"  id="0">
       <dialogue option=" " returnCode="0" nextNode="1"/>
     </node>
-    <node text="Necesitamos tu ayuda para recuperar un artefacto!"  id="1">
+    <node text="Necesitamos tu ayuda para recuperar un artefacto! Cuento contigo?"  id="1">
       <dialogue option="1. Vale! " returnCode="0" nextNode="2"/>
+      <dialogue option="2. No, no me apetece. " returnCode="0" nextNode="3"/>
     </node>
     <node text="Rapido! Te llevare al gimnasio!"  id="2">
-      <dialogue option=" " returnCode="0" nextNode="3"/>
+      <dialogue option=" " returnCode="0" nextNode="4"/>
+    </node>
+    <node text="De acuerdo! Te estare esperando!"  id="3">
+      <dialogue option=" " returnCode="0" nextNode="4"/>
     </node>
   </dialogueExample>
   <dialogueExample Id="5">

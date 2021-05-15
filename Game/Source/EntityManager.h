@@ -104,6 +104,7 @@ private:
 	SDL_Texture* texNPC1;
 	SDL_Texture* texNPC2;
 	SDL_Texture* texNPC3;
+	SDL_Texture* texNPCQ1;
 
 	SDL_Texture* texEnemy1;
 	SDL_Texture* texEnemy3;

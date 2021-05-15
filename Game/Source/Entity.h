@@ -18,6 +18,7 @@ public:
 		NPC1,
 		NPC2,
 		NPC3,
+		NPCQ1,
 		ALLY1,
 		EQUILIBRATED_ENEMY,
 		TANK_ENEMY,

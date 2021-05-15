@@ -157,6 +157,22 @@ bool PlayerEntity::Update(float dt)
 			}
 			
 		}
+		else if (tmp->data->type == Type::NPCQ1)
+		{
+			if (position.DistanceTo(tmp->data->position) < 50)
+			{
+				if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN && app->entityManager->playerData.onDialog == false)
+				{
+					app->entityManager->playerData.onDialog = true;
+					app->dialogueSystem->actionChecks = 0;
+					app->dialogueSystem->currentNode = app->dialogueSystem->dialogueTrees[4]->dialogueNodes[0];
+					app->dialogueSystem->PerformDialogue(4, 7);
+					app->dialogueSystem->Id = 4;
+				}
+				tmp->data->Interaction();
+			}
+
+		}
 		else if (tmp->data->type == Type::PENCIL)
 		{
 			if (position.DistanceTo(tmp->data->position) < 50)
@@ -182,6 +198,9 @@ bool PlayerEntity::Update(float dt)
 					tmp->data->Interaction();
 					break;
 				}
+				char crateText[80] = { 0 };
+				sprintf_s(crateText, 80, "Presiona la E para esconderte en la caja.");
+				app->render->DrawText(app->render->font, crateText, 0, 0, 40, 0, { 255,255, 255, 255 });
 			}
 		}
 		else if (tmp->data->type == Type::CAN)

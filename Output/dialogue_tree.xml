@@ -99,6 +99,15 @@
       <dialogue option=" " returnCode="0" nextNode="1000"/>
     </node>
   </dialogueExample>
-    
-
+  <dialogueExample Id="4">
+    <node text="Hola!"  id="0">
+      <dialogue option=" " returnCode="0" nextNode="1"/>
+    </node>
+    <node text="Necesitamos tu ayuda para recuperar un artefacto!"  id="1">
+      <dialogue option="1. Vale! " returnCode="0" nextNode="2"/>
+    </node>
+    <node text="Rapido! Te llevare al gimnasio!"  id="2">
+      <dialogue option=" " returnCode="0" nextNode="3"/>
+    </node>
+  </dialogueExample>
 </dialogueTree>

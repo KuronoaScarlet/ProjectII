@@ -10,6 +10,8 @@ class GuiButton;
 class GuiControl;
 #include "GuiButton.h"
 #include "GuiCheckBox.h"
+#include "Entity.h"
+#include "EntityManager.h"
 
 class Hud : public Module
 {
@@ -46,11 +48,19 @@ public:
 
 	void InventoryAndStatsRequest();
 
+	void DrawStatsText(Entity* e);
+
 	bool firstEntry = true;
 	bool on;
 
 	SDL_Texture* inventoryTab = nullptr;
+	SDL_Texture* statsTab = nullptr;
 	SDL_Texture* inventory = nullptr;
+
+	SDL_Texture* playerFace = nullptr;
+	SDL_Texture* allyFace = nullptr;
+
+	char statsText[64] = { 0 };
 
 	bool bagEnabled = false;
 	bool pencilEnabled = false;
@@ -63,6 +73,8 @@ public:
 	bool ruleEnabled = false;
 	bool tipexEnabled = false;
 	bool snackEnabled = false;
+
+	bool statsEnabled = false;
 
 	bool inventoryAndStatsRequest = false;
 	bool cantMoveInInvetory = false;

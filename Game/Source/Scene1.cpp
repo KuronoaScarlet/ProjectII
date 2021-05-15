@@ -45,6 +45,8 @@ bool Scene1::Start()
 	passingToLvl2 = false;
 	active = true;
 	app->hud->Start();
+	app->entityManager->AddEntity({app->playerPosition.x, app->playerPosition.y }, Entity::Type::PLAYER);
+
 	app->entityManager->AddEntity({ 800.0f, 736.0f }, Entity::Type::NPC1);
 	app->entityManager->AddEntity({ 352.0f, 1312.0f }, Entity::Type::NPC2);
 	app->entityManager->AddEntity({ 1600.0f, 1024.0f }, Entity::Type::NPC2);
@@ -54,7 +56,6 @@ bool Scene1::Start()
 	app->entityManager->AddEntity({ 192.0f, 416.0f}, Entity::Type::PENCIL);
 	app->entityManager->AddEntity({ 480.0f, 1600.0f}, Entity::Type::BALL);
 
-	app->entityManager->AddEntity({app->playerPosition.x, app->playerPosition.y }, Entity::Type::PLAYER);
 
 	app->render->camera.y = 0;
 	app->render->camera.x = 0;

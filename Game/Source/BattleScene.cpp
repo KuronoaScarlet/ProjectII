@@ -215,6 +215,11 @@ bool BattleScene::CleanUp()
 	app->collisions->CleanUp();
 	app->tex->UnLoad(screen);
 	app->tex->UnLoad(combatBox);
+	app->tex->UnLoad(playerFace);
+	app->tex->UnLoad(allyFace);
+	app->tex->UnLoad(blncEnemyFace);
+	app->tex->UnLoad(tankEnemyFace);
+	app->tex->UnLoad(dmgEnemyFace);
 	attack->CleanUp();
 	defend->CleanUp();
 	run->CleanUp();

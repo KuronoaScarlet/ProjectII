@@ -6,7 +6,6 @@
 #include "Window.h"
 #include "Scene1.h"
 #include "Map.h"
-#include "EntityManager.h"
 #include "Collisions.h"
 #include "FadeToBlack.h"
 #include "Fonts.h"
@@ -113,6 +112,10 @@ bool Hud::Start()
 	inventoryTab = app->tex->Load("Assets/Textures/inventory_tab.png");
 	inventory = app->tex->Load("Assets/Textures/Screens/inventory.png");
 
+	statsTab = app->tex->Load("Assets/Textures/stats_tab.png");
+	playerFace = app->tex->Load("Assets/Textures/player_face.png");
+	allyFace = app->tex->Load("Assets/Textures/ally_face.png");
+
 	return true;
 }
 
@@ -153,6 +156,11 @@ bool Hud::Update(float dt)
 		tipex->Update(app->input, dt);
 		sharpenedPencil->Update(app->input, dt);
 		Wonster->Update(app->input, dt);
+		quitStatsAndInvetory->Update(app->input, dt);
+	}
+
+	if (!app->sceneManager->settingsEnabled && statsEnabled)
+	{
 		quitStatsAndInvetory->Update(app->input, dt);
 	}
 
@@ -225,13 +233,9 @@ bool Hud::PostUpdate()
 
 	bool ret = true;
 
-	if (app->hud->bagEnabled && !app->sceneManager->settingsEnabled)
+	if (bagEnabled && !app->sceneManager->settingsEnabled)
 	{
 		app->render->DrawTexture(inventoryTab, -app->render->camera.x + 0, -app->render->camera.y + 0, NULL);
-	}
-
-	if (app->hud->bagEnabled && !app->sceneManager->settingsEnabled)
-	{
 		pencil->Draw(app->render);
 		ball->Draw(app->render);
 		book->Draw(app->render);
@@ -292,13 +296,13 @@ bool Hud::PostUpdate()
 		app->render->DrawText(app->render->font, ruleCount, 300, 330, 60, 0, { 0, 0, 0, 255 });
 
 		/*char celoCount[80] = { 0 };
-		sprintf_s(celoCount, 80, "x%d", app->entityManager->playerData.celo); 
+		sprintf_s(celoCount, 80, "x%d", app->entityManager->playerData.celo);
 		app->render->DrawText(app->render->font, celoCount, 300, 70, 60, 0, { 0, 0, 0, 255 });*/
 
 		char snackCount[80] = { 0 };
 		sprintf_s(snackCount, 80, "x%d", app->entityManager->playerData.snack);
 		app->render->DrawText(app->render->font, snackCount, 300, 200, 60, 0, { 0, 0, 0, 255 });
-		
+
 		char sharpenerCount[80] = { 0 };
 		sprintf_s(sharpenerCount, 80, "x%d", app->entityManager->playerData.Sharper);
 		app->render->DrawText(app->render->font, sharpenerCount, 700, 310, 60, 0, { 0, 0, 0, 255 });
@@ -306,10 +310,25 @@ bool Hud::PostUpdate()
 		char pencilShapedCount[80] = { 0 };
 		sprintf_s(pencilShapedCount, 80, "x%d", app->entityManager->playerData.pencilSharpened);
 		app->render->DrawText(app->render->font, pencilShapedCount, 700, 418, 60, 0, { 0, 0, 0, 255 });
-		
+
 		char wonsterCount[80] = { 0 };
 		sprintf_s(wonsterCount, 80, "x%d", app->entityManager->playerData.wonster);
 		app->render->DrawText(app->render->font, wonsterCount, 880, 73, 60, 0, { 0, 0, 0, 255 });
+	}
+
+	if (statsEnabled && !app->sceneManager->settingsEnabled)
+	{
+		app->render->DrawTexture(statsTab, -app->render->camera.x + 0, -app->render->camera.y + 0, NULL);
+		app->render->DrawTexture(playerFace, -app->render->camera.x + 270, -app->render->camera.y + 70, NULL);
+		app->render->DrawRectangle({ -app->render->camera.x + 634, -app->render->camera.y + 60, 1, 600 }, 0, 0, 0, 255);
+		app->render->DrawTexture(allyFace, -app->render->camera.x + 870, -app->render->camera.y + 70, NULL);
+
+		app->entityManager->AddEntity({ 5000.0f, 5000.0f }, Entity::Type::ALLY1);
+
+		DrawStatsText(app->entityManager->entityList.start->data);
+		DrawStatsText(app->entityManager->entityList.end->data);
+
+		quitStatsAndInvetory->Draw(app->render);
 	}
 
 	return ret;
@@ -341,10 +360,44 @@ bool Hud::CleanUp()
 
 void Hud::InventoryAndStatsRequest()
 {
+	app->render->DrawTexture(inventory,-app->render->camera.x, bckposY);
+	bag->Draw(app->render);
+	stats->Draw(app->render);
+	inventoryAndStatsRequest = true;
+}
 
-		app->render->DrawTexture(inventory,-app->render->camera.x, bckposY);
-		bag->Draw(app->render);
-		stats->Draw(app->render);
-		inventoryAndStatsRequest = true;
-	
+void Hud::DrawStatsText(Entity* e)
+{
+	int posRect = 0;
+	int posText = 0;
+
+	if (e->type == Entity::Type::PLAYER)
+	{
+		posRect = -app->render->camera.x + 190;
+		posText = 190;
+		sprintf_s(statsText, 64, "Player");
+		app->render->DrawText(app->render->font, statsText, posText + 100, 198, 36, 3, { 0, 0, 0, 255 });
+	}
+	else if (e->type == Entity::Type::ALLY1)
+	{
+		posRect = -app->render->camera.x + 790;
+		posText = 790;
+		sprintf_s(statsText, 64, "Ally 1");
+		app->render->DrawText(app->render->font, statsText, posText + 110, 198, 36, 3, { 0, 0, 0, 255 });
+	}
+
+	sprintf_s(statsText, 64, "HP: %d", e->hp);
+	app->render->DrawText(app->render->font, statsText, posText, 258, 36, 3, { 0, 0, 0, 255 });
+	app->render->DrawRectangle({ posRect+19, -app->render->camera.y + 309, ((e->hp)*3)+2, 20 }, 0, 0, 0, 255);
+	app->render->DrawRectangle({ posRect+20, -app->render->camera.y + 310, (e->hp)*3, 18 }, 0, 255, 0, 255);
+
+	sprintf_s(statsText, 64, "ATK: %d", e->atk);
+	app->render->DrawText(app->render->font, statsText, posText, 358, 36, 3, { 0, 0, 0, 255 });
+	app->render->DrawRectangle({ posRect+19, -app->render->camera.y + 409, ((e->atk)*3)+2, 20 }, 0, 0, 0, 255);
+	app->render->DrawRectangle({ posRect+20, -app->render->camera.y + 410, (e->atk)*3, 18 }, 255, 0, 0, 255);
+
+	sprintf_s(statsText, 64, "DEF: %d", e->def);
+	app->render->DrawText(app->render->font, statsText, posText, 458, 36, 3, { 0, 0, 0, 255 });
+	app->render->DrawRectangle({ posRect+19, -app->render->camera.y + 509, ((e->def)*3)+2, 20 }, 0, 0, 0, 255);
+	app->render->DrawRectangle({ posRect+20, -app->render->camera.y + 510, (e->def)*3, 18 }, 0, 0, 255, 255);
 }

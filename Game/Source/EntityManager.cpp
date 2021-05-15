@@ -137,6 +137,25 @@ bool EntityManager::LoadState(pugi::xml_node& data)
 		fPoint newPosition = fPoint(x, y);
 		entityList.start->data->position = newPosition;
 		playerData.level = e.attribute("lvl").as_int();
+
+	}
+	for (e = node.child("items"); e; e = e.next_sibling("items"))
+	{
+		playerData.pencil = e.attribute("pencil").as_int();
+		playerData.sharper = e.attribute("sharper").as_int();
+		playerData.ball = e.attribute("ball").as_int();
+		playerData.book = e.attribute("book").as_int();
+		playerData.calculator = e.attribute("calculator").as_int();
+		playerData.cola = e.attribute("cola").as_int();
+		playerData.coffee = e.attribute("coffee").as_int();
+		playerData.fak = e.attribute("fak").as_int();
+		playerData.tipex = e.attribute("tipex").as_int();
+		playerData.eraser = e.attribute("eraser").as_int();
+		playerData.rule = e.attribute("rule").as_int();
+		playerData.celo = e.attribute("celo").as_int();
+		playerData.snack = e.attribute("snack").as_int();
+		playerData.pencilSharpened = e.attribute("pencilSharp").as_int();
+		playerData.wonster = e.attribute("wonster").as_int();
 	}
 
 	return true;
@@ -159,7 +178,38 @@ bool EntityManager::SaveState(pugi::xml_node& data) const
 			y.set_value(e->position.y);
 			pugi::xml_attribute lvl = eNode.append_attribute("lvl");
 			lvl.set_value(playerData.level);
-			eNode.next_sibling("playerdata");
+			
+			eNode = node.append_child("items");
+			pugi::xml_attribute pencil = eNode.append_attribute("pencil");
+			pencil.set_value(playerData.pencil);
+			pugi::xml_attribute sharper = eNode.append_attribute("sharper");
+			sharper.set_value(playerData.sharper);
+			pugi::xml_attribute ball = eNode.append_attribute("ball");
+			ball.set_value(playerData.ball);
+			pugi::xml_attribute book = eNode.append_attribute("book");
+			book.set_value(playerData.book);
+			pugi::xml_attribute calculator = eNode.append_attribute("calculator");
+			calculator.set_value(playerData.calculator);
+			pugi::xml_attribute cola = eNode.append_attribute("cola");
+			cola.set_value(playerData.cola);
+			pugi::xml_attribute coffee = eNode.append_attribute("coffee");
+			coffee.set_value(playerData.coffee);
+			pugi::xml_attribute fak = eNode.append_attribute("fak");
+			fak.set_value(playerData.fak);
+			pugi::xml_attribute tipex = eNode.append_attribute("tipex");
+			tipex.set_value(playerData.tipex);
+			pugi::xml_attribute eraser = eNode.append_attribute("eraser");
+			eraser.set_value(playerData.eraser);
+			pugi::xml_attribute rule = eNode.append_attribute("rule");
+			rule.set_value(playerData.rule);
+			pugi::xml_attribute celo = eNode.append_attribute("celo");
+			celo.set_value(playerData.celo);
+			pugi::xml_attribute snack = eNode.append_attribute("snack");
+			snack.set_value(playerData.snack);
+			pugi::xml_attribute pencilSharp = eNode.append_attribute("pencilSharp");
+			pencilSharp.set_value(playerData.pencilSharpened);
+			pugi::xml_attribute wonster = eNode.append_attribute("wonster");
+			wonster.set_value(playerData.wonster);
 		}
 	}
 

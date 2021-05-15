@@ -506,11 +506,11 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         }
         else if (control->id == 140)
         {
-            if (app->entityManager->playerData.Pencil > 0 && app->entityManager->playerData.Sharper > 0)
+            if (app->entityManager->playerData.pencil > 0 && app->entityManager->playerData.sharper > 0)
             {
                 app->entityManager->playerData.pencilSharpened++;
-                app->entityManager->playerData.Pencil--;
-                app->entityManager->playerData.Sharper--;
+                app->entityManager->playerData.pencil--;
+                app->entityManager->playerData.sharper--;
                 CompleteQuest(1);
             }
         }

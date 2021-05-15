@@ -69,8 +69,8 @@ public:
 		int scene = 0;
 
 		//Items
-		int Pencil = 0;
-		int Sharper = 0;
+		int pencil = 0;
+		int sharper = 0;
 		int ball = 0;
 		int book = 0;
 		int calculator = 0;

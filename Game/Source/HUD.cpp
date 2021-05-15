@@ -254,7 +254,7 @@ bool Hud::PostUpdate()
 		quitStatsAndInvetory->Draw(app->render);
 
 		char pencilCount[80] = { 0 };
-		sprintf_s(pencilCount, 80, "x%d", app->entityManager->playerData.Pencil);
+		sprintf_s(pencilCount, 80, "x%d", app->entityManager->playerData.pencil);
 		app->render->DrawText(app->render->font, pencilCount, 300, 70, 60, 0, { 0, 0, 0, 255 });
 
 		char ballCount[80] = { 0 };
@@ -306,7 +306,7 @@ bool Hud::PostUpdate()
 		app->render->DrawText(app->render->font, snackCount, 300, 200, 60, 0, { 0, 0, 0, 255 });
 
 		char sharpenerCount[80] = { 0 };
-		sprintf_s(sharpenerCount, 80, "x%d", app->entityManager->playerData.Sharper);
+		sprintf_s(sharpenerCount, 80, "x%d", app->entityManager->playerData.sharper);
 		app->render->DrawText(app->render->font, sharpenerCount, 700, 310, 60, 0, { 0, 0, 0, 255 });
 
 		char pencilShapedCount[80] = { 0 };

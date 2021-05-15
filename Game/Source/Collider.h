@@ -28,6 +28,7 @@ struct Collider
 		GODOWN,
 		CRATE,
 		DUNGEONCP,
+		GETOUTBOX,
 
 		MAX
 	};

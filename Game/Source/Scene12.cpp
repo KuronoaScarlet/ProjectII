@@ -47,6 +47,7 @@ bool Scene12::Start()
 	app->hud->Start();
 
 	app->entityManager->AddEntity({ app->playerPosition.x,app->playerPosition.y }, Entity::Type::PLAYER);
+	app->entityManager->AddEntity({ 744,96 }, Entity::Type::NPCQ1);
 
 	app->render->camera.y = 0;
 	app->render->camera.x = 0;

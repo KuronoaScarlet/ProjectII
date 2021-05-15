@@ -180,6 +180,9 @@
     <ClCompile Include="Source\Crate.cpp">
       <Filter>Entities\NoPlayable</Filter>
     </ClCompile>
+    <ClCompile Include="Source\NPCQ1.cpp">
+      <Filter>Entities\NoPlayable</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -398,6 +401,9 @@
     </ClInclude>
     <ClInclude Include="Source\ParticlesEngine.h">
       <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\NPCQ1.h">
+      <Filter>Entities\NoPlayable</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

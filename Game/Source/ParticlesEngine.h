@@ -53,6 +53,9 @@ public:
 	EmitterType type;
 	ParticleProperties properties;
 	Particle* particles;
+	int currentFrame = 0;
+	int maxFrames = 0;
+	bool pendingToDelete = false;
 
 	Emitter()
 	{
@@ -64,13 +67,14 @@ public:
 		RELEASE_ARRAY(particles);
 	}
 
-	void Init(EmitterType _type, int _x, int _y, pugi::xml_node config)
+	void Init(EmitterType _type, int _x, int _y, pugi::xml_node config, int maxf)
 	{
 		active = true;
 
 		type = _type;
 		center_x = _x;
 		center_y = _y;
+		maxFrames = maxf;
 
 		switch (type)
 		{
@@ -125,23 +129,29 @@ public:
 		return p;
 	}
 
-	void Update(float dt)
+	bool Update(float dt)
 	{
-		for (int i = 0; i < properties.amount; ++i)
+		if (currentFrame < maxFrames)
 		{
-			if (particles[i].lifetime >= particles[i].lifespan)
-				particles[i] = StartParticle();
+			++currentFrame;
+			for (int i = 0; i < properties.amount; ++i)
+			{
+				if (particles[i].lifetime >= particles[i].lifespan)
+					particles[i] = StartParticle();
 
-			++particles[i].lifetime;
+				++particles[i].lifetime;
 
-			particles[i].x += particles[i].vx;
-			particles[i].y += particles[i].vy;
-			if (particles[i].x < properties.gravity_center_x) particles[i].vx += properties.gravity_ax;
-			if (particles[i].x > properties.gravity_center_x) particles[i].vx -= properties.gravity_ax;
-			if (particles[i].y < properties.gravity_center_y) particles[i].vy += properties.gravity_ay;
-			if (particles[i].y > properties.gravity_center_y) particles[i].vy -= properties.gravity_ay;
+				particles[i].x += particles[i].vx;
+				particles[i].y += particles[i].vy;
+				if (particles[i].x < properties.gravity_center_x) particles[i].vx += properties.gravity_ax;
+				if (particles[i].x > properties.gravity_center_x) particles[i].vx -= properties.gravity_ax;
+				if (particles[i].y < properties.gravity_center_y) particles[i].vy += properties.gravity_ay;
+				if (particles[i].y > properties.gravity_center_y) particles[i].vy -= properties.gravity_ay;
 
+			}
+			return true;
 		}
+		return false;
 	}
 
 	void Draw(bool debugDraw)
@@ -203,10 +213,10 @@ public:
 		RELEASE(emitters);
 	}
 
-	void AddEmitter(EmitterType type, int x, int y)
+	void AddEmitter(EmitterType type, int x, int y, int maxf = 60)
 	{
 		Emitter* emitter = new Emitter;
-		emitter->Init(type, x, y, type_config);
+		emitter->Init(type, x, y, type_config, maxf);
 		emitters->Add(emitter);
 		++emitters_count;
 		particles_count += emitter->properties.amount;
@@ -218,7 +228,12 @@ public:
 
 		if (emitters->start)
 			for (ListItem<Emitter*>* emitter = emitters->start; emitter; emitter = emitter->next)
-				emitter->data->Update(dt);
+			{
+				if (!emitter->data->Update(dt))
+				{
+					emitters->Del(emitter);
+				}
+			}
 
 		return true;
 	}

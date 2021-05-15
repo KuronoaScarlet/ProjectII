@@ -14,6 +14,7 @@
 #include "DialogSystem.h"
 #include "EntityManager.h"
 #include "PlayerEntity.h"
+#include "ParticlesEngine.h"
 
 
 Pencil::Pencil(Module* listener, fPoint position, SDL_Texture* texture, Type type) : Entity(listener, position, texture, type)
@@ -63,6 +64,7 @@ bool Pencil::Interaction()
 		printf("%d", app->entityManager->playerData.pencil);
 		printf("%d", app->entityManager->playerData.sharper);
 		picked = true;
+		app->particleSystem->AddEmitter(EmitterType::SPARKLES, position.x, position.y, 120);
 	}
 	
 	return true;

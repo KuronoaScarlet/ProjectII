@@ -17,6 +17,7 @@
 #include "Scene12.h"
 #include "SceneManager.h"
 #include "HUD.h"
+#include "ParticlesEngine.h"
 
 PlayerEntity::PlayerEntity(Module* listener, fPoint position, SDL_Texture* texture, Type type) : Entity(listener, position, texture, type)
 {

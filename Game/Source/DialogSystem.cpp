@@ -148,7 +148,12 @@ bool DialogueSystem::Update(float dt)
 			if (actionChecks == dialogueTrees[4]->dialogueNodes.size())
 			{
 				app->entityManager->playerData.onDialog = false;
-				if(enterDungeon == true) app->sceneManager->ChangeScene(BATH, 0);
+				if (enterDungeon == true)
+				{
+				app->sceneManager->ChangeScene(BATH, 0);
+				app->sceneManager->CreateQuest(3, "Make it through the dungeon");
+				}
+				
 			}
 		}
 		if (Id == 5)

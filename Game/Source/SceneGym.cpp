@@ -98,9 +98,6 @@ bool SceneGym::Start()
 	}
 
 	app->map->Load("GymDungeon.tmx");
-
-	app->sceneManager->CreateQuest(3, "pass dungeon");
-
 	return true;
 }
 

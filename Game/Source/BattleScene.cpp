@@ -71,13 +71,13 @@ bool BattleScene::Start()
 	defend->SetObserver(this);
 	defend->SetTexture(app->tex->Load("Assets/Textures/defend3.png"), app->tex->Load("Assets/Textures/defend4.png"), app->tex->Load("Assets/Textures/defend5.png"));
 
-	run = new GuiButton(103, { 530, 660, 216, 43 }, "run");
-	run->SetObserver(this);
-	run->SetTexture(app->tex->Load("Assets/Textures/run3.png"), app->tex->Load("Assets/Textures/run4.png"), app->tex->Load("Assets/Textures/run5.png"));
-
-	combine = new GuiButton(104, { 280, 660, 216, 43 }, "combine");
+	combine = new GuiButton(103, { 280, 660, 216, 43 }, "combine");
 	combine->SetObserver(this);
 	combine->SetTexture(app->tex->Load("Assets/Textures/combine3.png"), app->tex->Load("Assets/Textures/combine4.png"), app->tex->Load("Assets/Textures/combine5.png"));
+
+	run = new GuiButton(104, { 530, 660, 216, 43 }, "run");
+	run->SetObserver(this);
+	run->SetTexture(app->tex->Load("Assets/Textures/run3.png"), app->tex->Load("Assets/Textures/run4.png"), app->tex->Load("Assets/Textures/run5.png"));
 	//--------------------------------------------------------------
 
 	app->render->camera = { 0, 0 };
@@ -319,7 +319,8 @@ void BattleScene::PerformCombat(float dt)
 			//Si no, función para enviar a Victory o Loose State
 			if (remainingAllies == 0 || remainingEnemies == 0)
 			{
-				app->sceneManager->ChangeScene(SCENE1, 0);
+				if (app->entityManager->playerData.scene == 1) app->sceneManager->ChangeScene(SCENE1, 0);
+				if (app->entityManager->playerData.scene == 2) app->sceneManager->ChangeScene(SCENE12, 0);
 				app->sceneManager->CompleteQuest(2);
 			}
 		}
@@ -467,7 +468,6 @@ void BattleScene::PrintText()
 				app->render->DrawText(app->render->font, hp, 930, (int)(555 * positionAlly), 36, 3, { 255, 255, 255, 255 });
 				positionAlly += 0.1f;
 			}
-
 		}
 		tmp = tmp->next;
 	}

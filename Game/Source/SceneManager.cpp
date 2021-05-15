@@ -428,7 +428,12 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         }
         if (control->id == 103)
         {
-            app->sceneManager->ChangeScene(SCENE1,0);
+
+        }
+        if (control->id == 104)
+        {
+            if(app->entityManager->playerData.scene == 1) app->sceneManager->ChangeScene(SCENE1,0);
+            if(app->entityManager->playerData.scene == 2) app->sceneManager->ChangeScene(SCENE12,0);
         }
         if (control->id == 13)
         {
@@ -461,6 +466,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
             app->map->LoadState(map);
 
             if (app->currentLevel == 1) ChangeScene(SCENE1,2);
+            if (app->currentLevel == 2) ChangeScene(SCENE12,2);
         }
         else if (control->id == 504)
         {

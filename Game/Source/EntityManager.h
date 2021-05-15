@@ -65,6 +65,9 @@ public:
 		//Combat Stats
 		int level = 1;
 
+		//Last Scene
+		int scene = 0;
+
 		//Items
 		int Pencil = 0;
 		int Sharper = 0;

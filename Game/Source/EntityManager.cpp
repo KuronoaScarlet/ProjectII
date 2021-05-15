@@ -135,7 +135,7 @@ bool EntityManager::LoadState(pugi::xml_node& data)
 		float x = e.attribute("x").as_float();
 		float y = e.attribute("y").as_float();
 		fPoint newPosition = fPoint(x, y);
-		entityList.end->data->position = newPosition;
+		entityList.start->data->position = newPosition;
 		playerData.level = e.attribute("lvl").as_int();
 	}
 

@@ -61,9 +61,9 @@ bool Scene12::Start()
 		app->loadingGame = false;
 	}
 	//Up
-	tp2to11 = app->collisions->AddCollider(SDL_Rect({ 32, 416, 32, 64 }), Collider::Type::TP2TO1, this);
+	tp2to11 = app->collisions->AddCollider(SDL_Rect({ 64, 416, 32, 64 }), Collider::Type::TP2TO1, this);
 	//Down
-	tp2to14 = app->collisions->AddCollider(SDL_Rect({ 32, 1024, 32, 96 }), Collider::Type::TP2TO1, this);
+	tp2to14 = app->collisions->AddCollider(SDL_Rect({ 64, 1024, 32, 96 }), Collider::Type::TP2TO1, this);
 
 	app->map->Load("mapLvl22.tmx");
 

@@ -62,6 +62,8 @@ bool DialogueSystem::Update(float dt)
 			{
 				app->entityManager->playerData.onDialog = false;
 				app->playerPosition = app->entityManager->playerData.position;
+				if (app->sceneManager->id == SCENE1) app->entityManager->playerData.scene = 1;
+				if (app->sceneManager->id == SCENE12) app->entityManager->playerData.scene = 2;
 				app->sceneManager->ChangeScene(BATTLE,1);
 			}
 		}

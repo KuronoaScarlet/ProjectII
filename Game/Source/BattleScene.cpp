@@ -45,9 +45,16 @@ bool BattleScene::Start()
 	active = true;
 	onTurn = false;
 	victory = false;
-	loose = false;
+	lose = false;
 	turn = UNKNOWN;
 	state = WAITING;
+	app->sceneManager->atkMenu = false;
+	app->sceneManager->defMenu = false;
+	app->sceneManager->combMenu = false; 
+	enemySelection = 0;
+	allySelection = 0;
+	itemSelected = false;
+	boosted = false;
 
 	skipBarMax = { 0, 720, 100, 16 };
 	skipBar = { 0, 721, 0, 14 };
@@ -201,14 +208,27 @@ bool BattleScene::PostUpdate()
 		combine->Draw(app->render);
 	}
 
-	if (loose == true)
+	if (lose == true)
 	{
+		app->audio->PlayMusic("Assets/Audio/Music/lose_scene_music.ogg");
 		app->hud->DrawLooseScreen();
+		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+		{
+			if (app->entityManager->playerData.scene == 1) app->sceneManager->ChangeScene(SCENE1, 0);
+			if (app->entityManager->playerData.scene == 2) app->sceneManager->ChangeScene(SCENE12, 0);
+		}
 	}
 	else if (victory == true )
 	{
 		app->audio->PlayMusic("Assets/Audio/Music/win_scene_music.ogg");
 		app->hud->DrawVictoryScreen();
+
+		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+		{
+			if (app->entityManager->playerData.scene == 1) app->sceneManager->ChangeScene(SCENE1, 0);
+			if (app->entityManager->playerData.scene == 2) app->sceneManager->ChangeScene(SCENE12, 0);
+			app->sceneManager->CompleteQuest(2);
+		}
 	}
 
 	app->render->DrawRectangle(skipBarMax, 0, 0, 0, 255);
@@ -359,33 +379,26 @@ void BattleScene::PerformCombat(float dt)
 			//Si no, función para enviar a Victory o Loose State
 			if (remainingAllies == 0 || remainingEnemies == 0)
 			{
-				if (remainingAllies == 0)
-				{
-					loose = true;
-					if (loose == true)
-					{
-						
-						if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-						{
-							if (app->entityManager->playerData.scene == 1) app->sceneManager->ChangeScene(SCENE1, 0);
-							if (app->entityManager->playerData.scene == 2) app->sceneManager->ChangeScene(SCENE12, 0);
-						}
-					}
-					
-				}
 				if (remainingEnemies == 0)
 				{
 					victory = true;
 					if (victory == true)
 					{
+						app->entityManager->CleanUp();
+						state = FINISH_TURN;
 						
-						if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-						{
-							if (app->entityManager->playerData.scene == 1) app->sceneManager->ChangeScene(SCENE1, 0);
-							if (app->entityManager->playerData.scene == 2) app->sceneManager->ChangeScene(SCENE12, 0);
-							app->sceneManager->CompleteQuest(2);
-						}
 					}
+				}
+				if (remainingAllies == 0)
+				{
+					lose = true;
+					if (lose == true)
+					{
+						app->entityManager->CleanUp();
+						state = FINISH_TURN;
+						
+					}
+					
 				}
 			}
 		}

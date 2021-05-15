@@ -107,7 +107,7 @@ public:
 	bool itemSelected = false;
 	bool boosted = false;
 	bool victory = false;
-	bool loose = false;
+	bool lose = false;
 
 	TurnSort turn = UNKNOWN;
 	CombatState state = WAITING;

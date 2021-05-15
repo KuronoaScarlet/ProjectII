@@ -65,7 +65,7 @@ bool SceneGym::Start()
 
 	goright = app->collisions->AddCollider(SDL_Rect({ 32, 224, 10, 10 }), Collider::Type::GORIGHT, this);
 	goleft = app->collisions->AddCollider(SDL_Rect({ 352, 224, 10, 10 }), Collider::Type::GOLEFT, this);
-	godown1 = app->collisions->AddCollider(SDL_Rect({ 448, 32, 10, 10 }), Collider::Type::GODOWN, this);
+	godown1 = app->collisions->AddCollider(SDL_Rect({ 448, 64, 10, 10 }), Collider::Type::GODOWN, this);
 	goup = app->collisions->AddCollider(SDL_Rect({ 448, 448, 10, 10 }), Collider::Type::GOUP, this);
 
 	godown2 = app->collisions->AddCollider(SDL_Rect({ 128, 480, 10, 10 }), Collider::Type::GODOWN, this);

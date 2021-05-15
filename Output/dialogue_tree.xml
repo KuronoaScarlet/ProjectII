@@ -99,6 +99,7 @@
       <dialogue option=" " returnCode="0" nextNode="1000"/>
     </node>
   </dialogueExample>
+  
   <dialogueExample Id="4">
     <node text="Hola!"  id="0">
       <dialogue option=" " returnCode="0" nextNode="1"/>
@@ -114,6 +115,7 @@
       <dialogue option=" " returnCode="0" nextNode="4"/>
     </node>
   </dialogueExample>
+  
   <dialogueExample Id="5">
     <node text="Ese tipo de ahi quiere pelea!"  id="0">
       <dialogue option=" " returnCode="0" nextNode="1"/>

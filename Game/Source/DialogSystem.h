@@ -80,6 +80,8 @@ public:
 	std::vector <DialogueTree*> dialogueTrees;
 	DialogueNode* currentNode;
 	pugi::xml_document	dialogues;
+
+	bool enterDungeon = false;
 private:
 
 	SDL_Texture* textBox = nullptr;

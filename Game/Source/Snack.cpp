@@ -14,6 +14,7 @@
 #include "DialogSystem.h"
 #include "EntityManager.h"
 #include "PlayerEntity.h"
+#include "ParticlesEngine.h"
 
 
 Snack::Snack(Module* listener, fPoint position, SDL_Texture* texture, Type type) : Entity(listener, position, texture, type)
@@ -61,6 +62,7 @@ bool Snack::Interaction()
 		CleanUp();
 		printf("%d", app->entityManager->playerData.snack);
 		picked = true;
+		app->particleSystem->AddEmitter(EmitterType::SNACK, position.x, position.y, 120);
 
 	}
 	

@@ -14,6 +14,7 @@
 #include "DialogSystem.h"
 #include "EntityManager.h"
 #include "PlayerEntity.h"
+#include "ParticlesEngine.h"
 
 
 Rubber::Rubber(Module* listener, fPoint position, SDL_Texture* texture, Type type) : Entity(listener, position, texture, type)
@@ -60,6 +61,7 @@ bool Rubber::Interaction()
 		CleanUp();
 		printf("%d", app->entityManager->playerData.eraser);
 		picked = true;
+		app->particleSystem->AddEmitter(EmitterType::RUBBER, position.x, position.y, 120);
 
 	}
 	

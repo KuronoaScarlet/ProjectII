@@ -6,7 +6,7 @@
 	<entities>
 		<entity>
 			<player>
-				<playerdata x="255.000366" y="1292.30493" lvl="1" />
+				<playerdata x="345.150208" y="1174.85376" lvl="1" />
 				<items pencil="1" sharper="2" ball="0" book="0" calculator="0" cola="2" coffee="2" fak="0" tipex="0" eraser="0" rule="0" celo="0" snack="0" pencilSharp="1" wonster="1" />
 			</player>
 		</entity>

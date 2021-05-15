@@ -14,6 +14,7 @@
 #include "DialogSystem.h"
 #include "EntityManager.h"
 #include "PlayerEntity.h"
+#include "ParticlesEngine.h"
 
 
 Rule::Rule(Module* listener, fPoint position, SDL_Texture* texture, Type type) : Entity(listener, position, texture, type)
@@ -60,6 +61,7 @@ bool Rule::Interaction()
 		CleanUp();
 		printf("%d", app->entityManager->playerData.rule);
 		picked = true;
+		app->particleSystem->AddEmitter(EmitterType::RULE, position.x, position.y, 120);
 
 	}
 	

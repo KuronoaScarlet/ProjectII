@@ -14,6 +14,7 @@
 #include "DialogSystem.h"
 #include "EntityManager.h"
 #include "PlayerEntity.h"
+#include "ParticlesEngine.h"
 
 
 Ball::Ball(Module* listener, fPoint position, SDL_Texture* texture, Type type) : Entity(listener, position, texture, type)
@@ -60,6 +61,8 @@ bool Ball::Interaction()
 		CleanUp();
 		printf("%d", app->entityManager->playerData.ball);
 		picked = true;
+		app->particleSystem->AddEmitter(EmitterType::BALL, position.x, position.y, 120);
+
 
 	}
 	

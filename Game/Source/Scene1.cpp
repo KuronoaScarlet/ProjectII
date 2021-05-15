@@ -65,6 +65,15 @@ bool Scene1::Start()
 	app->entityManager->AddEntity({ 96.0f, 128.0f }, Entity::Type::CAN);
 	app->entityManager->AddEntity({ 320.0f,128.0f}, Entity::Type::BALL);
 	app->entityManager->AddEntity({ 736.0f, 128.0f}, Entity::Type::CALCULATOR);	
+	
+	
+	app->entityManager->AddEntity({ 100.0f, 1445.0f}, Entity::Type::BOOK);
+	app->entityManager->AddEntity({ 100.0f, 1445.0f}, Entity::Type::RUBBER);
+	app->entityManager->AddEntity({ 100.0f, 1445.0f}, Entity::Type::RULE);
+	app->entityManager->AddEntity({ 100.0f, 1445.0f}, Entity::Type::SNACK);
+	
+	
+	
 
 	app->render->camera.y = 0;
 	app->render->camera.x = 0;

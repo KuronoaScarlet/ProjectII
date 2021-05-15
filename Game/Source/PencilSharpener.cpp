@@ -60,7 +60,7 @@ bool PencilSharpener::Interaction()
 		CleanUp();
 		printf("%d", app->entityManager->playerData.pencilSharpened);
 		picked = true;
-
+		
 	}
 	
 	return true;

@@ -8,6 +8,54 @@
     <position min_x="0.0" max_x="0.0" min_y="0.0" max_y="0.0"/>
     <draw min_w="5.0" max_w="10.0" min_h="5.0" max_h="10.0" texture="Assets/Textures/Items/Pencil.png"/>
   </Sparkles>
+  <Ball>
+    <emitter amount="1"/>
+    <lifespan min="120.0f" max="120.0f"/>
+    <velocity min_vx="-10.0" max_vx="10.0" min_vy="-10.0" max_vy="10.0"/>
+    <gravity center_x="0.0" center_y="500.0" ax="0.1" ay="0.2"/>
+    <position min_x="0.0" max_x="0.0" min_y="0.0" max_y="0.0"/>
+    <draw min_w="5.0" max_w="10.0" min_h="5.0" max_h="10.0" texture="Assets/Textures/Items/ball.png"/>
+  </Ball>
+  <Rubber>
+    <emitter amount="1"/>
+    <lifespan min="120.0f" max="120.0f"/>
+    <velocity min_vx="-10.0" max_vx="10.0" min_vy="-10.0" max_vy="10.0"/>
+    <gravity center_x="0.0" center_y="500.0" ax="0.1" ay="0.2"/>
+    <position min_x="0.0" max_x="0.0" min_y="0.0" max_y="0.0"/>
+    <draw min_w="5.0" max_w="10.0" min_h="5.0" max_h="10.0" texture="Assets/Textures/Items/eraser.png"/>
+  </Rubber>
+  <Rule>
+    <emitter amount="1"/>
+    <lifespan min="120.0f" max="120.0f"/>
+    <velocity min_vx="-10.0" max_vx="10.0" min_vy="-10.0" max_vy="10.0"/>
+    <gravity center_x="0.0" center_y="500.0" ax="0.1" ay="0.2"/>
+    <position min_x="0.0" max_x="0.0" min_y="0.0" max_y="0.0"/>
+    <draw min_w="5.0" max_w="10.0" min_h="5.0" max_h="10.0" texture="Assets/Textures/Items/rule.png"/>
+  </Rule>
+  <Snack>
+    <emitter amount="1"/>
+    <lifespan min="120.0f" max="120.0f"/>
+    <velocity min_vx="-10.0" max_vx="10.0" min_vy="-10.0" max_vy="10.0"/>
+    <gravity center_x="0.0" center_y="500.0" ax="0.1" ay="0.2"/>
+    <position min_x="0.0" max_x="0.0" min_y="0.0" max_y="0.0"/>
+    <draw min_w="5.0" max_w="10.0" min_h="5.0" max_h="10.0" texture="Assets/Textures/Items/snack.png"/>
+  </Snack>
+  <LiquidPaper>
+    <emitter amount="1"/>
+    <lifespan min="120.0f" max="120.0f"/>
+    <velocity min_vx="-10.0" max_vx="10.0" min_vy="-10.0" max_vy="10.0"/>
+    <gravity center_x="0.0" center_y="500.0" ax="0.1" ay="0.2"/>
+    <position min_x="0.0" max_x="0.0" min_y="0.0" max_y="0.0"/>
+    <draw min_w="5.0" max_w="10.0" min_h="5.0" max_h="10.0" texture="Assets/Textures/Items/tipex.png"/>
+  </LiquidPaper>
+  <Fak>
+    <emitter amount="1"/>
+    <lifespan min="120.0f" max="120.0f"/>
+    <velocity min_vx="-10.0" max_vx="10.0" min_vy="-10.0" max_vy="10.0"/>
+    <gravity center_x="0.0" center_y="500.0" ax="0.1" ay="0.2"/>
+    <position min_x="0.0" max_x="0.0" min_y="0.0" max_y="0.0"/>
+    <draw min_w="5.0" max_w="10.0" min_h="5.0" max_h="10.0" texture="Assets/Textures/Items/ball.png"/>
+  </Fak>
   <Can>
     <emitter amount="1"/>
     <lifespan min="120.0f" max="120.0f"/>

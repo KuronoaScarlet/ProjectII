@@ -14,6 +14,8 @@
 #include "DialogSystem.h"
 #include "EntityManager.h"
 #include "PlayerEntity.h"
+#include "ParticlesEngine.h"
+
 
 
 FirstAidKit::FirstAidKit(Module* listener, fPoint position, SDL_Texture* texture, Type type) : Entity(listener, position, texture, type)
@@ -60,7 +62,7 @@ bool FirstAidKit::Interaction()
 		CleanUp();
 		printf("%d", app->entityManager->playerData.fak);
 		picked = true;
-
+		app->particleSystem->AddEmitter(EmitterType::FAK, position.x, position.y, 120);
 	}
 	
 	return true;

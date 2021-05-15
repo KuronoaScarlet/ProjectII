@@ -37,8 +37,14 @@ struct ParticleProperties
 enum class EmitterType
 {
 	SPARKLES,
+	BALL,
+	FAK,
+	SNACK,
 	RAIN,
 	SNOW,
+	RULE,
+	LIQUIDPAPER,
+	RUBBER,
 	CAN,
 	COFFE,
 	CALCULATOR,
@@ -83,9 +89,15 @@ public:
 		switch (type)
 		{
 		case EmitterType::SPARKLES: config = config.child("Sparkles"); break;
+		case EmitterType::BALL: config = config.child("Ball"); break;
 		case EmitterType::RAIN: config = config.child("Rain"); break;
 		case EmitterType::SNOW: config = config.child("Snow"); break;
+		case EmitterType::FAK: config = config.child("Fak"); break;
+		case EmitterType::SNACK: config = config.child("Snack"); break;
+		case EmitterType::RULE: config = config.child("Rule"); break;
 		case EmitterType::CAN: config = config.child("Can"); break;
+		case EmitterType::RUBBER: config = config.child("Rubber"); break;
+		case EmitterType::LIQUIDPAPER: config = config.child("LiquidPaper"); break;
 		case EmitterType::COFFE: config = config.child("Coffe"); break;
 		case EmitterType::CALCULATOR: config = config.child("Calculator"); break;
 		case EmitterType::BOOK: config = config.child("Book"); break;

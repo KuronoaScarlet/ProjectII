@@ -14,6 +14,7 @@
 #include "DialogSystem.h"
 #include "EntityManager.h"
 #include "PlayerEntity.h"
+#include "ParticlesEngine.h"
 
 
 LiquidPaper::LiquidPaper(Module* listener, fPoint position, SDL_Texture* texture, Type type) : Entity(listener, position, texture, type)
@@ -60,6 +61,7 @@ bool LiquidPaper::Interaction()
 		CleanUp();
 		printf("%d", app->entityManager->playerData.tipex);
 		picked = true;
+		app->particleSystem->AddEmitter(EmitterType::LIQUIDPAPER, position.x, position.y, 120);
 
 	}
 	

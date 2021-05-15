@@ -138,10 +138,10 @@ bool Hud::Update(float dt)
 	if(inventoryAndStatsRequest)
 		app->sceneManager->pauseCondition = false;
 
-	if (!app->sceneManager->settingsEnabled)
+	if (!app->sceneManager->settingsEnabled && inventoryAndStatsRequest)
 	{
-		app->hud->bag->Update(app->input, dt);
-		app->hud->stats->Update(app->input, dt);
+		bag->Update(app->input, dt);
+		stats->Update(app->input, dt);
 	}
 	if (!app->sceneManager->settingsEnabled && bagEnabled)
 	{

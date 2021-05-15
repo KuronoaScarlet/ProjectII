@@ -49,6 +49,7 @@ public:
 	void InventoryAndStatsRequest();
 
 	void DrawStatsText(Entity* e);
+
 	void DrawVictoryScreen();
 	void DrawLooseScreen();
 

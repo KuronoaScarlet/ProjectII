@@ -79,6 +79,8 @@ public:
 
 	void PrintFace();
 
+
+
 	bool OnGuiMouseClickEvent(GuiControl* control)
 	{
 		app->sceneManager->OnGuiMouseClickEvent(control);
@@ -105,7 +107,7 @@ public:
 	bool itemSelected = false;
 	bool boosted = false;
 	bool victory = false;
-	bool loose = false;
+	bool lose = false;
 
 	TurnSort turn = UNKNOWN;
 	CombatState state = WAITING;
@@ -123,6 +125,7 @@ public:
 	char num[64] = { 0 };
 	char battleText[64] = { 0 };
 	char turnText[64] = { 0 };
+
 
 	SDL_Rect skipBarMax = { 0,0,0,0 };
 	SDL_Rect skipBar = { 0,0,0,0 };

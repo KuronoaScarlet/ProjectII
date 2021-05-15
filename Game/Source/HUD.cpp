@@ -402,12 +402,31 @@ void Hud::DrawStatsText(Entity* e)
 
 void Hud::DrawVictoryScreen()
 {
-	app->render->DrawRectangle({ 90, 40, 1100, 680 }, 0, 0, 0, 255);
-	app->render->DrawRectangle({ 91, 41, 1098, 678 }, 255, 128, 128, 255);
-	sprintf_s(text, 64, "Has ganado!");
-	app->render->DrawText(app->render->font, text, 360, 110, 50, 5, { 0, 0, 0, 255 });
+	app->render->DrawRectangle({90, 40, 1100, 640 }, 0, 0, 0, 255);
+	app->render->DrawRectangle({91, 41, 1098, 638 }, 255, 128, 128, 255);
+
+	sprintf_s(text, 64, "Has ganado la pelea!");
+	app->render->DrawText(app->render->font, text, 385, 90, 60, 4, { 0, 0, 0, 255 });
 	sprintf_s(text, 64, "Buen trabajo! Sigue haciendolo asi!");
-	app->render->DrawText(app->render->font, text, 280, 300, 40, 5, { 0, 0, 0, 255 });
+	app->render->DrawText(app->render->font, text, 360, 400, 40, 4, { 0, 0, 0, 255 });
+	sprintf_s(text, 64, "Pulsa espacio para continuar...");
+	app->render->DrawText(app->render->font, text, 770, 640, 35, 3, { 0, 0, 0, 255 });
+
+	app->render->DrawTexture(playerFace, 470, 200, NULL);
+	app->render->DrawTexture(allyFace, 670, 200, NULL);
+}
+
+void Hud::DrawLooseScreen()
+{
+	app->render->DrawRectangle({ 90, 40, 1100, 640 }, 0, 0, 0, 255);
+	app->render->DrawRectangle({ 91, 41, 1098, 638 }, 128, 128, 255, 255);
+
+	sprintf_s(text, 64, "Perdiste...");
+	app->render->DrawText(app->render->font, text, 550, 90, 60, 4, { 0, 0, 0, 255 });
+	sprintf_s(text, 64, "No te preocupes! Sigue intentandolo!");
+	app->render->DrawText(app->render->font, text, 360, 400, 40, 4, { 0, 0, 0, 255 });
+	sprintf_s(text, 64, "Pulsa espacio para continuar...");
+	app->render->DrawText(app->render->font, text, 770, 640, 35, 3, { 0, 0, 0, 255 });
 
 	app->render->DrawTexture(playerFace, 470, 200, NULL);
 	app->render->DrawTexture(allyFace, 670, 200, NULL);

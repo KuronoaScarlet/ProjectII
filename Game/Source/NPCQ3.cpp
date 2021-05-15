@@ -1,4 +1,4 @@
-#include "NPCQ2.h"
+#include "NPCQ3.h"
 #include "App.h"
 #include "Render.h"
 #include "Collisions.h"
@@ -14,7 +14,7 @@
 #include "DialogSystem.h"
 
 
-NPCQ2::NPCQ2(Module* listener, fPoint position, SDL_Texture* texture, Type type) : Entity(listener, position, texture, type)
+NPCQ3::NPCQ3(Module* listener, fPoint position, SDL_Texture* texture, Type type) : Entity(listener, position, texture, type)
 {
 	mood = app->tex->Load("Assets/Textures/Moods/Mood_changer_squeeze_32x32.png");
 
@@ -39,20 +39,21 @@ NPCQ2::NPCQ2(Module* listener, fPoint position, SDL_Texture* texture, Type type)
 	collider = app->collisions->AddCollider(SDL_Rect({ (int)position.x, (int)position.y, 30, 46 }), Collider::Type::NPC, listener);
 }
 
-bool NPCQ2::Start()
+bool NPCQ3::Start()
 {
 	return true;
 }
 
-bool NPCQ2::Update(float dt)
+bool NPCQ3::Update(float dt)
 {
+
 	currentAnimation->Update();
 	currentMoodAnimation->Update();
 
 	return true;
 }
 
-bool NPCQ2::Draw()
+bool NPCQ3::Draw()
 {
 	SDL_Rect rect = currentAnimation->GetCurrentFrame();
 	app->render->DrawTexture(texture, position.x, position.y, &rect);
@@ -60,7 +61,7 @@ bool NPCQ2::Draw()
 	return true;
 }
 
-bool NPCQ2::Interaction()
+bool NPCQ3::Interaction()
 {
 	SDL_Rect moodRect = currentMoodAnimation->GetCurrentFrame();
 	app->render->DrawTexture(mood, position.x + 25, position.y - 12, &moodRect);
@@ -68,12 +69,12 @@ bool NPCQ2::Interaction()
 	return true;
 }
 
-void NPCQ2::Collision(Collider* coll)
+void NPCQ3::Collision(Collider* coll)
 {
 
 }
 
-void NPCQ2::CleanUp()
+void NPCQ3::CleanUp()
 {
 
 }

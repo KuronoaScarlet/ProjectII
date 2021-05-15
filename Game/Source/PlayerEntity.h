@@ -43,14 +43,15 @@ private:
 	Animation battleIdle;
 
 	Animation* currentAnimation;
-		
+
 	fPoint tempPlayerPosition;
-	
+
 	fPoint lerpCamera;
 
 	//// Items
 
 	Collider* frontCollider = nullptr;
+
 };
 
 #endif // _GROUNDENEMY_H_

@@ -81,6 +81,8 @@ public:
 		int snack = 0;
 		int pencilSharpened = 0;
 		int wonster = 0;
+
+		bool tp = false;
 	};
 
 	int winCount = 0;

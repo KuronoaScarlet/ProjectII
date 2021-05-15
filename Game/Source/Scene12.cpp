@@ -41,6 +41,7 @@ bool Scene12::Awake()
 bool Scene12::Start()
 {
 	//app->scene1->lpl = false;
+	app->entityManager->playerData.tp = false;
 	passingToLvl1 = false;
 	active = true;
 	app->hud->Start();

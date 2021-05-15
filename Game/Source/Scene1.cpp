@@ -53,10 +53,10 @@ bool Scene1::Start()
 	app->entityManager->AddEntity({ 1568.0f, 192.0f }, Entity::Type::NPC2);
 	app->entityManager->AddEntity({ 224.0f, 352.0f }, Entity::Type::NPC3);
 	
-	
+	app->entityManager->AddEntity({ 192.0f, 416.0f}, Entity::Type::PENCIL);
 	app->entityManager->AddEntity({ 220.0f, 1400.0f}, Entity::Type::COFFEE);
 	app->entityManager->AddEntity({ 90.0f, 1445.0f}, Entity::Type::CAN);
-
+	
 
 	app->render->camera.y = 0;
 	app->render->camera.x = 0;
@@ -64,7 +64,7 @@ bool Scene1::Start()
 	app->map->active = true;
 
 	//Up
-	tp1to21 = app->collisions->AddCollider(SDL_Rect({ 1024, 448, 32, 64 }), Collider::Type::TP1TO2, this);
+	tp1to21 = app->collisions->AddCollider(SDL_Rect({ 1024, 416, 32, 96 }), Collider::Type::TP1TO2, this);
 
 	//Down
 	tp1to21 = app->collisions->AddCollider(SDL_Rect({ 992, 1056, 32, 96 }), Collider::Type::TP1TO2, this);

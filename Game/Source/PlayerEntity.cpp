@@ -396,8 +396,12 @@ void PlayerEntity::Collision(Collider* coll)
 	}
 	if ((coll->type == Collider::Type::TP1TO2 && godMode == false))
 	{
-		Tp(coll);
-		app->sceneManager->ChangeScene(SCENE12,0);
+		if (app->entityManager->playerData.tp == false)
+		{
+			app->entityManager->playerData.tp = true;
+			Tp(coll);
+			app->sceneManager->ChangeScene(SCENE12, 0);
+		}
 	}
 
 	if ((coll->type == Collider::Type::TP2TO1 && godMode == false))
@@ -427,22 +431,26 @@ bool PlayerEntity::Tp(Collider* collider)
 	if ((collider->rect.y == 416 && collider->rect.x == 1024))
 	{
 		app->playerPosition = { 64.0f, 416.0f };
+		
 		return true;
 	}
 	if (collider->rect.x == 1024 && collider->rect.y == 1120 )
 	{
 		app->playerPosition = { 64.0f, 1024.0f };
+		
 		return false;
 	}
 	//SCENE 2 TO SCENE 1
 	if (collider->rect.x == 32 && collider->rect.y == 416)
 	{
 		app->playerPosition = { 960.0f, 448.0f };
+		
 		return true;
 	}
 	if (collider->rect.x == 32 && collider->rect.y == 1024)
 	{
 		app->playerPosition = { 960.0f, 1088.0f };
+		
 		return false;
 	}
 }

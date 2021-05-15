@@ -92,6 +92,7 @@
     <ClCompile Include="Source\Ally1.cpp" />
     <ClCompile Include="Source\Ball.cpp" />
     <ClCompile Include="Source\BattleScene.cpp" />
+    <ClCompile Include="Source\BlueBall.cpp" />
     <ClCompile Include="Source\Book.cpp" />
     <ClCompile Include="Source\Calculator.cpp" />
     <ClCompile Include="Source\Can.cpp" />
@@ -112,6 +113,7 @@
     <ClCompile Include="Source\FadeToBlack.cpp" />
     <ClCompile Include="Source\FirstAidKit.cpp" />
     <ClCompile Include="Source\Fonts.cpp" />
+    <ClCompile Include="Source\GateOpen.cpp" />
     <ClCompile Include="Source\GuiButton.cpp" />
     <ClCompile Include="Source\GuiCheckBox.cpp" />
     <ClCompile Include="Source\GuiManager.cpp" />
@@ -136,6 +138,8 @@
     <ClCompile Include="Source\PencilSharpener.cpp" />
     <ClCompile Include="Source\PerfTimer.cpp" />
     <ClCompile Include="Source\PlayerEntity.cpp" />
+    <ClCompile Include="Source\PurpleBall.cpp" />
+    <ClCompile Include="Source\RedBall.cpp" />
     <ClCompile Include="Source\Rubber.cpp" />
     <ClCompile Include="Source\Rule.cpp" />
     <ClCompile Include="Source\Scene1.cpp" />
@@ -151,10 +155,12 @@
     <ClCompile Include="Source\Title.cpp" />
     <ClCompile Include="Source\Window.cpp" />
     <ClCompile Include="Source\WinScreen.cpp" />
+    <ClCompile Include="Source\YellowBall.cpp" />
     <ClInclude Include="Source\Ally1.h" />
     <ClInclude Include="Source\Animation.h" />
     <ClInclude Include="Source\Ball.h" />
     <ClInclude Include="Source\BattleScene.h" />
+    <ClInclude Include="Source\BlueBall.h" />
     <ClInclude Include="Source\Book.h" />
     <ClInclude Include="Source\Calculator.h" />
     <ClInclude Include="Source\Can.h" />
@@ -176,6 +182,7 @@
     <ClInclude Include="Source\FadeToBlack.h" />
     <ClInclude Include="Source\FirstAidKit.h" />
     <ClInclude Include="Source\Fonts.h" />
+    <ClInclude Include="Source\GateOpen.h" />
     <ClInclude Include="Source\GuiButton.h" />
     <ClInclude Include="Source\GuiCheckBox.h" />
     <ClInclude Include="Source\GuiControl.h" />
@@ -199,7 +206,9 @@
     <ClInclude Include="Source\PerfTimer.h" />
     <ClInclude Include="Source\PlayerEntity.h" />
     <ClInclude Include="Source\PQueue.h" />
+    <ClInclude Include="Source\PurpleBall.h" />
     <ClInclude Include="Source\Queue.h" />
+    <ClInclude Include="Source\RedBall.h" />
     <ClInclude Include="Source\Rubber.h" />
     <ClInclude Include="Source\Rule.h" />
     <ClInclude Include="Source\Scene1.h" />
@@ -229,6 +238,7 @@
     <ClInclude Include="Source\External\PugiXml\src\pugixml.hpp" />
     <ClCompile Include="Source\External\PugiXml\src\pugixml.cpp" />
     <ClInclude Include="Source\WinScreen.h" />
+    <ClInclude Include="Source\YellowBall.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -108,6 +108,12 @@ private:
 	SDL_Texture* texNPCQ2;
 	SDL_Texture* texNPCQ3;
 
+	SDL_Texture* texBlueBall;
+	SDL_Texture* texYellowBall;
+	SDL_Texture* texRedBall;
+	SDL_Texture* texPurpleBall;
+	SDL_Texture* texGateOpen;
+
 	SDL_Texture* texEnemy1;
 	SDL_Texture* texEnemy3;
 	SDL_Texture* texEnemyLantern1;
@@ -117,6 +123,13 @@ private:
 
 	Entity* entityPlayer;
 	Entity* entityAlly1;
+
+	Entity* entityBlueBall;
+	Entity* entityYellowBall;
+	Entity* entityRedBall;
+	Entity* entityPurpleBall;
+	Entity* entityGateOpen;
+
 
 	Entity* entityNPC1;
 	Entity* entityNPC2;

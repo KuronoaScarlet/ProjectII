@@ -63,6 +63,9 @@ public:
 	Collider* goleft3 = nullptr;
 
 	Collider* checkpoint = nullptr;
+	Collider* getoutbox = nullptr;
+
+	Collider* gymtobath = nullptr;
 
 	Collider* NPC1 = nullptr;
 

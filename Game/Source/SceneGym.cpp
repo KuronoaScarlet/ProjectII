@@ -52,7 +52,7 @@ bool SceneGym::Start()
 	app->sceneManager->scenegym = true;
 
 
-	app->entityManager->AddEntity({32, 96 }, Entity::Type::PLAYER);
+	app->entityManager->AddEntity({1300, 608 }, Entity::Type::PLAYER);
 	app->entityManager->AddEntity({ 160, 128 }, Entity::Type::CRATE);
 
 	app->entityManager->AddEntity({ 288, 200 }, Entity::Type::ENEMYLANTERN2);
@@ -70,6 +70,14 @@ bool SceneGym::Start()
 	app->entityManager->AddEntity({ 880, 100 }, Entity::Type::ENEMYLANTERN2);
 	app->entityManager->AddEntity({ 790, 100 }, Entity::Type::ENEMYLANTERN2);
 	app->entityManager->AddEntity({ 896, 128 }, Entity::Type::ENEMYLANTERN2);
+
+	app->entityManager->AddEntity({ 1376, 608 }, Entity::Type::BLUEBALL);
+	app->entityManager->AddEntity({ 1440, 608 }, Entity::Type::REDBALL);
+	app->entityManager->AddEntity({ 1504, 608 }, Entity::Type::YELLOWBALL);
+	app->entityManager->AddEntity({ 1568, 608 }, Entity::Type::PURPLEBALL);
+	app->entityManager->AddEntity({ 1504, 768 }, Entity::Type::GATEOPEN);
+
+	gymtobath = app->collisions->AddCollider(SDL_Rect({ 0, 96, 10, 90 }), Collider::Type::TPGYMTOBATH, this);
 
 	goright = app->collisions->AddCollider(SDL_Rect({ 32, 224, 10, 10 }), Collider::Type::GORIGHT, this);
 	goleft = app->collisions->AddCollider(SDL_Rect({ 352, 224, 10, 10 }), Collider::Type::GOLEFT, this);
@@ -106,6 +114,7 @@ bool SceneGym::Start()
 	goup = app->collisions->AddCollider(SDL_Rect({ 896, 352, 10, 10 }), Collider::Type::GOUP, this);
 
 	checkpoint = app->collisions->AddCollider(SDL_Rect({ 608, 600, 10, 90 }), Collider::Type::DUNGEONCP , this);
+	getoutbox = app->collisions->AddCollider(SDL_Rect({ 1120, 64, 10, 90 }), Collider::Type::GETOUTBOX, this);
 
 	app->render->camera.y = 0;
 	app->render->camera.x = 0;

@@ -19,6 +19,11 @@ Collisions::Collisions(bool startEnabled) : Module()
 	matrix[Collider::Type::PLAYER][Collider::Type::TP1TO2] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::TP2TO1] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::DUNGEONCP] = true;
+	matrix[Collider::Type::PLAYER][Collider::Type::TPGYMTOBATH] = true;
+	matrix[Collider::Type::PLAYER][Collider::Type::TPBATHTOGYM] = true;
+
+	matrix[Collider::Type::TPGYMTOBATH][Collider::Type::PLAYER] = true;
+	matrix[Collider::Type::TPBATHTOGYM][Collider::Type::PLAYER] = true;
 
 	matrix[Collider::Type::PLAYER][Collider::Type::GETOUTBOX] = true;
 	matrix[Collider::Type::GETOUTBOX][Collider::Type::PLAYER] = true;
@@ -221,6 +226,12 @@ void Collisions::DebugDraw()
 			app->render->DrawRectangle(colliders[i]->rect, 50, 0, 90, alpha);
 			break;
 		case Collider::Type::TP1TO2:
+			app->render->DrawRectangle(colliders[i]->rect, 100, 50, 90, alpha);
+			break;
+		case Collider::Type::TPBATHTOGYM:
+			app->render->DrawRectangle(colliders[i]->rect, 100, 50, 90, alpha);
+			break;
+		case Collider::Type::TPGYMTOBATH:
 			app->render->DrawRectangle(colliders[i]->rect, 100, 50, 90, alpha);
 			break;
 		case Collider::Type::ENEMYLANTERN:

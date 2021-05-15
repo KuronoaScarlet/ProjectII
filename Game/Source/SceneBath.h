@@ -47,6 +47,8 @@ public:
 	bool firstEntry = true;
 	bool on;
 
+	Collider* bathtogym = nullptr;
+
 	Collider* tp1to21 = nullptr;
 	Collider* tp1to22 = nullptr;
 	Collider* tp1to23 = nullptr;

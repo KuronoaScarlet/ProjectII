@@ -29,6 +29,8 @@ struct Collider
 		CRATE,
 		DUNGEONCP,
 		GETOUTBOX,
+		TPGYMTOBATH,
+		TPBATHTOGYM,
 
 		MAX
 	};

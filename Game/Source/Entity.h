@@ -42,7 +42,12 @@ public:
 		ENEMYLANTERN1,
 		ENEMYLANTERN2,
 		ENEMYLANTERN3,
-		CRATE
+		CRATE,
+		BLUEBALL,
+		REDBALL,
+		PURPLEBALL,
+		YELLOWBALL,
+		GATEOPEN
 	};
 
 	Entity(Module* listener, fPoint position, SDL_Texture* texture, Type type) : listener(listener), position(position), texture(texture), type(type)

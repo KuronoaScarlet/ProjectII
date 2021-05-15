@@ -189,6 +189,21 @@
     <ClCompile Include="Source\NPCQ3.cpp">
       <Filter>Entities\NoPlayable</Filter>
     </ClCompile>
+    <ClCompile Include="Source\BlueBall.cpp">
+      <Filter>Entities\Puzzle</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\YellowBall.cpp">
+      <Filter>Entities\Puzzle</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RedBall.cpp">
+      <Filter>Entities\Puzzle</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PurpleBall.cpp">
+      <Filter>Entities\Puzzle</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GateOpen.cpp">
+      <Filter>Entities\Puzzle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -417,6 +432,21 @@
     <ClInclude Include="Source\NPCQ3.h">
       <Filter>Entities\NoPlayable</Filter>
     </ClInclude>
+    <ClInclude Include="Source\BlueBall.h">
+      <Filter>Entities\Puzzle</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\YellowBall.h">
+      <Filter>Entities\Puzzle</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RedBall.h">
+      <Filter>Entities\Puzzle</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PurpleBall.h">
+      <Filter>Entities\Puzzle</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GateOpen.h">
+      <Filter>Entities\Puzzle</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">
@@ -457,6 +487,9 @@
     </Filter>
     <Filter Include="Entities\Items">
       <UniqueIdentifier>{b5336556-afb7-4f6a-a599-84dcd700d93a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities\Puzzle">
+      <UniqueIdentifier>{59866e94-735c-4a07-97aa-a8150d61991a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

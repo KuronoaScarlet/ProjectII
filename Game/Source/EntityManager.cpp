@@ -30,6 +30,11 @@
 #include "ScotchTape.h"
 #include "Snack.h"
 #include "Book.h"
+#include "BlueBall.h"
+#include "RedBall.h"
+#include "PurpleBall.h"
+#include "YellowBall.h"
+#include "GateOpen.h"
 
 #include "EnemyLantern1.h"
 #include "EnemyLantern2.h"
@@ -66,6 +71,14 @@ bool EntityManager::Start()
 	texNPCQ3 = app->tex->Load("Assets/Textures/Entities/NPC/Rob_32x32.png");
 
 	texItem = app->tex->Load("Assets/Textures/Items/Shine.png");
+
+	texGateOpen = app->tex->Load("Assets/Textures/Items/purpleball.png");
+
+	texBlueBall = app->tex->Load("Assets/Maps/blueball.png");
+	texRedBall = app->tex->Load("Assets/Maps/redball.png");
+	texPurpleBall = app->tex->Load("Assets/Maps/purpleball.png");
+	texYellowBall = app->tex->Load("Assets/Maps/yellowball.png");
+
 
 	texEnemy1 = app->tex->Load("Assets/Textures/Entities/Enemies/Halloween_Kid_1_idle_anim_32x32.png");
 	texEnemyLantern1 = app->tex->Load("Assets/Textures/Entities/NPC/npc_samuel_jacko.png");
@@ -353,6 +366,27 @@ void EntityManager::AddEntity(fPoint position, Entity::Type type)
 		entityList.Add(entitySnack);
 		break;
 	////////
+	///PUZZLE/////
+	case Entity::Type::BLUEBALL:
+		entityBlueBall = (Entity*)(new BlueBall((Module*)this, position, texBlueBall, type));
+		entityList.Add(entityBlueBall);
+		break;
+	case Entity::Type::REDBALL:
+		entityRedBall = (Entity*)(new RedBall((Module*)this, position, texRedBall, type));
+		entityList.Add(entityRedBall);
+		break;
+	case Entity::Type::PURPLEBALL:
+		entityPurpleBall = (Entity*)(new PurpleBall((Module*)this, position, texPurpleBall, type));
+		entityList.Add(entityPurpleBall);
+		break;
+	case Entity::Type::YELLOWBALL:
+		entityYellowBall = (Entity*)(new YellowBall((Module*)this, position, texYellowBall, type));
+		entityList.Add(entityYellowBall);
+		break;
+	case Entity::Type::GATEOPEN:
+		entityGateOpen = (Entity*)(new GateOpen((Module*)this, position, texPlayer, type));
+		entityList.Add(entityGateOpen);
+		break;
 	}
 }
 

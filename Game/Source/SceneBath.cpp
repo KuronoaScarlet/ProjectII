@@ -61,6 +61,8 @@ bool SceneBath::Start()
 	goleft2 = app->collisions->AddCollider(SDL_Rect({ 660, 330, 10, 10 }), Collider::Type::GOLEFT, this);
 	goup2 = app->collisions->AddCollider(SDL_Rect({ 672, 480, 10, 10 }), Collider::Type::GOUP, this);
 
+	bathtogym = app->collisions->AddCollider(SDL_Rect({ 704, 288, 10, 90 }), Collider::Type::TPBATHTOGYM, this);
+
 	app->sceneManager->scenegym = false;
 	app->sceneManager->scenebath = true;
 

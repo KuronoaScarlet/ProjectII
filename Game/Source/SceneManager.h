@@ -119,6 +119,12 @@ public:
     float currentIteration;
     float totalIterations;
 
+    //Puzzle
+    bool blueballbutton = false;
+    bool redballbutton = false;
+    bool purpleballbutton = false;
+    bool yellowballbutton = false;
+
 
     //BattleScene Bools.........................................................
     bool atkMenu = false;

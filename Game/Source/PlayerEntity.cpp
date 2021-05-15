@@ -234,6 +234,62 @@ bool PlayerEntity::Update(float dt)
 				app->render->DrawText(app->render->font, crateText, 0, 0, 40, 0, { 255,255, 255, 255 });
 			}
 		}
+		else if (tmp->data->type == Type::BLUEBALL)
+		{
+			if (position.DistanceTo(tmp->data->position) < 50)
+			{
+				if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN && app->entityManager->playerData.onDialog == false)
+				{
+					tmp->data->Interaction();
+					break;
+				}
+				char crateText[80] = { 0 };
+				sprintf_s(crateText, 80, "Una pelota azul, parece que tiene un boton, pulsa E para activarlo.");
+				app->render->DrawText(app->render->font, crateText, 0, 0, 40, 0, { 255,255, 255, 255 });
+			}
+		}
+		else if (tmp->data->type == Type::REDBALL)
+		{
+			if (position.DistanceTo(tmp->data->position) < 50)
+			{
+				if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN && app->entityManager->playerData.onDialog == false)
+				{
+					tmp->data->Interaction();
+					break;
+				}
+				char crateText[80] = { 0 };
+				sprintf_s(crateText, 80, "Una pelota roja, parece que tiene un boton, pulsa E para activarlo.");
+				app->render->DrawText(app->render->font, crateText, 0, 0, 40, 0, { 255,255, 255, 255 });
+			}
+		}
+		else if (tmp->data->type == Type::YELLOWBALL)
+		{
+			if (position.DistanceTo(tmp->data->position) < 50)
+			{
+				if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN && app->entityManager->playerData.onDialog == false)
+				{
+					tmp->data->Interaction();
+					break;
+				}
+				char crateText[80] = { 0 };
+				sprintf_s(crateText, 80, "Una pelota amarilla, parece que tiene un boton, pulsa E para activarlo.");
+				app->render->DrawText(app->render->font, crateText, 0, 0, 40, 0, { 255,255, 255, 255 });
+			}
+		}
+		else if (tmp->data->type == Type::PURPLEBALL)
+		{
+			if (position.DistanceTo(tmp->data->position) < 50)
+			{
+				if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN && app->entityManager->playerData.onDialog == false)
+				{
+					tmp->data->Interaction();
+					break;
+				}
+				char crateText[80] = { 0 };
+				sprintf_s(crateText, 80, "Una pelota lila, parece que tiene un botón, pulsa E para activarlo.");
+				app->render->DrawText(app->render->font, crateText, 0, 0, 40, 0, { 255,255, 255, 255 });
+			}
+		}
 		else if (tmp->data->type == Type::CAN)
 		{
 			if (position.DistanceTo(tmp->data->position) < 50)
@@ -256,6 +312,40 @@ bool PlayerEntity::Update(float dt)
 					break;
 				}
 			}
+		}
+
+		else if (tmp->data->type == Type::RUBBER)
+		{
+		if (position.DistanceTo(tmp->data->position) < 50)
+		{
+			if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN && app->entityManager->playerData.onDialog == false)
+			{
+				tmp->data->Interaction();
+				break;
+			}
+		}
+		}
+		else if (tmp->data->type == Type::RULE)
+		{
+		if (position.DistanceTo(tmp->data->position) < 50)
+		{
+			if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN && app->entityManager->playerData.onDialog == false)
+			{
+				tmp->data->Interaction();
+				break;
+			}
+		}
+		}
+		else if (tmp->data->type == Type::SNACK)
+		{
+		if (position.DistanceTo(tmp->data->position) < 50)
+		{
+			if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN && app->entityManager->playerData.onDialog == false)
+			{
+				tmp->data->Interaction();
+				break;
+			}
+		}
 		}
 
 		tmp = tmp->next;
@@ -417,7 +507,7 @@ bool PlayerEntity::Update(float dt)
 		collider->SetPos(position.x + 6, position.y + 34);
 	}
 	
-	if(position == tempPlayerPosition && app->sceneManager->scenegym == true)
+	if(position == tempPlayerPosition && app->sceneManager->scenegym == true && app->sceneManager->crate == true)
 	{
 		collider->SetPos(-1000, -1000);
 	}
@@ -460,9 +550,28 @@ void PlayerEntity::Collision(Collider* coll)
 		app->sceneManager->ChangeScene(SCENE1, 0);
 
 	}
+
+	if ((coll->type == Collider::Type::TPGYMTOBATH && godMode == false))
+	{
+		Tp(coll);
+		app->sceneManager->ChangeScene(BATH, 0);
+
+	}
+
+	if ((coll->type == Collider::Type::TPBATHTOGYM && godMode == false))
+	{
+		Tp(coll);
+		app->sceneManager->ChangeScene(GYM, 0);
+
+	}
+
 	if ((coll->type == Collider::Type::DUNGEONCP && godMode == false))
 	{
 		app->sceneManager->checkpointgym = true;
+	}
+	if ((coll->type == Collider::Type::GETOUTBOX && godMode == false))
+	{
+		app->sceneManager->crate = false;
 	}
 	if ((coll->type == Collider::Type::ENEMYLANTERN && godMode == false))
 	{

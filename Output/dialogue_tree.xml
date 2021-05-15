@@ -110,4 +110,15 @@
       <dialogue option=" " returnCode="0" nextNode="3"/>
     </node>
   </dialogueExample>
+  <dialogueExample Id="5">
+    <node text="Ese tipo de ahi quiere pelea!"  id="0">
+      <dialogue option=" " returnCode="0" nextNode="1"/>
+    </node>
+    <node text="Acercate a el para luchar."  id="1">
+      <dialogue option="1. Vale! " returnCode="0" nextNode="2"/>
+    </node>
+    <node text="Mucha suerte!"  id="2">
+      <dialogue option=" " returnCode="0" nextNode="3"/>
+    </node>
+  </dialogueExample>
 </dialogueTree>

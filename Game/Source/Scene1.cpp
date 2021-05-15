@@ -53,6 +53,7 @@ bool Scene1::Start()
 	app->entityManager->AddEntity({ 1600.0f, 1024.0f }, Entity::Type::NPC2);
 	app->entityManager->AddEntity({ 1568.0f, 192.0f }, Entity::Type::NPC2);
 	app->entityManager->AddEntity({ 224.0f, 352.0f }, Entity::Type::NPC3);
+	app->entityManager->AddEntity({ 480.0f, 1248.0f }, Entity::Type::NPCQ2);
 	
 	app->entityManager->AddEntity({ 192.0f, 416.0f}, Entity::Type::PENCIL);
 	app->entityManager->AddEntity({ 220.0f, 1400.0f}, Entity::Type::COFFEE);

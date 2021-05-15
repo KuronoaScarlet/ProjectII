@@ -105,6 +105,7 @@ private:
 	SDL_Texture* texNPC2;
 	SDL_Texture* texNPC3;
 	SDL_Texture* texNPCQ1;
+	SDL_Texture* texNPCQ2;
 
 	SDL_Texture* texEnemy1;
 	SDL_Texture* texEnemy3;
@@ -119,6 +120,8 @@ private:
 	Entity* entityNPC1;
 	Entity* entityNPC2;
 	Entity* entityNPC3;
+	Entity* entityNPCQ1;
+	Entity* entityNPCQ2;
 	Entity* entityCrate;
 
 	Entity* entityGhostEnemy;

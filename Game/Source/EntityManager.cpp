@@ -62,6 +62,7 @@ bool EntityManager::Start()
 	texNPC2 = app->tex->Load("Assets/Textures/Entities/NPC/Samuel_32x32.png");
 	texNPC3 = app->tex->Load("Assets/Textures/Entities/NPC/Rob_32x32.png");
 	texNPCQ1 = app->tex->Load("Assets/Textures/Entities/NPC/Rob_32x32.png");
+	texNPCQ2 = app->tex->Load("Assets/Textures/Entities/NPC/Rob_32x32.png");
 
 	texItem = app->tex->Load("Assets/Textures/Items/Shine.png");
 
@@ -251,8 +252,12 @@ void EntityManager::AddEntity(fPoint position, Entity::Type type)
 		entityList.Add(entityNPC3);
 		break;
 	case Entity::Type::NPCQ1:
-		entityNPC3 = (Entity*)(new NPC3((Module*)this, position, texNPC3, type));
-		entityList.Add(entityNPC3);
+		entityNPCQ1 = (Entity*)(new NPC3((Module*)this, position, texNPCQ1, type));
+		entityList.Add(entityNPCQ1);
+		break;
+	case Entity::Type::NPCQ2:
+		entityNPCQ2 = (Entity*)(new NPC3((Module*)this, position, texNPCQ2, type));
+		entityList.Add(entityNPCQ2);
 		break;
 	case Entity::Type::CRATE:
 		entityCrate = (Entity*)(new Crate((Module*)this, position, texPlayer, type));

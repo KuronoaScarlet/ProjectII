@@ -129,6 +129,7 @@
     <ClCompile Include="Source\NPC2.cpp" />
     <ClCompile Include="Source\NPC3.cpp" />
     <ClCompile Include="Source\NPCQ1.cpp" />
+    <ClCompile Include="Source\NPCQ2.cpp" />
     <ClCompile Include="Source\Pathfinding.cpp" />
     <ClCompile Include="Source\Pencil.cpp" />
     <ClCompile Include="Source\PencilSharpener.cpp" />
@@ -188,6 +189,7 @@
     <ClInclude Include="Source\NPC2.h" />
     <ClInclude Include="Source\NPC3.h" />
     <ClInclude Include="Source\NPCQ1.h" />
+    <ClInclude Include="Source\NPCQ2.h" />
     <ClInclude Include="Source\ParticlesEngine.h" />
     <ClInclude Include="Source\Pathfinding.h" />
     <ClInclude Include="Source\Pencil.h" />

@@ -183,6 +183,9 @@
     <ClCompile Include="Source\NPCQ1.cpp">
       <Filter>Entities\NoPlayable</Filter>
     </ClCompile>
+    <ClCompile Include="Source\NPCQ2.cpp">
+      <Filter>Entities\NoPlayable</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -403,6 +406,9 @@
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="Source\NPCQ1.h">
+      <Filter>Entities\NoPlayable</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\NPCQ2.h">
       <Filter>Entities\NoPlayable</Filter>
     </ClInclude>
   </ItemGroup>

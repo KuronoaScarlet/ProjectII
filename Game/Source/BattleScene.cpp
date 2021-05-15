@@ -122,8 +122,6 @@ bool BattleScene::Start()
 	SDL_Texture* texas = app->tex->Load("Assets/Fonts/kurale.png");
 	winScreen = app->tex->Load("Assets/Textures/battle_scene.png");
 
-	app->sceneManager->CreateQuest(2, "win a combat");
-
 	return true;
 }
 

@@ -44,12 +44,15 @@ bool SceneGym::Start()
 	active = true;
 	app->hud->Start();
 
+	app->sceneManager->scenebath = false;
+
 	app->playerPosition.x = 672.0f;
 	app->playerPosition.y = 288.0f;
 
 	app->sceneManager->scenegym = true;
 
-	app->entityManager->AddEntity({1088, 160 }, Entity::Type::PLAYER);
+
+	app->entityManager->AddEntity({32, 96 }, Entity::Type::PLAYER);
 	app->entityManager->AddEntity({ 160, 128 }, Entity::Type::CRATE);
 
 	app->entityManager->AddEntity({ 288, 200 }, Entity::Type::ENEMYLANTERN2);
@@ -101,6 +104,8 @@ bool SceneGym::Start()
 
 	godown1 = app->collisions->AddCollider(SDL_Rect({ 896, 96, 10, 10 }), Collider::Type::GODOWN, this);
 	goup = app->collisions->AddCollider(SDL_Rect({ 896, 352, 10, 10 }), Collider::Type::GOUP, this);
+
+	checkpoint = app->collisions->AddCollider(SDL_Rect({ 608, 600, 10, 90 }), Collider::Type::DUNGEONCP , this);
 
 	app->render->camera.y = 0;
 	app->render->camera.x = 0;

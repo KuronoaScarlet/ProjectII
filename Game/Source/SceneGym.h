@@ -62,6 +62,8 @@ public:
 	Collider* goright3 = nullptr;
 	Collider* goleft3 = nullptr;
 
+	Collider* checkpoint = nullptr;
+
 	Collider* NPC1 = nullptr;
 
 	bool passingToLvl2 = false;

@@ -48,6 +48,9 @@ bool Scene1::Start()
 	app->hud->Start();
 	app->entityManager->AddEntity({app->playerPosition.x, app->playerPosition.y }, Entity::Type::PLAYER);
 
+	app->sceneManager->scenebath = false;
+	app->sceneManager->scenegym = false;
+
 	app->entityManager->AddEntity({ 800.0f, 736.0f }, Entity::Type::NPC1);
 	app->entityManager->AddEntity({ 352.0f, 1312.0f }, Entity::Type::NPC2);
 	app->entityManager->AddEntity({ 1600.0f, 1024.0f }, Entity::Type::NPC2);

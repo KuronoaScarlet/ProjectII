@@ -46,6 +46,9 @@ bool Scene12::Start()
 	active = true;
 	app->hud->Start();
 
+	app->sceneManager->scenebath = false;
+	app->sceneManager->scenegym = false;
+
 	app->entityManager->AddEntity({ app->playerPosition.x,app->playerPosition.y }, Entity::Type::PLAYER);
 	app->entityManager->AddEntity({ 744,96 }, Entity::Type::NPCQ1);
 

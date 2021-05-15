@@ -61,6 +61,9 @@ bool SceneBath::Start()
 	goleft2 = app->collisions->AddCollider(SDL_Rect({ 660, 330, 10, 10 }), Collider::Type::GOLEFT, this);
 	goup2 = app->collisions->AddCollider(SDL_Rect({ 672, 480, 10, 10 }), Collider::Type::GOUP, this);
 
+	app->sceneManager->scenegym = false;
+	app->sceneManager->scenebath = true;
+
 	app->render->camera.y = 0;
 	app->render->camera.x = 0;
 

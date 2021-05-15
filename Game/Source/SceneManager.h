@@ -95,7 +95,9 @@ public:
     bool fullSc;
     bool vsync;
     bool exi;
+    bool scenebath = false;
     bool scenegym = false;
+    bool checkpointgym = false;
     bool NPC1 = false;
     bool crate = false;
     int volumMusic;

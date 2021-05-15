@@ -457,17 +457,52 @@ void PlayerEntity::Collision(Collider* coll)
 	if ((coll->type == Collider::Type::TP2TO1 && godMode == false))
 	{
 		Tp(coll);
-		app->sceneManager->ChangeScene(SCENE1,0);
+		app->sceneManager->ChangeScene(SCENE1, 0);
+
+	}
+	if ((coll->type == Collider::Type::DUNGEONCP && godMode == false))
+	{
+		app->sceneManager->checkpointgym = true;
 	}
 	if ((coll->type == Collider::Type::ENEMYLANTERN && godMode == false))
 	{
-		position.x = 320.0f;
-		position.y = 768.0f;
+		if (app->sceneManager->scenebath == true)
+		{
+			position.x = 320.0f;
+			position.y = 768.0f;
+		}
+
+		if (app->sceneManager->scenegym == true && app->sceneManager->checkpointgym == false)
+		{
+			position.x = 32.0f;
+			position.y = 96.0f;
+		}
+
+		if (app->sceneManager->scenegym == true && app->sceneManager->checkpointgym == true)
+		{
+			position.x = 608.0f;
+			position.y = 620.0f;
+		}
 	}
 	if ((coll->type == Collider::Type::ENEMYLANTERN2 && godMode == false))
 	{
-		position.x = 320.0f;
-		position.y = 768.0f;
+		if (app->sceneManager->scenebath == true)
+		{
+			position.x = 320.0f;
+			position.y = 768.0f;
+		}
+
+		if (app->sceneManager->scenegym == true && app->sceneManager->checkpointgym == false)
+		{
+			position.x = 32.0f;
+			position.y = 96.0f;
+		}
+
+		if (app->sceneManager->scenegym == true && app->sceneManager->checkpointgym == true)
+		{
+			position.x = 608.0f;
+			position.y = 620.0f;
+		}
 	}
 }
 

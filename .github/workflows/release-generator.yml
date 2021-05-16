@@ -65,7 +65,7 @@ jobs:
         GITHUB_TOKEN: $
       with:
           upload_url: $
-          asset_path: ./build/$.zip
+          asset_path: ./Build/$.zip
           asset_name: $.zip
           asset_content_type: application/zip
       if: github.event_name == 'release' && github.event.action == 'published'

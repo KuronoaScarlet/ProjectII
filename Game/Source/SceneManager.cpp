@@ -571,7 +571,7 @@ void SceneManager::OnMouseAboveButton(GuiControlState state, uint32 id)
         app->render->DrawText(app->render->font, sharpText, 209, 588, 35, 0, { 0, 0, 0, 255 });
 
         char sharpText2[80] = { 0 };
-        sprintf_s(sharpText2, 80, "Baja la defensa de un adversario.");
+        sprintf_s(sharpText2, 80, "Inflije daño leve al adversario.");
         app->render->DrawText(app->render->font, sharpText2, 209, 630, 40, 0, { 255, 0, 0, 255 });
     }
     else if (id == 132)
@@ -681,7 +681,7 @@ void SceneManager::OnMouseAboveButton(GuiControlState state, uint32 id)
         app->render->DrawText(app->render->font, wonsterEnabled, 209, 588, 35, 0, { 0, 0, 0, 255 });
 
         char wonsterEnabled2[200] = { 0 };
-        sprintf_s(wonsterEnabled2, 200, "Aumenta considerablemente el ataque y la velocidad de la barra ATB durante 3 turnos.");
+        sprintf_s(wonsterEnabled2, 200, "Aumenta considerablemente el ataque y la velocidad de la barra ATB!");
         app->render->DrawText(app->render->font, wonsterEnabled2, 209, 630, 40, 0, { 255, 0, 0, 255 });
    }
     }

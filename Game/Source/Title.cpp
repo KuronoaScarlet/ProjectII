@@ -102,23 +102,12 @@ bool Title::Start()
     credits->SetObserver(this);
     credits->SetTexture(app->tex->Load("Assets/Textures/credits.png"), app->tex->Load("Assets/Textures/credits_selected.png"), app->tex->Load("Assets/Textures/credits_pressed.png"));
 
-    fullScreen = new GuiCheckBox(506, { 900,150, 300, 60 }, "FULLSCREEN");
-    fullScreen->SetObserver(this);
-    fullScreen->SetTexture(app->tex->Load("Assets/Textures/fs1.png"), app->tex->Load("Assets/Textures/fs2.png"), app->tex->Load("Assets/Textures/fs2.png"));
-
-    musicVolume = new GuiSlider(304, { 900,300, 60, 60 }, "FxVolume");
-    musicVolume->SetObserver(this);
-    musicVolume->SetTexture(app->tex->Load("Assets/Textures/fx.png"), app->tex->Load("Assets/Textures/fx_selected.png"), app->tex->Load("Assets/Textures/fx_focused.png"));
-
-    fxVolume = new GuiSlider(305, { 900,350, 60, 60 }, "FxVolume");
-    fxVolume->SetObserver(this);
-    fxVolume->SetTexture(app->tex->Load("Assets/Textures/fx.png"), app->tex->Load("Assets/Textures/fx_selected.png"), app->tex->Load("Assets/Textures/fx_focused.png"));
-
     exit = new GuiButton(509, { 580, 569, 117, 55 }, "EXIT");
     exit->SetObserver(this);
     exit->SetTexture(app->tex->Load("Assets/Textures/exit.png"), app->tex->Load("Assets/Textures/exit_selected.png"), app->tex->Load("Assets/Textures/exit_pressed.png"));
 
     creditsScene = app->tex->Load("Assets/Textures/Screens/credits_screen.png");
+
     app->hud->creditSceneFlag = false;
     pauseBool = false;
     app->hud->fullSc = false;
@@ -149,15 +138,10 @@ bool Title::Update(float dt)
         credits->Update(app->input, dt);
         exit->Update(app->input, dt);
     }
-    if (app->hud->configOn)
-    {
-        /*fullScreen->Update(app->input, dt);
-        musicVolume->Update(app->input, dt);
-        fxVolume->Update(app->input, dt);*/
-    }
     if (app->hud->creditsOnScreen)
     {
         escCredits->Update(app->input, dt);
+        
     }
     if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
     {
@@ -196,7 +180,6 @@ bool Title::PostUpdate()
         app->sceneManager->ChangeScene(SCENE1,1);
 
     }
-   // if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
     
 
     app->render->DrawTexture(screen, 0, 0, NULL);
@@ -242,9 +225,6 @@ bool Title::PostUpdate()
             if (app->hud->configOn)
             {
                 app->render->DrawTexture(settingsPost2, 875, 100, NULL);
-                fullScreen->Draw(app->render);
-                musicVolume->Draw(app->render);
-                fxVolume->Draw(app->render);
             }
         }
     }

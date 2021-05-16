@@ -66,15 +66,16 @@ bool Hud::Start()
 	fullScreen = new GuiCheckBox(302, { 620,400, 300, 60 }, "FULLSCREEN");
 	fullScreen->SetObserver(this);
 	fullScreen->SetTexture(app->tex->Load("Assets/Textures/fs1.png"), app->tex->Load("Assets/Textures/fs2.png"), app->tex->Load("Assets/Textures/fs2.png"));
+	
 	vSync = new GuiCheckBox(303, { 620,400, 300, 60 }, "VSYNC");
 	vSync->SetObserver(this);
 	vSync->SetTexture(app->tex->Load("Assets/Textures/vs1.png"), app->tex->Load("Assets/Textures/vs2.png"), app->tex->Load("Assets/Textures/vs2.png"));
 
-	musicSlider = new GuiSlider(304, { 1020,300, 60, 60 }, "FULLSCREEN");
+	musicSlider = new GuiSlider(304, { 1140,300, 60, 60 }, "FULLSCREEN");
 	musicSlider->SetObserver(this);
 	musicSlider->SetTexture(app->tex->Load("Assets/Textures/fx.png"), app->tex->Load("Assets/Textures/fx_selected.png"), app->tex->Load("Assets/Textures/fx_focused.png"));
 
-	fxSlider = new GuiSlider(305, { 1020,350, 60, 60 }, "FULLSCREEN");
+	fxSlider = new GuiSlider(305, { 1140,350, 60, 60 }, "FULLSCREEN");
 	fxSlider->SetObserver(this);
 	fxSlider->SetTexture(app->tex->Load("Assets/Textures/fx.png"), app->tex->Load("Assets/Textures/fx_selected.png"), app->tex->Load("Assets/Textures/fx_focused.png"));
 

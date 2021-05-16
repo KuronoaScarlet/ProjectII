@@ -76,15 +76,15 @@ public:
 	bool pauseCondition = false;
 	bool settingsEnabled = false;
 	bool creditsOnScreen = false;
-	bool creditSceneFlag;
+	bool creditSceneFlag = false;
 	bool configOn = false;
-	bool fullSc;
-	bool vsync;
-	bool exi;
+	bool fullSc = false;
+	bool vsync = false;
+	bool exi = false;
 	int volumMusic;
 
 	bool firstEntry = true;
-	bool on;
+	bool on = false;
 
 	SDL_Texture* inventoryTab = nullptr;
 	SDL_Texture* statsTab = nullptr;

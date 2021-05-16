@@ -409,6 +409,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         else if (control->id == 505)
         {
             app->hud->creditSceneFlag = true;
+            app->hud->settingsEnabled = false;
         }
         else if (control->id == 300)
         {

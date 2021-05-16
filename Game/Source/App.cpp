@@ -48,8 +48,8 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	audio = new Audio();
 	assetsManager = new AssetsManager();
 	map = new Map();
-	entityManager = new EntityManager();
 	collisions = new Collisions(false);
+	entityManager = new EntityManager();
 	hud = new Hud();
 	dialogueSystem = new DialogueSystem(input, render, tex);
 	sceneManager = new SceneManager();

@@ -20,7 +20,7 @@ private:
 
     // GuiCheckBox specific properties
     // Maybe some animation properties for state change?
-    bool checked;
+    bool checked = false;
 };
 
 #endif // __GUICHECKBOX_H__

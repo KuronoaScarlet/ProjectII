@@ -57,6 +57,7 @@ public:
     SDL_Texture* bck = nullptr;
     SDL_Texture* caronte = nullptr;
     SDL_Texture* mandate = nullptr;
+
     ////////Easings
     float positionTitleBack;
     float positionTitleCaronte;
@@ -69,7 +70,6 @@ public:
 
     SDL_Texture* creditsScene = nullptr;
 
-    
     SDL_Texture* settingsPost2;
     GuiButton* play;
     GuiButton* newGame;
@@ -77,11 +77,8 @@ public:
     GuiButton* options;
     GuiButton* credits;
     GuiButton* exit;
-    GuiCheckBox* fullScreen;
-    GuiSlider* musicVolume;
-    GuiSlider* fxVolume;
     
-    bool pauseBool;
+    bool pauseBool = false;
 
     char text[64] = { 0 };
 };

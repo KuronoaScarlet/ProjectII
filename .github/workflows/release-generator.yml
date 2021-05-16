@@ -1,4 +1,4 @@
-name: Release Generator
+name: CI
 
 on: 
   push:

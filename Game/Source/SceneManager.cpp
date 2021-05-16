@@ -336,6 +336,8 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         {
             if(app->entityManager->playerData.scene == 1) app->sceneManager->ChangeScene(SCENE1,0);
             if(app->entityManager->playerData.scene == 2) app->sceneManager->ChangeScene(SCENE12,0);
+            if (app->entityManager->playerData.scene == 3) app->sceneManager->ChangeScene(BATH, 0);
+            if (app->entityManager->playerData.scene == 4) app->sceneManager->ChangeScene(GYM, 0);
         }
         if (control->id == 13)
         {

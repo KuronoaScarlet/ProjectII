@@ -51,10 +51,10 @@ bool Scene1::Start()
 	app->sceneManager->scenebath = false;
 	app->sceneManager->scenegym = false;
 
-	app->entityManager->AddEntity({ 800.0f, 736.0f }, Entity::Type::NPC1);
+	app->entityManager->AddEntity({ 128.0f, 992.0f }, Entity::Type::NPC1);
 	app->entityManager->AddEntity({ 352.0f, 1312.0f }, Entity::Type::NPC2);
-	app->entityManager->AddEntity({ 1600.0f, 1024.0f }, Entity::Type::NPC2);
-	app->entityManager->AddEntity({ 1568.0f, 192.0f }, Entity::Type::NPC2);
+	app->entityManager->AddEntity({ 704.0f, 1056.0f }, Entity::Type::NPC2);
+	app->entityManager->AddEntity({ 128.0f, 640.0f }, Entity::Type::NPC2);
 	app->entityManager->AddEntity({ 224.0f, 352.0f }, Entity::Type::NPC3);
 	app->entityManager->AddEntity({ 480.0f, 1248.0f }, Entity::Type::NPCQ2);
 	app->entityManager->AddEntity({ 256.0f, 992.0f }, Entity::Type::NPCQ3);

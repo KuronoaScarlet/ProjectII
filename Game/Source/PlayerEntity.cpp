@@ -95,6 +95,8 @@ PlayerEntity::PlayerEntity(Module* listener, fPoint position, SDL_Texture* textu
 	lerpCamera.x = position.x;
 	lerpCamera.y = position.y;
 
+	app->audio->LoadFx("Assets/Audio/Fx/pick_item.wav");
+
 	app->entityManager->playerData.onDialog = false;
 }
 
@@ -136,6 +138,7 @@ bool PlayerEntity::Update(float dt)
 					app->dialogueSystem->currentNode = app->dialogueSystem->dialogueTrees[1]->dialogueNodes[0];
 					app->dialogueSystem->PerformDialogue(1, 7);
 					app->dialogueSystem->Id = 1;
+					app->audio->PlayFx(3, pickItem);
 				}
 				tmp->data->Interaction();
 			}
@@ -152,6 +155,7 @@ bool PlayerEntity::Update(float dt)
 					app->dialogueSystem->currentNode = app->dialogueSystem->dialogueTrees[2]->dialogueNodes[0];
 					app->dialogueSystem->PerformDialogue(2, 7);
 					app->dialogueSystem->Id = 2;
+					app->audio->PlayFx(3, pickItem);
 				}
 				tmp->data->Interaction();
 			}
@@ -168,6 +172,7 @@ bool PlayerEntity::Update(float dt)
 					app->dialogueSystem->currentNode = app->dialogueSystem->dialogueTrees[4]->dialogueNodes[0];
 					app->dialogueSystem->PerformDialogue(4, 7);
 					app->dialogueSystem->Id = 4;
+					app->audio->PlayFx(3, pickItem);
 				}
 				tmp->data->Interaction();
 			}
@@ -184,6 +189,7 @@ bool PlayerEntity::Update(float dt)
 					app->dialogueSystem->currentNode = app->dialogueSystem->dialogueTrees[5]->dialogueNodes[0];
 					app->dialogueSystem->PerformDialogue(5, 7);
 					app->dialogueSystem->Id = 5;
+					app->audio->PlayFx(3, pickItem);
 				}
 				tmp->data->Interaction();
 			}
@@ -200,6 +206,7 @@ bool PlayerEntity::Update(float dt)
 					app->dialogueSystem->currentNode = app->dialogueSystem->dialogueTrees[6]->dialogueNodes[0];
 					app->dialogueSystem->PerformDialogue(6, 7);
 					app->dialogueSystem->Id = 6;
+					app->audio->PlayFx(3, pickItem);
 				}
 				tmp->data->Interaction();
 			}
@@ -208,6 +215,7 @@ bool PlayerEntity::Update(float dt)
 		{
 			if (position.DistanceTo(tmp->data->position) < 50)
 			{
+				app->audio->PlayFx(3, pickItem);
 				tmp->data->Interaction();
 				break;
 			}
@@ -216,6 +224,7 @@ bool PlayerEntity::Update(float dt)
 		{
 			if (position.DistanceTo(tmp->data->position) < 50)
 			{
+				app->audio->PlayFx(3, pickItem);
 				tmp->data->Interaction();
 				break;
 			}
@@ -227,6 +236,7 @@ bool PlayerEntity::Update(float dt)
 				if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN && app->entityManager->playerData.onDialog == false)
 				{
 					tmp->data->Interaction();
+					app->audio->PlayFx(3, pickItem);
 					break;
 				}
 				char crateText[80] = { 0 };
@@ -241,6 +251,7 @@ bool PlayerEntity::Update(float dt)
 				if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN && app->entityManager->playerData.onDialog == false)
 				{
 					tmp->data->Interaction();
+					app->audio->PlayFx(3, pickItem);
 					break;
 				}
 				char crateText[80] = { 0 };
@@ -255,6 +266,7 @@ bool PlayerEntity::Update(float dt)
 				if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN && app->entityManager->playerData.onDialog == false)
 				{
 					tmp->data->Interaction();
+					app->audio->PlayFx(3, pickItem);
 					break;
 				}
 				char crateText[80] = { 0 };
@@ -269,6 +281,7 @@ bool PlayerEntity::Update(float dt)
 				if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN && app->entityManager->playerData.onDialog == false)
 				{
 					tmp->data->Interaction();
+					app->audio->PlayFx(3, pickItem);
 					break;
 				}
 				char crateText[80] = { 0 };
@@ -283,6 +296,7 @@ bool PlayerEntity::Update(float dt)
 				if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN && app->entityManager->playerData.onDialog == false)
 				{
 					tmp->data->Interaction();
+					app->audio->PlayFx(3, pickItem);
 					break;
 				}
 				char crateText[80] = { 0 };
@@ -296,6 +310,7 @@ bool PlayerEntity::Update(float dt)
 			{
 				if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN && app->entityManager->playerData.onDialog == false)
 				{
+					app->audio->PlayFx(3, pickItem);
 					tmp->data->Interaction();
 					break;
 				}
@@ -308,6 +323,7 @@ bool PlayerEntity::Update(float dt)
 			{
 				if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN && app->entityManager->playerData.onDialog == false)
 				{
+					app->audio->PlayFx(3, pickItem);
 					tmp->data->Interaction();
 					break;
 				}
@@ -320,6 +336,7 @@ bool PlayerEntity::Update(float dt)
 		{
 			if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN && app->entityManager->playerData.onDialog == false)
 			{
+				app->audio->PlayFx(3, pickItem);
 				tmp->data->Interaction();
 				break;
 			}
@@ -331,6 +348,7 @@ bool PlayerEntity::Update(float dt)
 		{
 			if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN && app->entityManager->playerData.onDialog == false)
 			{
+				app->audio->PlayFx(3, pickItem);
 				tmp->data->Interaction();
 				break;
 			}
@@ -342,6 +360,7 @@ bool PlayerEntity::Update(float dt)
 		{
 			if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN && app->entityManager->playerData.onDialog == false)
 			{
+				app->audio->PlayFx(3, pickItem);
 				tmp->data->Interaction();
 				break;
 			}

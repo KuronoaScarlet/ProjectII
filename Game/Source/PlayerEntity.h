@@ -49,6 +49,7 @@ private:
 	fPoint lerpCamera;
 
 	//// Items
+	uint pickItem = 0;
 
 	Collider* frontCollider = nullptr;
 

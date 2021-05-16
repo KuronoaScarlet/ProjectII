@@ -628,6 +628,7 @@ bool Map::LoadState(pugi::xml_node& data)
 bool Map::SaveState(pugi::xml_node& data) const
 {
 	pugi::xml_node scene = data.append_child("scene");
+
 	if (app->sceneManager->id == SCENE1)
 	{
 		scene.append_attribute("currentlyOn").set_value(1);
@@ -636,7 +637,14 @@ bool Map::SaveState(pugi::xml_node& data) const
 	{
 		scene.append_attribute("currentlyOn").set_value(2);
 	}
-	
+	if (app->sceneManager->id == BATH)
+	{
+		scene.append_attribute("currentlyOn").set_value(3);
+	}
+	if (app->sceneManager->id == GYM)
+	{
+		scene.append_attribute("currentlyOn").set_value(4);
+	}
 
 	return true;
 }

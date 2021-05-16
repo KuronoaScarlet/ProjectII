@@ -129,6 +129,8 @@ public:
 	char battleText[64] = { 0 };
 	char turnText[64] = { 0 };
 
+	uint hit = 0;
+	uint powerUp = 0;
 
 	SDL_Rect skipBarMax = { 0,0,0,0 };
 	SDL_Rect skipBar = { 0,0,0,0 };

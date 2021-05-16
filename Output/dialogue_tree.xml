@@ -5,19 +5,19 @@
     <node text="Buenas!"  id="0">
       <dialogue option=" " returnCode="0" nextNode="1"/>
     </node>
-    <node text="Esta es la segunda planta del instituto Despair."  id="1">
+    <node text="Parece que es la segunda vez que vienes!"  id="1">
       <dialogue option=" " returnCode="0" nextNode="2"/>
     </node>
-    <node text="Como eres nuevo pense que necesitabas saberlo..." id="2">
+    <node text="Al parecer, ha desaparecido un artefacto en el insti" id="2">
       <dialogue option=" " returnCode="1" nextNode="3"/>
     </node>
-    <node text="En fin, parece que debes ganarte el pan." id="3">
+    <node text="Dirigete al ala derecha, encontraras a alguien alterado." id="3">
       <dialogue option=" " returnCode="1" nextNode="4"/>
     </node>
-    <node text="Hoy tienes que ganar a los matones que reinan esta planta." id="4">
+    <node text="Ayudalo a encontrar su objeto si puedes!" id="4">
       <dialogue option=" " returnCode="1" nextNode="5"/>
     </node>
-    <node text="Hay 3 en total. Estan enfadados, asi que es facil verlos." id="5">
+    <node text="Ten cuidado con los matones!" id="5">
       <dialogue option=" " returnCode="1" nextNode="1000"/>
     </node>
   </dialogueExample>
@@ -57,10 +57,10 @@
     <node text="Perfecto!"  id="1">
       <dialogue option=" " returnCode="0" nextNode="3"/>
     </node>
-    <node text="Aish, nos ha salido bromista..."  id="2">
+    <node text="La segunda vez que haces la broma eh..."  id="2">
       <dialogue option=" " returnCode="0" nextNode="3"/>
     </node>
-    <node text="Bienvenido a Caronte Mandate! Esta es la Vertical Slice del Proyecto."  id="3">
+    <node text="Bienvenido a Caronte Mandate! Esta es la Alpha del Proyecto."  id="3">
       <dialogue option=" " returnCode="0" nextNode="4"/>
     </node>
     <node text="El que te habla ahora mismo es el Team Lead de TDM!"  id="4">
@@ -80,16 +80,16 @@
     <node text="Con F5 guardas la partida, con F6 la cargas. Pulsa F10 y activaras el GodMode"  id="8">
       <dialogue option=" " returnCode="0" nextNode="9"/>
     </node>
-    <node text="Y con ESC abres el menu de Pausa. Usa el raton para pulsar los botones."  id="9">
+    <node text="Y con ESC pones Pausa. Pulsa la Q y la I, abren Quests e inventario!"  id="9">
       <dialogue option=" " returnCode="0" nextNode="10"/>
     </node>
     <node text="Y sobre los controles seria todo..."  id="10">
       <dialogue option=" " returnCode="0" nextNode="6"/>
     </node>
-    <node text="Apareceras en el instituto. Tu objetivo te lo marcara una amiga."  id="11">
+    <node text="Habla y desplazate para ir encontrando objetivos!"  id="11">
       <dialogue option=" " returnCode="0" nextNode="12"/>
     </node>
-    <node text="Actualmente solo podras pelear. Mas adelante habra Misiones y mas historia"  id="12">
+    <node text="Actualmente puedes pelear, entrar a una mazmorra y superar misiones!"  id="12">
       <dialogue option=" " returnCode="0" nextNode="13"/>
     </node>
     <node text="Disfruta probando nuestro juego!"  id="13">

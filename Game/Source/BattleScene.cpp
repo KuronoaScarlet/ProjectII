@@ -57,6 +57,9 @@ bool BattleScene::Start()
 	itemSelected = false;
 	boosted = false;
 
+	hit = app->audio->LoadFx("Assets/Audio/Fx/take_damage.wav");
+	powerUp = app->audio->LoadFx("Assets/Audio/Fx/power_up.wav");
+
 	skipBarMax = { 0, 720, 100, 16 };
 	skipBar = { 0, 721, 0, 14 };
 
@@ -509,10 +512,12 @@ void BattleScene::DealDamage(Entity* attacker, Entity* deffender)
 		// Pencil
 		case 1: 
 			deffender->currentHp = deffender->currentHp - 30;
+			app->audio->PlayFx(4, hit);
 			app->particleSystem->AddEmitter(EmitterType::SMOKE, deffender->position.x, deffender->position.y);
 			break;
 		case 2:
 			deffender->currentHp = deffender->currentHp - 60;
+			app->audio->PlayFx(4, hit);
 			app->particleSystem->AddEmitter(EmitterType::SMOKE, deffender->position.x, deffender->position.y);
 		}
 	}
@@ -523,18 +528,21 @@ void BattleScene::DealDamage(Entity* attacker, Entity* deffender)
 			if ((attacker->atk - deffender->def) < 0)
 			{
 				deffender->currentHp = deffender->currentHp;
+				app->audio->PlayFx(4, hit);
 				app->particleSystem->AddEmitter(EmitterType::SMOKE, deffender->position.x, deffender->position.y);
 
 			}
 			else
 			{
 				deffender->currentHp = deffender->currentHp - (attacker->atk - deffender->def);
+				app->audio->PlayFx(4, hit);
 				app->particleSystem->AddEmitter(EmitterType::SMOKE, deffender->position.x, deffender->position.y );
 			}
 		}
 		else
 		{
 			deffender->currentHp = deffender->currentHp - attacker->atk;
+			app->audio->PlayFx(4, hit);
 			app->particleSystem->AddEmitter(EmitterType::SMOKE, deffender->position.x, deffender->position.y);
 		}
 	}
@@ -548,12 +556,14 @@ void BattleScene::Boost(Entity* attacker)
 	if (app->sceneManager->itemSelection == 3)
 	{
 		attacker->turnTime += 1;
+		app->audio->PlayFx(4, powerUp);
 		app->particleSystem->AddEmitter(EmitterType::FIRE, attacker->position.x+48, attacker->position.y+96);
 	}
 	if (app->sceneManager->itemSelection == 4)
 	{
 		attacker->atk += 30;
 		attacker->turnTime += 1;
+		app->audio->PlayFx(4, powerUp);
 		app->particleSystem->AddEmitter(EmitterType::FIRE, attacker->position.x+48, attacker->position.y+96);
 	}
 	boosted = true;

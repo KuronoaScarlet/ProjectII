@@ -12,6 +12,7 @@
 #include "Scene12.h"
 #include "SceneBath.h"
 #include "SceneGym.h"
+#include "WinScreen.h"
 #include "BattleScene.h"
 #include "EntityManager.h"
 #include "ParticlesEngine.h"
@@ -231,7 +232,10 @@ bool SceneManager::PostUpdate()
                 }
                 int posX = easing->bounceEaseOut(currentIterationQuest, -200, 400, 360);
                 app->render->DrawText(app->render->font, quest->data->text, posX, 200, 75, 0, { 255, 255, 0, 255 });
-                app->render->DrawTexture(todo_quests, 150 - app->render->camera.x, 200 - app->render->camera.y);
+                if (quest->data->completed)
+                    app->render->DrawTexture(done_quests, 150 - app->render->camera.x, 200 - app->render->camera.y);
+                else
+                    app->render->DrawTexture(todo_quests, 150 - app->render->camera.x, 200 - app->render->camera.y);
                 break;
             }
             quest = quest->next;
@@ -289,6 +293,7 @@ void SceneManager::ChangeScene(SceneType type, int Id, float new_speed)
 	case SCENE12: next_scene = new Scene12; break;
 	case BATH: next_scene = new SceneBath; break;
 	case GYM: next_scene = new SceneGym; break;
+	case WIN: next_scene = new WinScreen; break;
 	case BATTLE: next_scene = new BattleScene; break;
 	}
 	/*next_scene->active = true;
@@ -714,6 +719,7 @@ void SceneManager::CompleteQuest(int _id)
         if (quest->data->id == _id)
         {
             quest->data->completed = true;
+            newQuestAdded = quest->data->id;
             return;
         }
         quest = quest->next;

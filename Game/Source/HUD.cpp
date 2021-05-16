@@ -44,6 +44,48 @@ bool Hud::Start()
 	deltaPosition = -148;
 	active = true;
 	app->hud->active = true;
+
+
+	//PAUSE.................................................................
+	pauseMenu = app->tex->Load("Assets/Textures/Screens/pause_screen.png");
+
+
+	settingsPost = app->tex->Load("Assets/Textures/postit.png");
+
+	music_s = app->tex->Load("Assets/Textures/fx_s.png");
+	fx_s = app->tex->Load("Assets/Textures/music_s.png");
+
+	resumeButton = new GuiButton(300, { 517,304, 240, 60 }, "CONTINUE");
+	resumeButton->SetObserver(this);
+	resumeButton->SetTexture(app->tex->Load("Assets/Textures/resume.png"), app->tex->Load("Assets/Textures/resume_selected.png"), app->tex->Load("Assets/Textures/resume_pressed.png"));
+
+	settingsButton = new GuiButton(301, { 517, 409, 234, 55 }, "SETTINGS");
+	settingsButton->SetObserver(this);
+	settingsButton->SetTexture(app->tex->Load("Assets/Textures/settings.png"), app->tex->Load("Assets/Textures/settings_selected.png"), app->tex->Load("Assets/Textures/settings_pressed.png"));
+
+	fullScreen = new GuiCheckBox(302, { 620,400, 300, 60 }, "FULLSCREEN");
+	fullScreen->SetObserver(this);
+	fullScreen->SetTexture(app->tex->Load("Assets/Textures/fs1.png"), app->tex->Load("Assets/Textures/fs2.png"), app->tex->Load("Assets/Textures/fs2.png"));
+	vSync = new GuiCheckBox(303, { 620,400, 300, 60 }, "VSYNC");
+	vSync->SetObserver(this);
+	vSync->SetTexture(app->tex->Load("Assets/Textures/vs1.png"), app->tex->Load("Assets/Textures/vs2.png"), app->tex->Load("Assets/Textures/vs2.png"));
+
+	musicSlider = new GuiSlider(304, { 1020,300, 60, 60 }, "FULLSCREEN");
+	musicSlider->SetObserver(this);
+	musicSlider->SetTexture(app->tex->Load("Assets/Textures/fx.png"), app->tex->Load("Assets/Textures/fx_selected.png"), app->tex->Load("Assets/Textures/fx_focused.png"));
+
+	fxSlider = new GuiSlider(305, { 1020,350, 60, 60 }, "FULLSCREEN");
+	fxSlider->SetObserver(this);
+	fxSlider->SetTexture(app->tex->Load("Assets/Textures/fx.png"), app->tex->Load("Assets/Textures/fx_selected.png"), app->tex->Load("Assets/Textures/fx_focused.png"));
+
+	exitButton = new GuiButton(306, { 551, 360, 172, 55 }, "CREDITS");
+	exitButton->SetObserver(this);
+	exitButton->SetTexture(app->tex->Load("Assets/Textures/exit.png"), app->tex->Load("Assets/Textures/exit_selected.png"), app->tex->Load("Assets/Textures/exit_pressed.png"));
+
+	musicSliderBack = { 900,300,300,40 };
+	fxSliderBack = { 900,350,300,40 };
+
+
 	bag = new GuiButton(120, { 275,(int)initialPosition, 90, 125 }, "BAG");// 1155,20
 	bag->SetObserver(this);
 	bag->SetTexture(app->tex->Load("Assets/Textures/bag.png"), app->tex->Load("Assets/Textures/bag2.png"), app->tex->Load("Assets/Textures/bag2.png"));
@@ -127,6 +169,52 @@ bool Hud::PreUpdate()
 // Called each loop iteration
 bool Hud::Update(float dt)
 {
+	if (pauseCondition)
+	{
+		resumeButton->Update(app->input, dt);
+		settingsButton->Update(app->input, dt);
+		exitButton->Update(app->input, dt);
+	}
+	if (settingsEnabled)
+	{
+		musicSlider->Update(app->input, dt);
+		fxSlider->Update(app->input, dt);
+		fullScreen->Update(app->input, dt);
+		vSync->Update(app->input, dt);
+	}
+	if (!pauseCondition)
+	{
+
+		// app->audio->Volume(100, '0');
+
+	}
+	resumeButton->bounds.x = -app->render->camera.x + 537;
+	resumeButton->bounds.y = -app->render->camera.y + 200;
+	settingsButton->bounds.x = -app->render->camera.x + 537;
+	settingsButton->bounds.y = -app->render->camera.y + 260;
+	exitButton->bounds.x = -app->render->camera.x + 557;
+	exitButton->bounds.y = -app->render->camera.y + 360;
+
+
+	fullScreen->bounds.x = -app->render->camera.x + 900;
+	fullScreen->bounds.y = -app->render->camera.y + 100;
+
+	vSync->bounds.x = -app->render->camera.x + 900;
+	vSync->bounds.y = -app->render->camera.y + 350;
+
+	// musicSlider->bounds.x = -app->render->camera.x + 900;
+	musicSlider->bounds.y = -app->render->camera.y + 220;
+
+	//fxSlider->bounds.x = -app->render->camera.x + 900;
+	fxSlider->bounds.y = -app->render->camera.y + 300;
+
+	//RECT OF THE BACKGORUND ONLY UPDATE IF UPDATE THE SLIDERS.
+	musicSliderBack.x = -app->render->camera.x + 935;
+	musicSliderBack.y = -app->render->camera.y + 220;
+
+	fxSliderBack.x = -app->render->camera.x + 935;
+	fxSliderBack.y = -app->render->camera.y + 300;
+
 	if (app->input->GetKey(SDL_SCANCODE_I) == KEY_DOWN)
 	{
 		currentIteration = 0;
@@ -134,14 +222,14 @@ bool Hud::Update(float dt)
 		inventoryAndStatsRequest = !inventoryAndStatsRequest;
 		cantMoveInInvetory = !cantMoveInInvetory;
 	}
-	if(inventoryAndStatsRequest) app->sceneManager->pauseCondition = false;
+	if(inventoryAndStatsRequest) pauseCondition = false;
 
-	if (!app->sceneManager->settingsEnabled && inventoryAndStatsRequest)
+	if (!settingsEnabled && inventoryAndStatsRequest)
 	{
 		bag->Update(app->input, dt);
 		stats->Update(app->input, dt);
 	}
-	if (!app->sceneManager->settingsEnabled && bagEnabled)
+	if (!settingsEnabled && bagEnabled)
 	{
 		pencil->Update(app->input, dt);
 		sharpened->Update(app->input, dt);
@@ -159,7 +247,7 @@ bool Hud::Update(float dt)
 		quitStatsAndInvetory->Update(app->input, dt);
 	}
 
-	if (!app->sceneManager->settingsEnabled && statsEnabled)
+	if (!settingsEnabled && statsEnabled)
 	{
 		quitStatsAndInvetory->Update(app->input, dt);
 	}
@@ -231,7 +319,29 @@ bool Hud::PostUpdate()
 
 	bool ret = true;
 
-	if (bagEnabled && !app->sceneManager->settingsEnabled)
+	if (settingsEnabled)
+	{
+		app->render->DrawTexture(settingsPost, -app->render->camera.x + 875, -app->render->camera.y + 100, NULL);
+		fullScreen->Draw(app->render);
+		vSync->Draw(app->render);
+		app->render->DrawRectangle(musicSliderBack, 192, 192, 192, 255);
+		app->render->DrawRectangle(fxSliderBack, 192, 192, 192, 255);
+		musicSlider->Draw(app->render);
+		fxSlider->Draw(app->render);
+		app->render->DrawTexture(fx_s, -app->render->camera.x + 895, -app->render->camera.y + 222, NULL);
+		app->render->DrawTexture(music_s, -app->render->camera.x + 895, -app->render->camera.y + 302, NULL);
+	}
+	if (pauseCondition)
+	{
+		app->render->DrawTexture(pauseMenu, -app->render->camera.x, -app->render->camera.y, NULL);
+		resumeButton->Draw(app->render);
+		settingsButton->Draw(app->render);
+		exitButton->Draw(app->render);
+	}
+
+	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN) pauseCondition = !pauseCondition;
+
+	if (bagEnabled && !settingsEnabled)
 	{
 		app->render->DrawTexture(inventoryTab, -app->render->camera.x + 0, -app->render->camera.y + 0, NULL);
 		pencil->Draw(app->render);
@@ -314,7 +424,7 @@ bool Hud::PostUpdate()
 		app->render->DrawText(app->render->font, wonsterCount, 880, 73, 60, 0, { 0, 0, 0, 255 });
 	}
 
-	if (statsEnabled && !app->sceneManager->settingsEnabled)
+	if (statsEnabled && !settingsEnabled)
 	{
 		app->render->DrawTexture(statsTab, -app->render->camera.x + 0, -app->render->camera.y + 0, NULL);
 		app->render->DrawTexture(playerFace, -app->render->camera.x + 270, -app->render->camera.y + 70, NULL);

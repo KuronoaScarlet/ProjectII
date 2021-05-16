@@ -14,6 +14,7 @@
 #include "WinScreen.h"
 #include "SceneManager.h"
 #include "HUD.h"
+#include "ParticlesEngine.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -208,9 +209,9 @@ bool BattleScene::PostUpdate()
 		combine->Draw(app->render);
 	}
 
-	if (lose == true)
+	if (state == LOSE)
 	{
-		app->audio->PlayMusic("Assets/Audio/Music/lose_screen_music.ogg");
+		
 		app->hud->DrawLooseScreen();
 		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 		{
@@ -218,9 +219,9 @@ bool BattleScene::PostUpdate()
 			if (app->entityManager->playerData.scene == 2) app->sceneManager->ChangeScene(SCENE12, 0);
 		}
 	}
-	else if (victory == true )
+	else if (state == VICTORY)
 	{
-		app->audio->PlayMusic("Assets/Audio/Music/win_scene_music.ogg");
+		
 		app->hud->DrawVictoryScreen();
 
 		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
@@ -333,7 +334,7 @@ void BattleScene::PerformCombat(float dt)
 				else
 				{
 					if (app->sceneManager->itemSelection == 3) sprintf_s(battleText, 64, "Tomando cafe! Soy mas rapido!"); if(boosted == false) Boost(turnEntity);
-					if (app->sceneManager->itemSelection == 4) sprintf_s(battleText, 64, "Un Wunster! Mas fuerte y rapido!"); if (boosted == false) Boost(turnEntity);
+					if (app->sceneManager->itemSelection == 4) sprintf_s(battleText, 64, "Un Wonster! Mas fuerte y rapido!"); if (boosted == false) Boost(turnEntity);
 				}
 			}
 		}
@@ -343,6 +344,7 @@ void BattleScene::PerformCombat(float dt)
 		}
 
 		//Aquí irán las animaciones en general (Ataques, curas...)
+
 		if (skipBar.w == skipBarMax.w)
 		{
 			if (turn == PLAYER_TURN && turnEntity->defending == false && app->sceneManager->boost == false) DealDamage(turnEntity, app->entityManager->entityList.At(enemySelection)->data);
@@ -384,9 +386,9 @@ void BattleScene::PerformCombat(float dt)
 					victory = true;
 					if (victory == true)
 					{
+						app->audio->PlayMusic("Assets/Audio/Music/win_scene_music.ogg");
 						app->entityManager->CleanUp();
-						state = FINISH_TURN;
-						
+						state = VICTORY;
 					}
 				}
 				if (remainingAllies == 0)
@@ -394,16 +396,15 @@ void BattleScene::PerformCombat(float dt)
 					lose = true;
 					if (lose == true)
 					{
+						app->audio->PlayMusic("Assets/Audio/Music/lose_screen_music.ogg");
 						app->entityManager->CleanUp();
-						state = FINISH_TURN;
-						
+						state = LOSE;
 					}
 					
 				}
 			}
 		}
 		break;
-
 	default:
 		break;
 	}
@@ -508,19 +509,34 @@ void BattleScene::DealDamage(Entity* attacker, Entity* deffender)
 		// Pencil
 		case 1: 
 			deffender->currentHp = deffender->currentHp - 30;
+			app->particleSystem->AddEmitter(EmitterType::SMOKE, deffender->position.x, deffender->position.y);
 			break;
 		case 2:
 			deffender->currentHp = deffender->currentHp - 60;
+			app->particleSystem->AddEmitter(EmitterType::SMOKE, deffender->position.x, deffender->position.y);
 		}
 	}
 	else
 	{
 		if (deffender->defending == true)
 		{
-			if ((attacker->atk - deffender->def) < 0) deffender->currentHp = deffender->currentHp;
-			else deffender->currentHp = deffender->currentHp - (attacker->atk - deffender->def);
+			if ((attacker->atk - deffender->def) < 0)
+			{
+				deffender->currentHp = deffender->currentHp;
+				app->particleSystem->AddEmitter(EmitterType::SMOKE, deffender->position.x, deffender->position.y);
+
+			}
+			else
+			{
+				deffender->currentHp = deffender->currentHp - (attacker->atk - deffender->def);
+				app->particleSystem->AddEmitter(EmitterType::SMOKE, deffender->position.x, deffender->position.y );
+			}
 		}
-		else deffender->currentHp = deffender->currentHp - attacker->atk;
+		else
+		{
+			deffender->currentHp = deffender->currentHp - attacker->atk;
+			app->particleSystem->AddEmitter(EmitterType::SMOKE, deffender->position.x, deffender->position.y);
+		}
 	}
 	
 
@@ -532,11 +548,13 @@ void BattleScene::Boost(Entity* attacker)
 	if (app->sceneManager->itemSelection == 3)
 	{
 		attacker->turnTime += 1;
+		app->particleSystem->AddEmitter(EmitterType::FIRE, attacker->position.x+48, attacker->position.y+96);
 	}
 	if (app->sceneManager->itemSelection == 4)
 	{
 		attacker->atk += 30;
 		attacker->turnTime += 1;
+		app->particleSystem->AddEmitter(EmitterType::FIRE, attacker->position.x+48, attacker->position.y+96);
 	}
 	boosted = true;
 }

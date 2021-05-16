@@ -94,7 +94,7 @@ bool SceneBath::Update(float dt)
 	app->map->Draw();
 	app->map->LoadColliders();
 
-	if (app->sceneManager->exi == true)
+	if (app->hud->exi == true)
 	{
 		return false;
 	}

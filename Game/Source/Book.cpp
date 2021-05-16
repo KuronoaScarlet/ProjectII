@@ -58,10 +58,10 @@ bool Book::Interaction()
 	if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN) && picked == false)
 	{
 		app->entityManager->playerData.book++;
-		CleanUp();
-		printf("%d", app->entityManager->playerData.book);
+		
 		picked = true;
 		app->particleSystem->AddEmitter(EmitterType::BOOK, position.x, position.y, 120);
+		CleanUp();
 	}
 	
 	return true;
@@ -72,10 +72,13 @@ void Book::Collision(Collider* coll)
 	if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN) && picked == false)
 	{
 		app->entityManager->playerData.book++;
+		app->sceneManager->ChangeScene(SCENE12, 1);
+		app->sceneManager->CompleteQuest(3);
+		app->playerPosition = { 672.0f, 160.0f };
+		app->particleSystem->AddEmitter(EmitterType::BOOK, position.x, position.y, 120);
 		CleanUp();
 		printf("%d", app->entityManager->playerData.book);
 		picked = true;
-		app->particleSystem->AddEmitter(EmitterType::BOOK, position.x, position.y, 120);
 	}
 }
 

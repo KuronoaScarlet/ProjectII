@@ -70,7 +70,6 @@ bool Scene1::Start()
 	app->entityManager->AddEntity({ 100.0f, 1445.0f}, Entity::Type::BOOK);
 	app->entityManager->AddEntity({ 100.0f, 1445.0f}, Entity::Type::RUBBER);
 	app->entityManager->AddEntity({ 100.0f, 1445.0f}, Entity::Type::RULE);
-	app->entityManager->AddEntity({ 100.0f, 1445.0f}, Entity::Type::SNACK);
 	
 	
 	

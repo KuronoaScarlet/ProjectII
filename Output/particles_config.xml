@@ -105,19 +105,19 @@
     <draw min_w="20.0" max_w="30.0" min_h="20.0" max_h="30.0" texture="Assets/Textures/snowflake.png"/>
   </Snow>
   <Fire>
-    <emitter amount="5"/>
+    <emitter amount="100"/>
     <lifespan min="60.0f" max="120.0f"/>
-    <velocity min_vx="-10.0" max_vx="10.0" min_vy="-2.0" max_vy="2.0"/>
+    <velocity min_vx="-0.5" max_vx="0.5" min_vy="1.0" max_vy="3.0"/>
     <gravity center_x="0.0" center_y="-500.0" ax="0.3" ay="0.3"/>
     <position min_x="-5.0" max_x="5.0" min_y="-5.0" max_y="5.0"/>
-    <draw min_w="100.0" max_w="110.0" min_h="100.0" max_h="110.0" texture="Assets/Textures/Items/Pencil.png"/>
+    <draw min_w="100.0" max_w="110.0" min_h="100.0" max_h="110.0" texture="Assets/Textures/Particles/fire.png"/>
   </Fire>
   <Smoke>
-    <emitter amount="200"/>
+    <emitter amount="10"/>
     <lifespan min="60.0f" max="120.0f"/>
     <velocity min_vx="-1.0" max_vx="1.0" min_vy="-1.0" max_vy="1.0"/>
-    <gravity center_x="200.0" center_y="-300.0" ax="0.1" ay="0.1"/>
+    <gravity center_x="0.0" center_y="0.0" ax="0.1" ay="0.1"/>
     <position min_x="-5.0" max_x="5.0" min_y="-5.0" max_y="5.0"/>
-    <draw min_w="40.0" max_w="50.0" min_h="40.0" max_h="50.0" texture="Assets/Textures/smoke.png"/>
+    <draw min_w="4.0" max_w="5.0" min_h="4.0" max_h="5.0" texture="Assets/Textures/Particles/smoke.png"/>
   </Smoke>
 </ParticleProperties>

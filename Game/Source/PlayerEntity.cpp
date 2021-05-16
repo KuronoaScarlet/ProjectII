@@ -236,7 +236,7 @@ bool PlayerEntity::Update(float dt)
 		}
 		else if (tmp->data->type == Type::BLUEBALL)
 		{
-			if (position.DistanceTo(tmp->data->position) < 50)
+			if (position.DistanceTo(tmp->data->position) < 30)
 			{
 				if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN && app->entityManager->playerData.onDialog == false)
 				{
@@ -250,7 +250,7 @@ bool PlayerEntity::Update(float dt)
 		}
 		else if (tmp->data->type == Type::REDBALL)
 		{
-			if (position.DistanceTo(tmp->data->position) < 50)
+			if (position.DistanceTo(tmp->data->position) < 30)
 			{
 				if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN && app->entityManager->playerData.onDialog == false)
 				{
@@ -264,7 +264,7 @@ bool PlayerEntity::Update(float dt)
 		}
 		else if (tmp->data->type == Type::YELLOWBALL)
 		{
-			if (position.DistanceTo(tmp->data->position) < 50)
+			if (position.DistanceTo(tmp->data->position) < 30)
 			{
 				if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN && app->entityManager->playerData.onDialog == false)
 				{
@@ -278,7 +278,7 @@ bool PlayerEntity::Update(float dt)
 		}
 		else if (tmp->data->type == Type::PURPLEBALL)
 		{
-			if (position.DistanceTo(tmp->data->position) < 50)
+			if (position.DistanceTo(tmp->data->position) < 30)
 			{
 				if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN && app->entityManager->playerData.onDialog == false)
 				{
@@ -353,7 +353,7 @@ bool PlayerEntity::Update(float dt)
 
 	GamePad& pad = app->input->pads[0];
 	tempPlayerPosition = position;
-	if (!app->sceneManager->pauseCondition && !app->hud->cantMoveInInvetory)
+	if (!app->hud->pauseCondition && !app->hud->cantMoveInInvetory)
 	{
 		if (app->entityManager->playerData.onDialog == false && app->sceneManager->id != SceneType::BATTLE)
 		{

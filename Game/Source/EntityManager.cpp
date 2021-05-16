@@ -74,10 +74,10 @@ bool EntityManager::Start()
 
 	texGateOpen = app->tex->Load("Assets/Textures/Items/purpleball.png");
 
-	texBlueBall = app->tex->Load("Assets/Maps/blueball.png");
-	texRedBall = app->tex->Load("Assets/Maps/redball.png");
-	texPurpleBall = app->tex->Load("Assets/Maps/purpleball.png");
-	texYellowBall = app->tex->Load("Assets/Maps/yellowball.png");
+	texBlueBall = app->tex->Load("Assets/Textures/Entities/Puzzle/blueball.png");
+	texRedBall = app->tex->Load("Assets/Textures/Entities/Puzzle/redball.png");
+	texPurpleBall = app->tex->Load("Assets/Textures/Entities/Puzzle/purpleball.png");
+	texYellowBall = app->tex->Load("Assets/Textures/Entities/Puzzle/yellowball.png");
 
 
 	texEnemy1 = app->tex->Load("Assets/Textures/Entities/Enemies/Halloween_Kid_1_idle_anim_32x32.png");

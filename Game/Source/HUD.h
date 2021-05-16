@@ -53,6 +53,36 @@ public:
 	void DrawVictoryScreen();
 	void DrawLooseScreen();
 
+	//PAUSE.........................................................
+	GuiButton* resumeButton;
+	GuiButton* settingsButton;
+	GuiButton* exitButton;
+
+	GuiSlider* musicSlider;
+	GuiSlider* fxSlider;
+
+	GuiCheckBox* fullScreen;
+	GuiCheckBox* vSync;
+
+	SDL_Texture* fx_s = nullptr;
+	SDL_Texture* music_s = nullptr;
+
+	SDL_Rect musicSliderBack;
+	SDL_Rect fxSliderBack;
+
+	SDL_Texture* settingsPost;
+	SDL_Texture* pauseMenu = nullptr;
+
+	bool pauseCondition = false;
+	bool settingsEnabled = false;
+	bool creditsOnScreen = false;
+	bool creditSceneFlag;
+	bool configOn = false;
+	bool fullSc;
+	bool vsync;
+	bool exi;
+	int volumMusic;
+
 	bool firstEntry = true;
 	bool on;
 

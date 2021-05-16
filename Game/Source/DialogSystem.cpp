@@ -183,7 +183,7 @@ bool DialogueSystem::Update(float dt)
 			if (actionChecks == dialogueTrees[6]->dialogueNodes.size())
 			{
 				app->entityManager->playerData.onDialog = false;
-				app->sceneManager->CreateQuest(1, "1 + 1 = 2");
+				app->sceneManager->CreateQuest(1, "Combine one Item!");
 			}
 		}
 	}

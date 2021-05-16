@@ -54,7 +54,6 @@ bool Scene12::Start()
 
 	app->entityManager->AddEntity({ 160.0f, 128.0f }, Entity::Type::PENCIL);
 	app->entityManager->AddEntity({ 768.0f, 352.0f }, Entity::Type::COFFEE);
-	app->entityManager->AddEntity({ 672.0f,1664.0f }, Entity::Type::BOOK);
 	
 	app->render->camera.y = 0;
 	app->render->camera.x = 0;
@@ -96,7 +95,7 @@ bool Scene12::Update(float dt)
 		lpl = true;
 	}
 
-	if (app->sceneManager->exi == true)
+	if (app->hud->exi == true)
 	{
 		return false;
 	}

@@ -56,6 +56,9 @@ public:
 		PERFORM_ACTION,
 		FINISH_TURN,
 
+		VICTORY,
+		LOSE,
+
 		WAITING
 	};
 

@@ -67,40 +67,13 @@ public:
 
     void OnMouseAboveButton(GuiControlState state, uint32 id);
 
-    //PAUSE.........................................................
-    GuiButton* resumeButton;
-    GuiButton* settingsButton;
-    GuiButton* exitButton;
-
-    GuiSlider* musicSlider;
-    GuiSlider* fxSlider;
-
-    GuiCheckBox* fullScreen;
-    GuiCheckBox* vSync;
-
-    SDL_Texture* fx_s = nullptr;
-    SDL_Texture* music_s = nullptr;
-
-    SDL_Rect musicSliderBack;
-    SDL_Rect fxSliderBack;
-
-    SDL_Texture* settingsPost;
-    SDL_Texture* pauseMenu = nullptr;
-
-    bool pauseCondition = false;
-    bool settingsEnabled = false;
-    bool creditsOnScreen = false;
-    bool creditSceneFlag;
-    bool configOn = false;
-    bool fullSc;
-    bool vsync;
-    bool exi;
+   
     bool scenebath = false;
     bool scenegym = false;
     bool checkpointgym = false;
     bool NPC1 = false;
     bool crate = false;
-    int volumMusic;
+   
    
     // 1st transition
     Easing* easing;
@@ -142,6 +115,7 @@ public:
 
     int newQuestAdded = 0;
     int currentIterationQuest = 0;
+    bool showQuestMenu = false;
 
     SDL_Texture* back_quests;
     SDL_Texture* done_quests;

@@ -1,5 +1,6 @@
 #include "GuiSlider.h"
 #include "SceneManager.h"
+#include "HUD.h"
 #include "Audio.h"
 GuiSlider::GuiSlider(uint32 id, SDL_Rect bounds, const char* text) : GuiControl(GuiControlType::SLIDER, id)
 {
@@ -40,10 +41,10 @@ bool GuiSlider::Update(Input* input, float dt)
                 state = GuiControlState::PRESSED;
 
                 bounds.x = mouse.x - (bounds.w/2);
-                int left = app->sceneManager->musicSliderBack.x + 1;
+                int left = app->hud->musicSliderBack.x + 1;
                 if (bounds.x < left)
                     bounds.x = left;
-                int right = app->sceneManager->musicSliderBack.x + app->sceneManager->musicSliderBack.w - 1 - bounds.w;
+                int right = app->hud->musicSliderBack.x + app->hud->musicSliderBack.w - 1 - bounds.w;
                 if (bounds.x > right)
                     bounds.x = right;
                 NotifyObserver();

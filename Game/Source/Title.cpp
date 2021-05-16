@@ -117,11 +117,11 @@ bool Title::Start()
     exit->SetTexture(app->tex->Load("Assets/Textures/exit.png"), app->tex->Load("Assets/Textures/exit_selected.png"), app->tex->Load("Assets/Textures/exit_pressed.png"));
 
     creditsScene = app->tex->Load("Assets/Textures/Screens/credits_screen.png");
-    app->sceneManager->creditSceneFlag = false;
+    app->hud->creditSceneFlag = false;
     pauseBool = false;
-    app->sceneManager->fullSc = false;
-    app->sceneManager->vsync = true;
-    app->sceneManager->exi = false;
+    app->hud->fullSc = false;
+    app->hud->vsync = true;
+    app->hud->exi = false;
 
     app->render->camera.x = 0;
     //app->render->camera.y = 1000000000; XD, THIS DOES NOTHING
@@ -136,8 +136,8 @@ bool Title::PreUpdate()
 
 bool Title::Update(float dt)
 {
-    app->sceneManager->pauseCondition = false;
-    if (app->sceneManager->creditSceneFlag == false && positionTitleCaronte == 430)
+    app->hud->pauseCondition = false;
+    if (app->hud->creditSceneFlag == false && positionTitleCaronte == 430)
     {
         play->Update(app->input, dt);
         newGame->Update(app->input, dt);
@@ -145,20 +145,20 @@ bool Title::Update(float dt)
         credits->Update(app->input, dt);
         exit->Update(app->input, dt);
     }
-    if (app->sceneManager->configOn)
+    if (app->hud->configOn)
     {
         fullScreen->Update(app->input, dt);
         musicVolume->Update(app->input, dt);
         fxVolume->Update(app->input, dt);
     }
-    if (app->sceneManager->creditsOnScreen)
+    if (app->hud->creditsOnScreen)
     {
         escCredits->Update(app->input, dt);
     }
     if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
     {
-        app->sceneManager->creditSceneFlag = false;
-        app->sceneManager->creditsOnScreen = false;
+        app->hud->creditSceneFlag = false;
+        app->hud->creditsOnScreen = false;
     }
 
     positionTitleBack = easing->backEaseIn(currentIterationBck, -300, 300, totalIterations);
@@ -201,19 +201,19 @@ bool Title::PostUpdate()
     app->render->DrawTexture(caronte, positionTitleCaronte, 20, NULL);//430
     app->render->DrawTexture(mandate, positionTitleMandate, 100, NULL);
 
-    if (app->sceneManager->creditsOnScreen)
+    if (app->hud->creditsOnScreen)
     {
         app->render->DrawTexture(creditsScene, 0, 0, NULL);
     }
 
-    if (app->sceneManager->creditSceneFlag == true)
+    if (app->hud->creditSceneFlag == true)
     {
         app->render->DrawTexture(creditsScene, 0, 0, NULL);
         escCredits->Draw(app->render);
-        app->sceneManager->configOn = false;
+        app->hud->configOn = false;
     }
 
-    if (!app->sceneManager->creditSceneFlag)
+    if (!app->hud->creditSceneFlag)
     {
         app->render->camera.y = 0;
 
@@ -235,7 +235,7 @@ bool Title::PostUpdate()
             credits->Draw(app->render);
 
             exit->Draw(app->render);
-            if (app->sceneManager->configOn)
+            if (app->hud->configOn)
             {
                 app->render->DrawTexture(settingsPost2, 875, 100, NULL);
                 fullScreen->Draw(app->render);

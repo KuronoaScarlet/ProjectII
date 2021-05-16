@@ -46,13 +46,13 @@ bool SceneGym::Start()
 
 	app->sceneManager->scenebath = false;
 
-	app->playerPosition.x = 672.0f;
-	app->playerPosition.y = 288.0f;
+	app->playerPosition.x = 32.0f;
+	app->playerPosition.y = 96.0f;
 
 	app->sceneManager->scenegym = true;
 
 
-	app->entityManager->AddEntity({1300, 608 }, Entity::Type::PLAYER);
+	app->entityManager->AddEntity({ app->playerPosition.x, app->playerPosition.y }, Entity::Type::PLAYER);
 	app->entityManager->AddEntity({ 160, 128 }, Entity::Type::CRATE);
 
 	app->entityManager->AddEntity({ 288, 200 }, Entity::Type::ENEMYLANTERN2);
@@ -76,6 +76,7 @@ bool SceneGym::Start()
 	app->entityManager->AddEntity({ 1504, 608 }, Entity::Type::YELLOWBALL);
 	app->entityManager->AddEntity({ 1568, 608 }, Entity::Type::PURPLEBALL);
 	app->entityManager->AddEntity({ 1504, 768 }, Entity::Type::GATEOPEN);
+	app->entityManager->AddEntity({ 1504, 896 }, Entity::Type::BOOK);
 
 	gymtobath = app->collisions->AddCollider(SDL_Rect({ 0, 96, 10, 90 }), Collider::Type::TPGYMTOBATH, this);
 
@@ -142,8 +143,6 @@ bool SceneGym::Update(float dt)
 {
 	app->map->Draw();
 	app->map->LoadColliders();
-
-	if (app->entityManager->playerData.position.x > 1760) app->sceneManager->CompleteQuest(3);
 
 	return true;
 }

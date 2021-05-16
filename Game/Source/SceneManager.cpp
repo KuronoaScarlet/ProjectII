@@ -32,45 +32,8 @@ bool SceneManager::Start(SceneType type)
 
     ChangeScene(type, 0);
 
-    //PAUSE.................................................................
-    pauseMenu = app->tex->Load("Assets/Textures/Screens/pause_screen.png");
-    trans1 = app->tex->Load("Assets/Textures/Screens/loading_screen.png");;
-    trans2 = app->tex->Load("Assets/Textures/Screens/loading_screen.png");;
-
-    settingsPost = app->tex->Load("Assets/Textures/postit.png");
-
-    music_s = app->tex->Load("Assets/Textures/fx_s.png");
-    fx_s = app->tex->Load("Assets/Textures/music_s.png");
-
-    resumeButton = new GuiButton(300, { 517,304, 240, 60 }, "CONTINUE");
-    resumeButton->SetObserver(this);
-    resumeButton->SetTexture(app->tex->Load("Assets/Textures/resume.png"), app->tex->Load("Assets/Textures/resume_selected.png"), app->tex->Load("Assets/Textures/resume_pressed.png"));
-
-    settingsButton = new GuiButton(301, { 517, 409, 234, 55 }, "SETTINGS");
-    settingsButton->SetObserver(this);
-    settingsButton->SetTexture(app->tex->Load("Assets/Textures/settings.png"), app->tex->Load("Assets/Textures/settings_selected.png"), app->tex->Load("Assets/Textures/settings_pressed.png"));
-
-    fullScreen = new GuiCheckBox(302, { 620,400, 300, 60 }, "FULLSCREEN");
-    fullScreen->SetObserver(this);
-    fullScreen->SetTexture(app->tex->Load("Assets/Textures/fs1.png"), app->tex->Load("Assets/Textures/fs2.png"), app->tex->Load("Assets/Textures/fs2.png"));
-    vSync = new GuiCheckBox(303, { 620,400, 300, 60 }, "VSYNC");
-    vSync->SetObserver(this);
-    vSync->SetTexture(app->tex->Load("Assets/Textures/vs1.png"), app->tex->Load("Assets/Textures/vs2.png"), app->tex->Load("Assets/Textures/vs2.png"));
-
-    musicSlider = new GuiSlider(304, { 1020,300, 60, 60 }, "FULLSCREEN");
-    musicSlider->SetObserver(this);
-    musicSlider->SetTexture(app->tex->Load("Assets/Textures/fx.png"), app->tex->Load("Assets/Textures/fx_selected.png"), app->tex->Load("Assets/Textures/fx_focused.png"));
-
-    fxSlider = new GuiSlider(305, { 1020,350, 60, 60 }, "FULLSCREEN");
-    fxSlider->SetObserver(this);
-    fxSlider->SetTexture(app->tex->Load("Assets/Textures/fx.png"), app->tex->Load("Assets/Textures/fx_selected.png"), app->tex->Load("Assets/Textures/fx_focused.png"));
-
-    exitButton = new GuiButton(306, { 551, 360, 172, 55 }, "CREDITS");
-    exitButton->SetObserver(this);
-    exitButton->SetTexture(app->tex->Load("Assets/Textures/exit.png"), app->tex->Load("Assets/Textures/exit_selected.png"), app->tex->Load("Assets/Textures/exit_pressed.png"));
-
-    musicSliderBack = { 900,300,300,40 };
-    fxSliderBack = { 900,350,300,40 };
+    trans1 = app->tex->Load("Assets/Textures/Screens/loading_screen.png");
+    trans2 = app->tex->Load("Assets/Textures/Screens/loading_screen.png");
 
 
     currentIteration = 0;
@@ -88,51 +51,6 @@ bool SceneManager::Update(float dt)
 	if (scene) scene->Update(dt);
 
 
-    if (pauseCondition)
-    {
-        resumeButton->Update(app->input, dt);
-        settingsButton->Update(app->input, dt);
-        exitButton->Update(app->input, dt);
-    }
-    if (settingsEnabled)
-    {
-        musicSlider->Update(app->input, dt);
-        fxSlider->Update(app->input, dt);
-        fullScreen->Update(app->input, dt);
-        vSync->Update(app->input, dt);
-    }
-    if (!pauseCondition)
-    {
-       
-       // app->audio->Volume(100, '0');
-
-    }
-    resumeButton->bounds.x = -app->render->camera.x + 537;
-    resumeButton->bounds.y = -app->render->camera.y + 200;
-    settingsButton->bounds.x = -app->render->camera.x + 537;
-    settingsButton->bounds.y = -app->render->camera.y + 260;
-    exitButton->bounds.x = -app->render->camera.x + 557;
-    exitButton->bounds.y = -app->render->camera.y + 360;
-    
-
-    fullScreen->bounds.x = -app->render->camera.x + 900;
-    fullScreen->bounds.y = -app->render->camera.y + 100;
-
-    vSync->bounds.x = -app->render->camera.x + 900;
-    vSync->bounds.y = -app->render->camera.y + 350;
-
-   // musicSlider->bounds.x = -app->render->camera.x + 900;
-    musicSlider->bounds.y = -app->render->camera.y + 220;
-
-    //fxSlider->bounds.x = -app->render->camera.x + 900;
-    fxSlider->bounds.y = -app->render->camera.y + 300;
-
-    //RECT OF THE BACKGORUND ONLY UPDATE IF UPDATE THE SLIDERS.
-    musicSliderBack.x = -app->render->camera.x + 935;
-    musicSliderBack.y = -app->render->camera.y + 220;
-
-    fxSliderBack.x = -app->render->camera.x + 935;
-    fxSliderBack.y = -app->render->camera.y + 300;
 
 	switch (fadeStep)
 	{
@@ -141,6 +59,7 @@ bool SceneManager::Update(float dt)
 		break;
     case FadeStep::WAIT1:
         fadeStep = FadeStep::TO_BLACK;
+        app->entityManager->CleanUp();
         break;
 	case FadeStep::TO_BLACK:
         if (transId == 0)
@@ -292,10 +211,9 @@ bool SceneManager::PostUpdate()
 {
 	if (scene) scene->PostUpdate();
 
-    if (app->input->GetKey(SDL_SCANCODE_Q) == KEY_REPEAT)
-    {
-        DisplayQuests();
-    }
+    if (app->input->GetKey(SDL_SCANCODE_Q) == KEY_DOWN) showQuestMenu = !showQuestMenu;
+
+    if (showQuestMenu == true) DisplayQuests();
 
     if (newQuestAdded != 0)
     {
@@ -313,7 +231,7 @@ bool SceneManager::PostUpdate()
                 }
                 int posX = easing->bounceEaseOut(currentIterationQuest, -200, 400, 360);
                 app->render->DrawText(app->render->font, quest->data->text, posX, 200, 75, 0, { 255, 255, 0, 255 });
-                app->render->DrawTexture(done_quests, 150 - app->render->camera.x, 200 - app->render->camera.y);
+                app->render->DrawTexture(todo_quests, 150 - app->render->camera.x, 200 - app->render->camera.y);
                 break;
             }
             quest = quest->next;
@@ -342,30 +260,10 @@ bool SceneManager::PostUpdate()
         app->render->DrawTexture(trans1, -app->render->camera.x + 640, -app->render->camera.y + positionY3+12, &pos3);
         app->render->DrawTexture(trans1, -app->render->camera.x + 960, -app->render->camera.y + positionY4-12, &pos4);
     }
-    if (settingsEnabled)
-    {
-        app->render->DrawTexture(settingsPost, -app->render->camera.x + 875, -app->render->camera.y + 100, NULL);
-        fullScreen->Draw(app->render);
-        vSync->Draw(app->render);
-        app->render->DrawRectangle(musicSliderBack, 192, 192, 192, 255);
-        app->render->DrawRectangle(fxSliderBack, 192, 192, 192, 255);
-        musicSlider->Draw(app->render);
-        fxSlider->Draw(app->render);
-        app->render->DrawTexture(fx_s, -app->render->camera.x + 895, -app->render->camera.y + 222, NULL);
-        app->render->DrawTexture(music_s, -app->render->camera.x + 895, -app->render->camera.y + 302, NULL);
-    }
-    if (pauseCondition)
-    {
-        app->render->DrawTexture(pauseMenu, -app->render->camera.x, -app->render->camera.y, NULL);
-        resumeButton->Draw(app->render);
-        settingsButton->Draw(app->render);
-        exitButton->Draw(app->render);
-    }
-
-    if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN) pauseCondition = !pauseCondition;
+    
     
 
-    if (exi == true)
+    if (app->hud->exi == true)
     {
         return false;
     }
@@ -441,22 +339,22 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         }
         if (control->id == 13)
         {
-            creditsOnScreen = true;
+            app->hud->creditsOnScreen = true;
         }
         if (control->id == 503)
         {
-            creditsOnScreen = false;
-            creditSceneFlag = false;
+            app->hud->creditsOnScreen = false;
+            app->hud->creditSceneFlag = false;
         }
         if (control->id == 510)
         {
-            creditsOnScreen = false;
-            creditSceneFlag = false;
+            app->hud->creditsOnScreen = false;
+            app->hud->creditSceneFlag = false;
         }
         if (control->id == 301)
         {
             //Play
-           settingsEnabled = !settingsEnabled;
+            app->hud->settingsEnabled = !app->hud->settingsEnabled;
         }
         if (control->id == 501)
         {
@@ -474,11 +372,11 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         }
         else if (control->id == 504)
         {
-            settingsEnabled = !settingsEnabled;
+            app->hud->settingsEnabled = !app->hud->settingsEnabled;
         }
         else if (control->id == 306)
         {
-            pauseCondition = false;
+            app->hud->pauseCondition = false;
 
             //Back to title
             ChangeScene(TITLE,0);
@@ -486,14 +384,14 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         else if (control->id == 509)
         {
             //Exit
-            exi = true;
+            app->hud->exi = true;
         }
         else if (control->id == 8)
         {
             //Vsync
-            if (vsync == true)
+            if (app->hud->vsync == true)
             {
-                vsync = false;
+                app->hud->vsync = false;
             }
         }
         else if (control->id == 502)
@@ -502,11 +400,11 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         }
         else if (control->id == 505)
         {
-            creditSceneFlag = true;
+            app->hud->creditSceneFlag = true;
         }
         else if (control->id == 300)
         {
-            pauseCondition = false;
+            app->hud->pauseCondition = false;
         }
 
         //Items
@@ -589,27 +487,27 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         {
             //MusicVolume
             
-            if (app->sceneManager->musicSliderBack.w > 0)
+            if (app->hud->musicSliderBack.w > 0)
             {
-             app->audio->ChangeMusicVolume(100 * (control->bounds.x - app->sceneManager->musicSliderBack.x) / app->sceneManager->musicSliderBack.w);
+             app->audio->ChangeMusicVolume(100 * (control->bounds.x - app->hud->musicSliderBack.x) / app->hud->musicSliderBack.w);
             }
         }
         else if (control->id == 305)
         {
-         if (app->sceneManager->fxSliderBack.w > 0)
-            app->audio->ChangeFxVolume(100 * (control->bounds.x - app->sceneManager->fxSliderBack.x) / app->sceneManager->fxSliderBack.w);
+         if (app->hud->fxSliderBack.w > 0)
+            app->audio->ChangeFxVolume(100 * (control->bounds.x - app->hud->fxSliderBack.x) / app->hud->fxSliderBack.w);
         }
         if (control->id == 507)
         {
-            if (app->sceneManager->musicSliderBack.w > 0)
+            if (app->hud->musicSliderBack.w > 0)
             {
-                app->audio->ChangeMusicVolume(100 * (control->bounds.x - app->sceneManager->musicSliderBack.x) / app->sceneManager->musicSliderBack.w);
+                app->audio->ChangeMusicVolume(100 * (control->bounds.x - app->hud->musicSliderBack.x) / app->hud->musicSliderBack.w);
             }
         }
         else if (control->id == 508)
         {
-            if (app->sceneManager->fxSliderBack.w > 0)
-                app->audio->ChangeFxVolume(100 * (control->bounds.x - app->sceneManager->fxSliderBack.x) / app->sceneManager->fxSliderBack.w);
+            if (app->hud->fxSliderBack.w > 0)
+                app->audio->ChangeFxVolume(100 * (control->bounds.x - app->hud->fxSliderBack.x) / app->hud->fxSliderBack.w);
         }
     }
     case GuiControlType::CHECKBOX:
@@ -617,10 +515,10 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         if (control->id == 302)
         {
             //FullScreen
-            if (fullSc == false)
+            if (app->hud->fullSc == false)
             {
                 SDL_SetWindowFullscreen(app->win->window, SDL_WINDOW_FULLSCREEN);
-                fullSc = true;
+                app->hud->fullSc = true;
             }
             else
             {
@@ -630,10 +528,10 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         if (control->id == 506)
         {
             //FullScreen
-            if (fullSc == false)
+            if (app->hud->fullSc == false)
             {
                 SDL_SetWindowFullscreen(app->win->window, SDL_WINDOW_FULLSCREEN);
-                fullSc = true;
+                app->hud->fullSc = true;
             }
             else
             {
@@ -813,7 +711,7 @@ void SceneManager::CreateQuest(int _id, const char* _text)
     quests.Add(newQuest);
     newQuestAdded = newQuest->id;
 
-    app->particleSystem->AddEmitter(EmitterType::FIRE, app->entityManager->playerData.position.x-app->render->camera.x, app->entityManager->playerData.position.x - app->render->camera.y);
+    //app->particleSystem->AddEmitter(EmitterType::FIRE, app->entityManager->playerData.position.x-app->render->camera.x, app->entityManager->playerData.position.x - app->render->camera.y);
     //app->particleSystem->AddEmitter(EmitterType::FIRE, 200, 200);
 }
 
@@ -834,8 +732,9 @@ void SceneManager::CompleteQuest(int _id)
 void SceneManager::DisplayQuests()
 {
     app->render->DrawTexture(back_quests, 50 - app->render->camera.x, 50 - app->render->camera.y);
-    int posY = 100;
+    int posY = 130;
     ListItem<Quest*>* quest = quests.start;
+    app->render->DrawText(app->render->font, "QUESTS", 150, 40, 100, 0, { 0, 0, 0, 255 });
     while (quest)
     {
         app->render->DrawText(app->render->font, quest->data->text, 200, posY, 50, 0, { 255, 0, 255, 255 });

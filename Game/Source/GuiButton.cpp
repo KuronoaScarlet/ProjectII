@@ -9,10 +9,10 @@ GuiButton::GuiButton(uint32 id, SDL_Rect bounds, const char* text) : GuiControl(
     audio = false;
     audioB = false;
     audioR = false;
-    selectFx = app->audio->LoadFx("Assets/Audio/FX/menu_scroll.wav");
-    selectedFx = app->audio->LoadFx("Assets/Audio/FX/menu_selected.wav");
-    releaseFx = app->audio->LoadFx("Assets/Audio/FX/menu_release.wav");
-    pencilFx = app->audio->LoadFx("Assets/Audio/FX/pencil_circle.wav");
+    selectFx = app->audio->LoadFx("Assets/Audio/Fx/menu_scroll.wav");
+    selectedFx = app->audio->LoadFx("Assets/Audio/Fx/menu_selected.wav");
+    releaseFx = app->audio->LoadFx("Assets/Audio/Fx/menu_release.wav");
+    pencilFx = app->audio->LoadFx("Assets/Audio/Fx/pencil_circle.wav");
 
 }
 

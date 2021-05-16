@@ -3,6 +3,7 @@
 #include "App.h"
 #include "Textures.h"
 #include "Log.h"
+#include "AssetsManager.h"
 
 #include "PugiXml/src/pugixml.hpp"
 
@@ -14,7 +15,8 @@ Fonts::Fonts(const char* rtpFontFile, SDL_Texture* tex)
 	pugi::xml_node xmlNodeAtlas;
 	pugi::xml_node xmlNodeGlyph;
 
-	pugi::xml_parse_result result = xmlDocFontAtlas.load_file(rtpFontFile);
+	int size = app->assetsManager->MakeLoad(rtpFontFile);
+	pugi::xml_parse_result result = xmlDocFontAtlas.load_buffer(app->assetsManager->GetLastBuffer(), size);
 
 	if (result == NULL) LOG("Could not load xml file: %s. pugi error: %s", rtpFontFile, result.description());
 	else xmlNodeAtlas = xmlDocFontAtlas.child("AtlasTexture");

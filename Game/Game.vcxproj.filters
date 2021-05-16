@@ -204,6 +204,9 @@
     <ClCompile Include="Source\GateOpen.cpp">
       <Filter>Entities\Puzzle</Filter>
     </ClCompile>
+    <ClCompile Include="Source\AssetsManager.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -446,6 +449,9 @@
     </ClInclude>
     <ClInclude Include="Source\GateOpen.h">
       <Filter>Entities\Puzzle</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AssetsManager.h">
+      <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

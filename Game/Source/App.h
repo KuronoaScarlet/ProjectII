@@ -22,6 +22,7 @@ class DialogueSystem;
 class Hud;
 class SceneManager;
 class ParticleSystem;
+class AssetsManager;
 
 //Scenes
 class Title;
@@ -101,6 +102,7 @@ public:
 	Title* title;
 	SceneManager* sceneManager;
 	ParticleSystem* particleSystem;
+	AssetsManager* assetsManager;
 
 	uint activeFonts = 0;
 	uint totalFonts = 0;
@@ -160,14 +162,14 @@ private:
 	float frameRate;
 	float tempFps;
 	float fpsAverageSinceStart;
-	bool cappedFrameRate;
+	bool cappedFrameRate = false;
 	float startFramesTimeMs;
 	
 	
 	float timePerfect;
 	float oldLastFrame = 0.0f;
 	int cappedMs = -1;
-	bool caped;
+	bool caped = false;
 };
 
 extern App* app;

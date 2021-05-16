@@ -87,8 +87,7 @@ bool Title::Start()
     
     newGame = new GuiButton(502, { 517, 370, 234, 55 }, "START");
     newGame->SetObserver(this);
-    newGame->SetDisableTexture(app->tex->Load("Assets/Textures/Buttons/states/no.png"));
-    newGame->SetTexture(app->tex->Load("Assets/Textures/newgame.png"), app->tex->Load("Assets/Textures/newgame_selected.png"), app->tex->Load("Assets/Textures/newgame_pressed.png"));
+    newGame->SetTexture(app->tex->Load("Assets/Textures/newgame.png"), app->tex->Load("Assets/Textures/newGame_selected.png"), app->tex->Load("Assets/Textures/newGame_pressed.png"));
 
     escCredits = new GuiButton(503, { 40, 20, 200, 100 }, "ESC");
     escCredits->SetObserver(this);

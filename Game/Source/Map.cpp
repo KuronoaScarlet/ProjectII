@@ -3,6 +3,7 @@
 #include "Textures.h"
 #include "Map.h"
 #include "Collisions.h"
+#include "AssetsManager.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -336,7 +337,8 @@ bool Map::Load(const char* filename)
 	bool ret = true;
 	SString tmp("%s%s", folder.GetString(), filename);
 
-	pugi::xml_parse_result result = mapFile.load_file(tmp.GetString());
+	int size = app->assetsManager->MakeLoad(tmp.GetString());
+	pugi::xml_parse_result result = mapFile.load_buffer(app->assetsManager->GetLastBuffer(), size);
 
 	if (result == NULL)
 	{

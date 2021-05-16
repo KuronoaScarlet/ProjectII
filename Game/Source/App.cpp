@@ -24,6 +24,7 @@
 #include "HUD.h"
 #include "SceneManager.h"
 #include "ParticlesEngine.h"
+#include "AssetsManager.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -45,6 +46,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	render = new Render();
 	tex = new Textures();
 	audio = new Audio();
+	assetsManager = new AssetsManager();
 	map = new Map();
 	entityManager = new EntityManager();
 	collisions = new Collisions(false);
@@ -59,6 +61,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(win);
 	AddModule(tex);
 	AddModule(audio);
+	AddModule(assetsManager);
 	AddModule(map);
 	AddModule(sceneManager);
 	AddModule(entityManager);

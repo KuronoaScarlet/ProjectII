@@ -129,6 +129,9 @@ bool SceneGym::Start()
 	}
 
 	app->map->Load("GymDungeon.tmx");
+
+	app->audio->PlayMusic("Assets/Audio/Music/music_gym.ogg");
+
 	return true;
 }
 

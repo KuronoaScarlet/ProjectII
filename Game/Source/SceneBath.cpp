@@ -79,6 +79,8 @@ bool SceneBath::Start()
 
 	app->map->Load("BathDungeon.tmx");
 
+	app->audio->PlayMusic("Assets/Audio/Music/music_bath.ogg");
+
 	return true;
 }
 

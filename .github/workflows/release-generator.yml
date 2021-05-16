@@ -57,7 +57,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: $.zip
-        path: ./build/$.zip
+        path: ./Build/$.zip
         
     - name: Upload Artifact to Release
       uses: actions/upload-release-asset@v1.0.1

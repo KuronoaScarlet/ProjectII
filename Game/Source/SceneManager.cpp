@@ -365,6 +365,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         }
         if (control->id == 501)
         {
+            app->hud->settingsEnabled = false;
             //LoadGame
             app->loadingGame = true;
             pugi::xml_document savedGame;
@@ -384,6 +385,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         }
         else if (control->id == 306)
         {
+            app->hud->settingsEnabled = false;
             app->hud->pauseCondition = false;
 
             //Back to title
@@ -404,7 +406,9 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         }
         else if (control->id == 502)
         {
+            app->hud->settingsEnabled = false;
             ChangeScene(INTRO,0);
+            
         }
         else if (control->id == 505)
         {
@@ -414,6 +418,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         else if (control->id == 300)
         {
             app->hud->pauseCondition = false;
+            app->hud->settingsEnabled = false;
         }
 
         //Items

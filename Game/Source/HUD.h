@@ -70,7 +70,7 @@ public:
 	SDL_Rect musicSliderBack;
 	SDL_Rect fxSliderBack;
 
-	SDL_Texture* settingsPost;
+	SDL_Texture* settingsPost = nullptr;
 	SDL_Texture* pauseMenu = nullptr;
 
 	bool pauseCondition = false;
@@ -137,10 +137,10 @@ private:
 
 	Easing* easing;
 	
-	float currentIteration;
-	float totalIterations;
-	float initialPosition;
-	float deltaPosition;
+	float currentIteration = 0;
+	float totalIterations = 0;
+	float initialPosition = 0;
+	float deltaPosition = 0;
 
 };
 

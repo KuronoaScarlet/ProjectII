@@ -59,18 +59,18 @@ public:
     SDL_Texture* mandate = nullptr;
 
     ////////Easings
-    float positionTitleBack;
-    float positionTitleCaronte;
-    float positionTitleMandate;
-    float currentIterationBck;
-    float currentIterationCaronte;
-    float currentIterationMandate;
-    float totalIterations;
+    float positionTitleBack = 0;
+    float positionTitleCaronte = 0;
+    float positionTitleMandate = 0;
+    float currentIterationBck = 0;
+    float currentIterationCaronte = 0;
+    float currentIterationMandate = 0;
+    float totalIterations = 0;
     bool startCaronte = true;
 
     SDL_Texture* creditsScene = nullptr;
 
-    SDL_Texture* settingsPost2;
+    SDL_Texture* settingsPost2 = nullptr;
     GuiButton* play;
     GuiButton* newGame;
     GuiButton* escCredits;

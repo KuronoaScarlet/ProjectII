@@ -278,11 +278,13 @@ bool App::DoUpdate()
 	{
 		pModule = item->data;
 
-		if (pModule->active == false) {
+		if (pModule->active == false)
+		{
 			continue;
 		}
 
 		ret = item->data->Update(dt);
+		LOG("%s",SDL_GetError());
 	}
 
 	return ret;

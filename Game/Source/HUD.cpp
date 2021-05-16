@@ -183,12 +183,6 @@ bool Hud::Update(float dt)
 		fullScreen->Update(app->input, dt);
 		vSync->Update(app->input, dt);
 	}
-	if (!pauseCondition)
-	{
-
-		// app->audio->Volume(100, '0');
-
-	}
 	resumeButton->bounds.x = -app->render->camera.x + 537;
 	resumeButton->bounds.y = -app->render->camera.y + 200;
 	settingsButton->bounds.x = -app->render->camera.x + 537;
@@ -196,17 +190,19 @@ bool Hud::Update(float dt)
 	exitButton->bounds.x = -app->render->camera.x + 557;
 	exitButton->bounds.y = -app->render->camera.y + 360;
 
-
 	fullScreen->bounds.x = -app->render->camera.x + 900;
 	fullScreen->bounds.y = -app->render->camera.y + 100;
 
 	vSync->bounds.x = -app->render->camera.x + 900;
 	vSync->bounds.y = -app->render->camera.y + 350;
 
-	// musicSlider->bounds.x = -app->render->camera.x + 900;
-	musicSlider->bounds.y = -app->render->camera.y + 220;
+	if (!settingsEnabled)
+	{
+		musicSlider->bounds.x = -app->render->camera.x+1140;
+		fxSlider->bounds.x = -app->render->camera.x+1140;
+	}
 
-	//fxSlider->bounds.x = -app->render->camera.x + 900;
+	musicSlider->bounds.y = -app->render->camera.y + 220;
 	fxSlider->bounds.y = -app->render->camera.y + 300;
 
 	//RECT OF THE BACKGORUND ONLY UPDATE IF UPDATE THE SLIDERS.
@@ -449,7 +445,7 @@ bool Hud::CleanUp()
 	app->hud->active = false;
 	if (!active)return true;
 	bag->CleanUp();
-
+	settingsEnabled = false;
 	pencil->CleanUp();
 	sharpened->CleanUp();
 	ball->CleanUp();

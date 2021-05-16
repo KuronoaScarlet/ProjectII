@@ -178,7 +178,6 @@ bool Title::PostUpdate()
     if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
     {
         app->sceneManager->ChangeScene(SCENE1,1);
-
     }
     
 
@@ -222,10 +221,6 @@ bool Title::PostUpdate()
             credits->Draw(app->render);
 
             exit->Draw(app->render);
-            if (app->hud->configOn)
-            {
-                app->render->DrawTexture(settingsPost2, 875, 100, NULL);
-            }
         }
     }
 
@@ -236,12 +231,12 @@ bool Title::CleanUp()
 {
     if (!active)return true;
     LOG("Freeing Logo");
-    play->CleanUp();
-    newGame->CleanUp();
-    escCredits->CleanUp();
-    options->CleanUp();
-    credits->CleanUp();
-    exit->CleanUp();
+    //play->CleanUp();
+    //newGame->CleanUp();
+    //escCredits->CleanUp();
+    //options->CleanUp();
+    //credits->CleanUp();
+    //exit->CleanUp();
     active = false;
     app->tex->UnLoad(screen);
     app->tex->UnLoad(creditsScene);

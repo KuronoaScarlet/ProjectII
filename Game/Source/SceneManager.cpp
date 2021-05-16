@@ -373,6 +373,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         else if (control->id == 504)
         {
             app->hud->settingsEnabled = !app->hud->settingsEnabled;
+            app->hud->configOn = !app->hud->configOn;
         }
         else if (control->id == 306)
         {
@@ -487,28 +488,16 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         {
             //MusicVolume
             
-            if (app->hud->musicSliderBack.w > 0)
-            {
-             app->audio->ChangeMusicVolume(100 * (control->bounds.x - app->hud->musicSliderBack.x) / app->hud->musicSliderBack.w);
-            }
+            if (app->hud->musicSliderBack.w > 0)    app->audio->ChangeMusicVolume(100 * (control->bounds.x - app->hud->musicSliderBack.x) / app->hud->musicSliderBack.w);
+            
         }
         else if (control->id == 305)
         {
-         if (app->hud->fxSliderBack.w > 0)
-            app->audio->ChangeFxVolume(100 * (control->bounds.x - app->hud->fxSliderBack.x) / app->hud->fxSliderBack.w);
+            
+            if (app->hud->fxSliderBack.w > 0)  app->audio->ChangeFxVolume(100 * (control->bounds.x - app->hud->fxSliderBack.x) / app->hud->fxSliderBack.w);
+
         }
-        if (control->id == 507)
-        {
-            if (app->hud->musicSliderBack.w > 0)
-            {
-                app->audio->ChangeMusicVolume(100 * (control->bounds.x - app->hud->musicSliderBack.x) / app->hud->musicSliderBack.w);
-            }
-        }
-        else if (control->id == 508)
-        {
-            if (app->hud->fxSliderBack.w > 0)
-                app->audio->ChangeFxVolume(100 * (control->bounds.x - app->hud->fxSliderBack.x) / app->hud->fxSliderBack.w);
-        }
+      
     }
     case GuiControlType::CHECKBOX:
     {

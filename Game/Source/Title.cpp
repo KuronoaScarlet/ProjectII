@@ -45,6 +45,9 @@ bool Title::Start()
     LOG("Loading Logo assets");
 
     bool ret = true;
+
+    app->hud->Init();
+    app->hud->Start();
   
     currentIterationBck = 0;
     currentIterationCaronte = 0;
@@ -104,13 +107,13 @@ bool Title::Start()
     fullScreen->SetObserver(this);
     fullScreen->SetTexture(app->tex->Load("Assets/Textures/fs1.png"), app->tex->Load("Assets/Textures/fs2.png"), app->tex->Load("Assets/Textures/fs2.png"));
 
-    musicVolume = new GuiSlider(507, { 900,300, 60, 60 }, "FxVolume");
+    musicVolume = new GuiSlider(304, { 900,300, 60, 60 }, "FxVolume");
     musicVolume->SetObserver(this);
-    musicVolume->SetTexture(app->tex->Load("Assets/Textures/bag.png"), app->tex->Load("Assets/Textures/bag.png"), app->tex->Load("Assets/Textures/bag.png"));
-    
-    fxVolume = new GuiSlider(508, { 900,350, 60, 60 }, "FxVolume");
+    musicVolume->SetTexture(app->tex->Load("Assets/Textures/fx.png"), app->tex->Load("Assets/Textures/fx_selected.png"), app->tex->Load("Assets/Textures/fx_focused.png"));
+
+    fxVolume = new GuiSlider(305, { 900,350, 60, 60 }, "FxVolume");
     fxVolume->SetObserver(this);
-    fxVolume->SetTexture(app->tex->Load("Assets/Textures/bag.png"), app->tex->Load("Assets/Textures/bag.png"), app->tex->Load("Assets/Textures/bag.png"));
+    fxVolume->SetTexture(app->tex->Load("Assets/Textures/fx.png"), app->tex->Load("Assets/Textures/fx_selected.png"), app->tex->Load("Assets/Textures/fx_focused.png"));
 
     exit = new GuiButton(509, { 580, 569, 117, 55 }, "EXIT");
     exit->SetObserver(this);
@@ -125,6 +128,8 @@ bool Title::Start()
 
     app->render->camera.x = 0;
     //app->render->camera.y = 1000000000; XD, THIS DOES NOTHING
+
+    
 
    return ret;
 }
@@ -147,9 +152,9 @@ bool Title::Update(float dt)
     }
     if (app->hud->configOn)
     {
-        fullScreen->Update(app->input, dt);
+        /*fullScreen->Update(app->input, dt);
         musicVolume->Update(app->input, dt);
-        fxVolume->Update(app->input, dt);
+        fxVolume->Update(app->input, dt);*/
     }
     if (app->hud->creditsOnScreen)
     {

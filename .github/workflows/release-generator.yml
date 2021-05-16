@@ -19,7 +19,7 @@ jobs:
     
     - name: Setup Release Version
       run: |
-        echo "RELEASE_NAME=TDM-Caronte_Mandate_v0.8" >> $GITHUB_ENV
+        echo "RELEASE_NAME=TDM-Caronte_Mandate-v0.8_$" >> $GITHUB_ENV
       shell: bash
       if: github.event_name == 'release' && github.event.action == 'published'
 

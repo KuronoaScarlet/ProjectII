@@ -26,17 +26,24 @@
  - Free world exploration.
  - Dialogues with NPCs and combat.
  - Main combat system based on turns as in Active Time Battle (ATB). Player has to chose which option will the ally/ies do every time they get turn.
+ - Completely navigable Dungeon!
+ - Missions system implemented!
+ - Stats and Inventory Tabs Implemented!
+ - Some Items implemented on the World Map. Find them and interact with them in order to get them!
  
 ## Controls
 
  - `WASD` Movement direction, allowing diagonals.
  - `E` Interaction.
+ - `I` Open Inventory and Stats Tab.
+ - `Q` Open Quests Tab.
  - `SPACE` Continue dialogues and combat steps.
  - `ESC` Open pause menu.
  - `MouseClick` Choose combat option and Menu options.
  - `1, 2 and 3` Choose dialogue option and combat target.
- - `F10` Toggle god mode (increased speed and ignore collisions).
  - `F9` Show collision rects.
+ - `F10` Toggle god mode (increased speed and ignore collisions).
+
 
 ## License
 

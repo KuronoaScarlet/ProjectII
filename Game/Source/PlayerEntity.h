@@ -47,6 +47,7 @@ private:
 	fPoint tempPlayerPosition;
 
 	fPoint lerpCamera;
+	float scale_zoom = 1.0f;
 
 	//// Items
 	uint pickItem = 0;

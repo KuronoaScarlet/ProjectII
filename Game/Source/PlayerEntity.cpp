@@ -493,28 +493,45 @@ bool PlayerEntity::Update(float dt)
 
 			//CAMERA MANAGEMENT----------------------------------------
 
-			float speedx = (position.x - lerpCamera.x) *dt * 1.0f;
-			float speedy = (position.y - lerpCamera.y) *dt * 1.0f;
+			float diffx = position.x - lerpCamera.x;
+			float diffy = position.y - lerpCamera.y;
 
-			//minimum speed adjust
-			float min = 0.2f;
-			if (bool minimum_speed_camera = 0)
+			//scaled min dist¿
+			if (abs(diffx) > 15.0f * scale_zoom) lerpCamera.x += diffx * dt * 1.0f;
+			if (abs(diffy) > 15.0f * scale_zoom) lerpCamera.y += diffy * dt * 1.0f;
+
+			app->render->camera.x = (int)(-lerpCamera.x + (float)640 / scale_zoom);
+			app->render->camera.y = (int)(-lerpCamera.y + (float)360 / scale_zoom);
+			printf("%d___%d\n", app->render->camera.x, app->render->camera.y);
+			//-------------------------------------------------------
+			//ZOOM MANAGEMENT----------------------------------------
+			if (0)
 			{
-				if (speedx < min && speedx > 0) speedx = min;
-				if (speedx > -min && speedx < 0) speedx = -min;
-				if (speedy < min && speedy > 0) speedy = min;
-				if (speedy > -min && speedy < 0) speedy = -min;
+				SDL_Rect zones[3] =
+				{
+					90,94,270,726,
+					570,90,430,180,
+					90,1220,620,530,
+				};
+				SDL_Point ppos{ (int)position.x,(int)position.y };
+				if (SDL_PointInRect(&ppos, &zones[0])
+					|| SDL_PointInRect(&ppos, &zones[1])
+					|| SDL_PointInRect(&ppos, &zones[2]))
+				{
+					if (scale_zoom > 2.0f) scale_zoom = 2.0f;
+					else scale_zoom += (2.0f - scale_zoom) * dt * 1.0f;
+				}
+				else
+				{
+					if (scale_zoom < 1.0f) scale_zoom = 1.0f;
+					else scale_zoom += (1.0f - scale_zoom) * dt * 1.0f;
+				}
+
+				SDL_RenderSetScale(app->render->renderer, scale_zoom, scale_zoom);
+
 			}
 
-			//if (abs(speedx) < 20 /*&& currentAnimation == &idleAnimation*/) lerpCamera.x += speedx * dt;
-			//if (abs(speedy) < 20 /*&& currentAnimation == &idleAnimation*/) lerpCamera.y += speedy * dt;
-
-			lerpCamera.x += speedx;
-			lerpCamera.y += speedy;
-
-			app->render->camera.x = -int(lerpCamera.x) + 640;
-			app->render->camera.y = -int(lerpCamera.y) + 360;
-			//-------------------------------------------------------
+			//printf("%.0f___%.0f\n", position.x, position.y);
 		}
 	}
 	if (app->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN) app->SaveGameRequest();
@@ -543,6 +560,8 @@ bool PlayerEntity::Draw()
 		app->render->DrawRectangle(turnBarMax, 0, 0, 0, 255);
 		app->render->DrawRectangle(turnBar, 255, 185, 0, 255);
 	}
+
+	app->render->DrawLine(position.x, position.y, lerpCamera.x, lerpCamera.y, 0, 0, 255, 255);
 
 	return true;
 }

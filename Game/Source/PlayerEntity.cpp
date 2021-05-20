@@ -497,11 +497,14 @@ bool PlayerEntity::Update(float dt)
 			float diffy = position.y - lerpCamera.y;
 
 			//scaled min dist¿
-			if (abs(diffx) > 15.0f * scale_zoom) lerpCamera.x += diffx * dt * 1.0f;
-			if (abs(diffy) > 15.0f * scale_zoom) lerpCamera.y += diffy * dt * 1.0f;
+			if (abs(diffx) > 15.0f / scale_zoom) lerpCamera.x += diffx * dt * 1.0f;
+			if (abs(diffy) > 15.0f / scale_zoom) lerpCamera.y += diffy * dt * 1.0f;
 
-			app->render->camera.x = (int)(-lerpCamera.x + (float)640 / scale_zoom);
-			app->render->camera.y = (int)(-lerpCamera.y + (float)360 / scale_zoom);
+			int xx = -lerpCamera.x + 640 / scale_zoom;
+			int yy = -lerpCamera.y + 360 / scale_zoom;
+
+			app->render->camera.x = xx;
+			app->render->camera.y = yy;
 			printf("%d___%d\n", app->render->camera.x, app->render->camera.y);
 			//-------------------------------------------------------
 			//ZOOM MANAGEMENT----------------------------------------
@@ -518,13 +521,21 @@ bool PlayerEntity::Update(float dt)
 					|| SDL_PointInRect(&ppos, &zones[1])
 					|| SDL_PointInRect(&ppos, &zones[2]))
 				{
-					if (scale_zoom > 2.0f) scale_zoom = 2.0f;
-					else scale_zoom += (2.0f - scale_zoom) * dt * 1.0f;
+					float diffz = 2.0f - scale_zoom;
+					if (diffz > 0) scale_zoom += diffz * dt * 1.5f;
+					else scale_zoom = 2.0f;
+					/*if (scale_zoom > 2.0f) scale_zoom = 2.0f;
+					else scale_zoom += (2.0f - scale_zoom) * dt * 1.0f;*/
+					//scale_zoom = 2.0f;
 				}
 				else
 				{
-					if (scale_zoom < 1.0f) scale_zoom = 1.0f;
-					else scale_zoom += (1.0f - scale_zoom) * dt * 1.0f;
+					float diffz = 1.0f - scale_zoom;
+					if (diffz < 0) scale_zoom += diffz * dt * 1.5f;
+					else scale_zoom = 1.0f;
+					/*if (scale_zoom < 1.0f) scale_zoom = 1.0f;
+					else scale_zoom += (1.0f - scale_zoom) * dt * 1.0f;*/
+					//scale_zoom = 1.0f;
 				}
 
 				SDL_RenderSetScale(app->render->renderer, scale_zoom, scale_zoom);

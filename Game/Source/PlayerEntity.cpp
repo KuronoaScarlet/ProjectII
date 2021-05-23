@@ -491,24 +491,8 @@ bool PlayerEntity::Update(float dt)
 				app->input->ShakeController(0, 12, 0.33f);
 			}
 
-			//CAMERA MANAGEMENT----------------------------------------
-
-			float diffx = position.x - lerpCamera.x;
-			float diffy = position.y - lerpCamera.y;
-
-			//scaled min dist¿
-			if (abs(diffx) > 15.0f) lerpCamera.x += diffx * dt * 1.0f;
-			if (abs(diffy) > 15.0f) lerpCamera.y += diffy * dt * 1.0f;
-
-			int xx = -lerpCamera.x + 640.0f / scale_zoom;
-			int yy = -lerpCamera.y + 360.0f / scale_zoom;
-
-			app->render->camera.x = xx;
-			app->render->camera.y = yy;
-			printf("%d___%d___%.5f\n", app->render->camera.x, app->render->camera.y, scale_zoom);
-			//-------------------------------------------------------
 			//ZOOM MANAGEMENT----------------------------------------
-			if (0)
+			if (1)
 			{
 				SDL_Rect zones[3] =
 				{
@@ -522,18 +506,38 @@ bool PlayerEntity::Update(float dt)
 					|| SDL_PointInRect(&ppos, &zones[2]))
 				{
 					float diffz = 2.0f - scale_zoom;
-					if (abs(diffz) > 0.05f) scale_zoom += diffz * dt * 1.0f;
+					if (diffz < 0.1f) diffz = 0.1f;
+					if (scale_zoom < 2.0f) scale_zoom += diffz * dt * 2.0f;
+					else scale_zoom = 2.0f;
 				}
 				else
 				{
 					float diffz = 1.0f - scale_zoom;
-					if (abs(diffz) > 0.05f) scale_zoom += diffz * dt * 1.0f;
+					if (diffz > -0.1f) diffz = -0.1f;
+					if (scale_zoom > 1.0f) scale_zoom += diffz * dt * 2.0f;
+					else scale_zoom = 1.0f;
 				}
 
 				SDL_RenderSetScale(app->render->renderer, scale_zoom, scale_zoom);
 			}
 
-			//printf("%.0f___%.0f\n", position.x, position.y);
+			//CAMERA MANAGEMENT----------------------------------------
+
+			float diffx = position.x - lerpCamera.x;
+			float diffy = position.y - lerpCamera.y;
+
+			//scaled min dist¿
+			if (abs(diffx) > 15.0f) lerpCamera.x += diffx * dt * 1.0f * scale_zoom;
+			if (abs(diffy) > 15.0f) lerpCamera.y += diffy * dt * 1.0f * scale_zoom;
+
+			int xx = -lerpCamera.x + 640.0f / scale_zoom;
+			int yy = -lerpCamera.y + 360.0f / scale_zoom;
+
+			app->render->camera.x = xx;
+			app->render->camera.y = yy;
+			printf("%d___%d___%.5f\n", app->render->camera.x, app->render->camera.y, scale_zoom);
+			//-------------------------------------------------------
+			
 		}
 	}
 	if (app->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN) app->SaveGameRequest();

@@ -161,8 +161,6 @@ bool Input::PreUpdate()
 // Called before quitting
 bool Input::CleanUp()
 {
-	LOG("Quitting SDL event subsystem");
-	SDL_QuitSubSystem(SDL_INIT_EVENTS);
 
 	// Stop rumble from all gamepads and deactivate SDL functionallity
 	for (uint i = 0; i < MAX_PADS; ++i)
@@ -176,7 +174,10 @@ bool Input::CleanUp()
 		
 	}
 
-
+	LOG("Quitting SDL event subsystem");
+	SDL_QuitSubSystem(SDL_INIT_HAPTIC);
+	SDL_QuitSubSystem(SDL_INIT_GAMECONTROLLER);
+	SDL_QuitSubSystem(SDL_INIT_EVENTS);
 	return true;
 }
 
@@ -291,11 +292,14 @@ bool Input::ShakeController(int id, int duration, float strength)
 	bool ret = false;
 
 	// Check if the given id is valid within the array bounds
-	if (id < 0 || id >= MAX_PADS) return ret;
+	if (id < 0 || id >= MAX_PADS)
+		return ret;
+
+	GamePad& pad = pads[id];
 
 	// Check if the gamepad is active and allows rumble
-	GamePad& pad = pads[id];
-	if (!pad.enabled || pad.haptic == nullptr || SDL_HapticRumbleSupported(pad.haptic) != SDL_TRUE) return ret;
+	if (!pad.enabled || pad.haptic == nullptr || SDL_HapticRumbleSupported(pad.haptic) != SDL_TRUE)
+		return ret;
 
 	// If the pad is already in rumble state and the new strength is below the current value, ignore this call
 	if (duration < pad.rumble_countdown && strength < pad.rumble_strength)

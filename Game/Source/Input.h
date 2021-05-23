@@ -50,6 +50,47 @@ public:
 	//Rumble controller
 	int rumble_countdown;
 	float rumble_strength;
+
+	GamePad()
+	{
+		start = false;
+		back = false;
+		guide = false;
+
+		x = false; 
+		y = false;
+		a = false;
+		b = false;
+		l1 = false;
+		r1 = false;
+		l3 = false;
+		r3 = false;
+
+		up = false;
+		down = false;
+		left = false;
+		right = false;
+
+		l2 = 0;
+		r2 = 0;
+
+		l_x = 0;
+		l_y = 0;
+		r_x = 0;
+		r_y = 0;
+		l_dz = 0;
+		r_dz = 0;
+
+		//Controller data
+		enabled = false;
+		index = 0;
+		controller = nullptr;
+		haptic = nullptr;
+
+		//Rumble controller
+		rumble_countdown = 0;
+		rumble_strength = 0;
+	}
 };
 
 class Input : public Module
@@ -94,11 +135,8 @@ public:
 
 	void HandleDeviceConnection(int index);
 
-	// Deactivates SDL device funcionallity when a gamepad has been disconnected
 	void HandleDeviceRemoval(int index);
 
-	// Called at PreUpdate
-	// Iterates through all active gamepads and update all input data
 	void UpdateGamepadsInput();
 
 	bool ShakeController(int id, int duration, float strength = 0.5f);

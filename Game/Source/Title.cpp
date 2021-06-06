@@ -102,7 +102,7 @@ bool Title::Start()
     credits->SetObserver(this);
     credits->SetTexture(app->tex->Load("Assets/Textures/credits.png"), app->tex->Load("Assets/Textures/credits_selected.png"), app->tex->Load("Assets/Textures/credits_pressed.png"));
 
-    exit = new GuiButton(509, { 580, 569, 117, 55 }, "EXIT");
+    exit = new GuiButton(507, { 580, 569, 117, 55 }, "EXIT");
     exit->SetObserver(this);
     exit->SetTexture(app->tex->Load("Assets/Textures/exit.png"), app->tex->Load("Assets/Textures/exit_selected.png"), app->tex->Load("Assets/Textures/exit_pressed.png"));
 
@@ -115,10 +115,7 @@ bool Title::Start()
     app->hud->exi = false;
 
     app->render->camera.x = 0;
-    //app->render->camera.y = 1000000000; XD, THIS DOES NOTHING
-
-    
-
+   
    return ret;
 }
 

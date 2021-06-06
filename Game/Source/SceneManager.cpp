@@ -391,7 +391,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
             //Back to title
             ChangeScene(TITLE,0);
         }
-        else if (control->id == 509)
+        else if (control->id == 507)
         {
             //Exit
             app->hud->exi = true;

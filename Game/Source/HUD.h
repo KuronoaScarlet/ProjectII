@@ -53,6 +53,8 @@ public:
 	void DrawVictoryScreen();
 	void DrawLooseScreen();
 
+	int selectedId = 501;
+
 	//PAUSE.........................................................
 	GuiButton* resumeButton;
 	GuiButton* settingsButton;

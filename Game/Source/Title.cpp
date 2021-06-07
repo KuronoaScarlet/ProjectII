@@ -80,6 +80,7 @@ bool Title::Start()
     play->SetObserver(this);
     play->SetTexture(app->tex->Load("Assets/Textures/continue.png"), app->tex->Load("Assets/Textures/continue_selected.png"), app->tex->Load("Assets/Textures/continue_pressed.png"));
     play->SetDisableTexture(app->tex->Load("Assets/Textures/continue_disabled.png"));
+
     if (!app->fileSaved)
     {
        play->state = GuiControlState::DISABLED;
@@ -89,20 +90,20 @@ bool Title::Start()
     newGame->SetObserver(this);
     newGame->SetTexture(app->tex->Load("Assets/Textures/newgame.png"), app->tex->Load("Assets/Textures/newGame_selected.png"), app->tex->Load("Assets/Textures/newGame_pressed.png"));
 
-    escCredits = new GuiButton(503, { 40, 20, 200, 100 }, "ESC");
+    escCredits = new GuiButton(506, { 40, 20, 200, 100 }, "ESC");
     escCredits->SetObserver(this);
     escCredits->SetDisableTexture(app->tex->Load("Assets/Textures/esc.png"));
     escCredits->SetTexture(app->tex->Load("Assets/Textures/esc.png"), app->tex->Load("Assets/Textures/esc2.png"), app->tex->Load("Assets/Textures/esc3.png"));
 
-    options = new GuiButton(504, { 543, 438, 197, 55 }, "OPTIONS");
+    options = new GuiButton(503, { 543, 438, 197, 55 }, "OPTIONS");
     options->SetObserver(this);
     options->SetTexture(app->tex->Load("Assets/Textures/settings.png"), app->tex->Load("Assets/Textures/settings_selected.png"), app->tex->Load("Assets/Textures/settings_pressed.png"));
 
-    credits = new GuiButton(505, { 551, 514, 172, 55 }, "CREDITS");
+    credits = new GuiButton(504, { 551, 514, 172, 55 }, "CREDITS");
     credits->SetObserver(this);
     credits->SetTexture(app->tex->Load("Assets/Textures/credits.png"), app->tex->Load("Assets/Textures/credits_selected.png"), app->tex->Load("Assets/Textures/credits_pressed.png"));
 
-    exit = new GuiButton(507, { 580, 569, 117, 55 }, "EXIT");
+    exit = new GuiButton(505, { 580, 569, 117, 55 }, "EXIT");
     exit->SetObserver(this);
     exit->SetTexture(app->tex->Load("Assets/Textures/exit.png"), app->tex->Load("Assets/Textures/exit_selected.png"), app->tex->Load("Assets/Textures/exit_pressed.png"));
 

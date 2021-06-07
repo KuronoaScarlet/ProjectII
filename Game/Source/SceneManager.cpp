@@ -348,7 +348,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         {
             app->hud->creditsOnScreen = true;
         }
-        if (control->id == 503)
+        if (control->id == 506)
         {
             app->hud->creditsOnScreen = false;
             app->hud->creditSceneFlag = false;
@@ -378,12 +378,13 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
             if (app->currentLevel == 1) ChangeScene(SCENE1,2);
             if (app->currentLevel == 2) ChangeScene(SCENE12,2);
         }
-        else if (control->id == 504)
+        else if (control->id == 503)
         {
             app->hud->settingsEnabled = !app->hud->settingsEnabled;
             app->hud->configOn = !app->hud->configOn;
+            app->hud->selectedId = 302;
         }
-        else if (control->id == 306)
+        else if (control->id == 302)
         {
             app->hud->settingsEnabled = false;
             app->hud->pauseCondition = false;
@@ -391,7 +392,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
             //Back to title
             ChangeScene(TITLE,0);
         }
-        else if (control->id == 507)
+        else if (control->id == 505)
         {
             //Exit
             app->hud->exi = true;
@@ -410,7 +411,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
             ChangeScene(INTRO,0);
             
         }
-        else if (control->id == 505)
+        else if (control->id == 504)
         {
             app->hud->creditSceneFlag = true;
             app->hud->settingsEnabled = false;
@@ -514,7 +515,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
     }
     case GuiControlType::CHECKBOX:
     {
-        if (control->id == 302)
+        if (control->id == 303)
         {
             //FullScreen
             if (app->hud->fullSc == false)

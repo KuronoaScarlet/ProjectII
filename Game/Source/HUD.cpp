@@ -63,11 +63,11 @@ bool Hud::Start()
 	settingsButton->SetObserver(this);
 	settingsButton->SetTexture(app->tex->Load("Assets/Textures/settings.png"), app->tex->Load("Assets/Textures/settings_selected.png"), app->tex->Load("Assets/Textures/settings_pressed.png"));
 
-	fullScreen = new GuiCheckBox(302, { 620,400, 300, 60 }, "FULLSCREEN");
+	fullScreen = new GuiCheckBox(303, { 620,400, 300, 60 }, "FULLSCREEN");
 	fullScreen->SetObserver(this);
 	fullScreen->SetTexture(app->tex->Load("Assets/Textures/fs1.png"), app->tex->Load("Assets/Textures/fs2.png"), app->tex->Load("Assets/Textures/fs2.png"));
 	
-	vSync = new GuiCheckBox(303, { 620,400, 300, 60 }, "VSYNC");
+	vSync = new GuiCheckBox(306, { 620,400, 300, 60 }, "VSYNC");
 	vSync->SetObserver(this);
 	vSync->SetTexture(app->tex->Load("Assets/Textures/vs1.png"), app->tex->Load("Assets/Textures/vs2.png"), app->tex->Load("Assets/Textures/vs2.png"));
 
@@ -79,7 +79,7 @@ bool Hud::Start()
 	fxSlider->SetObserver(this);
 	fxSlider->SetTexture(app->tex->Load("Assets/Textures/fx.png"), app->tex->Load("Assets/Textures/fx_selected.png"), app->tex->Load("Assets/Textures/fx_focused.png"));
 
-	exitButton = new GuiButton(306, { 551, 360, 172, 55 }, "CREDITS");
+	exitButton = new GuiButton(302, { 551, 360, 172, 55 }, "CREDITS");
 	exitButton->SetObserver(this);
 	exitButton->SetTexture(app->tex->Load("Assets/Textures/exit.png"), app->tex->Load("Assets/Textures/exit_selected.png"), app->tex->Load("Assets/Textures/exit_pressed.png"));
 
@@ -170,6 +170,15 @@ bool Hud::PreUpdate()
 // Called each loop iteration
 bool Hud::Update(float dt)
 {
+	if (app->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN)
+	{
+		selectedId--;
+	}
+	if (app->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN)
+	{
+		selectedId++;
+	}
+
 	if (pauseCondition)
 	{
 		resumeButton->Update(app->input, dt);
@@ -336,7 +345,14 @@ bool Hud::PostUpdate()
 		exitButton->Draw(app->render);
 	}
 
-	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN) pauseCondition = !pauseCondition;
+	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+	{
+		pauseCondition = !pauseCondition;
+		app->hud->settingsEnabled = false;
+		app->hud->configOn = false;
+		if(app->sceneManager->id == TITLE) selectedId = 501;
+		else selectedId = 300;
+	}
 
 	if (bagEnabled && !settingsEnabled)
 	{

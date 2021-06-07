@@ -1,5 +1,6 @@
 #include "GuiCheckBox.h"
 #include "Options.h"
+#include "HUD.h"
 
 GuiCheckBox::GuiCheckBox(uint32 id, SDL_Rect bounds, const char* text) : GuiControl(GuiControlType::CHECKBOX, id)
 {
@@ -20,27 +21,21 @@ bool GuiCheckBox::Update(Input* input, float dt)
 {
     if (state != GuiControlState::DISABLED)
     {
-        int mouseX, mouseY;
-        input->GetMousePosition(mouseX, mouseY);
-        mouseX -= app->render->camera.x;
-        mouseY -= app->render->camera.y;
         // Check collision between mouse and button bounds
-        if ((mouseX > bounds.x) && (mouseX < (bounds.x + bounds.w)) && 
-            (mouseY > bounds.y) && (mouseY < (bounds.y + bounds.h)))
+        if (app->hud->selectedId == id)
         {
             state = GuiControlState::FOCUSED;
 
-            if (input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_REPEAT)
+            if (input->GetKey(SDL_SCANCODE_RETURN) == KeyState::KEY_REPEAT)
             {
                 state = GuiControlState::PRESSED;
             }
 
             // If mouse button pressed -> Generate event!
-            if (input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_UP)
+            if (input->GetKey(SDL_SCANCODE_RETURN) == KeyState::KEY_UP)
             {
                 NotifyObserver();
                 checked = !checked;
-                
             }
         }
         else state = GuiControlState::NORMAL;

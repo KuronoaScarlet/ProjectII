@@ -55,14 +55,13 @@ bool Coffee::Draw()
 
 bool Coffee::Interaction()
 {
-	if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN) && picked == false)
-	{
+
 		app->entityManager->playerData.coffee++;
 		CleanUp();
 		printf("%d", app->entityManager->playerData.coffee);
 		picked = true;
 		app->particleSystem->AddEmitter(EmitterType::COFFE, position.x, position.y, 120);
-	}
+	
 	
 	return true;
 }

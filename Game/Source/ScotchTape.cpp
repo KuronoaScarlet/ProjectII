@@ -54,14 +54,13 @@ bool ScotchTape::Draw()
 
 bool ScotchTape::Interaction()
 {
-	if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN) && picked == false)
-	{
+
 		app->entityManager->playerData.celo++;
 		CleanUp();
 		printf("%d", app->entityManager->playerData.celo);
 		picked = true;
 
-	}
+	
 	
 	return true;
 }

@@ -30,14 +30,14 @@ bool GuiButton::Update(Input* input, float dt)
         if (app->hud->selectedId == id)
         {
             state = GuiControlState::FOCUSED;
-
-            if (input->GetKey(SDL_SCANCODE_RETURN) == KeyState::KEY_REPEAT)
+            GamePad& pad = app->input->pads[0];
+            if (input->GetKey(SDL_SCANCODE_RETURN) == KeyState::KEY_REPEAT || pad.a)
             {
                 state = GuiControlState::PRESSED;
             }
 
             // If mouse button pressed -> Generate event!
-            if (input->GetKey(SDL_SCANCODE_RETURN) == KeyState::KEY_UP)
+            if (input->GetKey(SDL_SCANCODE_RETURN) == KeyState::KEY_UP || pad.a)
             {
                 NotifyObserver();
             }

@@ -55,15 +55,13 @@ bool Can::Draw()
 
 bool Can::Interaction()
 {
-	if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN) && picked == false)
-	{
-		app->entityManager->playerData.cola++;
-		CleanUp();
-		printf("%d", app->entityManager->playerData.cola);
-		picked = true;
-		app->particleSystem->AddEmitter(EmitterType::CAN, position.x, position.y, 120);
+	app->entityManager->playerData.cola++;
+	CleanUp();
+	printf("%d", app->entityManager->playerData.cola);
+	picked = true;
+	app->particleSystem->AddEmitter(EmitterType::CAN, position.x, position.y, 120);
 
-	}
+	
 	
 	return true;
 }

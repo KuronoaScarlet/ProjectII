@@ -54,7 +54,8 @@ public:
 	void DrawLooseScreen();
 
 	int selectedId = 501;
-
+	bool holaRay = true;
+	bool startglitch = true;
 	//PAUSE.........................................................
 	GuiButton* resumeButton;
 	GuiButton* settingsButton;

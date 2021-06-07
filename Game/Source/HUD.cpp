@@ -158,6 +158,9 @@ bool Hud::Start()
 	playerFace = app->tex->Load("Assets/Textures/player_face.png");
 	allyFace = app->tex->Load("Assets/Textures/ally_face.png");
 
+	holaRay = true;
+	startglitch = true;
+
 	return true;
 }
 
@@ -170,15 +173,24 @@ bool Hud::PreUpdate()
 // Called each loop iteration
 bool Hud::Update(float dt)
 {
-	if (app->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN)
+	GamePad& pad = app->input->pads[0];
+	if ((app->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN || pad.up) && holaRay == true)
 	{
 		selectedId--;
-	}
-	if (app->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN)
-	{
-		selectedId++;
+		holaRay = false;
 	}
 
+	if ((app->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN || pad.down) && holaRay == true)
+	{
+
+		selectedId++;
+		holaRay = false;
+	
+	}
+	if (!pad.down && !pad.up)
+	{
+		holaRay = true;
+	}
 	if (pauseCondition)
 	{
 		resumeButton->Update(app->input, dt);
@@ -264,6 +276,7 @@ bool Hud::Update(float dt)
 // Called each loop iteration
 bool Hud::PostUpdate()
 {
+	GamePad& pad = app->input->pads[0];
 	bag->bounds.x = -app->render->camera.x + 275;
 	bag->bounds.y = easing->linearEaseInOut(currentIteration, -app->render->camera.y + 700, deltaPosition, totalIterations);
 	bckposY = easing->linearEaseInOut(currentIteration, -app->render->camera.y + 700, deltaPosition, totalIterations);
@@ -345,13 +358,18 @@ bool Hud::PostUpdate()
 		exitButton->Draw(app->render);
 	}
 
-	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+	if ((app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN || pad.start) && startglitch == true)
 	{
+		startglitch = false;
 		pauseCondition = !pauseCondition;
 		app->hud->settingsEnabled = false;
 		app->hud->configOn = false;
 		if(app->sceneManager->id == TITLE) selectedId = 501;
 		else selectedId = 300;
+	}
+	if (!pad.start && !pad.up)
+	{
+		startglitch = true;
 	}
 
 	if (bagEnabled && !settingsEnabled)

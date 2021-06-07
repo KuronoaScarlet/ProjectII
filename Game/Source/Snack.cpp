@@ -56,15 +56,14 @@ bool Snack::Draw()
 
 bool Snack::Interaction()
 {
-	if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN) && picked == false)
-	{
+
 		app->entityManager->playerData.snack++;
 		CleanUp();
 		printf("%d", app->entityManager->playerData.snack);
 		picked = true;
 		app->particleSystem->AddEmitter(EmitterType::SNACK, position.x, position.y, 120);
 
-	}
+	
 	
 	return true;
 }

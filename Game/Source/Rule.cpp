@@ -55,15 +55,14 @@ bool Rule::Draw()
 
 bool Rule::Interaction()
 {
-	if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN) && picked == false)
-	{
+
 		app->entityManager->playerData.rule++;
 		CleanUp();
 		printf("%d", app->entityManager->playerData.rule);
 		picked = true;
 		app->particleSystem->AddEmitter(EmitterType::RULE, position.x, position.y, 120);
 
-	}
+	
 	
 	return true;
 }

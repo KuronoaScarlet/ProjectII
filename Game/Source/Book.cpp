@@ -55,14 +55,13 @@ bool Book::Draw()
 
 bool Book::Interaction()
 {
-	if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN) && picked == false)
-	{
+	
 		app->entityManager->playerData.book++;
 		
 		picked = true;
 		app->particleSystem->AddEmitter(EmitterType::BOOK, position.x, position.y, 120);
 		CleanUp();
-	}
+	
 	
 	return true;
 }

@@ -388,6 +388,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         {
             app->hud->settingsEnabled = false;
             app->hud->pauseCondition = false;
+            app->hud->selectedId = 501;
 
             //Back to title
             ChangeScene(TITLE,0);

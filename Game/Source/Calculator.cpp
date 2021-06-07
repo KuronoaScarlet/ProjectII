@@ -54,14 +54,12 @@ bool Calculator::Draw()
 
 bool Calculator::Interaction()
 {
-	if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN) && picked == false)
-	{
+	
 		app->entityManager->playerData.calculator++;
 		CleanUp();
 		printf("%d", app->entityManager->playerData.calculator);
 		picked = true;
-
-	}
+	
 	
 	return true;
 }

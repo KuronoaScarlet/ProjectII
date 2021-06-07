@@ -55,15 +55,13 @@ bool Rubber::Draw()
 
 bool Rubber::Interaction()
 {
-	if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN) && picked == false)
-	{
-		app->entityManager->playerData.eraser++;
-		CleanUp();
-		printf("%d", app->entityManager->playerData.eraser);
-		picked = true;
-		app->particleSystem->AddEmitter(EmitterType::RUBBER, position.x, position.y, 120);
+	app->entityManager->playerData.eraser++;
+	CleanUp();
+	printf("%d", app->entityManager->playerData.eraser);
+	picked = true;
+	app->particleSystem->AddEmitter(EmitterType::RUBBER, position.x, position.y, 120);
 
-	}
+	
 	
 	return true;
 }

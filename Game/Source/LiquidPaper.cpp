@@ -55,15 +55,14 @@ bool LiquidPaper::Draw()
 
 bool LiquidPaper::Interaction()
 {
-	if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN) && picked == false)
-	{
+
 		app->entityManager->playerData.tipex++;
 		CleanUp();
 		printf("%d", app->entityManager->playerData.tipex);
 		picked = true;
 		app->particleSystem->AddEmitter(EmitterType::LIQUIDPAPER, position.x, position.y, 120);
 
-	}
+	
 	
 	return true;
 }

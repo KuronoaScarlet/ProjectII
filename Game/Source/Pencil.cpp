@@ -55,8 +55,7 @@ bool Pencil::Draw()
 
 bool Pencil::Interaction()
 {
-	if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN) && picked == false)
-	{
+
 		app->entityManager->playerData.pencil++;
 		app->entityManager->playerData.sharper++;
 
@@ -65,7 +64,7 @@ bool Pencil::Interaction()
 		printf("%d", app->entityManager->playerData.sharper);
 		picked = true;
 		app->particleSystem->AddEmitter(EmitterType::SPARKLES, position.x, position.y, 120);
-	}
+	
 	
 	return true;
 }

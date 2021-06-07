@@ -56,14 +56,13 @@ bool FirstAidKit::Draw()
 
 bool FirstAidKit::Interaction()
 {
-	if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN) && picked == false)
-	{
+
 		app->entityManager->playerData.fak++;
 		CleanUp();
 		printf("%d", app->entityManager->playerData.fak);
 		picked = true;
 		app->particleSystem->AddEmitter(EmitterType::FAK, position.x, position.y, 120);
-	}
+	
 	
 	return true;
 }

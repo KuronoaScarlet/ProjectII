@@ -55,8 +55,7 @@ bool Ball::Draw()
 
 bool Ball::Interaction()
 {
-	if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN) && picked == false)
-	{
+	
 		app->entityManager->playerData.ball++;
 		CleanUp();
 		printf("%d", app->entityManager->playerData.ball);
@@ -64,7 +63,7 @@ bool Ball::Interaction()
 		app->particleSystem->AddEmitter(EmitterType::BALL, position.x, position.y, 120);
 
 
-	}
+	
 	
 	return true;
 }

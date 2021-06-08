@@ -105,7 +105,6 @@ public:
 	bool onTurn = false;
 	Entity* turnEntity;
 	ListItem<Entity*>* tmp;
-	//int enemySelection = 0;
 	int allySelection = 0;
 	bool itemSelected = false;
 	bool boosted = false;

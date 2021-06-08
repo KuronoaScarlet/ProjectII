@@ -586,7 +586,7 @@ void Hud::DrawVictoryScreen()
 	app->render->DrawText(app->render->font, text, 385, 90, 60, 4, { 0, 0, 0, 255 });
 	sprintf_s(text, 64, "Buen trabajo! Sigue haciendolo asi!");
 	app->render->DrawText(app->render->font, text, 360, 400, 40, 4, { 0, 0, 0, 255 });
-	sprintf_s(text, 64, "Pulsa espacio para continuar...");
+	sprintf_s(text, 64, "Pulsa enter para continuar...");
 	app->render->DrawText(app->render->font, text, 770, 640, 35, 3, { 0, 0, 0, 255 });
 
 	app->render->DrawTexture(playerFace, 470, 200, NULL);
@@ -602,7 +602,7 @@ void Hud::DrawLooseScreen()
 	app->render->DrawText(app->render->font, text, 550, 90, 60, 4, { 0, 0, 0, 255 });
 	sprintf_s(text, 64, "No te preocupes! Sigue intentandolo!");
 	app->render->DrawText(app->render->font, text, 360, 400, 40, 4, { 0, 0, 0, 255 });
-	sprintf_s(text, 64, "Pulsa espacio para continuar...");
+	sprintf_s(text, 64, "Pulsa enter para continuar...");
 	app->render->DrawText(app->render->font, text, 770, 640, 35, 3, { 0, 0, 0, 255 });
 
 	app->render->DrawTexture(playerFace, 470, 200, NULL);

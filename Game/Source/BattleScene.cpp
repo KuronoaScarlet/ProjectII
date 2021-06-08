@@ -301,9 +301,8 @@ bool BattleScene::PostUpdate()
 
 	if (state == LOSE)
 	{
-		
 		app->hud->DrawLooseScreen();
-		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+		if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
 		{
 			if (app->entityManager->playerData.scene == 1) app->sceneManager->ChangeScene(SCENE1, 0);
 			if (app->entityManager->playerData.scene == 2) app->sceneManager->ChangeScene(SCENE12, 0);
@@ -313,7 +312,7 @@ bool BattleScene::PostUpdate()
 	{
 		app->hud->DrawVictoryScreen();
 
-		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+		if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
 		{
 			if (app->entityManager->playerData.scene == 1) app->sceneManager->ChangeScene(SCENE1, 0);
 			if (app->entityManager->playerData.scene == 2) app->sceneManager->ChangeScene(SCENE12, 0);
@@ -334,6 +333,9 @@ bool BattleScene::CleanUp()
 
 	app->entityManager->CleanUp();
 	app->collisions->CleanUp();
+	damageEnemy->CleanUp();
+	balancedEnemy->CleanUp();
+	tankEnemy->CleanUp();
 	app->tex->UnLoad(screen);
 	app->tex->UnLoad(combatBox);
 	app->tex->UnLoad(playerFace);
@@ -345,10 +347,6 @@ bool BattleScene::CleanUp()
 	defend->CleanUp();
 	combine->CleanUp();
 	run->CleanUp();
-	damageEnemy->CleanUp();
-	balancedEnemy->CleanUp();
-	tankEnemy->CleanUp();
-	active = false;
 
 	LOG("Freeing scene");
 	return true;

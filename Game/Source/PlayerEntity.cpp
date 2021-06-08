@@ -499,7 +499,7 @@ bool PlayerEntity::Update(float dt)
 			}
 
 			//ZOOM MANAGEMENT----------------------------------------
-			if (1)
+			if (0)
 			{
 				SDL_Rect zones[3] =
 				{
@@ -573,8 +573,6 @@ bool PlayerEntity::Draw()
 		app->render->DrawRectangle(turnBarMax, 0, 0, 0, 255);
 		app->render->DrawRectangle(turnBar, 255, 185, 0, 255);
 	}
-
-	app->render->DrawLine(position.x, position.y, lerpCamera.x, lerpCamera.y, 0, 0, 255, 255);
 
 	return true;
 }

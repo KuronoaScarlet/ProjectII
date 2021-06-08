@@ -52,7 +52,8 @@ bool BattleScene::Start()
 	app->sceneManager->atkMenu = false;
 	app->sceneManager->defMenu = false;
 	app->sceneManager->combMenu = false; 
-	enemySelection = 0;
+	app->sceneManager->enemySelection = 0;
+	app->sceneManager->enemySelected = false;
 	allySelection = 0;
 	itemSelected = false;
 	boosted = false;
@@ -70,7 +71,7 @@ bool BattleScene::Start()
 	screen = app->tex->Load("Assets/Textures/Screens/battle_scene.png");
 	combatBox = app->tex->Load("Assets/Textures/combat_box.png");
 
-		//Caritas
+	//Caritas
 	playerFace = app->tex->Load("Assets/Textures/player_face.png");
 	allyFace = app->tex->Load("Assets/Textures/ally_face.png");
 	dmgEnemyFace = app->tex->Load("Assets/Textures/damage_enemy_face.png");
@@ -94,14 +95,16 @@ bool BattleScene::Start()
 	run = new GuiButton(104, { 530, 660, 216, 43 }, "run");
 	run->SetObserver(this);
 	run->SetTexture(app->tex->Load("Assets/Textures/run3.png"), app->tex->Load("Assets/Textures/run4.png"), app->tex->Load("Assets/Textures/run5.png"));
+
 	//--------------------------------------------------------------
 
 	app->render->camera = { 0, 0 };
 
 
 	//Paso 2: Añadir entidades enemigas. Random (2 o 3).
-	rngEnemyNum = rand() % 4;
+	rngEnemyNum = 1;
 	rngTypeEnemy = rand() % 2;
+	int tankID = 600;
 
 	switch (rngEnemyNum)
 	{
@@ -109,6 +112,19 @@ bool BattleScene::Start()
 		app->entityManager->AddEntity({ 880.0f, 288.0f }, Entity::Type::TANK_ENEMY);
 		app->entityManager->AddEntity({ 960.0f, 328.0f }, Entity::Type::DAMAGE_ENEMY);
 		app->entityManager->AddEntity({ 880.0f, 368.0f }, Entity::Type::EQUILIBRATED_ENEMY);
+
+		tankEnemy = new GuiButton(tankID, { 280, 580, 50, 50 }, "tankEnemy");
+		tankEnemy->SetObserver(this);
+		tankEnemy->SetTexture(app->tex->Load("Assets/Textures/tank_enemy_face.png"), app->tex->Load("Assets/Textures/tank_enemy_selected.png"), app->tex->Load("Assets/Textures/tank_enemy_pressed.png"));
+
+		balancedEnemy = new GuiButton(tankID + 1, { 460, 580, 50, 50 }, "tankEnemy");
+		balancedEnemy->SetObserver(this);
+		balancedEnemy->SetTexture(app->tex->Load("Assets/Textures/balanced_enemy_face.png"), app->tex->Load("Assets/Textures/balanced_enemy_selected.png"), app->tex->Load("Assets/Textures/balanced_enemy_pressed.png"));
+
+		damageEnemy = new GuiButton(tankID + 2, { 630, 580, 50, 50 }, "tankEnemy");
+		damageEnemy->SetObserver(this);
+		damageEnemy->SetTexture(app->tex->Load("Assets/Textures/damage_enemy_face.png"), app->tex->Load("Assets/Textures/damage_enemy_selected.png"), app->tex->Load("Assets/Textures/damage_enemy_pressed.png"));
+
 		remainingEnemies = 3;
 		break;
 
@@ -117,12 +133,38 @@ bool BattleScene::Start()
 		{
 			app->entityManager->AddEntity({ 880.0f, 288.0f }, Entity::Type::TANK_ENEMY);
 			app->entityManager->AddEntity({ 880.0f, 368.0f }, Entity::Type::DAMAGE_ENEMY);
+
+			tankEnemy = new GuiButton(tankID, { 320, 580, 50, 50 }, "tankEnemy");
+			tankEnemy->SetObserver(this);
+			tankEnemy->SetTexture(app->tex->Load("Assets/Textures/tank_enemy_face.png"), app->tex->Load("Assets/Textures/tank_enemy_selected.png"), app->tex->Load("Assets/Textures/tank_enemy_pressed.png"));
+
+			damageEnemy = new GuiButton(tankID + 1, { 630, 580, 50, 50 }, "tankEnemy");
+			damageEnemy->SetObserver(this);
+			damageEnemy->SetTexture(app->tex->Load("Assets/Textures/damage_enemy_face.png"), app->tex->Load("Assets/Textures/damage_enemy_selected.png"), app->tex->Load("Assets/Textures/damage_enemy_pressed.png"));
+
+			balancedEnemy = new GuiButton(tankID + 2, { 460, 580, 50, 50 }, "tankEnemy");
+			balancedEnemy->SetObserver(this);
+			balancedEnemy->SetTexture(app->tex->Load("Assets/Textures/balanced_enemy_face.png"), app->tex->Load("Assets/Textures/balanced_enemy_selected.png"), app->tex->Load("Assets/Textures/balanced_enemy_pressed.png"));
+
 			remainingEnemies = 2;
 		}
 		else if (rngTypeEnemy == 1)
 		{
 			app->entityManager->AddEntity({ 880.0f, 288.0f }, Entity::Type::TANK_ENEMY);
 			app->entityManager->AddEntity({ 880.0f, 368.0f }, Entity::Type::EQUILIBRATED_ENEMY);
+
+			tankEnemy = new GuiButton(tankID, { 320, 580, 50, 50 }, "tankEnemy");
+			tankEnemy->SetObserver(this);
+			tankEnemy->SetTexture(app->tex->Load("Assets/Textures/tank_enemy_face.png"), app->tex->Load("Assets/Textures/tank_enemy_selected.png"), app->tex->Load("Assets/Textures/tank_enemy_pressed.png"));
+			
+			balancedEnemy = new GuiButton(tankID + 1, { 600, 580, 50, 50 }, "tankEnemy");
+			balancedEnemy->SetObserver(this);
+			balancedEnemy->SetTexture(app->tex->Load("Assets/Textures/balanced_enemy_face.png"), app->tex->Load("Assets/Textures/balanced_enemy_selected.png"), app->tex->Load("Assets/Textures/balanced_enemy_pressed.png"));
+			
+			damageEnemy = new GuiButton(tankID + 2, { 630, 580, 50, 50 }, "tankEnemy");
+			damageEnemy->SetObserver(this);
+			damageEnemy->SetTexture(app->tex->Load("Assets/Textures/damage_enemy_face.png"), app->tex->Load("Assets/Textures/damage_enemy_selected.png"), app->tex->Load("Assets/Textures/damage_enemy_pressed.png"));
+
 			remainingEnemies = 2;
 		}
 		break;
@@ -132,8 +174,6 @@ bool BattleScene::Start()
 	app->entityManager->AddEntity({ 280.0f, 288.0f }, Entity::Type::PLAYER);
 	app->entityManager->AddEntity({ 280.0f, 368.0f }, Entity::Type::ALLY1);
 	remainingAllies = 2;
-
-	
 
 	SDL_Texture* texas = app->tex->Load("Assets/Fonts/kurale.png");
 	winScreen = app->tex->Load("Assets/Textures/battle_scene.png");
@@ -196,11 +236,10 @@ bool BattleScene::PostUpdate()
 {
 	bool ret = true;
 
-
 	app->render->DrawTexture(screen, 0, 0, NULL);
 	app->render->DrawTexture(combatBox, -app->render->camera.x, -app->render->camera.y + 530);
 	PrintText();
-	app->render->DrawText(app->render->font, battleText, 240, 530, 50, 3, { 255, 255, 255, 255 });
+	app->render->DrawText(app->render->font, battleText, 205, 530, 50, 3, { 255, 255, 255, 255 });
 	app->render->DrawRectangle({ 188, 534, 1, 194 }, 200, 200, 255, 200);
 	PrintFace();
 	sprintf_s(turnText, 64, "Turn");
@@ -212,6 +251,52 @@ bool BattleScene::PostUpdate()
 		run->Draw(app->render);
 		defend->Draw(app->render);
 		combine->Draw(app->render);
+	}
+
+	if (turn == PLAYER_TURN && state == SELECT_ACTION && app->sceneManager->atkMenu == true && app->sceneManager->defMenu == false && app->sceneManager->combMenu == false)
+	{
+		switch (remainingEnemies)
+		{
+		case 3:
+			tankEnemy->Draw(app->render);
+			balancedEnemy->Draw(app->render);
+			damageEnemy->Draw(app->render);
+			break;
+		case 2:
+			if (app->entityManager->entityList.At(0)->data->type == Entity::Type::TANK_ENEMY && app->entityManager->entityList.At(1)->data->type == Entity::Type::EQUILIBRATED_ENEMY)
+			{
+				tankEnemy->Draw(app->render);
+				balancedEnemy->Draw(app->render);
+			}
+			if (app->entityManager->entityList.At(0)->data->type == Entity::Type::TANK_ENEMY && app->entityManager->entityList.At(1)->data->type == Entity::Type::DAMAGE_ENEMY)
+			{
+				tankEnemy->Draw(app->render);
+				damageEnemy->Draw(app->render);
+			}
+			if (app->entityManager->entityList.At(0)->data->type == Entity::Type::EQUILIBRATED_ENEMY && app->entityManager->entityList.At(1)->data->type == Entity::Type::DAMAGE_ENEMY)
+			{
+				balancedEnemy->Draw(app->render);
+				damageEnemy->Draw(app->render);
+			}
+			break;
+		case 1:
+			if (app->entityManager->entityList.At(0)->data->type == Entity::Type::TANK_ENEMY)
+			{
+				tankEnemy->Draw(app->render);
+			}
+			if (app->entityManager->entityList.At(0)->data->type == Entity::Type::DAMAGE_ENEMY)
+			{
+				damageEnemy->Draw(app->render);
+			}
+			if (app->entityManager->entityList.At(0)->data->type == Entity::Type::EQUILIBRATED_ENEMY)
+			{
+				balancedEnemy->Draw(app->render);
+			}
+			break;
+		default:
+			break;
+
+		}
 	}
 
 	if (state == LOSE)
@@ -226,7 +311,6 @@ bool BattleScene::PostUpdate()
 	}
 	else if (state == VICTORY)
 	{
-		
 		app->hud->DrawVictoryScreen();
 
 		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
@@ -259,8 +343,11 @@ bool BattleScene::CleanUp()
 	app->tex->UnLoad(dmgEnemyFace);
 	attack->CleanUp();
 	defend->CleanUp();
-	run->CleanUp();
 	combine->CleanUp();
+	run->CleanUp();
+	damageEnemy->CleanUp();
+	balancedEnemy->CleanUp();
+	tankEnemy->CleanUp();
 	active = false;
 
 	LOG("Freeing scene");
@@ -283,7 +370,7 @@ void BattleScene::PerformCombat(float dt)
 			// ATAQUE
 			else if (app->sceneManager->atkMenu == true && app->sceneManager->defMenu == false && app->sceneManager->combMenu == false)
 			{
-				enemySelection = SelectEnemy(remainingEnemies);
+				SelectEnemy(remainingEnemies, dt);
 				skipBar.w = 0;
 			}
 			////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -353,7 +440,7 @@ void BattleScene::PerformCombat(float dt)
 
 		if (skipBar.w == skipBarMax.w)
 		{
-			if (turn == PLAYER_TURN && turnEntity->defending == false && app->sceneManager->boost == false) DealDamage(turnEntity, app->entityManager->entityList.At(enemySelection)->data);
+			if (turn == PLAYER_TURN && turnEntity->defending == false && app->sceneManager->boost == false) DealDamage(turnEntity, app->entityManager->entityList.At(app->sceneManager->enemySelection)->data);
 			else if (turn == ENEMY_TURN)
 			{
 				DealDamage(turnEntity, app->entityManager->entityList.At(remainingEnemies + allySelection)->data);
@@ -427,53 +514,63 @@ void BattleScene::ShowMenu(float dt)
 
 }
 
-int BattleScene::SelectEnemy(int enemyNum)
+void BattleScene::SelectEnemy(int enemyNum, float dt)
 {
 	turnEntity->defending = false;
+	sprintf_s(battleText, 64, "Selecciona el enemigo al que atacar!");
 
 	switch (enemyNum)
 	{
 	case 3:
-		sprintf_s(battleText, 64, "Pulsa 1, 2 o 3 y ataca al enemigo!");
-		if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN && app->entityManager->entityList.start->next->data->collider->type != Collider::Type::PLAYER)
-		{
-			state = PERFORM_ACTION;
-			return 0;
-		}
-		if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN && app->entityManager->entityList.start->next->data->collider->type != Collider::Type::PLAYER)
-		{
-			state = PERFORM_ACTION;
-			return 1;
-		}
-		if (app->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN && app->entityManager->entityList.start->next->data->collider->type != Collider::Type::PLAYER)
-		{
-			state = PERFORM_ACTION;
-			return 2;
-		}
+		tankEnemy->Update(app->input, dt);
+		balancedEnemy->Update(app->input, dt);
+		damageEnemy->Update(app->input, dt);
 		break;
 	case 2:
-		sprintf_s(battleText, 64, "Pulsa 1 o 2 y ataca al enemigo!");
-		if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN && app->entityManager->entityList.start->next->data->collider->type != Collider::Type::PLAYER)
+		if (app->entityManager->entityList.At(0)->data->type == Entity::Type::TANK_ENEMY && app->entityManager->entityList.At(1)->data->type == Entity::Type::EQUILIBRATED_ENEMY)
 		{
-			state = PERFORM_ACTION;
-			return 0;
+			tankEnemy->Update(app->input, dt);
+			balancedEnemy->id = 601;
+			balancedEnemy->Update(app->input, dt);
 		}
-		if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN && app->entityManager->entityList.start->next->data->collider->type != Collider::Type::PLAYER)
+		if (app->entityManager->entityList.At(0)->data->type == Entity::Type::TANK_ENEMY && app->entityManager->entityList.At(1)->data->type == Entity::Type::DAMAGE_ENEMY)
 		{
-			state = PERFORM_ACTION;
-			return 1;
+			tankEnemy->Update(app->input, dt);
+			damageEnemy->id = 601;
+			damageEnemy->Update(app->input, dt);
+		}
+		if (app->entityManager->entityList.At(0)->data->type == Entity::Type::EQUILIBRATED_ENEMY && app->entityManager->entityList.At(1)->data->type == Entity::Type::DAMAGE_ENEMY)
+		{
+			damageEnemy->id = 600;
+			damageEnemy->Update(app->input, dt);
+			balancedEnemy->id = 601;
+			balancedEnemy->Update(app->input, dt);
 		}
 		break;
 	case 1:
-		sprintf_s(battleText, 64, "Pulsa 1 y ataca al enemigo!");
-		if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+		if (app->entityManager->entityList.At(0)->data->type == Entity::Type::TANK_ENEMY)
 		{
-			state = PERFORM_ACTION;
-			return 0;
+			tankEnemy->Update(app->input, dt);
+		}
+		if (app->entityManager->entityList.At(0)->data->type == Entity::Type::DAMAGE_ENEMY)
+		{
+			damageEnemy->id = 600;
+			damageEnemy->Update(app->input, dt);
+		}
+		if (app->entityManager->entityList.At(0)->data->type == Entity::Type::EQUILIBRATED_ENEMY)
+		{
+			balancedEnemy->id = 600;
+			balancedEnemy->Update(app->input, dt);
 		}
 		break;
 	default:
 		break;
+	}
+
+	if (app->sceneManager->enemySelected == true)
+	{
+		app->sceneManager->enemySelected = false;
+		state = PERFORM_ACTION;
 	}
 }
 
@@ -579,6 +676,7 @@ void BattleScene::ResumeCombat()
 	app->sceneManager->defMenu = false;
 	app->sceneManager->combMenu = false;
 	app->sceneManager->boost = false;
+	app->sceneManager->enemySelected = false;
 	boosted = false;
 	tmp = app->entityManager->entityList.start;
 	app->sceneManager->itemSelection = 0;

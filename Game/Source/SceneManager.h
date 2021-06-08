@@ -99,10 +99,12 @@ public:
     bool yellowballbutton = false;
 
 
-    //BattleScene Bools.........................................................
+    //BattleScene Bools and Variables.........................................................
     bool atkMenu = false;
     bool defMenu = false;
     bool combMenu = false;
+    int enemySelection = 0;
+    bool enemySelected = false;
     int itemSelection = 0;
     bool boost = false;
 

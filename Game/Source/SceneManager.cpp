@@ -326,6 +326,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
         if (control->id == 101)
         {
             atkMenu = true;
+            app->hud->selectedId = 600;
         }
         if (control->id == 102)
         {
@@ -342,6 +343,21 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
             if(app->entityManager->playerData.scene == 2) app->sceneManager->ChangeScene(SCENE12,0);
             if (app->entityManager->playerData.scene == 3) app->sceneManager->ChangeScene(BATH, 0);
             if (app->entityManager->playerData.scene == 4) app->sceneManager->ChangeScene(GYM, 0);
+        }
+        if (control->id == 600)
+        {
+            enemySelection = 0;
+            enemySelected = true;
+        }
+        if (control->id == 601)
+        {
+            enemySelection = 1;
+            enemySelected = true;
+        }
+        if (control->id == 602)
+        {
+            enemySelection = 2;
+            enemySelected = true;
         }
         if (control->id == 13)
         {
@@ -425,6 +441,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
             {
                 itemSelection = 1;
                 app->entityManager->playerData.pencil--;
+                app->hud->selectedId = 600;
             }
         }
         else if (control->id == 131)
@@ -433,6 +450,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
             {
                 itemSelection = 1;
                 app->entityManager->playerData.sharper--;
+                app->hud->selectedId = 600;
             }
         }
         else if (control->id == 132)
@@ -441,6 +459,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
             {
                 itemSelection = 2;
                 app->entityManager->playerData.ball--;
+                app->hud->selectedId = 600;
             }
         }
         else if (control->id == 135)
@@ -450,6 +469,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
                 boost = true;
                 itemSelection = 3;
                 app->entityManager->playerData.coffee--;
+                app->hud->selectedId = 600;
             }
         }
         else if (control->id == 138)
@@ -458,6 +478,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
             {
                 itemSelection = 2;
                 app->entityManager->playerData.rule--;
+                app->hud->selectedId = 600;
             }
         }
         else if (control->id == 141)
@@ -473,6 +494,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
             {
                 itemSelection = 2;
                 app->entityManager->playerData.pencilSharpened--;
+                app->hud->selectedId = 600;
             }
         }
         else if (control->id == 142)
@@ -489,6 +511,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
                 boost = true;
                 itemSelection = 4;
                 app->entityManager->playerData.wonster--;
+                app->hud->selectedId = 600;
             }
         }
     }

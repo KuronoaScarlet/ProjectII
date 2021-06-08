@@ -115,8 +115,9 @@ bool PlayerEntity::Update(float dt)
 		{
 			if (position.DistanceTo(tmp->data->position) < 50)
 			{
-				if ((app->input->GetKey(SDL_SCANCODE_E ) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false)
+				if (((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false) && rayComoVanLosOlivos == true)
 				{
+					rayComoVanLosOlivos = false;
 					app->entityManager->playerData.onDialog = true;
 					app->dialogueSystem->actionChecks = 0;
 					app->dialogueSystem->currentNode = app->dialogueSystem->dialogueTrees[0]->dialogueNodes[0];
@@ -132,7 +133,7 @@ bool PlayerEntity::Update(float dt)
 		{
 			if (position.DistanceTo(tmp->data->position) < 50)
 			{
-				if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false)
+				if (((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false) && rayComoVanLosOlivos == true)
 				{
 					app->entityManager->playerData.onDialog = true;
 					app->dialogueSystem->actionChecks = 0;
@@ -149,7 +150,7 @@ bool PlayerEntity::Update(float dt)
 		{
 			if (position.DistanceTo(tmp->data->position) < 50)
 			{
-				if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false)
+				if (((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false) && rayComoVanLosOlivos == true)
 				{
 					app->entityManager->playerData.onDialog = true;
 					app->dialogueSystem->actionChecks = 0;
@@ -166,7 +167,7 @@ bool PlayerEntity::Update(float dt)
 		{
 			if (position.DistanceTo(tmp->data->position) < 50)
 			{
-				if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false)
+				if (((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false) && rayComoVanLosOlivos == true)
 				{
 					app->entityManager->playerData.onDialog = true;
 					app->dialogueSystem->actionChecks = 0;
@@ -183,7 +184,7 @@ bool PlayerEntity::Update(float dt)
 		{
 			if (position.DistanceTo(tmp->data->position) < 50)
 			{
-				if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false)
+				if (((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false) && rayComoVanLosOlivos == true)
 				{
 					app->entityManager->playerData.onDialog = true;
 					app->dialogueSystem->actionChecks = 0;
@@ -200,7 +201,7 @@ bool PlayerEntity::Update(float dt)
 		{
 			if (position.DistanceTo(tmp->data->position) < 50)
 			{
-				if ((app->input->GetKey(SDL_SCANCODE_E ) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false)
+				if (((app->input->GetKey(SDL_SCANCODE_E ) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false) && rayComoVanLosOlivos == true)
 				{
 					app->entityManager->playerData.onDialog = true;
 					app->dialogueSystem->actionChecks = 0;
@@ -216,7 +217,7 @@ bool PlayerEntity::Update(float dt)
 		{
 			if (position.DistanceTo(tmp->data->position) < 50)
 			{
-				if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false)
+				if (((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false) && rayComoVanLosOlivos == true)
 				{
 					app->audio->PlayFx(3, pickItem);
 					tmp->data->Interaction();
@@ -228,7 +229,7 @@ bool PlayerEntity::Update(float dt)
 		{
 			if (position.DistanceTo(tmp->data->position) < 50)
 			{
-				if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false)
+				if (((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false) && rayComoVanLosOlivos == true)
 				{
 					app->audio->PlayFx(3, pickItem);
 					tmp->data->Interaction();
@@ -240,7 +241,7 @@ bool PlayerEntity::Update(float dt)
 		{
 			if (position.DistanceTo(tmp->data->position) < 50)
 			{
-				if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false)
+				if (((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false) && rayComoVanLosOlivos == true)
 				{
 					tmp->data->Interaction();
 					app->audio->PlayFx(3, pickItem);
@@ -255,7 +256,7 @@ bool PlayerEntity::Update(float dt)
 		{
 			if (position.DistanceTo(tmp->data->position) < 30)
 			{
-				if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false)
+				if (((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false) && rayComoVanLosOlivos == true)
 				{
 					tmp->data->Interaction();
 					app->audio->PlayFx(3, pickItem);
@@ -270,7 +271,7 @@ bool PlayerEntity::Update(float dt)
 		{
 			if (position.DistanceTo(tmp->data->position) < 30)
 			{
-				if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false)
+				if (((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false) && rayComoVanLosOlivos == true)
 				{
 					tmp->data->Interaction();
 					app->audio->PlayFx(3, pickItem);
@@ -285,7 +286,7 @@ bool PlayerEntity::Update(float dt)
 		{
 			if (position.DistanceTo(tmp->data->position) < 30)
 			{
-				if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false)
+				if (((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false) && rayComoVanLosOlivos == true)
 				{
 					tmp->data->Interaction();
 					app->audio->PlayFx(3, pickItem);
@@ -300,7 +301,7 @@ bool PlayerEntity::Update(float dt)
 		{
 			if (position.DistanceTo(tmp->data->position) < 30)
 			{
-				if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false)
+				if (((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false) && rayComoVanLosOlivos == true)
 				{
 					tmp->data->Interaction();
 					app->audio->PlayFx(3, pickItem);
@@ -315,7 +316,7 @@ bool PlayerEntity::Update(float dt)
 		{
 			if (position.DistanceTo(tmp->data->position) < 50)
 			{
-				if ((app->input->GetKey(SDL_SCANCODE_E ) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false)
+				if (((app->input->GetKey(SDL_SCANCODE_E ) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false) && rayComoVanLosOlivos == true)
 				{
 					app->audio->PlayFx(3, pickItem);
 					tmp->data->Interaction();
@@ -328,7 +329,7 @@ bool PlayerEntity::Update(float dt)
 		{
 			if (position.DistanceTo(tmp->data->position) < 50)
 			{
-				if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false)
+				if (((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false) && rayComoVanLosOlivos == true)
 				{
 					app->audio->PlayFx(3, pickItem);
 					tmp->data->Interaction();
@@ -341,7 +342,7 @@ bool PlayerEntity::Update(float dt)
 		{
 		if (position.DistanceTo(tmp->data->position) < 50)
 		{
-			if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false)
+			if (((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false) && rayComoVanLosOlivos == true)
 			{
 				app->audio->PlayFx(3, pickItem);
 				tmp->data->Interaction();
@@ -353,7 +354,7 @@ bool PlayerEntity::Update(float dt)
 		{
 		if (position.DistanceTo(tmp->data->position) < 50)
 		{
-			if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false)
+			if (((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false) && rayComoVanLosOlivos == true)
 			{
 				app->audio->PlayFx(3, pickItem);
 				tmp->data->Interaction();
@@ -365,13 +366,18 @@ bool PlayerEntity::Update(float dt)
 		{
 		if (position.DistanceTo(tmp->data->position) < 50)
 		{
-			if ((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false)
+			if (((app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN || pad.x) && app->entityManager->playerData.onDialog == false) && rayComoVanLosOlivos == true)
 			{
 				app->audio->PlayFx(3, pickItem);
 				tmp->data->Interaction();
 				break;
 			}
 		}
+		}
+
+		if (!pad.x && !pad.up)
+		{
+			rayComoVanLosOlivos = true;
 		}
 
 		tmp = tmp->next;

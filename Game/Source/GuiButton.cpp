@@ -15,6 +15,7 @@ GuiButton::GuiButton(uint32 id, SDL_Rect bounds, const char* text) : GuiControl(
     releaseFx = app->audio->LoadFx("Assets/Audio/Fx/menu_release.wav");
     pencilFx = app->audio->LoadFx("Assets/Audio/Fx/pencil_circle.wav");
 
+    holaRayQueTal = true;
 }
 
 GuiButton::~GuiButton()
@@ -36,10 +37,16 @@ bool GuiButton::Update(Input* input, float dt)
                 state = GuiControlState::PRESSED;
             }
 
+
             // If mouse button pressed -> Generate event!
-            if (input->GetKey(SDL_SCANCODE_RETURN) == KeyState::KEY_UP || pad.a)
+            if ((input->GetKey(SDL_SCANCODE_RETURN) == KeyState::KEY_UP || pad.a) && holaRayQueTal == true)
             {
+                holaRayQueTal = false;
                 NotifyObserver();
+            }
+            if (!pad.a && !pad.up)
+            {
+                holaRayQueTal = true;
             }
         }
         else state = GuiControlState::NORMAL;

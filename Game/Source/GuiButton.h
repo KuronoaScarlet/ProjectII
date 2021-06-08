@@ -21,7 +21,7 @@ public:
     bool Draw(Render* render);
 
 private:
-
+    bool holaRayQueTal = true;
     // Gui Button specific properties
     // Maybe some animation properties for state change?
 };

@@ -57,6 +57,8 @@ bool BattleScene::Start()
 	itemSelected = false;
 	boosted = false;
 
+	app->hud->selectedId = 101;
+
 	hit = app->audio->LoadFx("Assets/Audio/Fx/take_damage.wav");
 	powerUp = app->audio->LoadFx("Assets/Audio/Fx/power_up.wav");
 
@@ -270,6 +272,7 @@ void BattleScene::PerformCombat(float dt)
 	switch (state)
 	{
 	case WAITING: state = SELECT_ACTION;
+		app->hud->selectedId = 101;
 		break;
 
 	case SELECT_ACTION:

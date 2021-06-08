@@ -53,10 +53,7 @@ bool Hud::Start()
 
 	settingsPost = app->tex->Load("Assets/Textures/postit.png");
 
-	dUp = app->tex->Load("Assets/Textures/controller_1.png");
-	dDown = app->tex->Load("Assets/Textures/controller_2.png");
-	dLeft = app->tex->Load("Assets/Textures/controller_3.png");
-	dRight = app->tex->Load("Assets/Textures/controller_4.png");
+	padControlls = app->tex->Load("Assets/Textures/inGameUI.png");
 
 	music_s = app->tex->Load("Assets/Textures/fx_s.png");
 	fx_s = app->tex->Load("Assets/Textures/music_s.png");
@@ -69,19 +66,19 @@ bool Hud::Start()
 	settingsButton->SetObserver(this);
 	settingsButton->SetTexture(app->tex->Load("Assets/Textures/settings.png"), app->tex->Load("Assets/Textures/settings_selected.png"), app->tex->Load("Assets/Textures/settings_pressed.png"));
 
-	fullScreen = new GuiCheckBox(303, { 620,400, 300, 60 }, "FULLSCREEN");
+	fullScreen = new GuiCheckBox(304, { 620,400, 300, 60 }, "FULLSCREEN");
 	fullScreen->SetObserver(this);
 	fullScreen->SetTexture(app->tex->Load("Assets/Textures/fs1.png"), app->tex->Load("Assets/Textures/fs2.png"), app->tex->Load("Assets/Textures/fs2.png"));
 	
-	vSync = new GuiCheckBox(306, { 620,400, 300, 60 }, "VSYNC");
+	vSync = new GuiCheckBox(307, { 620,400, 300, 60 }, "VSYNC");
 	vSync->SetObserver(this);
 	vSync->SetTexture(app->tex->Load("Assets/Textures/vs1.png"), app->tex->Load("Assets/Textures/vs2.png"), app->tex->Load("Assets/Textures/vs2.png"));
 
-	musicSlider = new GuiSlider(304, { 1140,300, 60, 60 }, "FULLSCREEN");
+	musicSlider = new GuiSlider(305, { 1140,300, 60, 60 }, "FULLSCREEN");
 	musicSlider->SetObserver(this);
 	musicSlider->SetTexture(app->tex->Load("Assets/Textures/fx.png"), app->tex->Load("Assets/Textures/fx_selected.png"), app->tex->Load("Assets/Textures/fx_focused.png"));
 
-	fxSlider = new GuiSlider(305, { 1140,350, 60, 60 }, "FULLSCREEN");
+	fxSlider = new GuiSlider(306, { 1140,350, 60, 60 }, "FULLSCREEN");
 	fxSlider->SetObserver(this);
 	fxSlider->SetTexture(app->tex->Load("Assets/Textures/fx.png"), app->tex->Load("Assets/Textures/fx_selected.png"), app->tex->Load("Assets/Textures/fx_focused.png"));
 
@@ -92,16 +89,7 @@ bool Hud::Start()
 	musicSliderBack = { 900,300,300,40 };
 	fxSliderBack = { 900,350,300,40 };
 
-
-	bag = new GuiButton(120, { 275,(int)initialPosition, 90, 125 }, "BAG");// 1155,20
-	bag->SetObserver(this);
-	bag->SetTexture(app->tex->Load("Assets/Textures/bag.png"), app->tex->Load("Assets/Textures/bag2.png"), app->tex->Load("Assets/Textures/bag2.png"));
-
-	stats = new GuiButton(121, { 947,556, 90, 125 }, "BAG");// 1155,20
-	stats->SetObserver(this);
-	stats->SetTexture(app->tex->Load("Assets/Textures/face.png"), app->tex->Load("Assets/Textures/face2.png"), app->tex->Load("Assets/Textures/face2.png"));
-
-	quitStatsAndInvetory = new GuiButton(122, { 70,39, 86, 98 }, "BAG");// 1155,20
+	quitStatsAndInvetory = new GuiButton(129, { 70,39, 86, 98 }, "BAG");// 1155,20
 	quitStatsAndInvetory->SetObserver(this);
 	quitStatsAndInvetory->SetTexture(app->tex->Load("Assets/Textures/esc4.png"), app->tex->Load("Assets/Textures/esc5.png"), app->tex->Load("Assets/Textures/esc6.png"));
 
@@ -109,19 +97,19 @@ bool Hud::Start()
 	pencil->SetObserver(this);
 	pencil->SetTexture(app->tex->Load("Assets/Textures/Items/Pencil.png"), app->tex->Load("Assets/Textures/Items/Pencil_1.png"), app->tex->Load("Assets/Textures/Items/Pencil_2.png"));
 	
-	sharpened = new GuiButton(131, { 204,73, 69, 72 }, "PENCIL");// 1155,20
+	sharpened = new GuiButton(140, { 204,73, 69, 72 }, "PENCIL");// 1155,20
 	sharpened->SetObserver(this);
 	sharpened->SetTexture(app->tex->Load("Assets/Textures/Items/sharpened.png"), app->tex->Load("Assets/Textures/Items/sharpened_1.png"), app->tex->Load("Assets/Textures/Items/sharpened_2.png"));
 
-	ball = new GuiButton(132, { 617,76, 70, 70 }, "PENCIL");// 1155,20
+	ball = new GuiButton(138, { 617,76, 70, 70 }, "PENCIL");// 1155,20
 	ball->SetObserver(this);
 	ball->SetTexture(app->tex->Load("Assets/Textures/Items/ball.png"), app->tex->Load("Assets/Textures/Items/ball_1.png"), app->tex->Load("Assets/Textures/Items/ball_2.png"));
 
-	book = new GuiButton(133, { 441,423, 47, 70 }, "PENCIL");// 1155,20
+	book = new GuiButton(137, { 441,423, 47, 70 }, "PENCIL");// 1155,20
 	book->SetObserver(this);
 	book->SetTexture(app->tex->Load("Assets/Textures/Items/book.png"), app->tex->Load("Assets/Textures/Items/book_1.png"), app->tex->Load("Assets/Textures/Items/book_2.png"));
 
-	calculator = new GuiButton(134, { 424,320, 71, 69 }, "PENCIL");// 1155,20
+	calculator = new GuiButton(136, { 424,320, 71, 69 }, "PENCIL");// 1155,20
 	calculator->SetObserver(this);
 	calculator->SetTexture(app->tex->Load("Assets/Textures/Items/calculator.png"), app->tex->Load("Assets/Textures/Items/calculator_1.png"), app->tex->Load("Assets/Textures/Items/calculator_2.png"));
 
@@ -129,23 +117,23 @@ bool Hud::Start()
 	coffee->SetObserver(this);
 	coffee->SetTexture(app->tex->Load("Assets/Textures/Items/coffe.png"), app->tex->Load("Assets/Textures/Items/coffe_1.png"), app->tex->Load("Assets/Textures/Items/coffe_2.png"));
 
-	cola = new GuiButton(136, { 441,76, 37, 69 }, "PENCIL");// 1155,20
+	cola = new GuiButton(134, { 441,76, 37, 69 }, "PENCIL");// 1155,20
 	cola->SetObserver(this);
 	cola->SetTexture(app->tex->Load("Assets/Textures/Items/cola.png"), app->tex->Load("Assets/Textures/Items/cola_1.png"), app->tex->Load("Assets/Textures/Items/cola_2.png"));
 
-	eraser = new GuiButton(137, { 204,426, 64, 70 }, "PENCIL");// 1155,20
+	eraser = new GuiButton(133, { 204,426, 64, 70 }, "PENCIL");// 1155,20
 	eraser->SetObserver(this);
 	eraser->SetTexture(app->tex->Load("Assets/Textures/Items/eraser.png"), app->tex->Load("Assets/Textures/Items/eraser_1.png"), app->tex->Load("Assets/Textures/Items/eraser_2.png"));
 
-	rule = new GuiButton(138, { 204,307, 74, 74 }, "PENCIL");// 1155,20
+	rule = new GuiButton(132, { 204,307, 74, 74 }, "PENCIL");// 1155,20
 	rule->SetObserver(this);
 	rule->SetTexture(app->tex->Load("Assets/Textures/Items/rule.png"), app->tex->Load("Assets/Textures/Items/rule_1.png"), app->tex->Load("Assets/Textures/Items/rule_2.png"));
 
-	snack = new GuiButton(139, { 204,190, 67, 72 }, "PENCIL");// 1155,20
+	snack = new GuiButton(131, { 204,190, 67, 72 }, "PENCIL");// 1155,20
 	snack->SetObserver(this);
 	snack->SetTexture(app->tex->Load("Assets/Textures/Items/snack.png"), app->tex->Load("Assets/Textures/Items/snack_1.png"), app->tex->Load("Assets/Textures/Items/snack_2.png"));
 
-	tipex = new GuiButton(140, { 629,193, 46, 80 }, "tipex");// 1155,20
+	tipex = new GuiButton(139, { 629,193, 46, 80 }, "tipex");// 1155,20
 	tipex->SetObserver(this);
 	tipex->SetTexture(app->tex->Load("Assets/Textures/Items/tipex.png"), app->tex->Load("Assets/Textures/Items/tipex_1.png"), app->tex->Load("Assets/Textures/Items/tipex_2.png"));
 	
@@ -239,23 +227,30 @@ bool Hud::Update(float dt)
 	fxSliderBack.x = -app->render->camera.x + 935;
 	fxSliderBack.y = -app->render->camera.y + 300;
 
-	if (app->input->GetKey(SDL_SCANCODE_I) == KEY_DOWN)
+	if (bagEnabled == false && statsEnabled == false && pauseCondition == false)
 	{
-		currentIteration = 0;
-		bag->bounds.y = -app->render->camera.y;// +700;
-		
-		cantMoveInInvetory = !cantMoveInInvetory;
+		if ((app->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN || pad.up) && onGame)
+		{
+			selectedId = 130;
+			bagEnabled = !bagEnabled;
+			statsEnabled = false;
+			app->sceneManager->showQuestMenu = false;
+		}
+		if ((app->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN || pad.down) && onGame)
+		{
+			selectedId = 129;
+			statsEnabled = !statsEnabled;
+			bagEnabled = false;
+			app->sceneManager->showQuestMenu = false;
+		}
+		if ((app->input->GetKey(SDL_SCANCODE_LEFT) == KEY_DOWN || pad.left) && onGame)
+		{
+			app->sceneManager->showQuestMenu = !app->sceneManager->showQuestMenu;
+			statsEnabled = false;
+			bagEnabled = false;
+		}
 	}
-	if (app->input->GetKey(SDL_SCANCODE_0) == KEY_DOWN || pad.up&&onGame)
-	{
-		bagEnabled = !bagEnabled;
 
-	}
-	if (app->input->GetKey(SDL_SCANCODE_9) == KEY_DOWN || pad.down&&onGame)
-	{
-		statsEnabled = !statsEnabled;
-	}
-	if (app->input->GetKey(SDL_SCANCODE_Q) == KEY_DOWN || pad.left && onGame) app->sceneManager->showQuestMenu = !app->sceneManager->showQuestMenu;
 	if(inventoryAndStatsRequest) pauseCondition = false;
 
 	if (!settingsEnabled && inventoryAndStatsRequest)
@@ -293,12 +288,6 @@ bool Hud::Update(float dt)
 bool Hud::PostUpdate()
 {
 	GamePad& pad = app->input->pads[0];
-	bag->bounds.x = -app->render->camera.x + 275;
-	bag->bounds.y = easing->linearEaseInOut(currentIteration, -app->render->camera.y + 700, deltaPosition, totalIterations);
-	bckposY = easing->linearEaseInOut(currentIteration, -app->render->camera.y + 700, deltaPosition, totalIterations);
-	
-	stats->bounds.x = -app->render->camera.x + 947;
-	stats->bounds.y = easing->linearEaseInOut(currentIteration, -app->render->camera.y + 700, deltaPosition, totalIterations);;
 
 	if (currentIteration < totalIterations)
 	{
@@ -373,7 +362,7 @@ bool Hud::PostUpdate()
 		settingsButton->Draw(app->render);
 		exitButton->Draw(app->render);
 	}
-	if ((app->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN || pad.right) && onGame)
+	if ((app->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN || pad.right) && onGame)
 	{
 		app->hud->settingsEnabled = !app->hud->settingsEnabled;
 	}
@@ -381,6 +370,8 @@ bool Hud::PostUpdate()
 	if ((app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN || pad.start) && startglitch == true)
 	{
 		startglitch = false;
+		bagEnabled = false;
+		statsEnabled = false;
 		pauseCondition = !pauseCondition;
 		app->hud->settingsEnabled = false;
 		app->hud->configOn = false;
@@ -394,10 +385,7 @@ bool Hud::PostUpdate()
 
 	if (app->sceneManager->id == SCENE1 || app->sceneManager->id == SCENE12 || app->sceneManager->id == BATH || app->sceneManager->id == GYM)
 	{
-		app->render->DrawTexture(dUp, -app->render->camera.x + 990, -app->render->camera.y + 330, NULL);
-		app->render->DrawTexture(dDown, -app->render->camera.x + 999, -app->render->camera.y + 500, NULL);
-		app->render->DrawTexture(dLeft, -app->render->camera.x + 870, -app->render->camera.y + 455, NULL);
-		app->render->DrawTexture(dRight, -app->render->camera.x + 1060, -app->render->camera.y + 455, NULL);
+		app->render->DrawTexture(padControlls, -app->render->camera.x + 45, -app->render->camera.y + 40, NULL);
 		onGame = true;
 	}
 	else

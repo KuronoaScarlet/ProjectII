@@ -93,10 +93,7 @@ public:
 	SDL_Texture* statsTab = nullptr;
 	SDL_Texture* inventory = nullptr;
 
-	SDL_Texture* dUp = nullptr;
-	SDL_Texture* dDown = nullptr;
-	SDL_Texture* dLeft = nullptr;
-	SDL_Texture* dRight = nullptr;
+	SDL_Texture* padControlls = nullptr;
 
 	bool onGame = false;
 

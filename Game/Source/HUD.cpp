@@ -395,9 +395,9 @@ bool Hud::PostUpdate()
 	if (app->sceneManager->id == SCENE1 || app->sceneManager->id == SCENE12 || app->sceneManager->id == BATH || app->sceneManager->id == GYM)
 	{
 		app->render->DrawTexture(dUp, -app->render->camera.x + 990, -app->render->camera.y + 330, NULL);
-		app->render->DrawTexture(dDown, -app->render->camera.x + 990, -app->render->camera.y + 500, NULL);
-		app->render->DrawTexture(dLeft, -app->render->camera.x + 870, -app->render->camera.y + 465, NULL);
-		app->render->DrawTexture(dRight, -app->render->camera.x + 1060, -app->render->camera.y + 465, NULL);
+		app->render->DrawTexture(dDown, -app->render->camera.x + 999, -app->render->camera.y + 500, NULL);
+		app->render->DrawTexture(dLeft, -app->render->camera.x + 870, -app->render->camera.y + 455, NULL);
+		app->render->DrawTexture(dRight, -app->render->camera.x + 1060, -app->render->camera.y + 455, NULL);
 		onGame = true;
 	}
 	else

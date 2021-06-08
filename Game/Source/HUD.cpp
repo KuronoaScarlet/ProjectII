@@ -154,6 +154,8 @@ bool Hud::Start()
 
 	holaRay = true;
 	startglitch = true;
+	optionsGlitch = true;
+	questGlitch = true;
 
 	return true;
 }
@@ -229,26 +231,32 @@ bool Hud::Update(float dt)
 
 	if (bagEnabled == false && statsEnabled == false && pauseCondition == false)
 	{
-		if ((app->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN || pad.up) && onGame)
+		if (((app->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN || pad.up) && onGame) && !settingsEnabled && !statsEnabled && !app->sceneManager->showQuestMenu)
 		{
 			selectedId = 130;
 			bagEnabled = !bagEnabled;
 			statsEnabled = false;
 			app->sceneManager->showQuestMenu = false;
 		}
-		if ((app->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN || pad.down) && onGame)
+		if (((app->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN || pad.down) && onGame) && !settingsEnabled && !bagEnabled && !app->sceneManager->showQuestMenu)
 		{
 			selectedId = 129;
 			statsEnabled = !statsEnabled;
 			bagEnabled = false;
 			app->sceneManager->showQuestMenu = false;
 		}
-		if ((app->input->GetKey(SDL_SCANCODE_LEFT) == KEY_DOWN || pad.left) && onGame)
+		if ((((app->input->GetKey(SDL_SCANCODE_LEFT) == KEY_DOWN || pad.left) && onGame) && !settingsEnabled && !statsEnabled && !bagEnabled) && questGlitch == true)
 		{
+			questGlitch = false;
 			app->sceneManager->showQuestMenu = !app->sceneManager->showQuestMenu;
 			statsEnabled = false;
 			bagEnabled = false;
 		}
+		if (!pad.left && !pad.up)
+		{
+			questGlitch = true;
+		}
+
 	}
 
 	if(inventoryAndStatsRequest) pauseCondition = false;
@@ -362,10 +370,17 @@ bool Hud::PostUpdate()
 		settingsButton->Draw(app->render);
 		exitButton->Draw(app->render);
 	}
-	if ((app->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN || pad.right) && onGame)
+	if ((((app->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN || pad.right) && onGame) && optionsGlitch == true) && !bagEnabled)
 	{
-		app->hud->settingsEnabled = !app->hud->settingsEnabled;
+		optionsGlitch = false;
+		settingsEnabled = !settingsEnabled;
 	}
+
+	if (!pad.right && !pad.up)
+	{
+		optionsGlitch = true;
+	}
+
 
 	if ((app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN || pad.start) && startglitch == true)
 	{

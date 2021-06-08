@@ -56,6 +56,8 @@ public:
 	int selectedId = 501;
 	bool holaRay = true;
 	bool startglitch = true;
+	bool optionsGlitch = true;
+	bool questGlitch = true;
 	//PAUSE.........................................................
 	GuiButton* resumeButton;
 	GuiButton* settingsButton;

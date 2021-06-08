@@ -30,7 +30,7 @@ bool GuiCheckBox::Update(Input* input, float dt)
             {
                 state = GuiControlState::PRESSED;
             }
-
+            
             // If mouse button pressed -> Generate event!
             if (input->GetKey(SDL_SCANCODE_RETURN) == KeyState::KEY_UP)
             {

@@ -13,6 +13,7 @@
 #include "HUD.h"
 #include "DialogSystem.h"
 #include "SceneManager.h"
+#include "SceneBath.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -51,6 +52,11 @@ bool Hud::Start()
 
 
 	settingsPost = app->tex->Load("Assets/Textures/postit.png");
+
+	dUp = app->tex->Load("Assets/Textures/controller_1.png");
+	dDown = app->tex->Load("Assets/Textures/controller_2.png");
+	dLeft = app->tex->Load("Assets/Textures/controller_3.png");
+	dRight = app->tex->Load("Assets/Textures/controller_4.png");
 
 	music_s = app->tex->Load("Assets/Textures/fx_s.png");
 	fx_s = app->tex->Load("Assets/Textures/music_s.png");
@@ -237,9 +243,19 @@ bool Hud::Update(float dt)
 	{
 		currentIteration = 0;
 		bag->bounds.y = -app->render->camera.y;// +700;
-		inventoryAndStatsRequest = !inventoryAndStatsRequest;
+		
 		cantMoveInInvetory = !cantMoveInInvetory;
 	}
+	if (app->input->GetKey(SDL_SCANCODE_0) == KEY_DOWN || pad.up&&onGame)
+	{
+		bagEnabled = !bagEnabled;
+
+	}
+	if (app->input->GetKey(SDL_SCANCODE_9) == KEY_DOWN || pad.down&&onGame)
+	{
+		statsEnabled = !statsEnabled;
+	}
+	if (app->input->GetKey(SDL_SCANCODE_Q) == KEY_DOWN || pad.left && onGame) app->sceneManager->showQuestMenu = !app->sceneManager->showQuestMenu;
 	if(inventoryAndStatsRequest) pauseCondition = false;
 
 	if (!settingsEnabled && inventoryAndStatsRequest)
@@ -357,6 +373,10 @@ bool Hud::PostUpdate()
 		settingsButton->Draw(app->render);
 		exitButton->Draw(app->render);
 	}
+	if ((app->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN || pad.right) && onGame)
+	{
+		app->hud->settingsEnabled = !app->hud->settingsEnabled;
+	}
 
 	if ((app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN || pad.start) && startglitch == true)
 	{
@@ -370,6 +390,19 @@ bool Hud::PostUpdate()
 	if (!pad.start && !pad.up)
 	{
 		startglitch = true;
+	}
+
+	if (app->sceneManager->id == SCENE1 || app->sceneManager->id == SCENE12 || app->sceneManager->id == BATH || app->sceneManager->id == GYM)
+	{
+		app->render->DrawTexture(dUp, -app->render->camera.x + 990, -app->render->camera.y + 330, NULL);
+		app->render->DrawTexture(dDown, -app->render->camera.x + 990, -app->render->camera.y + 500, NULL);
+		app->render->DrawTexture(dLeft, -app->render->camera.x + 870, -app->render->camera.y + 465, NULL);
+		app->render->DrawTexture(dRight, -app->render->camera.x + 1060, -app->render->camera.y + 465, NULL);
+		onGame = true;
+	}
+	else
+	{
+		onGame = false;
 	}
 
 	if (bagEnabled && !settingsEnabled)

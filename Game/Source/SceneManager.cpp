@@ -212,8 +212,6 @@ bool SceneManager::PostUpdate()
 {
 	if (scene) scene->PostUpdate();
 
-    if (app->input->GetKey(SDL_SCANCODE_Q) == KEY_DOWN) showQuestMenu = !showQuestMenu;
-
     if (showQuestMenu == true) DisplayQuests();
 
     if (newQuestAdded != 0)
@@ -358,11 +356,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
             app->hud->creditsOnScreen = false;
             app->hud->creditSceneFlag = false;
         }
-        if (control->id == 301)
-        {
-            //Play
-            app->hud->settingsEnabled = !app->hud->settingsEnabled;
-        }
+
         if (control->id == 501)
         {
             app->hud->settingsEnabled = false;

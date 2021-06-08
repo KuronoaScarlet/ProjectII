@@ -93,6 +93,13 @@ public:
 	SDL_Texture* statsTab = nullptr;
 	SDL_Texture* inventory = nullptr;
 
+	SDL_Texture* dUp = nullptr;
+	SDL_Texture* dDown = nullptr;
+	SDL_Texture* dLeft = nullptr;
+	SDL_Texture* dRight = nullptr;
+
+	bool onGame = false;
+
 	SDL_Texture* playerFace = nullptr;
 	SDL_Texture* allyFace = nullptr;
 

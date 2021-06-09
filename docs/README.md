@@ -1,72 +1,48 @@
-# LOST
+# CARONTE MANDATE
 
 ## Description
 
-A simple yet amazing platform game created by TDM Studios! 
-This project is created according to the Videogame Development subject at CITM university. 
-We hope you like it!
+Despair Institute is one of the most prestigious institutes in the entire country, it is made up of students with the best grades. This institute is divided into clubs, where a new person can join the club that best suits their lifestyle, our protagonist will join the paranormal club and will have to defeat the famous collecting club that has been trying to bring them down for months.
 
 ## Key Features
 
- - Load & Save Feature.
- - Map Navigation.
- - Player Animations.
- - Collitions Added.
- - Fully Implemented Game Loop. (Find the arrow signals to pass the levels!).
- - Enemies Fully Implemented (Air/Ground Enemies Pathfinding implemented! They can kill you!).
- - Hp implemented!
- - Collectible Coins Implemented!
- - Checkpoints Implemented!
- - Capped Framerate to 60 and 30!
- - New transitions and animated HUD.
- - Original GUI with Buttons, Checkboxes and Sliders implemented.
- 
-## Controls
+ - A whole institute to explore.
+ - Collect various item and combine them to make them more powerful in combat.
+ - Quests and side quests.
+ - Inventory management.
+ - Turn based combat with ATB bar.
+ - Multiple characters with their own stats.
+ - A big dungeon is waiting for you.
+ - Know more about the story talking with NPCs.
+ - A soundtrack made for this game.
+ - And much more!
 
- - WASD - Movement controls.
- - Space Bar - Jump.
- - E - Interact with Items.
- 
- The game also supports a debug mode!
- - F1 - Go to Previous Level.
- - F2 - Go to Next level.
- - F3 - Start from the beggining of the current Level.
- - F5 - Save the current game state.
- - F6 - Load the previous state.
- - F8 - View HUD bounds.
- - F9 - View colliders.
- - F10 - God Mode.
- - F11 - Change Framerate Cap.
+## Game Trailer
+
+// Insertar trailer
+
+## Gallery
+<img src="https://cdn.discordapp.com/attachments/811252945915740200/820665484365791272/unknown.png" width="392" heigth="338" />
 
 ## Developers
 
- - Ignasi Pardo - Mechanics and Systems Programmer
- - Oriol Valverde - Art Designer and Mechanics Programmer
- - Marc Ruiz - Game Designer and Debugging
+ - Ignasi Pardo - Lead & Management
+ - Oriol Valverde - Artist & QA Engineer
+ - Marc Ruiz - Designer & Managenent
+ - Isaac Colomer - UI Designer & Audio Producer
+ - Isaac Digón - Main programmer & Debugging
+ - Pau Mota - Game Designer & Artist
 
 ## License
 
-This project is licensed under an unmodified MIT license, which is an OSI-certified license that allows static linking with closed source software. Check [LICENSE](LICENSE) for further details.
+Copyright (c) 2021-2021 TDM 
 
-1-Bit Platformer Pack License:
+This software is provided "as-is", without any express or implied warranty. In no event will the authors be held liable for any damages arising from the use of this software.
 
-    Created/distributed by Kenney (www.kenney.nl)
-    Creation date: 05-06-2020
+Permission is granted to anyone to use this software for any purpose, including commercial applications, and to alter it and redistribute it freely, subject to the following restrictions:
 
-            ------------------------------
+1. The origin of this software must not be misrepresented; you must not claim that you wrote the original software. If you use this software in a product, an acknowledgment in the product documentation would be appreciated but is not required.
 
-    License: (Creative Commons Zero, CC0)
-    http://creativecommons.org/publicdomain/zero/1.0/
+2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.
 
-    This content is free to use in personal, educational and commercial projects.
-
-    Support us by crediting Kenney or www.kenney.nl (this is not mandatory)
-
-            ------------------------------
-
-    Donate:   http://support.kenney.nl/
-    Request:  http://request.kenney.nl/
-    Patreon:  http://patreon.com/kenney/
-
-    Follow on Twitter for updates:
-    http://twitter.com/KenneyNL
+3. This notice may not be removed or altered from any source distribution.

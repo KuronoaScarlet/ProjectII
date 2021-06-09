@@ -12,6 +12,7 @@
 #include "FadeToBlack.h"
 #include "EntityManager.h"
 #include "SceneManager.h"
+#include "HUD.h"
 
 
 #include "Defs.h"
@@ -44,6 +45,7 @@ bool WinScreen::Start()
     app->entityManager->winCount = 0;
     screen = app->tex->Load("Assets/Textures/Screens/win_screen.png");
     app->audio->PlayMusic("Assets/Audio/Music/win_scene_music.ogg");
+    app->hud->selectedId = 501;
 
     return ret;
 }

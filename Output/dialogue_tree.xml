@@ -33,7 +33,7 @@
       <dialogue option=" " returnCode="0" nextNode="1"/>
     </node>
     <node text="Te dare un consejo para que puedas ganarles..."  id="1">
-      <dialogue option="1. Vale! " returnCode="0" nextNode="2"/>
+      <dialogue option="(Up) Vale! " returnCode="0" nextNode="2"/>
     </node>
     <node text="El de pelo azul, si aparece, pega fuerte. Derrotalo primero"  id="2">
       <dialogue option=" " returnCode="0" nextNode="3"/>
@@ -45,42 +45,42 @@
       <dialogue option=" " returnCode="0" nextNode="5"/>
     </node>
     <node text="Eso es todo por ahora, ten cuidado..."  id="5">
-      <dialogue option="1. Gracias por la informacion! " returnCode="0" nextNode="1000"/>
+      <dialogue option="(Up) Gracias por la informacion! " returnCode="0" nextNode="1000"/>
     </node>
   </dialogueExample>
   
   <dialogueExample Id="3">
-    <node text="Vaya! Esto... Funciona? Se me lee?"  id="0">
-      <dialogue option="1. Si!" returnCode="0" nextNode="1"/>
-      <dialogue option="2. No..." returnCode="0" nextNode="2"/>
+    <node text="Vaya! Esto... Funciona? Se nos lee?"  id="0">
+      <dialogue option="(Up) Si!" returnCode="0" nextNode="1"/>
+      <dialogue option="(Right) No..." returnCode="0" nextNode="2"/>
     </node>
     <node text="Perfecto!"  id="1">
       <dialogue option=" " returnCode="0" nextNode="3"/>
     </node>
-    <node text="La segunda vez que haces la broma eh..."  id="2">
+    <node text="Decian que a la tercera iba la vencida..."  id="2">
       <dialogue option=" " returnCode="0" nextNode="3"/>
     </node>
-    <node text="Bienvenido a Caronte Mandate! Esta es la Alpha del Proyecto."  id="3">
+    <node text="Bienvenido a Caronte Mandate! Esta es la Gold del Proyecto."  id="3">
       <dialogue option=" " returnCode="0" nextNode="4"/>
     </node>
-    <node text="El que te habla ahora mismo es el Team Lead de TDM!"  id="4">
+    <node text="El que te habla ahora mismo es el Equipo de TDM!"  id="4">
       <dialogue option=" " returnCode="0" nextNode="5"/>
     </node>
-    <node text="Me he metido en el codigo y manifestado para molestarte un poco..."  id="5">
+    <node text="Nos hemos metido en el codigo y manifestado para molestarte un poco..."  id="5">
       <dialogue option=" " returnCode="0" nextNode="6"/>
     </node>
-    <node text="Quieres que te hable de algo?"  id="6">
-      <dialogue option="1. Controles." returnCode="0" nextNode="7"/>
-      <dialogue option="2. Objetivo." returnCode="0" nextNode="11"/>
-      <dialogue option="3. No me cuentes nada mas, soy un aventurero." returnCode="0" nextNode="14"/>
+    <node text="Quieres que te hablemos de algo?"  id="6">
+      <dialogue option="(Up) Controles." returnCode="0" nextNode="7"/>
+      <dialogue option="(Right) Objetivo." returnCode="0" nextNode="11"/>
+      <dialogue option="(Left) No me cuentes nada mas, soy un aventurero." returnCode="0" nextNode="14"/>
     </node>
-    <node text="Te mueves con WASD. Si tienes mando tambien soporta dicho periferico."  id="7">
+    <node text="Te mueves con WASD o con el Joystick en caso de que juegues con mando"  id="7">
       <dialogue option=" " returnCode="0" nextNode="8"/>
     </node>
-    <node text="Con F5 guardas la partida, con F6 la cargas. Pulsa F10 y activaras el GodMode"  id="8">
+    <node text="Todos los controles estan en nuestra pagina web, visitala en caso de perderte!"  id="8">
       <dialogue option=" " returnCode="0" nextNode="9"/>
     </node>
-    <node text="Y con ESC pones Pausa. Pulsa la Q y la I, abren Quests e inventario!"  id="9">
+    <node text="El juego soporta mando o teclado para todos los menus."  id="9">
       <dialogue option=" " returnCode="0" nextNode="10"/>
     </node>
     <node text="Y sobre los controles seria todo..."  id="10">
@@ -92,7 +92,7 @@
     <node text="Actualmente puedes pelear, entrar a una mazmorra y superar misiones!"  id="12">
       <dialogue option=" " returnCode="0" nextNode="13"/>
     </node>
-    <node text="Disfruta probando nuestro juego!"  id="13">
+    <node text="Disfruta jugando!"  id="13">
       <dialogue option=" " returnCode="0" nextNode="6"/>
     </node>
     <node text="Entonces entra a este mundo y se el mejor del instituto!"  id="14">
@@ -105,8 +105,8 @@
       <dialogue option=" " returnCode="0" nextNode="1"/>
     </node>
     <node text="Necesitamos tu ayuda para recuperar un artefacto! Cuento contigo?"  id="1">
-      <dialogue option="1. Vale! " returnCode="0" nextNode="2"/>
-      <dialogue option="2. No, no me apetece. " returnCode="0" nextNode="3"/>
+      <dialogue option="(Up) Vale! " returnCode="0" nextNode="2"/>
+      <dialogue option="(Right) No, no me apetece. " returnCode="0" nextNode="3"/>
     </node>
     <node text="Rapido! Te llevare al gimnasio!"  id="2">
       <dialogue option=" " returnCode="0" nextNode="4"/>
@@ -121,7 +121,7 @@
       <dialogue option=" " returnCode="0" nextNode="1"/>
     </node>
     <node text="Acercate a el para luchar."  id="1">
-      <dialogue option="1. Vale! " returnCode="0" nextNode="2"/>
+      <dialogue option="(Up) Vale! " returnCode="0" nextNode="2"/>
     </node>
     <node text="Mucha suerte!"  id="2">
       <dialogue option=" " returnCode="0" nextNode="3"/>

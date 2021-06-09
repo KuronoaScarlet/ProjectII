@@ -30,13 +30,14 @@ bool DialogueSystem::Start()
 
 bool DialogueSystem::Update(float dt)
 {
+	GamePad& pad = app->input->pads[0];
 	if (app->entityManager->playerData.onDialog == true)
 	{
 		app->render->DrawTexture(textBox, -app->render->camera.x, -app->render->camera.y + 560);
 
 		if (Id == 0)
 		{
-			if (input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+			if (input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN || pad.a)
 			{
 				playerInput = 0;
 				Id = 0;
@@ -51,7 +52,7 @@ bool DialogueSystem::Update(float dt)
 
 		if (Id == 1)
 		{
-			if (input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+			if (input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN || pad.a)
 			{
 				playerInput = 0;
 				Id = 1;
@@ -70,7 +71,7 @@ bool DialogueSystem::Update(float dt)
 
 		if (Id == 2)
 		{
-			if (input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN || input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+			if (input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN || input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN || pad.a || pad.right)
 			{
 				playerInput = 0;
 				Id = 2;
@@ -85,28 +86,28 @@ bool DialogueSystem::Update(float dt)
 
 		if (Id == 3)
 		{
-			if (input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+			if (input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN || pad.a)
 			{
 				playerInput = 0;
 				Id = 3;
 				PerformDialogue(Id, playerInput);
 				actionChecks++;
 			}
-			if (input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+			if (input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN || pad.up)
 			{
 				playerInput = 0;
 				Id = 3;
 				PerformDialogue(Id, playerInput);
 				actionChecks = 0;
 			}
-			if (input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
+			if (input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN || pad.right)
 			{
 				playerInput = 1;
 				Id = 3;
 				PerformDialogue(Id, playerInput);
 				actionChecks = 0;
 			}
-			if (input->GetKey(SDL_SCANCODE_3) == KEY_DOWN)
+			if (input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN || pad.down)
 			{
 				playerInput = 2;
 				Id = 3;
@@ -122,14 +123,14 @@ bool DialogueSystem::Update(float dt)
 		}
 		if (Id == 4)
 		{
-			if (input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+			if (input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN || pad.a)
 			{
 				playerInput = 0;
 				Id = 4;
 				PerformDialogue(Id, playerInput);
 				actionChecks++;
 			}
-			if (input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+			if (input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN || pad.up)
 			{
 				playerInput = 0;
 				Id = 4;
@@ -137,7 +138,7 @@ bool DialogueSystem::Update(float dt)
 				actionChecks = 3;
 				enterDungeon = true;
 			}
-			if (input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
+			if (input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN || pad.right)
 			{
 				playerInput = 1;
 				Id = 4;
@@ -158,7 +159,7 @@ bool DialogueSystem::Update(float dt)
 		}
 		if (Id == 5)
 		{
-			if (input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN || input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+			if (input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN || input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN || pad.a || pad.up)
 			{
 				playerInput = 0;
 				Id = 5;
@@ -173,7 +174,7 @@ bool DialogueSystem::Update(float dt)
 		}
 		if (Id == 6)
 		{
-			if (input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN || input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+			if (input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN || input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN || pad.a || pad.up)
 			{
 				playerInput = 0;
 				Id = 6;

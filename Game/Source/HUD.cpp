@@ -372,8 +372,14 @@ bool Hud::PostUpdate()
 	}
 	if ((((app->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN || pad.right) && onGame) && optionsGlitch == true) && !bagEnabled)
 	{
-		optionsGlitch = false;
-		settingsEnabled = !settingsEnabled;
+		startglitch = false;
+		bagEnabled = false;
+		statsEnabled = false;
+		pauseCondition = !pauseCondition;
+		app->hud->settingsEnabled = false;
+		app->hud->configOn = false;
+		if (app->sceneManager->id == TITLE) selectedId = 501;
+		else selectedId = 300;
 	}
 
 	if (!pad.right && !pad.up)

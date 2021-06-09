@@ -231,21 +231,21 @@ bool Hud::Update(float dt)
 
 	if (bagEnabled == false && statsEnabled == false && pauseCondition == false)
 	{
-		if (((app->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN || pad.up) && onGame) && !settingsEnabled && !statsEnabled && !app->sceneManager->showQuestMenu)
+		if ((((app->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN || pad.up) && onGame) && !settingsEnabled && !statsEnabled && !app->sceneManager->showQuestMenu) && app->entityManager->playerData.onDialog == false)
 		{
 			selectedId = 130;
 			bagEnabled = !bagEnabled;
 			statsEnabled = false;
 			app->sceneManager->showQuestMenu = false;
 		}
-		if (((app->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN || pad.down) && onGame) && !settingsEnabled && !bagEnabled && !app->sceneManager->showQuestMenu)
+		if ((((app->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN || pad.down) && onGame) && !settingsEnabled && !bagEnabled && !app->sceneManager->showQuestMenu) && app->entityManager->playerData.onDialog == false)
 		{
 			selectedId = 129;
 			statsEnabled = !statsEnabled;
 			bagEnabled = false;
 			app->sceneManager->showQuestMenu = false;
 		}
-		if ((((app->input->GetKey(SDL_SCANCODE_LEFT) == KEY_DOWN || pad.left) && onGame) && !settingsEnabled && !statsEnabled && !bagEnabled) && questGlitch == true)
+		if (((((app->input->GetKey(SDL_SCANCODE_LEFT) == KEY_DOWN || pad.left) && onGame) && !settingsEnabled && !statsEnabled && !bagEnabled) && questGlitch == true) && app->entityManager->playerData.onDialog == false)
 		{
 			questGlitch = false;
 			app->sceneManager->showQuestMenu = !app->sceneManager->showQuestMenu;
@@ -370,7 +370,7 @@ bool Hud::PostUpdate()
 		settingsButton->Draw(app->render);
 		exitButton->Draw(app->render);
 	}
-	if ((((app->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN || pad.right) && onGame) && optionsGlitch == true) && !bagEnabled)
+	if ((((((app->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN || pad.right) && onGame) && optionsGlitch == true) && !bagEnabled)&& pauseCondition == false) && app->entityManager->playerData.onDialog == false)
 	{
 		startglitch = false;
 		bagEnabled = false;
@@ -404,7 +404,7 @@ bool Hud::PostUpdate()
 		startglitch = true;
 	}
 
-	if (app->sceneManager->id == SCENE1 || app->sceneManager->id == SCENE12 || app->sceneManager->id == BATH || app->sceneManager->id == GYM)
+	if ((app->sceneManager->id == SCENE1 || app->sceneManager->id == SCENE12 || app->sceneManager->id == BATH || app->sceneManager->id == GYM) && app->entityManager->playerData.onDialog == false)
 	{
 		app->render->DrawTexture(padControlls, -app->render->camera.x + 45, -app->render->camera.y + 40, NULL);
 		onGame = true;

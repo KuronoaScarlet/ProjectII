@@ -89,9 +89,9 @@ bool Hud::Start()
 	musicSliderBack = { 900,300,300,40 };
 	fxSliderBack = { 900,350,300,40 };
 
-	quitStatsAndInvetory = new GuiButton(129, { 70,39, 86, 98 }, "BAG");// 1155,20
+	quitStatsAndInvetory = new GuiButton(129, { 70,39, 86, 98 }, "ESC");// 1155,20
 	quitStatsAndInvetory->SetObserver(this);
-	quitStatsAndInvetory->SetTexture(app->tex->Load("Assets/Textures/esc4.png"), app->tex->Load("Assets/Textures/esc5.png"), app->tex->Load("Assets/Textures/esc6.png"));
+	quitStatsAndInvetory->SetTexture(app->tex->Load("Assets/Textures/esc_idle.png"), app->tex->Load("Assets/Textures/esc_pressed.png"), app->tex->Load("Assets/Textures/esc_selected.png"));
 
 	pencil = new GuiButton(130, { 204,73, 69, 72 }, "PENCIL");// 1155,20
 	pencil->SetObserver(this);

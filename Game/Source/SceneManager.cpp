@@ -685,7 +685,7 @@ void SceneManager::OnMouseAboveButton(GuiControlState state, uint32 id)
             sprintf_s(snackText2, 80, "Aumenta el dano del jugador durante 2 turnos.");
             app->render->DrawText(app->render->font, snackText2, 209, 630, 40, 0, { 255, 0, 0, 255 });
         }
-        else if (id == 140)
+        else if (id == 139)
         {
             char tipexEnabled[80] = { 0 };
             sprintf_s(tipexEnabled, 80, "Todos sabemos que su nombre es Tipex por mas que intentemos negarlo.");
@@ -698,7 +698,7 @@ void SceneManager::OnMouseAboveButton(GuiControlState state, uint32 id)
         else if (id == 141)
         {
             char sharpedPencilEnabled[80] = { 0 };
-            sprintf_s(sharpedPencilEnabled, 80, "Ni Jack el destripador tenía un arma tan afilada como esta. Lapiz + Sacapuntas");
+            sprintf_s(sharpedPencilEnabled, 80, "Ni Jack el destripador tenia un arma tan afilada como esta. Lapiz + Sacapuntas");
             app->render->DrawText(app->render->font, sharpedPencilEnabled, 209, 588, 40, 0, { 0, 0, 0, 255 });
 
             char sharpedPencilEnabled2[80] = { 0 };

@@ -143,8 +143,6 @@ public:
 	GuiButton* Wonster;
 private:
 	//GuiButton* play;
-
-	Easing* easing;
 	
 	float currentIteration = 0;
 	float totalIterations = 0;

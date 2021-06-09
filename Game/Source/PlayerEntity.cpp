@@ -504,36 +504,6 @@ bool PlayerEntity::Update(float dt)
 				app->input->ShakeController(0, 12, 0.33f);
 			}
 
-			//ZOOM MANAGEMENT----------------------------------------
-			if (0)
-			{
-				SDL_Rect zones[3] =
-				{
-					90,94,270,726,
-					570,90,430,180,
-					90,1220,620,530,
-				};
-				SDL_Point ppos{ (int)position.x,(int)position.y };
-				if (SDL_PointInRect(&ppos, &zones[0])
-					|| SDL_PointInRect(&ppos, &zones[1])
-					|| SDL_PointInRect(&ppos, &zones[2]))
-				{
-					float diffz = 2.0f - scale_zoom;
-					if (diffz < 0.1f) diffz = 0.1f;
-					if (scale_zoom < 2.0f) scale_zoom += diffz * dt * 2.0f;
-					else scale_zoom = 2.0f;
-				}
-				else
-				{
-					float diffz = 1.0f - scale_zoom;
-					if (diffz > -0.1f) diffz = -0.1f;
-					if (scale_zoom > 1.0f) scale_zoom += diffz * dt * 2.0f;
-					else scale_zoom = 1.0f;
-				}
-
-				SDL_RenderSetScale(app->render->renderer, scale_zoom, scale_zoom);
-			}
-
 			//CAMERA MANAGEMENT----------------------------------------
 
 			float diffx = position.x - lerpCamera.x;

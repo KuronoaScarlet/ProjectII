@@ -11,6 +11,8 @@ GuiCheckBox::GuiCheckBox(uint32 id, SDL_Rect bounds, const char* text) : GuiCont
     selectedFx = app->audio->LoadFx("Assets/Audio/FX/menu_selected.wav");
     releaseFx = app->audio->LoadFx("Assets/Audio/FX/menu_release.wav");
     pencilFx = app->audio->LoadFx("Assets/Audio/FX/pencil_circle.wav");
+
+    holaRayQueTal = true;
 }
 
 GuiCheckBox::~GuiCheckBox()
@@ -25,17 +27,22 @@ bool GuiCheckBox::Update(Input* input, float dt)
         if (app->hud->selectedId == id)
         {
             state = GuiControlState::FOCUSED;
-
-            if (input->GetKey(SDL_SCANCODE_RETURN) == KeyState::KEY_REPEAT)
+            GamePad& pad = app->input->pads[0];
+            if (input->GetKey(SDL_SCANCODE_RETURN) == KeyState::KEY_REPEAT || pad.a)
             {
                 state = GuiControlState::PRESSED;
             }
             
             // If mouse button pressed -> Generate event!
-            if (input->GetKey(SDL_SCANCODE_RETURN) == KeyState::KEY_UP)
+            if ((input->GetKey(SDL_SCANCODE_RETURN) == KeyState::KEY_UP || pad.a) && holaRayQueTal == true)
             {
+                holaRayQueTal = false;
                 NotifyObserver();
                 checked = !checked;
+            }
+            if (!pad.a && !pad.up)
+            {
+                holaRayQueTal = true;
             }
         }
         else state = GuiControlState::NORMAL;

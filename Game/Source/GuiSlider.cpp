@@ -22,48 +22,34 @@ bool GuiSlider::Update(Input* input, float dt)
 
     if (state != GuiControlState::DISABLED)
     {
-        int mouseX, mouseY;
-        input->GetMousePosition(mouseX, mouseY);
-
-        int mouseMotionX, mouseMotionY;
-        input->GetMouseMotion(mouseMotionX, mouseMotionY);
-
-        mouseX -= app->render->camera.x;
-        mouseY -= app->render->camera.y;
-
-        SDL_Point mouse = { mouseX , mouseY };
-
-        if (SDL_PointInRect(&mouse, &bounds))
+        if (app->hud->selectedId == id)
         {
             state = GuiControlState::FOCUSED;
-            if (input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_REPEAT)
+            GamePad& pad = app->input->pads[0];
+            if (input->GetKey(SDL_SCANCODE_RIGHT) == KeyState::KEY_REPEAT || pad.right)
             {
                 state = GuiControlState::PRESSED;
-
-                bounds.x = mouse.x - (bounds.w/2);
-                int left = app->hud->musicSliderBack.x + 1;
-                if (bounds.x < left)
-                    bounds.x = left;
-                int right = app->hud->musicSliderBack.x + app->hud->musicSliderBack.w - 1 - bounds.w;
-                if (bounds.x > right)
-                    bounds.x = right;
+                bounds.x++;
                 NotifyObserver();
             }
-            onSquare = true;
+            if (input->GetKey(SDL_SCANCODE_LEFT) == KeyState::KEY_REPEAT || pad.left)
+            {
+                state = GuiControlState::PRESSED;
+                bounds.x--;
+                NotifyObserver();
+            }
+            int left = app->hud->musicSliderBack.x + 1;
+            if (bounds.x < left)
+                bounds.x = left;
+            int right = app->hud->musicSliderBack.x + app->hud->musicSliderBack.w - 1 - bounds.w;
+            if (bounds.x > right)
+                bounds.x = right;
         }
-        else
-        {
-            onSquare = false;
-        }
-        if (input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_UP)
+        else state = GuiControlState::NORMAL;
+        if (input->GetKey(SDL_SCANCODE_RIGHT) == KeyState::KEY_UP || input->GetKey(SDL_SCANCODE_LEFT) == KeyState::KEY_UP)
         {
             state = GuiControlState::RELEASED;
         }
-
-           
-        
-
-        else state = GuiControlState::NORMAL;
     }
 
     return false;
@@ -99,8 +85,8 @@ bool GuiSlider::Draw(Render* render)
             break;
         case GuiControlState::RELEASED:
         {
-            render->DrawTexture(textureIdle, bounds.x, bounds.y, NULL);
-            if (audio == false && onSquare)
+            render->DrawTexture(textureFocused, bounds.x, bounds.y, NULL);
+            if (audio == false)
             {
                 audio = true;
                 app->audio->PlayFx(channel, sampleFx);

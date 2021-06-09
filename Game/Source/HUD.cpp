@@ -76,11 +76,11 @@ bool Hud::Start()
 
 	musicSlider = new GuiSlider(305, { 1140,300, 60, 60 }, "FULLSCREEN");
 	musicSlider->SetObserver(this);
-	musicSlider->SetTexture(app->tex->Load("Assets/Textures/fx.png"), app->tex->Load("Assets/Textures/fx_selected.png"), app->tex->Load("Assets/Textures/fx_focused.png"));
+	musicSlider->SetTexture(app->tex->Load("Assets/Textures/fx.png"), app->tex->Load("Assets/Textures/fx_selected.png"), app->tex->Load("Assets/Textures/fx_pressed.png"));
 
 	fxSlider = new GuiSlider(306, { 1140,350, 60, 60 }, "FULLSCREEN");
 	fxSlider->SetObserver(this);
-	fxSlider->SetTexture(app->tex->Load("Assets/Textures/fx.png"), app->tex->Load("Assets/Textures/fx_selected.png"), app->tex->Load("Assets/Textures/fx_focused.png"));
+	fxSlider->SetTexture(app->tex->Load("Assets/Textures/fx.png"), app->tex->Load("Assets/Textures/fx_selected.png"), app->tex->Load("Assets/Textures/fx_pressed.png"));
 
 	exitButton = new GuiButton(302, { 551, 360, 172, 55 }, "CREDITS");
 	exitButton->SetObserver(this);
@@ -91,7 +91,7 @@ bool Hud::Start()
 
 	quitStatsAndInvetory = new GuiButton(129, { 70,39, 86, 98 }, "ESC");// 1155,20
 	quitStatsAndInvetory->SetObserver(this);
-	quitStatsAndInvetory->SetTexture(app->tex->Load("Assets/Textures/esc_idle.png"), app->tex->Load("Assets/Textures/esc_pressed.png"), app->tex->Load("Assets/Textures/esc_selected.png"));
+	quitStatsAndInvetory->SetTexture(app->tex->Load("Assets/Textures/esc_idle.png"), app->tex->Load("Assets/Textures/esc_selected.png"), app->tex->Load("Assets/Textures/esc_pressed.png"));
 
 	pencil = new GuiButton(130, { 204,73, 69, 72 }, "PENCIL");// 1155,20
 	pencil->SetObserver(this);

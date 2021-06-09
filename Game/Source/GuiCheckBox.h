@@ -17,7 +17,7 @@ public:
     bool Draw(Render* render);
 
 private:
-
+    bool holaRayQueTal = true;
     // GuiCheckBox specific properties
     // Maybe some animation properties for state change?
     bool checked = false;

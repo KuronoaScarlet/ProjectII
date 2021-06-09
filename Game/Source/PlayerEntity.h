@@ -54,7 +54,7 @@ private:
 
 	Collider* frontCollider = nullptr;
 
-	bool rayComoVanLosOlivos = true;
+	bool ray1 = true;
 };
 
 #endif // _GROUNDENEMY_H_

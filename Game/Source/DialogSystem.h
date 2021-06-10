@@ -90,6 +90,8 @@ private:
 	Textures* tex;
 	uint battleTransition = 0;
 
+	bool holaRay = true;
+
 	int channel = 2;
 
 };

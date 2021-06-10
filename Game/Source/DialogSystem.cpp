@@ -25,6 +25,8 @@ bool DialogueSystem::Start()
 	battleTransition = app->audio->LoadFx("Assets/Audio/FX/battle_transition.wav");
 	textBox = app->tex->Load("Assets/Textures/text_box.png");
 
+	holaRay= true;
+
 	return true;
 }
 
@@ -37,8 +39,9 @@ bool DialogueSystem::Update(float dt)
 
 		if (Id == 0)
 		{
-			if (input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN || pad.a)
+			if ((input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN || pad.a) && holaRay == true)
 			{
+				holaRay = false;
 				playerInput = 0;
 				Id = 0;
 				PerformDialogue(Id, playerInput);
@@ -52,8 +55,9 @@ bool DialogueSystem::Update(float dt)
 
 		if (Id == 1)
 		{
-			if (input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN || pad.a)
+			if ((input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN || pad.a) && holaRay == true)
 			{
+				holaRay = false;
 				playerInput = 0;
 				Id = 1;
 				PerformDialogue(Id, playerInput);
@@ -71,8 +75,9 @@ bool DialogueSystem::Update(float dt)
 
 		if (Id == 2)
 		{
-			if (input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN || input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN || pad.a || pad.right)
+			if ((input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN || input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN || pad.a || pad.right) && holaRay == true)
 			{
+				holaRay = false;
 				playerInput = 0;
 				Id = 2;
 				PerformDialogue(Id, playerInput);
@@ -86,29 +91,33 @@ bool DialogueSystem::Update(float dt)
 
 		if (Id == 3)
 		{
-			if (input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN || pad.a)
+			if ((input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN || pad.a) && holaRay == true)
 			{
+				holaRay = false;
 				playerInput = 0;
 				Id = 3;
 				PerformDialogue(Id, playerInput);
 				actionChecks++;
 			}
-			if (input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN || pad.up)
+			if ((input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN || pad.up) && holaRay == true)
 			{
+				holaRay = false;
 				playerInput = 0;
 				Id = 3;
 				PerformDialogue(Id, playerInput);
 				actionChecks = 0;
 			}
-			if (input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN || pad.right)
+			if ((input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN || pad.right) && holaRay == true)
 			{
+				holaRay = false;
 				playerInput = 1;
 				Id = 3;
 				PerformDialogue(Id, playerInput);
 				actionChecks = 0;
 			}
-			if (input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN || pad.down)
+			if ((input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN || pad.down) && holaRay == true)
 			{
+				holaRay = false;
 				playerInput = 2;
 				Id = 3;
 				PerformDialogue(Id, playerInput);
@@ -123,23 +132,26 @@ bool DialogueSystem::Update(float dt)
 		}
 		if (Id == 4)
 		{
-			if (input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN || pad.a)
+			if ((input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN || pad.a) && holaRay == true)
 			{
+				holaRay = false;
 				playerInput = 0;
 				Id = 4;
 				PerformDialogue(Id, playerInput);
 				actionChecks++;
 			}
-			if (input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN || pad.up)
+			if ((input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN || pad.up) && holaRay == true)
 			{
+				holaRay = false;
 				playerInput = 0;
 				Id = 4;
 				PerformDialogue(Id, playerInput);
 				actionChecks = 3;
 				enterDungeon = true;
 			}
-			if (input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN || pad.right)
+			if ((input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN || pad.right) && holaRay == true)
 			{
+				holaRay = false;
 				playerInput = 1;
 				Id = 4;
 				PerformDialogue(Id, playerInput);
@@ -159,8 +171,9 @@ bool DialogueSystem::Update(float dt)
 		}
 		if (Id == 5)
 		{
-			if (input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN || input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN || pad.a || pad.up)
+			if ((input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN || input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN || pad.a || pad.up) && holaRay == true)
 			{
+				holaRay = false;
 				playerInput = 0;
 				Id = 5;
 				PerformDialogue(Id, playerInput);
@@ -174,8 +187,9 @@ bool DialogueSystem::Update(float dt)
 		}
 		if (Id == 6)
 		{
-			if (input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN || input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN || pad.a || pad.up)
+			if ((input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN || input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN || pad.a || pad.up) && holaRay == true)
 			{
+				holaRay = false;
 				playerInput = 0;
 				Id = 6;
 				PerformDialogue(Id, playerInput);
@@ -187,6 +201,10 @@ bool DialogueSystem::Update(float dt)
 				app->sceneManager->CreateQuest(1, "Combine one Item!");
 			}
 		}
+	}
+	if (!pad.a && !pad.up && !pad.right && !pad.down)
+	{
+		holaRay = true;
 	}
 
 	return true;

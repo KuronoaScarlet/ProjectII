@@ -25,7 +25,6 @@ class ParticleSystem;
 class AssetsManager;
 
 //Scenes
-class Title;
 
 class App
 {
@@ -99,7 +98,6 @@ public:
 	Collisions* collisions;
 	DialogueSystem* dialogueSystem;
 	Hud* hud;
-	Title* title;
 	SceneManager* sceneManager;
 	ParticleSystem* particleSystem;
 	AssetsManager* assetsManager;

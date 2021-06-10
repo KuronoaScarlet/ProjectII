@@ -19,6 +19,7 @@
 ## Key Features
 
  - Traditional RPG turn based videogame.
+ - Gamepad Controller fully Supported!
  - XML parsing used for saving and loading game progress and information used in combats.
  - Complete user interface, menus and scene transitions, with clear goal (win combat).
  - Follows the guidelines for both budget and performance expectations (1280x720px@60fps resolution, support windowed/fullscreen, 256 MB maximun RAM usage).
@@ -30,17 +31,18 @@
  - Missions system implemented!
  - Stats and Inventory Tabs Implemented!
  - Some Items implemented on the World Map. Find them and interact with them in order to get them!
+ - Instaler also implemented. Download it at the Release section!
  
 ## Controls
 
- - `WASD` Movement direction, allowing diagonals.
- - `E` Interaction.
- - `I` Open Inventory and Stats Tab.
- - `Q` Open Quests Tab.
- - `SPACE` Continue dialogues and combat steps.
- - `ESC` Open pause menu.
- - `MouseClick` Choose combat option and Menu options.
- - `1, 2 and 3` Choose dialogue option and combat target.
+ - `WASD` or `Joystick` Movement direction, allowing diagonals.
+ - `E` or `X` Interaction.
+ - `Up Arrow` or `Pad Up` Open Inventory.
+ - `Down Arrow` or `Pad Down` Open Stats.
+ - `Left Arrow` or `Pad Left` Open Quests Tab.
+ - `Return` or `A` Continue dialogues, perform combat actions.
+ - `Directional Pad` Choose dialogue and combat option.
+ - `Escape` or `Pad Right` or `Options` Open pause menu.
  - `F9` Show collision rects.
  - `F10` Toggle god mode (increased speed and ignore collisions).
 

@@ -334,9 +334,6 @@ bool BattleScene::CleanUp()
 
 	app->entityManager->CleanUp();
 	app->collisions->CleanUp();
-	damageEnemy->CleanUp();
-	balancedEnemy->CleanUp();
-	tankEnemy->CleanUp();
 	app->tex->UnLoad(screen);
 	app->tex->UnLoad(combatBox);
 	app->tex->UnLoad(playerFace);
@@ -344,6 +341,9 @@ bool BattleScene::CleanUp()
 	app->tex->UnLoad(blncEnemyFace);
 	app->tex->UnLoad(tankEnemyFace);
 	app->tex->UnLoad(dmgEnemyFace);
+	damageEnemy->CleanUp();
+	balancedEnemy->CleanUp();
+	tankEnemy->CleanUp();
 	attack->CleanUp();
 	defend->CleanUp();
 	combine->CleanUp();

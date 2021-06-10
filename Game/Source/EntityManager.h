@@ -112,7 +112,6 @@ private:
 	SDL_Texture* texYellowBall;
 	SDL_Texture* texRedBall;
 	SDL_Texture* texPurpleBall;
-	SDL_Texture* texGateOpen;
 
 	SDL_Texture* texEnemy1;
 	SDL_Texture* texEnemy3;

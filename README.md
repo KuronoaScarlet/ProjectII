@@ -35,16 +35,16 @@
  
 ## Controls
 
- - `WASD` or `Joystick` Movement direction, allowing diagonals.
- - `E` or `X` Interaction.
- - `Up Arrow` or `Pad Up` Open Inventory.
- - `Down Arrow` or `Pad Down` Open Stats.
- - `Left Arrow` or `Pad Left` Open Quests Tab.
- - `Return` or `A` Continue dialogues, perform combat actions.
- - `Directional Pad` Choose dialogue and combat option.
- - `Escape` or `Pad Right` or `Options` Open pause menu.
- - `F9` Show collision rects.
- - `F10` Toggle god mode (increased speed and ignore collisions).
+ - `WASD` or `Joystick`: Movement direction, allowing diagonals.
+ - `E` or `X`: Interaction.
+ - `Up Arrow` or `Pad Up`: Open Inventory.
+ - `Down Arrow` or `Pad Down`: Open Stats.
+ - `Left Arrow` or `Pad Left`: Open Quests Tab.
+ - `Return` or `A`: Continue dialogues, perform combat actions.
+ - `Directional Pad`: Choose dialogue and combat option.
+ - `Escape` or `Pad Right` or `Options`: Open pause menu.
+ - `F9`: Show collision rects.
+ - `F10`: Toggle god mode (increased speed and ignore collisions).
 
 
 ## License

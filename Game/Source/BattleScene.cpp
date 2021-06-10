@@ -341,13 +341,13 @@ bool BattleScene::CleanUp()
 	app->tex->UnLoad(blncEnemyFace);
 	app->tex->UnLoad(tankEnemyFace);
 	app->tex->UnLoad(dmgEnemyFace);
-	damageEnemy->CleanUp();
+	/*damageEnemy->CleanUp();
 	balancedEnemy->CleanUp();
 	tankEnemy->CleanUp();
 	attack->CleanUp();
 	defend->CleanUp();
 	combine->CleanUp();
-	run->CleanUp();
+	run->CleanUp();*/
 
 	LOG("Freeing scene");
 	return true;

@@ -321,6 +321,7 @@ bool SceneManager::OnGuiMouseClickEvent(GuiControl* control)
             if (app->sceneManager->id == BATTLE)
             {
                 combMenu = false;
+                app->hud->selectedId = 101;
             }
         }
         if (control->id == 101)

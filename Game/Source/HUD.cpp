@@ -386,7 +386,10 @@ bool Hud::PostUpdate()
 	{
 		optionsGlitch = true;
 	}
-
+	if (pauseCondition == true && pad.b)
+	{
+		pauseCondition = false;
+	}
 
 	if ((app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN || pad.start) && startglitch == true)
 	{
@@ -399,7 +402,7 @@ bool Hud::PostUpdate()
 		if(app->sceneManager->id == TITLE) selectedId = 501;
 		else selectedId = 300;
 	}
-	if (!pad.start && !pad.up)
+	if (!pad.start && !pad.b)
 	{
 		startglitch = true;
 	}

@@ -234,6 +234,7 @@ bool BattleScene::Update(float dt)
 // Called each loop iteration
 bool BattleScene::PostUpdate()
 {
+	GamePad& pad = app->input->pads[0];
 	bool ret = true;
 
 	app->render->DrawTexture(screen, 0, 0, NULL);
@@ -302,7 +303,7 @@ bool BattleScene::PostUpdate()
 	if (state == LOSE)
 	{
 		app->hud->DrawLooseScreen();
-		if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
+		if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN || pad.a)
 		{
 			if (app->entityManager->playerData.scene == 1) app->sceneManager->ChangeScene(SCENE1, 0);
 			if (app->entityManager->playerData.scene == 2) app->sceneManager->ChangeScene(SCENE12, 0);
@@ -312,7 +313,7 @@ bool BattleScene::PostUpdate()
 	{
 		app->hud->DrawVictoryScreen();
 
-		if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
+		if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN || pad.a)
 		{
 			if (app->entityManager->playerData.scene == 1) app->sceneManager->ChangeScene(SCENE1, 0);
 			if (app->entityManager->playerData.scene == 2) app->sceneManager->ChangeScene(SCENE12, 0);

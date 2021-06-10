@@ -72,7 +72,7 @@
     <node text="Quieres que te hablemos de algo?"  id="6">
       <dialogue option="(Up) Controles." returnCode="0" nextNode="7"/>
       <dialogue option="(Right) Objetivo." returnCode="0" nextNode="11"/>
-      <dialogue option="(Left) No me cuentes nada mas, soy un aventurero." returnCode="0" nextNode="14"/>
+      <dialogue option="(Down) No me cuentes nada mas, soy un aventurero." returnCode="0" nextNode="14"/>
     </node>
     <node text="Te mueves con WASD o con el Joystick en caso de que juegues con mando"  id="7">
       <dialogue option=" " returnCode="0" nextNode="8"/>

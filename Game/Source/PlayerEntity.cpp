@@ -397,7 +397,8 @@ bool PlayerEntity::Update(float dt)
 			if (app->input->GetKey(SDL_SCANCODE_A) == KEY_IDLE
 				&& app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE
 				&& app->input->GetKey(SDL_SCANCODE_W) == KEY_IDLE
-				&& app->input->GetKey(SDL_SCANCODE_S) == KEY_IDLE)
+				&& app->input->GetKey(SDL_SCANCODE_S) == KEY_IDLE
+				&& pad.l_x == 0  && pad.l_y == 0)
 			{
 				if (currentAnimation != &idleAnimation)
 				{
@@ -421,7 +422,8 @@ bool PlayerEntity::Update(float dt)
 				frontCollider->SetPos(position.x - 20,position.y + 20);
 				position.x -= speed * dt;
 				collider->SetPos(position.x + 6, position.y + 34);
-				if (currentAnimation != &walkAnimationLeft && app->input->GetKey(SDL_SCANCODE_W) != KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_S) != KEY_REPEAT)
+				if (currentAnimation != &walkAnimationLeft && app->input->GetKey(SDL_SCANCODE_W) != KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_S) != KEY_REPEAT
+					&& pad.l_y == 0.0f)
 					if (app->sceneManager->crate == false)
 					{
 						{
@@ -440,7 +442,8 @@ bool PlayerEntity::Update(float dt)
 				frontCollider->SetPos(position.x + 38, position.y + 20);
 				position.x += speed * dt;
 				collider->SetPos(position.x + 6, position.y + 34);
-				if (currentAnimation != &walkAnimationRight && app->input->GetKey(SDL_SCANCODE_W) != KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_S) != KEY_REPEAT)
+				if (currentAnimation != &walkAnimationRight && app->input->GetKey(SDL_SCANCODE_W) != KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_S) != KEY_REPEAT
+					&& pad.l_y == 0.0f)
 					if (app->sceneManager->crate == false)
 					{
 						{
@@ -518,7 +521,6 @@ bool PlayerEntity::Update(float dt)
 
 			app->render->camera.x = xx;
 			app->render->camera.y = yy;
-			printf("%d___%d___%.5f\n", app->render->camera.x, app->render->camera.y, scale_zoom);
 			//-------------------------------------------------------
 			
 		}

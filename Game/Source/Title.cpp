@@ -170,6 +170,7 @@ bool Title::Update(float dt)
 // Update: draw background
 bool Title::PostUpdate()
 {
+    GamePad& pad = app->input->pads[0];
     bool ret = true;
 
    // Draw everything --------------------------------------
@@ -189,7 +190,10 @@ bool Title::PostUpdate()
     {
         app->render->DrawTexture(creditsScene, 0, 0, NULL);
     }
-
+    if (app->hud->creditSceneFlag && pad.b)
+    {
+        app->hud->creditSceneFlag = false;
+    }
     if (app->hud->creditSceneFlag == true)
     {
         app->render->DrawTexture(creditsScene, 0, 0, NULL);

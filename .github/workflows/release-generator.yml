@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: windows-latest
     env:
-      RELEASE_NAME: TDM-Caronte_Mandate-v0.8
+      RELEASE_NAME: TDM-Caronte_Mandate-v1.0
       GNUTARGET: default
 
     steps:

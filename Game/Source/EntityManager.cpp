@@ -72,8 +72,6 @@ bool EntityManager::Start()
 
 	texItem = app->tex->Load("Assets/Textures/Items/Shine.png");
 
-	texGateOpen = app->tex->Load("Assets/Textures/Items/purpleball.png");
-
 	texBlueBall = app->tex->Load("Assets/Textures/Entities/Puzzle/blueball.png");
 	texRedBall = app->tex->Load("Assets/Textures/Entities/Puzzle/redball.png");
 	texPurpleBall = app->tex->Load("Assets/Textures/Entities/Puzzle/purpleball.png");

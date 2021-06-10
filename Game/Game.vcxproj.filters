@@ -453,6 +453,7 @@
     <ClInclude Include="Source\AssetsManager.h">
       <Filter>Modules</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">
@@ -497,5 +498,11 @@
     <Filter Include="Entities\Puzzle">
       <UniqueIdentifier>{59866e94-735c-4a07-97aa-a8150d61991a}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Icon.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Source\External\Icon\icon.ico" />
   </ItemGroup>
 </Project>

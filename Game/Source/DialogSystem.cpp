@@ -22,7 +22,7 @@ DialogueSystem::~DialogueSystem() {}
 bool DialogueSystem::Start()
 {
 	app->dialogueSystem->LoadDialogue("dialogue_tree.xml");
-	battleTransition = app->audio->LoadFx("Assets/Audio/FX/battle_transition.wav");
+	battleTransition = app->audio->LoadFx("Assets/Audio/Fx/battle_transition.wav");
 	textBox = app->tex->Load("Assets/Textures/text_box.png");
 
 	holaRay= true;
